@@ -1,0 +1,34 @@
+#!/usr/bin/env python3
+
+import os
+import sys
+
+sys.path.append(os.popen("echo $HOME").read().strip())
+
+import click
+import yaml
+from dotfiles.scripts.utils import config
+
+
+@click.command()
+@click.argument("wallpaper", default="default")
+def setWallpaper(wallpaper):
+
+    data = config.getConfig()
+    wallpapers = data["path"]["wallpaper"]
+
+    monitors = int(os.popen('xrandr --listmonitors | grep "+" | wc -l').read())
+
+    if wallpaper == "default":
+        if monitors == 2:
+            print("Dual monitor")
+            os.popen("hsetroot -cover {}".format(wallpapers["dual"]))
+        elif monitors == 1:
+            print("Single monitor")
+            os.popen("hsetroot -cover {}".format(wallpapers["single"]))
+    else:
+        os.popen("hsetroot -cover {}".format(wallpaper))
+
+
+if __name__ == "__main__":
+    setWallpaper()

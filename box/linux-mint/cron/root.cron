@@ -1,0 +1,1 @@
+@hourly /home/cmiranda/bin/backuper --backup linux

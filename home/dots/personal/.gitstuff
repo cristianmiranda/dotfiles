@@ -1,0 +1,80 @@
+#!/bin/bash
+
+# GIT COMMANDS
+alias st='git status'
+alias br='git branch'
+alias ci='git commit'
+alias co='git checkout '
+alias gk='gitk --all&'
+alias reset='git stash apply'
+alias revert='git reset HEAD~1'
+alias cleanbranches='git branch | grep -v "master" | grep -v "esh-develop" | grep -v "development" | xargs -n 1 git branch -D'
+alias localprune='git branch | grep -v "development" | grep -v "master" | xargs git branch -D'
+alias gc="git rev-list --count develop..HEAD"
+
+function got(){
+  echo " -> Fetching new branches ...";
+  git fetch origin;
+  echo " -> Checking out $@ ...";
+  git checkout -b "$@" origin/"$@";
+  echo " -> Pulling latest changes from origin/$@ ...";
+  git pull origin "$@";
+}
+
+function gpl(){
+  git pull --rebase origin `git branch | awk '{if ($1 == "*"){print $2}}'`
+}
+
+function gph(){
+  git push origin `git branch | awk '{if ($1 == "*"){print $2}}'`
+}
+
+function gphf(){
+  git push -f origin `git branch | awk '{if ($1 == "*"){print $2}}'`
+}
+
+function ga(){
+  git commit -a --amend --no-edit
+}
+
+function gr(){
+  git rebase -i --autosquash HEAD~$1
+}
+
+function gcf(){
+  git ci --fixup $1
+}
+
+function gcaf(){
+  git ci -a --fixup $1
+}
+
+function gwipe(){
+  git branch -D $1 && git push origin :$1
+}
+
+function glc(){
+  count=`gc`;
+  echo "Showing $count commits\n";
+  gl $count;
+}
+
+function gl(){
+  git log -$@ --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+}
+
+function glp(){
+  git log -$@ --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit -p
+}
+
+function unreviewed_prs() {
+  URL="https://github.com/lillegroup/escribehost/pulls"
+  QUERY=""
+  QUERY="$QUERY is:pr"
+  QUERY="$QUERY is:open"
+  QUERY="$QUERY created:<"`date -v -3d +%Y-%m-%d`              #older than 3d
+  QUERY="$QUERY -label:\"DNRY 🚧\""                           #label!=DNRY
+  QUERY="$QUERY -label:\"✔️ cristian\""                        #label!=cristian
+  QUERY="$QUERY sort:created-asc"                              #oldest first
+  open -a "Google Chrome" "$URL?q=$QUERY"
+}

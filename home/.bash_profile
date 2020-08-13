@@ -1,0 +1,2 @@
+# Loading stuff
+. ~/.bashrc

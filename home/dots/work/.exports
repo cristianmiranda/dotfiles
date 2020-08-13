@@ -1,0 +1,4 @@
+#!/bin/bash
+
+export BASE_WORK_DIR="${HOME}/Documents/Work"
+export LG_BASE_DIR="${BASE_WORK_DIR}/Workspace_LG"

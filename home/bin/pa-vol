@@ -1,0 +1,86 @@
+#!/bin/bash
+
+SINK="`pactl info | grep -P '^Default Sink: ' | sed 's/[^:]\+:\s\+//'`"
+[[ -z "$SINK" ]] && exit 1
+
+
+INCR='5%'
+MIN_VOLUME=0
+#MAX_VOLUME=65536 # 100%
+MAX_VOLUME=85536 # 130%
+
+# Arbitrary but unique message id for dunst notifications
+MSG_ID="991049"
+
+function volume() {
+  VOLUME="`pacmd dump | grep -P '^set-sink-volume.*\s+0x[1-9a-f][0-9a-f]*$'`"
+  echo "$VOLUME" | grep -qF "$SINK"
+  if [[ $? -eq 0 ]]; then
+    VOLUME="`echo "$VOLUME" | grep -oP '0x[1-9a-f][0-9a-f]*$'`"
+    echo $VOLUME
+  else
+    echo 0
+  fi
+  unset VOLUME
+}
+
+function soundFeeback() {
+  # Play the volume changed sound
+  canberra-gtk-play -i audio-volume-change -d "changeVolume"
+}
+
+volume
+
+if [[ -z "$1" ]]; then
+  echo "Usage: $0 <up | down | mute | unmute | toggle>"
+  exit 1
+fi
+
+case "$1" in
+  up)
+    pactl -- set-sink-volume "$SINK" "+$INCR"
+    VOLUME="`volume`"
+    VOL_VALUE=`printf "%d\n" "$VOLUME"`
+    VOL_VALUE=`expr $VOL_VALUE \* 100 / $MAX_VOLUME`
+    # dunstify -a "changeVolume" -u low -i audio-volume-high -r "$MSG_ID" "$(get-progress-string 30 "#" "-" "$VOL_VALUE")"
+    if [[ $VOLUME -gt $MAX_VOLUME ]]; then
+      pactl -- set-sink-volume "$SINK" "$MAX_VOLUME"
+    fi
+    soundFeeback
+    ;;
+  down)
+    pactl -- set-sink-volume "$SINK" "-$INCR"
+    VOLUME="`volume`"
+    VOL_VALUE=`printf "%d\n" "$VOLUME"`
+    VOL_VALUE=`expr $VOL_VALUE \* 100 / $MAX_VOLUME`
+    # dunstify -a "changeVolume" -u low -i audio-volume-high -r "$MSG_ID" "$(get-progress-string 30 "#" "-" "$VOL_VALUE")"
+    if [[ $VOLUME -lt $MIN_VOLUME ]]; then
+      pactl -- set-sink-volume "$SINK" "$MIN_VOLUME"
+    fi
+    soundFeeback
+    ;;
+  mute)
+    pactl -- set-sink-mute "$SINK" 1
+    ;;
+  unmute)
+    pactl -- set-sink-mute "$SINK" 0
+    ;;
+  toggle)
+    MUTED="`pacmd dump | grep -P '^set-sink-mute.*\s+yes$'`"
+    echo "$MUTED" | grep -qF "$SINK"
+    if [[ $? -eq 0 ]]; then
+      pactl -- set-sink-mute "$SINK" 0
+      # dunstify -a "changeVolume" -u low -i audio-volume-high -r "$MSG_ID" "Unmuted"
+      soundFeeback
+    else
+      pactl -- set-sink-mute "$SINK" 1
+      # dunstify -a "changeVolume" -u low -i audio-volume-muted -r "$MSG_ID" "Muted" 
+    fi
+    ;;
+  *)
+    echo "Unknown command: $1"
+    exit 1
+    ;;
+esac
+
+volume

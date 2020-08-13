@@ -1,0 +1,30 @@
+[global_config]
+  borderless = True
+  inactive_color_offset = 1.0
+[keybindings]
+[layouts]
+  [[default]]
+    [[[child1]]]
+      parent = window0
+      type = Terminal
+    [[[window0]]]
+      parent = ""
+      type = Window
+[plugins]
+[profiles]
+  [[default]]
+    audible_bell = True
+    background_color = "#002b36"
+    background_darkness = 0.0
+    backspace_binding = automatic
+    copy_on_selection = True
+    cursor_color = "#aaaaaa"
+    cursor_color_fg = False
+    cursor_shape = underline
+    font = MesloLGS NF 11
+    foreground_color = "#839496"
+    palette = "#282828:#cc241d:#98971a:#d79921:#458588:#b16286:#689d6a:#a89984:#928374:#fb4934:#b8bb26:#fabd2f:#83a598:#d3869b:#8ec07c:#ebdbb2"
+    scrollback_infinite = True
+    scrollbar_position = hidden
+    show_titlebar = False
+    use_system_font = False

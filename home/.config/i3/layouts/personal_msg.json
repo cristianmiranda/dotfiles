@@ -1,0 +1,42 @@
+{
+    "border": "pixel",
+    "current_border_width": 4,
+    "floating": "auto_off",
+    "geometry": {
+       "height": 1200,
+       "width": 1600,
+       "x": 640,
+       "y": 300
+    },
+    "name": "Telegram (11)",
+    "percent": 0.5,
+    "swallows": [
+       {
+        "class": "^TelegramDesktop$",
+        "instance": "^telegram\\-desktop$"
+       }
+    ],
+    "type": "con"
+}
+
+{
+    "border": "pixel",
+    "current_border_width": 4,
+    "floating": "auto_off",
+    "geometry": {
+       "height": 1080,
+       "width": 1440,
+       "x": 720,
+       "y": 360
+    },
+    "name": "WALC",
+    "percent": 0.5,
+    "swallows": [
+       {
+        "class": "^walc$",
+        "instance": "^walc$"
+       }
+    ],
+    "type": "con"
+}
+
