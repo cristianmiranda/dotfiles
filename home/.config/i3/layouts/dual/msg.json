@@ -1,0 +1,119 @@
+// vim:ts=4:sw=4:et
+{
+    // splitv split container with 2 children
+    "border": "normal",
+    "floating": "auto_off",
+    "layout": "splitv",
+    "percent": 1,
+    "type": "con",
+    "nodes": [
+        {
+            // splith split container with 2 children
+            "border": "normal",
+            "floating": "auto_off",
+            "layout": "splith",
+            "percent": 0.5,
+            "type": "con",
+            "nodes": [
+                {
+                    "border": "pixel",
+                    "current_border_width": 2,
+                    "floating": "auto_off",
+                    "geometry": {
+                       "height": 1394,
+                       "width": 1265,
+                       "x": 11,
+                       "y": 35
+                    },
+                    "name": "Riot | dev",
+                    "percent": 0.5,
+                    "swallows": [
+                       {
+                        "class": "^Riot$",
+                        "instance": "^riot$"
+                       // "title": "^Riot\\ \\|\\ dev$",
+                       // "window_role": "^browser\\-window$"
+                       }
+                    ],
+                    "type": "con"
+                },
+                {
+                    "border": "pixel",
+                    "current_border_width": 2,
+                    "floating": "auto_off",
+                    "geometry": {
+                       "height": 1394,
+                       "width": 2538,
+                       "x": 11,
+                       "y": 35
+                    },
+                    "name": "#general - Discord",
+                    "percent": 0.5,
+                    "swallows": [
+                       {
+                        "class": "^discord$",
+                        "instance": "^discord$"
+                       // "title": "^\\#general\\ \\-\\ Discord$",
+                       // "window_role": "^browser\\-window$"
+                       }
+                    ],
+                    "type": "con"
+                }
+            ]
+        },
+        {
+            // splith split container with 2 children
+            "border": "normal",
+            "floating": "auto_off",
+            "layout": "splith",
+            "percent": 0.5,
+            "type": "con",
+            "nodes": [
+                {
+                    "border": "pixel",
+                    "current_border_width": 2,
+                    "floating": "auto_off",
+                    "geometry": {
+                       "height": 1394,
+                       "width": 2538,
+                       "x": 11,
+                       "y": 35
+                    },
+                    "name": "Telegram",
+                    "percent": 0.5,
+                    "swallows": [
+                       {
+                        "class": "^TelegramDesktop$",
+                        "instance": "^telegram\\-desktop$"
+                       // "title": "^Telegram$"
+                       }
+                    ],
+                    "type": "con"
+                },
+                {
+                    "border": "pixel",
+                    "current_border_width": 2,
+                    "floating": "auto_off",
+                    "geometry": {
+                       "height": 600,
+                       "width": 800,
+                       "x": 2160,
+                       "y": 420
+                    },
+                    "name": "WALC",
+                    "percent": 0.5,
+                    "swallows": [
+                       {
+                        "class": "^walc$",
+                        "instance": "^walc$"
+                       // "title": "^WhatsDesk$",
+                       // "window_role": "^browser\\-window$"
+                       }
+                    ],
+                    "type": "con"
+                }
+            ]
+        }
+    ]
+}
+

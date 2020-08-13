@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# Get current brightness
+BRIGHTNESS=$(xrandr --verbose | awk '{if ($1 ~ /Brightness/) {print $NF; exit}}');
+
+# Add 0.05
+BRIGHTNESS=`echo "$BRIGHTNESS $1 0.05" | bc`;
+
+# Apply value
+xrandr --output eDP-1 --brightness $BRIGHTNESS
+
+# Notify
+#MSG_ID="991050"
+#BRIGHTNESS=$(xrandr --verbose | awk '{if ($1 ~ /Brightness/) {print $NF; exit}}');
+#BRIGHT=`echo "$BRIGHTNESS * 100" | bc`
+#dunstify -a "changeBrightness" -u low -i display -r "$MSG_ID" "$(get-progress-string 30 "#" "-" "$BRIGHT")"
+#unset BRIGHT
+
+unset BRIGHTNESS

@@ -1,0 +1,7 @@
+lockfile
+*.sqlite3
+layout.xml
+filezilla.xml
+recentservers.xml
+trustedcerts.xml
+

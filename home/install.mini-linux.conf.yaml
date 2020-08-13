@@ -1,0 +1,69 @@
+- defaults:
+    link:
+      relink: true
+      create: true
+
+- clean:
+    ~/:
+        force: true
+    ~/.config:
+        recursive: true
+
+- link:
+    # Link to self
+    ~/dotfiles: '../.'
+    
+    # Hidden directories
+    ~/.config/:
+        glob: true
+        path: .config/*
+        force: true
+    ~/.local/share/fonts: .local/share/fonts
+    ~/.local/share/applications: .local/share/applications
+    ~/.screenlayout: .screenlayout
+    ~/.ssh/config: 
+        path: .ssh/config
+        force: true
+    ~/.themes: .themes
+    ~/.vim: .vim
+
+    # Regular directories
+    ~/bin: bin
+    ~/dots: dots
+    ~/profiles: profiles
+    ~/wallpapers: wallpapers
+
+    # Hidden Files
+    ~/.bash_profile:
+        path: .bash_profile
+        force: true
+    ~/.bashrc: 
+        path: .bashrc
+        force: true
+    ~/.gitconfig: .gitconfig
+    ~/.gtkrc-xfce:
+        path: .gtkrc-xfce
+        force: true
+    ~/.gvimrc: .gvimrc
+    ~/.inputrc: .inputrc
+    ~/.p10k.zsh: .p10k.zsh
+    ~/.vimrc: .vimrc
+    ~/.xinitrc: .xinitrc
+    ~/.xmodmap.apple: .xmodmap.apple
+    ~/.xmodmap.macbook: .xmodmap.macbook
+    ~/.Xresources: .Xresources
+    ~/.Xresources.asus: .Xresources.asus
+    ~/.Xresources.macbook: .Xresources.macbook
+    ~/.xsettingsd: .xsettingsd
+    ~/.zshrc:
+        path: .zshrc
+        force: true
+    
+- create:
+    - ~/Documents/Work/Workspace
+    - ~/Documents/Work/Workspace_LG
+    - ~/Pictures/Screenshots
+    - ~/logs
+
+- shell:
+    - [git update-index --assume-unchanged .config/xfce4/xfconf/xfce-perchannel-xml/thunar.xml, Ignoring changes on thunar.xml]

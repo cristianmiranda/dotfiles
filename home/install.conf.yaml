@@ -1,0 +1,50 @@
+- defaults:
+    link:
+      relink: true
+      create: true
+
+- clean:
+    ~/:
+        force: true
+    ~/.config:
+        recursive: true
+
+- link:
+    # Link to self
+    ~/dotfiles: '../.'
+    
+    # Hidden directories
+    ~/.config/:
+        glob: true
+        path: .config/*
+        force: true
+    ~/.ssh/config: 
+        path: .ssh/config
+        force: true
+    ~/.vim: .vim
+
+    # Regular directories
+    ~/bin: bin
+    ~/dots: dots
+    ~/profiles: profiles
+
+    # Hidden Files
+    ~/.bash_profile:
+        path: .bash_profile
+        force: true
+    ~/.bashrc: 
+        path: .bashrc
+        force: true
+    ~/.gitconfig: .gitconfig
+    ~/.gvimrc: .gvimrc
+    ~/.inputrc: .inputrc
+    ~/.p10k.zsh: .p10k.zsh
+    ~/.vimrc: .vimrc
+    ~/.xinitrc: .xinitrc
+    ~/.xmodmap.apple: .xmodmap.apple
+    ~/.xmodmap.macbook: .xmodmap.macbook
+    ~/.xsettingsd: .xsettingsd
+    ~/.zshrc:
+        path: .zshrc
+        force: true
+    

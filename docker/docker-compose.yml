@@ -1,0 +1,31 @@
+version: '3.3'
+
+services:
+  calibre:
+    image: linuxserver/calibre
+    container_name: calibre
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Argentina/Buenos_Aires
+      - GUAC_USER=cmiranda
+      - GUAC_PASS=94d74fb270e74383fb99434b91c75118
+    volumes:
+      - /docker/calibre:/config
+    ports:
+      - 9080:8080
+      - 9081:8081
+    restart: unless-stopped
+
+  portainer:
+    image: portainer/portainer
+    container_name: portainer
+    command: -H unix:///var/run/docker.sock
+    restart: always
+    ports:
+      - 9082:9000
+      - 9083:8000
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /docker/portainer:/data
+

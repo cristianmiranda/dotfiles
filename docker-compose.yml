@@ -1,0 +1,9 @@
+version: '3.3'
+
+services:
+  dotfiles:
+    build: .
+    image: 'dotfiles:latest'
+    container_name: 'dotfiles'
+    stdin_open: true
+    tty: true
