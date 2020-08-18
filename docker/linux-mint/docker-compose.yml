@@ -1,0 +1,29 @@
+version: '3.3'
+
+services:
+  portainer:
+    image: portainer/portainer
+    container_name: portainer
+    command: -H unix:///var/run/docker.sock
+    restart: always
+    ports:
+      - 9082:9000
+      - 9083:8000
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ${HOME}/portainer:/data
+
+  duplicati:
+    image: linuxserver/duplicati
+    container_name: duplicati
+    restart: unless-stopped
+    ports:
+      - 8200:8200
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Argentina/Buenos_Aires
+    volumes:
+      - ${HOME}/duplicati/config:/config
+      - ${HOME}/duplicati/backups:/backups
+      - ${HOME}:/source
