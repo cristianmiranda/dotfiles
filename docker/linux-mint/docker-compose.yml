@@ -13,6 +13,16 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - ${HOME}/portainer:/data
 
+  portainer_agent:
+    container_name: portainer-agent
+    image: portainer/agent
+    restart: always
+    ports:
+      - 9001:9001
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/lib/docker/volumes:/var/lib/docker/volumes
+  
   duplicati:
     image: linuxserver/duplicati
     container_name: duplicati
