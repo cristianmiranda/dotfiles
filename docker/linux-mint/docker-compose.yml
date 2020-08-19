@@ -36,4 +36,4 @@ services:
     volumes:
       - ${HOME}/duplicati/config:/config
       - ${HOME}/duplicati/backups:/backups
-      - ${HOME}:/source
+      - /:/source
