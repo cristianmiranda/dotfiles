@@ -11,9 +11,9 @@ services:
       - 9083:8000
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - ${HOME}/portainer:/data
+      - ${VOLUMES_PATH}/portainer:/data
 
-  portainer_agent:
+  portainer-agent:
     container_name: portainer-agent
     image: portainer/agent
     restart: always
@@ -30,10 +30,10 @@ services:
     ports:
       - 8200:8200
     environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=America/Argentina/Buenos_Aires
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
     volumes:
-      - ${HOME}/duplicati/config:/config
-      - ${HOME}/duplicati/backups:/backups
+      - ${VOLUMES_PATH}/duplicati/config:/config
+      - ${VOLUMES_PATH}/duplicati/backups:/backups
       - /:/source
