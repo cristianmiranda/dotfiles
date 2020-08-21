@@ -53,3 +53,6 @@ source ${HOME}/profiles/common.sh
 
 # To customize prompt, run `p10k configure` or edit ~/Documents/Work/Workspace/dotfiles/home/.p10k.zsh.
 [[ ! -f ~/Documents/Work/Workspace/dotfiles/home/.p10k.zsh ]] || source ~/Documents/Work/Workspace/dotfiles/home/.p10k.zsh
+
+# Command-line Fuzzy Finder - https://github.com/junegunn/fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
