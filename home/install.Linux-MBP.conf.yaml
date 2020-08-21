@@ -33,6 +33,11 @@
     ~/profiles: profiles
     ~/wallpapers: wallpapers
 
+    # fzf
+    ~/fzf: fzf
+    ~/.fzf.bash: .fzf.bash
+    ~/.fzf.zsh: .fzf.zsh
+
     # Hidden Files
     ~/.bash_profile:
         path: .bash_profile
@@ -67,3 +72,10 @@
 
 - shell:
     - [git update-index --assume-unchanged .config/xfce4/xfconf/xfce-perchannel-xml/thunar.xml, Ignoring changes on thunar.xml]
+    # -
+    #     command: cd ~/fzf && git pull && ./install
+    #     description:  Upgrading/Installing fzf
+    #     stdin: true
+    #     stdout: true
+    #     stderr: true
+    #     quiet: false

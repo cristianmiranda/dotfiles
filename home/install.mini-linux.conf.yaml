@@ -33,6 +33,11 @@
     ~/profiles: profiles
     ~/wallpapers: wallpapers
 
+    # fzf
+    ~/fzf: fzf
+    ~/.fzf.bash: .fzf.bash
+    ~/.fzf.zsh: .fzf.zsh
+
     # Hidden Files
     ~/.bash_profile:
         path: .bash_profile
@@ -64,6 +69,3 @@
     - ~/Documents/Work/Workspace_LG
     - ~/Pictures/Screenshots
     - ~/logs
-
-- shell:
-    - [git update-index --assume-unchanged .config/xfce4/xfconf/xfce-perchannel-xml/thunar.xml, Ignoring changes on thunar.xml]

@@ -3,3 +3,6 @@
 	url = https://github.com/anishathalye/dotbot
 	ignore = dirty
 	
+[submodule "home/fzf"]
+	path = home/fzf
+	url = https://github.com/junegunn/fzf
