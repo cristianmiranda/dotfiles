@@ -28,6 +28,11 @@
     ~/dots: dots
     ~/profiles: profiles
 
+    # fzf
+    ~/fzf: fzf
+    ~/.fzf.bash: .fzf.bash
+    ~/.fzf.zsh: .fzf.zsh
+
     # Hidden Files
     ~/.bash_profile:
         path: .bash_profile
@@ -47,4 +52,3 @@
     ~/.zshrc:
         path: .zshrc
         force: true
-    
