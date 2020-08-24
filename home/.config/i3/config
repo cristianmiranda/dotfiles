@@ -40,6 +40,7 @@ bindsym $super+Return exec --no-startup-id terminator
 
 # start dmenu (a program launcher)
 bindsym $super+space exec --no-startup-id rofi -lines 12 -padding 28 -width 60 -location 0 -show drun -columns 3 -show-icons true -font 'Noto Sans 9' -theme solarized -sidebar-mode
+bindsym Control+space exec --no-startup-id rofi -lines 12 -padding 28 -width 60 -location 0 -show drun -columns 3 -show-icons true -font 'Noto Sans 9' -theme solarized -sidebar-mode
 
 # Simulate alt+tab
 bindsym Control+Tab exec --no-startup-id rofi -lines 12 -padding 18 -width 60 -location 0 -show window -sidebar-mode -columns 3 -font 'Noto Sans 8' -theme solarized
