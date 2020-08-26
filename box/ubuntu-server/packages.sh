@@ -34,3 +34,5 @@ PACKAGES=(
 for pkg in ${PACKAGES[@]}; do
     aptInstall $pkg
 done
+
+pip3 install pipenv-shebang
