@@ -32,7 +32,8 @@ exec_always xsettingsd &
 exec_always xmodmap ~/.xmodmap
 exec_always --no-startup-id killall dunst && dunst && notify-send 'i3' 'Restarted successfully' --icon=dialog-information
 exec_always --no-startup-id compton -b
-exec --no-startup-id nm-applet # network-manager-gnome
+exec_always --no-startup-id python3 /opt/thefanclub/overgrive/overgrive
+# exec --no-startup-id nm-applet # network-manager-gnome
 exec_always ~/.config/i3/scripts/autoname_workspaces.py --norenumber_workspaces --icon_list_format mathematician &
 
 # start a terminal
@@ -243,6 +244,8 @@ bindsym $super+Shift+x mode "i3-command"
 bar {
         font pango: Fira Code Retina 10
         position top
+
+        tray_output none
         
         colors {
                 background #002b36
