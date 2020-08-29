@@ -30,11 +30,11 @@ floating_modifier $super
 exec_always set-wallpaper default
 exec_always xsettingsd &
 exec_always xmodmap ~/.xmodmap
-exec_always --no-startup-id killall dunst && dunst && notify-send 'i3' 'Restarted successfully' --icon=dialog-information
 exec_always --no-startup-id compton -b
+exec_always --no-startup-id dunst
 exec_always --no-startup-id python3 /opt/thefanclub/overgrive/overgrive
-# exec --no-startup-id nm-applet # network-manager-gnome
 exec_always ~/.config/i3/scripts/autoname_workspaces.py --norenumber_workspaces --icon_list_format mathematician &
+exec_always --no-startup-id nm-applet # network-manager-gnome
 
 # start a terminal
 bindsym $super+Return exec --no-startup-id terminator
