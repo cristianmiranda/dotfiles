@@ -201,7 +201,7 @@ mode "gaps" {
 }
 
 mode "launch" {
-        bindsym c exec --no-startup-id code; mode "default"
+        bindsym c exec --no-startup-id terminator --command 'python'; mode "default"
         bindsym d exec --no-startup-id discord; mode "default"
         bindsym e exec --no-startup-id /usr/local/firefox_dev/firefox; mode "default"
         bindsym f exec --no-startup-id firefox; mode "default"
