@@ -69,3 +69,5 @@ aptUpgrade timeshift
 aptUpgrade compton
 
 pip3 install pipenv-shebang
+pip3 install termdown
+
