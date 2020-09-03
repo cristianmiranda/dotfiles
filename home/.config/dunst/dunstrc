@@ -109,7 +109,7 @@
 
     icon_path = /usr/share/icons/Paper/16x16/status/:/usr/share/icons/Paper/16x16/devices/:/usr/share/icons/Paper/16x16/apps/
 
-    sticky_history = yes
+    sticky_history = no
     history_length = 20
 
     # Always run rule-defined scripts, even if the notification is suppressed
@@ -159,5 +159,5 @@
     timeout = 0
     icon = /usr/share/icons/Paper/16x16/status/dialog-warning.png
 
-[spotify]
-    appname = Spotify
+[update_notifications_count]
+    script = update-notifications-count
