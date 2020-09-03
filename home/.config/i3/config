@@ -261,6 +261,9 @@ bar {
 
         status_command python3 /usr/local/bumblebee-status/bumblebee-status -m          \
                 cmiranda-thunderbird                                                    \
+                cmiranda-dunst-count:dunst-telegram                                     \
+                cmiranda-dunst-count:dunst-whatsapp                                     \
+                cmiranda-dunst-count:dunst-element                                      \
                 github                                                                  \
                 vpn                                                                     \
                 network_traffic                                                         \
