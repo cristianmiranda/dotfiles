@@ -2,6 +2,14 @@
   borderless = True
   inactive_color_offset = 1.0
 [keybindings]
+  group_tab = None
+  move_tab_left = None
+  move_tab_right = None
+  new_tab = None
+  new_terminator = None
+  new_window = None
+  next_tab = None
+  prev_tab = None
 [layouts]
   [[default]]
     [[[child1]]]
