@@ -2,3 +2,16 @@
 
 export BASE_WORK_DIR="${HOME}/Documents/Work"
 export LG_BASE_DIR="${BASE_WORK_DIR}/Workspace_LG"
+
+#
+# SQLPlus
+#
+# Installation instructions: https://manjaro.site/how-to-install-sqlplus-utility-on-ubuntu-18-04-and-ubuntu-18-10/
+#
+# Used by:
+#   - ~/bin/gqlplus
+#   - ~/bin/runora
+#
+export PATH="$PATH:/opt/oracle/instantclient"
+export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/opt/oracle/instantclient"
+
