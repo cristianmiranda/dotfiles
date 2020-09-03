@@ -1,0 +1,2 @@
+[submodule "fzf"]
+	ignore = dirty
