@@ -52,17 +52,3 @@
     ~/.zshrc:
         path: .zshrc
         force: true
-    
-- create:
-    - ~/Documents/Work/Workspace
-    - ~/Documents/Work/Workspace_LG
-    - ~/logs
-
-- shell:
-    -
-        command: cd $HOME/fzf && git pull && bash $HOME/fzf/install --all
-        description:  Upgrading/Installing fzf
-        stdin: true
-        stdout: true
-        stderr: true
-        quiet: false
