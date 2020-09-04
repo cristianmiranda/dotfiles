@@ -269,7 +269,7 @@ bar {
                 memory                                                                  \
                 sensors2                                                                \
                 pasink                                                                  \
-                battery-upower                                                          \
+                battery                                                                 \
                 datetime                                                                \
                 dunst                                                                   \
                 -t solarized-powerline                                                  
