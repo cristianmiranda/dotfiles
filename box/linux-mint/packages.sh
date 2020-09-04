@@ -17,6 +17,7 @@ PACKAGES=(
     autoconf
     cargo
     curl
+    dmenu
     dunst
     filezilla
     firefox
