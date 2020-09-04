@@ -75,15 +75,17 @@ then
         fi
     done;
 
-    separator 57
-    br
-    ask "Do you want to restore some data for this box?" RESTORE_DATA_FOR_BOX
-    if [[ $RESTORE_DATA_FOR_BOX =~ y|Y ]];
-    then
-        ask_2 "Type the box to be restored: [linux/server/rpi]" RESTORE_BOX && export RESTORE_BOX
-        sudo $HOME/bin/backuper --restore $RESTORE_BOX
-    fi
-    br
+    # This is now handled by Duplicati 
+
+    # separator 57
+    # br
+    # ask "Do you want to restore some data for this box?" RESTORE_DATA_FOR_BOX
+    # if [[ $RESTORE_DATA_FOR_BOX =~ y|Y ]];
+    # then
+    #     ask_2 "Type the box to be restored: [linux/server/rpi]" RESTORE_BOX && export RESTORE_BOX
+    #     sudo $HOME/bin/backuper --restore $RESTORE_BOX
+    # fi
+    # br
 
     separator 57
     br
