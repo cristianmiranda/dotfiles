@@ -20,7 +20,7 @@
     geometry = "800x5-30+20"
 
     # Radius of the four corners of the notification
-    corner_radius = 25
+    corner_radius = 15
 
     # Show how many messages are currently hidden (because of geometry).
     indicate_hidden = yes
@@ -129,15 +129,15 @@
     #              invoke it. If there are multiple and no default, open the context menu.
     # * close_current: Close current notification.
     # * close_all: Close all notifications.
-    mouse_left_click = do_action
+    mouse_left_click = close_current
     mouse_middle_click = close_all
-    mouse_right_click = close_current
+    mouse_right_click = do_action
 
 # Set the background and foreground (text) color for all notifications
 [shortcuts]
     close = ctrl+space
     close_all = ctrl+shift+space
-    history = ctrl+grave
+    history = ctrl+shift+h
     context = ctrl+shift+period
 
 [urgency_low]

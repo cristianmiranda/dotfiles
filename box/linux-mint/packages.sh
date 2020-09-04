@@ -18,7 +18,6 @@ PACKAGES=(
     cargo
     curl
     dmenu
-    dunst
     filezilla
     firefox
     ffmpeg
