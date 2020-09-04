@@ -47,3 +47,4 @@ home/.config/bumblebee-status.conf
 home/dots/work/.aliases
 home/.config/filezilla/sitemanager.xml
 config.yaml
+duplicati.config.json
