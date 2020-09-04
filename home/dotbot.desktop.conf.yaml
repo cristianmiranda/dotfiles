@@ -18,6 +18,9 @@
         glob: true
         path: .config/*
         force: true
+    ~/.dmrc: 
+        path: .dmrc
+        force: true
     ~/.local/share/fonts: .local/share/fonts
     ~/.local/share/applications: .local/share/applications
     ~/.screenlayout: .screenlayout
