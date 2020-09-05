@@ -11,13 +11,18 @@ then
 fi
 
 PACKAGES=(
+    adapta-gtk-theme
     ant
     apt-transport-https
     arandr
     autoconf
+    bashtop
+    breeze-cursor-theme
     cargo
     curl
     dmenu
+    faba-icon-theme
+    faba-mono-icons
     filezilla
     firefox
     ffmpeg
@@ -28,13 +33,15 @@ PACKAGES=(
     hsetroot
     imagemagick
     jq
-    maven
-    neofetch
-    network-manager
     libnotify-bin
     lm-sensors
+    maven
+    moka-icon-theme
+    neofetch
+    network-manager
     openjdk-8-jdk
     openssh-server
+    paper-icon-theme
     p7zip-full
     pavucontrol
     pidgin
@@ -64,10 +71,11 @@ for pkg in ${PACKAGES[@]}; do
     aptInstall $pkg
 done
 
+# Upgrade already installed packages
 aptUpgrade thunderbird
 aptUpgrade timeshift
 aptUpgrade compton
 
-pip3 install pipenv-shebang
-pip3 install termdown
+pip3Install pipenv-shebang
+pip3Install termdown
 
