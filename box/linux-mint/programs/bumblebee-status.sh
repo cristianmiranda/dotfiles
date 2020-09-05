@@ -14,6 +14,8 @@ pip3 install configparser
 pip3 install psutil
 pip3 install black
 
+sudo apt install -y python3-tk
+
 sudo mv /tmp/bumblebee-status /usr/local/.
 
 # through pip3
