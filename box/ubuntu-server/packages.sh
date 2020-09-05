@@ -12,6 +12,7 @@ fi
 aptUpgrade
 
 PACKAGES=(
+    bashtop
     curl
     figlet
     git

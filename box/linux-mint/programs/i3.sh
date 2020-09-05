@@ -16,8 +16,6 @@ sudo apt-get -y install i3 \
                         libanyevent-i3-perl # Required for i3 layout saving
 
 # i3-gaps
-sudo add-apt-repository -y ppa:kgilmer/speed-ricer
-sudo apt-get update
 sudo apt-get -y install i3-gaps-wm i3-gaps-session i3-gaps
 
 # See https://github.com/justbuchanan/i3scripts/blob/master/autoname_workspaces.py
