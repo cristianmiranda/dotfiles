@@ -10,6 +10,5 @@ then
 fi
 
 snapInstall chromium
-snapInstall code --classic
 snapInstall intellij-idea-ultimate --classic
 snapInstall webstorm --classic
