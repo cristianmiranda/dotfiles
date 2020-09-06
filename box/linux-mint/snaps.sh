@@ -12,7 +12,6 @@ fi
 snapInstall chromium
 snapInstall code --classic
 snapInstall intellij-idea-ultimate --classic
-snapInstall postman
 snapInstall slack --classic
 snapInstall spotify
 snapInstall telegram-desktop
