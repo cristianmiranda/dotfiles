@@ -32,6 +32,7 @@
 
     # Regular directories
     ~/bin: bin
+    ~/bumblebee-status: ../bumblebee-status
     ~/dots: dots
     ~/profiles: profiles
     ~/wallpapers: wallpapers
