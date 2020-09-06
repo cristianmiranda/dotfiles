@@ -38,7 +38,7 @@
     ~/wallpapers: wallpapers
 
     # fzf
-    ~/fzf: fzf
+    ~/fzf: ../fzf
     ~/.fzf.bash: .fzf.bash
     ~/.fzf.zsh: .fzf.zsh
 
