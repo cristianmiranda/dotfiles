@@ -12,5 +12,4 @@ fi
 snapInstall chromium
 snapInstall code --classic
 snapInstall intellij-idea-ultimate --classic
-snapInstall telegram-desktop
 snapInstall webstorm --classic

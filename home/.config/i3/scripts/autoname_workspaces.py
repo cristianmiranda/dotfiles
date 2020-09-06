@@ -113,6 +113,7 @@ WINDOW_ICONS = {
     "zenity": fa.icons["window-maximize"],
     "zoom": fa.icons["comment"],
     "telegram-desktop": fa.icons["telegram"],
+    "telegram": fa.icons["telegram"],
     "walc": fa.icons["whatsapp"],
     "code": fa.icons["code"],
     "riot": fa.icons["comments"],

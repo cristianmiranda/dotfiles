@@ -8,12 +8,11 @@
        "x": 640,
        "y": 300
     },
-    "name": "Telegram (11)",
+    "name": "Telegram",
     "percent": 0.5,
     "swallows": [
        {
-        "class": "^TelegramDesktop$",
-        "instance": "^telegram\\-desktop$"
+        "class": "^TelegramDesktop$"
        }
     ],
     "type": "con"
