@@ -259,7 +259,7 @@ bar {
         }
 
         status_command python3 /usr/local/bumblebee-status/bumblebee-status -m          \
-                cmiranda-thunderbird                                                    \
+                thunderbird                                                             \
                 cmiranda-dunst-count:dunst-telegram                                     \
                 cmiranda-dunst-count:dunst-whatsapp                                     \
                 cmiranda-dunst-count:dunst-element                                      \
@@ -271,7 +271,7 @@ bar {
                 pasink                                                                  \
                 battery                                                                 \
                 datetime                                                                \
-                dunst                                                                   \
+                dunstctl                                                                \
                 -t solarized-powerline                                                  
 }
 
