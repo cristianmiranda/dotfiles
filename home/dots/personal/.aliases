@@ -21,6 +21,9 @@ alias g="git"
 # alias resetdock="osascript -e 'quit application \"Dock\"'"
 # alias resetaudio="sudo killall coreaudiod"
 
+# Mediabox
+alias mediabox="cd /data/ssd/mediabox/repo"
+
 # ~/dotfiles
 alias dot="cd ~/dotfiles"
 alias dotsync="bash ~/dotfiles/scripts/sync.sh && resetzgen"
