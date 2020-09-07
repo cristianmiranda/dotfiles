@@ -270,6 +270,7 @@ bar {
                 sensors2                                                                \
                 pasink                                                                  \
                 battery                                                                 \
+                weather                                                                 \
                 datetime                                                                \
                 dunstctl                                                                \
                 -t solarized-powerline                                                  
