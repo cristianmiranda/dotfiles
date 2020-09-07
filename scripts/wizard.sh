@@ -48,7 +48,6 @@ export install_box
 
 br
 ask "Install packages?" INSTALL_PACKAGES && export INSTALL_PACKAGES
-ask "Install snaps?" INSTALL_SNAPS && export INSTALL_SNAPS
 ask "Install extra programs?" INSTALL_PROGRAMS && export INSTALL_PROGRAMS
 ask "Install work stuff?" INSTALL_WORK && export INSTALL_WORK
 ask "Apply config?" APPLY_CONFIG && export APPLY_CONFIG

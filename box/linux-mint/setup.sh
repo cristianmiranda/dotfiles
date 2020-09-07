@@ -20,11 +20,6 @@ br
 bash $CURRENT_DIR/packages.sh
 
 br
-banner "         >>> linux/snaps <<<          "
-br
-bash $CURRENT_DIR/snaps.sh
-
-br
 banner "         >>> linux/programs <<<       "
 br
 bash $CURRENT_DIR/programs.sh
