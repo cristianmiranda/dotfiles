@@ -1,0 +1,16 @@
+#!/bin/bash
+
+ACTION=$1
+
+if [[ $ACTION == "weather" ]]; then
+    /usr/bin/firefox --new-tab 'www.google.com/search?q=weather'
+    i3-msg '[class="Firefox$"]' focus
+
+elif [[ $ACTION == "thunderbird" ]]; then
+    i3-msg '[class="(?i)thunderbird"]' focus
+
+elif [[ $ACTION == "github" ]]; then
+    /usr/local/firefox_dev/firefox --new-tab 'https://github.com/notifications'
+    i3-msg '[class="Firefox Developer Edition$"]' focus
+    
+fi

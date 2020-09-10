@@ -219,8 +219,8 @@ mode "launch" {
 
 bindsym $super+c exec --no-startup-id i3-msg '[class="(?i)Code"] focus'
 bindsym $super+d exec --no-startup-id i3-msg '[class="(?i)Discord"] focus'
-bindsym $super+e exec --no-startup-id i3-msg '[class="(?i)Firefox Developer"] focus'
-bindsym $super+f exec --no-startup-id i3-msg '[class="Firefox"] focus'
+bindsym $super+e exec --no-startup-id i3-msg '[class="Firefox Developer Edition$"] focus'
+bindsym $super+f exec --no-startup-id i3-msg '[class="Firefox$"] focus'
 bindsym $super+g exec --no-startup-id i3-msg '[class="(?i)GitHub"] focus'
 bindsym $super+i exec --no-startup-id i3-msg '[class="(?i)idea"] focus'
 bindsym $super+j exec --no-startup-id i3-msg '[class="(?i)jitsi"] focus'
@@ -273,7 +273,8 @@ bar {
                 weather                                                                 \
                 datetime                                                                \
                 dunstctl                                                                \
-                -t solarized-powerline                                                  
+                -t solarized-powerline 
+                #-d -f ~/logs/bumblebee-status-debug                                                  
 }
 
 # window rules, you can find the window class using xprop
