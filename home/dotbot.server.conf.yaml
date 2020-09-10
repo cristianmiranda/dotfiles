@@ -72,7 +72,7 @@
 
 - shell:
     -
-        command: cd $HOME/fzf && git pull origin master && bash $HOME/fzf/install --all
+        command: cd $HOME/fzf && bash $HOME/fzf/install --all
         description:  Upgrading/Installing fzf
         stdin: true
         stdout: true

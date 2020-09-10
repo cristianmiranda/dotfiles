@@ -38,12 +38,14 @@ if ! [ -f "${BASEDIR}/$CONFIG_HOME/$CONFIG_FILE" ]; then
 fi
 
 cd "${BASEDIR}";
-echo -e ">> Using ${HOSTNAME}'s config file => $CONFIG_FILE \n"
+echo -e "\n>> Using ${HOSTNAME}'s config file => $CONFIG_FILE \n"
 
 git pull origin master || echo "Could not update repo. Maybe ssh-keys are out of date?"
 
 git -C "${DOTBOT_DIR}" submodule sync --quiet --recursive || echo "Could not sync dotbot submodule"
 git submodule update --init --recursive "${DOTBOT_DIR}" || echo "Could not update dotbot submodule"
+
+git pull --recurse-submodules && git submodule update
 
 cd "${CONFIG_HOME}"
 "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -q -c "${CONFIG_FILE}" "${@}"

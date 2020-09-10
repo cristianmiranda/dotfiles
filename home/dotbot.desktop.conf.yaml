@@ -77,7 +77,7 @@
 - shell:
     - [git update-index --assume-unchanged .config/xfce4/xfconf/xfce-perchannel-xml/thunar.xml, Ignoring changes on thunar.xml]
     -
-        command: cd $HOME/fzf && git pull origin master && bash $HOME/fzf/install --all
+        command: cd $HOME/fzf && bash $HOME/fzf/install --all
         description:  Upgrading/Installing fzf
         stdin: true
         stdout: true
