@@ -18,9 +18,9 @@ function tre() {
 	tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX;
 }
 
-function movtogif () {
-  tempfile=.mov-to-gif-$(date +"%s").png
+function togif () {
+  tempfile=/tmp/.to-gif-$(date +"%s").png
   ffmpeg -v quiet -stats -y -i $1 -vf fps=10,palettegen $tempfile
-  ffmpeg -v quiet -stats -i $1 -i $tempfile -filter_complex "fps=10,paletteuse" "${1%.mov}.gif"
+  ffmpeg -v quiet -stats -i $1 -i $tempfile -filter_complex "fps=10,paletteuse" "${1%.*}.gif"
   rm $tempfile
 }
