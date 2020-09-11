@@ -154,16 +154,16 @@ mode "move-to-workspace" {
 }
 
 mode "init-workspace" {
-        bindsym 1 exec --no-startup-id bash ~/.config/i3/scripts/init-workspace.sh 1
-        bindsym 2 exec --no-startup-id bash ~/.config/i3/scripts/init-workspace.sh 2; mode "default"
-        bindsym 3 exec --no-startup-id bash ~/.config/i3/scripts/init-workspace.sh 3; mode "default"
-        bindsym 4 exec --no-startup-id bash ~/.config/i3/scripts/init-workspace.sh 4
-        bindsym 5 exec --no-startup-id bash ~/.config/i3/scripts/init-workspace.sh 5
-        bindsym 6 exec --no-startup-id bash ~/.config/i3/scripts/init-workspace.sh 6
-        bindsym 7 exec --no-startup-id bash ~/.config/i3/scripts/init-workspace.sh 7
-        bindsym 8 exec --no-startup-id bash ~/.config/i3/scripts/init-workspace.sh 8
-        bindsym 9 exec --no-startup-id bash ~/.config/i3/scripts/init-workspace.sh 9
-        bindsym 0 exec --no-startup-id bash ~/.config/i3/scripts/init-workspace.sh 10
+        bindsym 1 exec --no-startup-id init-workspace 1
+        bindsym 2 exec --no-startup-id init-workspace 2
+        bindsym 3 exec --no-startup-id init-workspace 3
+        bindsym 4 exec --no-startup-id init-workspace 4
+        bindsym 5 exec --no-startup-id init-workspace 5
+        bindsym 6 exec --no-startup-id init-workspace 6
+        bindsym 7 exec --no-startup-id init-workspace 7
+        bindsym 8 exec --no-startup-id init-workspace 8
+        bindsym 9 exec --no-startup-id init-workspace 9
+        bindsym 0 exec --no-startup-id init-workspace 10
 
         bindsym Escape mode "default"
         bindsym Return mode "default"
