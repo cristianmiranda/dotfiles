@@ -12,7 +12,7 @@ done;
 
 HOSTNAME=`hostname`
 
-alias dotsync="bash ~/dotfiles/dotbot/bin/dotbot -v -c ~/dotfiles/home/dotbot.esh-server.conf.yaml && source ~/.bash_profile"
+alias dotsync="bash ~/dotfiles/dotbot/bin/dotbot -v -c ~/dotfiles/home/dotbot.anonymous.conf.yaml && source ~/.bash_profile"
 
 # Stuff I already have with ZSH
 alias l="ls -lrt"
