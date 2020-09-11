@@ -1,0 +1,10 @@
+#!/bin/bash
+
+USER=cmiranda
+
+#This runs so that root can run the following command under the user's environment
+source /home/$USER/.Xdbus
+
+DISPLAY=:0.0 su $USER -c "/home/cmiranda/bin/pa-vol mute"
+
+DISPLAY=:0.0 su $USER -c "i3lock-fancy"
