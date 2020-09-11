@@ -17,10 +17,10 @@ DOTBOT_SERVER="dotbot.server.conf.yaml"
 DOTBOT_UNKNOWN=${DOTBOT_MINIMAL}
 
 declare -A HOSTS_MAP
-HOSTS_MAP["Linux-Virtual"]=${DOTBOT_DESKTOP} # Vagrant
-HOSTS_MAP["Linux-MBP"]=${DOTBOT_DESKTOP}     # Main desktop
-HOSTS_MAP["mini-linux"]=${DOTBOT_SERVER}     # Main server
-HOSTS_MAP["raspberrypi"]=${DOTBOT_SERVER}
+HOSTS_MAP["Linux-Virtual"]=${DOTBOT_DESKTOP}    # Vagrant
+HOSTS_MAP["Linux-MBP"]=${DOTBOT_DESKTOP}        # Main desktop
+HOSTS_MAP["mini-linux"]=${DOTBOT_SERVER}        # Main server
+HOSTS_MAP["raspberrypi"]=${DOTBOT_SERVER}       # Raspberry Pi 3/4
 
 #
 # Getting config file for host

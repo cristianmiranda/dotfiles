@@ -1,0 +1,13 @@
+- defaults:
+    link:
+      relink: true
+      create: true
+
+- link:
+    # Regular directories
+    ~/bin: bin
+    ~/dots: dots
+    ~/profiles: profiles
+
+    # Hidden Files
+    ~/.gitconfig: .gitconfig
