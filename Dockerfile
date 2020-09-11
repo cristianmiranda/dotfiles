@@ -47,6 +47,12 @@ WORKDIR $DOTFILES_HOME/dotfiles
 # These will be provided by git-secret after revealing secrets
 RUN     /bin/bash scripts/tests/mock-secrets.sh $DOTFILES_HOME/dotfiles
 
-RUN     /bin/bash scripts/sync.sh
+# Link if doesn't exist (Fuck GitHub Actions)
+RUN     ln -s $DOTFILES_HOME/dotfiles /home/cmiranda/dotfiles
+RUN     ln -s $DOTFILES_HOME/dotfiles/fzf /home/cmiranda/fzf
 
-CMD     ["/usr/bin/zsh"]
+#RUN     /bin/bash scripts/sync.sh
+#CMD     ["/usr/bin/bash"]
+
+# Keep the container running
+CMD tail -f /dev/null
