@@ -60,6 +60,7 @@
     ~/.xinitrc: .xinitrc
     ~/.xmodmap.apple: .xmodmap.apple
     ~/.xmodmap.macbook: .xmodmap.macbook
+    ~/.Xdbus: .Xdbus
     ~/.Xresources: .Xresources
     ~/.Xresources.asus: .Xresources.asus
     ~/.Xresources.macbook: .Xresources.macbook
