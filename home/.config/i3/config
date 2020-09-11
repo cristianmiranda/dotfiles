@@ -244,7 +244,7 @@ bar {
         font pango: Fira Code Retina 10
         position top
 
-        tray_output none
+        tray_output none # eDP-1
         
         colors {
                 background #002b36
