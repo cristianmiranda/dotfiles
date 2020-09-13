@@ -16,6 +16,7 @@ Thumbs.db
 
 # Antigen generated stuff
 *.zwc
+*wine-extension-*.desktop
 
 # ESH db.properties
 */**/escribe/conf/db.properties
