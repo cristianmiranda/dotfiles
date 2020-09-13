@@ -61,6 +61,8 @@ PACKAGES=(
     tree
     unrar
     vim
+    w3w
+    w3m-img
     xcalib
     xclip
     zenity
