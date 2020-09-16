@@ -14,3 +14,6 @@ REPOSITORIES=(
 for repo in ${REPOSITORIES[@]}; do
     addAptRepository $repo
 done
+
+sudo apt update
+
