@@ -205,7 +205,7 @@ mode "launch" {
         bindsym d exec --no-startup-id discord; mode "default"
         bindsym e exec --no-startup-id /usr/local/firefox_dev/firefox; mode "default"
         bindsym f exec --no-startup-id firefox; mode "default"
-        bindsym g exec --no-startup-id github-desktop && i3-msg '[class="(?i)GitHub"] focus'; mode "default"
+        bindsym g exec --no-startup-id gitkraken && i3-msg '[class="(?i)GitKraken"] focus'; mode "default"
         bindsym i exec --no-startup-id intellij-idea-ultimate; mode "default"
         bindsym j exec --no-startup-id /usr/local/jitsi-meet/jitsi-meet; mode "default"
         bindsym m exec --no-startup-id thunderbird; mode "default"
@@ -222,7 +222,7 @@ bindsym $super+c exec --no-startup-id i3-msg '[class="(?i)Code"] focus'
 bindsym $super+d exec --no-startup-id i3-msg '[class="(?i)Discord"] focus'
 bindsym $super+e exec --no-startup-id i3-msg '[class="Firefox Developer Edition$"] focus'
 bindsym $super+f exec --no-startup-id i3-msg '[class="Firefox$"] focus'
-bindsym $super+g exec --no-startup-id i3-msg '[class="(?i)GitHub"] focus'
+bindsym $super+g exec --no-startup-id i3-msg '[class="(?i)GitKraken"] focus'
 bindsym $super+i exec --no-startup-id i3-msg '[class="(?i)idea"] focus'
 bindsym $super+j exec --no-startup-id i3-msg '[class="(?i)jitsi"] focus'
 bindsym $super+m exec --no-startup-id i3-msg '[class="(?i)thunderbird"] focus'
