@@ -121,7 +121,7 @@ WINDOW_ICONS = {
     "jitsi meet": fa.icons["video"],
     "pidgin": fa.icons["comment"],
     "jetbrains-webstorm": fa.icons["code"],
-    "github desktop": fa.icons["github"],
+    "gitkraken": fa.icons["github"],
     "VirtualBox Manager": fa.icons["linux"],
     "VirtualBox Machine": fa.icons["linux"],
 }
