@@ -53,5 +53,5 @@ home/.config/bumblebee-status.conf
 home/dots/work/.aliases
 home/.config/filezilla/sitemanager.xml
 config.yaml
-docker/linux-mint/Linux+Mint+-+MacBook+Pro-duplicati-config.json
+home/docker/linux-mint/Linux+Mint+-+MacBook+Pro-duplicati-config.json
 

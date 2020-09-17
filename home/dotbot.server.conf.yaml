@@ -29,6 +29,7 @@
 
     # Regular directories
     ~/bin: bin
+    ~/docker: docker
     ~/dots: dots
     ~/profiles: profiles
     ~/wallpapers: wallpapers
