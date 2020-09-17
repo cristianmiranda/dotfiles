@@ -10,7 +10,6 @@ alias reset='git stash apply'
 alias revert='git reset HEAD~1'
 alias cleanbranches='git branch | grep -v "master" | grep -v "esh-develop" | grep -v "development" | xargs -n 1 git branch -D'
 alias localprune='git branch | grep -v "development" | grep -v "master" | xargs git branch -D'
-alias gc="git rev-list --count develop..HEAD"
 
 function got(){
   echo " -> Fetching new branches ...";
@@ -53,33 +52,19 @@ function gwipe(){
   git branch -D $1 && git push origin :$1
 }
 
+function gc(){
+  COMMITS=`git rev-list --count develop..HEAD 2>/dev/null`
+  if [[ $? != 0 ]]; then
+    COMMITS=`git rev-list --count main..HEAD 2>/dev/null`
+  fi
+  if [[ $? != 0 ]]; then
+    COMMITS=`git rev-list --count master..HEAD 2>/dev/null`
+  fi
+  echo $COMMITS
+}
+
 function glc(){
   count=`gc`;
   echo "Showing $count commits\n";
-  gl $count;
-}
-
-function gl(){
-  git log -$@ --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-}
-
-function glp(){
-  git log -$@ --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit -p
-}
-
-function unreviewed_prs() {
-  URL="https://github.com/lillegroup/escribehost/pulls"
-  QUERY=""
-  QUERY="$QUERY is:pr"
-  QUERY="$QUERY is:open"
-  QUERY="$QUERY created:<"`date -v -3d +%Y-%m-%d`              #older than 3d
-  QUERY="$QUERY -label:\"DNRY 🚧\""                           #label!=DNRY
-  QUERY="$QUERY -label:\"✔️ cristian\""                        #label!=cristian
-  QUERY="$QUERY sort:created-asc"                              #oldest first
-  open -a "Google Chrome" "$URL?q=$QUERY"
-}
-
-gfd() {
-  preview="git diff $@ --color=always -- {-1}"
-  git diff $@ --name-only | fzf -m --ansi --preview $preview
+  glog $count;
 }
