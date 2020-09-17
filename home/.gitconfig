@@ -19,10 +19,13 @@
 	di = !"d() { git diff --patch-with-stat HEAD~$1; }; git diff-index --quiet HEAD -- || clear; d"
 
 	# Pull in remote changes for the current repository and all its submodules
-	p = git pull --recurse-submodules
+	p = pull --recurse-submodules
 
 	# Clone a repository including all submodules
 	c = clone --recursive
+
+	# ~/bin/git-fixup
+	f = fixup
 
 	# Creates a branch for ESH development with the given JIRA ticket as suffix and description 
 	esh = !"f() { desc=`echo \"$2\" | sed 's/ /_/g'`; git checkout -b ESH-\"$1\"_$desc; }; f"
@@ -219,3 +222,11 @@
 	program = gpg
 [tag]
 	forceSignAnnotated = false
+
+[fixup]
+	menu = fzf --height '60%' \
+             --bind 'tab:toggle-preview' \
+             --preview 'git show --color {+1}' \
+             --preview-window=up:80% \
+             --prompt 'Select commit: '
+	commit = true
