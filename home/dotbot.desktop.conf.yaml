@@ -33,6 +33,7 @@
     # Regular directories
     ~/bin: bin
     ~/bumblebee-status: ../bumblebee-status
+    ~/docker: docker
     ~/dots: dots
     ~/profiles: profiles
     ~/wallpapers: wallpapers
