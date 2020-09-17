@@ -1,0 +1,58 @@
+#!/bin/bash
+
+# FZF & FD
+export FZF_DEFAULT_OPTS="
+--layout=reverse
+--info=inline
+--height=99%
+--multi
+--preview-window='right:70%'
+--preview '([[ -f {} ]] && (bat --style=numbers --color=always {} || cat {})) || ([[ -d {} ]] && (tree -C {} | less)) || echo {} 2> /dev/null | head -200'
+--color='hl:148,hl+:154,pointer:032,marker:010,bg+:237,gutter:008'
+--prompt='∼ ' --pointer='▶' --marker='✓'
+--bind '?:toggle-preview'
+--bind 'ctrl-a:select-all'
+--bind 'ctrl-b:execute(bat {+})'
+--bind 'ctrl-y:execute-silent(echo {+} | xclip -selection clipboard)'
+--bind 'ctrl-e:execute(vim {} < /dev/tty > /dev/tty)'
+--bind 'ctrl-v:execute(code {+})'
+"
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+# To apply the command to CTRL-T as well
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
+##########################################################################################
+
+# FORGIT
+FORGIT_LOG_FZF_OPTS='
+--bind="ctrl-e:execute(echo {} |grep -Eo [a-f0-9]+ |head -1 |xargs git show | vim -)"
+'
+FORGIT_COPY_CMD='xclip -selection clipboard'
+
+FORGIT_FZF_DEFAULT_OPTS="
+$FZF_DEFAULT_OPTS
+--ansi
+--height=99%
+--bind='alt-k:preview-up,alt-p:preview-up'
+--bind='alt-j:preview-down,alt-n:preview-down'
+--bind='ctrl-r:toggle-all'
+--bind='ctrl-s:toggle-sort'
+--bind='?:toggle-preview'
+--bind='alt-w:toggle-preview-wrap'
+--preview-window='right:99%'
+--layout=reverse
+$FORGIT_FZF_DEFAULT_OPTS
+"
+
+# register aliases
+# shellcheck disable=SC2139
+if [[ -z "$FORGIT_NO_ALIASES" ]]; then
+    alias "${forgit_add:-gadd}"='forgit::add'
+    alias "${forgit_reset_head:-greset}"='forgit::reset::head'
+    alias "${forgit_log:-gl}"='forgit::log'
+    alias "${forgit_diff:-gfd}"='forgit::diff'
+    alias "${forgit_ignore:-gignore}"='forgit::ignore'
+    alias "${forgit_restore:-grestore}"='forgit::restore'
+    alias "${forgit_clean:-gclean}"='forgit::clean'
+    alias "${forgit_stash_show:-gss}"='forgit::stash::show'
+fi
