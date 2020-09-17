@@ -1,5 +1,7 @@
 #!/bin/bash
 
+export DPKG_PAGER=cat
+
 #
 # git-secret - https://git-secret.io/
 #
