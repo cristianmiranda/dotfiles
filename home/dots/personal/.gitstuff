@@ -40,6 +40,10 @@ function gr(){
   git rebase -i --autosquash HEAD~$1
 }
 
+function gf() {
+  git fixup
+}
+
 function gcf(){
   git ci --fixup $1
 }
