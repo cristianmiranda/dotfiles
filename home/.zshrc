@@ -29,6 +29,7 @@ if ! zgen saved; then
   zgen load zsh-users/zsh-completions
   zgen load zsh-users/zsh-autosuggestions
   zgen load zsh-users/zsh-syntax-highlighting
+  zgen load wfxr/forgit
 
   # theme
   # zgen load denysdovhan/spaceship-prompt spaceship
