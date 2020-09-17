@@ -1,4 +1,4 @@
-# ~/dotfiles
+# :robot: ~/dotfiles
 
 ![Desktop](https://github.com/cristianmiranda/dotfiles/workflows/Desktop/badge.svg)
 ![Server](https://github.com/cristianmiranda/dotfiles/workflows/Server/badge.svg)
