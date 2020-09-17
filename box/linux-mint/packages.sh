@@ -80,9 +80,11 @@ aptUpgrade compton
 
 pip3Install pipenv-shebang
 pip3Install termdown
+pip3Install PyPDF2
 
 # Bumblebee status
 pip3Install setuptools
 pip3Install configparser
 pip3Install psutil
 pip3Install black
+

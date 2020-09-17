@@ -1,0 +1,107 @@
+#!/usr/bin/env python3
+
+import os
+import sys
+
+import PyPDF2 as pyPdf
+
+"""
+    
+    Selecting default printer (if not done already)
+
+    $ lpstat -p -d                              # View printers
+    $ lpoptions -d HP_LaserJet_M102w_BEFC47_    # Set a printer as default
+    $ lpq                                       # Confirm the printer has been set
+
+"""
+
+
+def arabic_to_roman(arabic):
+    roman = ""
+    while arabic >= 1000:
+        roman += "m"
+        arabic -= 1000
+    diffs = [900, 500, 400, 300, 200, 100, 90, 50, 40, 30, 20, 10, 9, 5, 4, 3, 2, 1]
+    digits = [
+        "cm",
+        "d",
+        "cd",
+        "ccc",
+        "cc",
+        "c",
+        "xc",
+        "l",
+        "xl",
+        "xxx",
+        "xx",
+        "x",
+        "ix",
+        "v",
+        "iv",
+        "iii",
+        "ii",
+        "i",
+    ]
+    for i in range(len(diffs)):
+        if arabic >= diffs[i]:
+            roman += digits[i]
+            arabic -= diffs[i]
+    return roman
+
+
+def get_page_count(pdf):
+    try:
+        page_label_type = pdf.trailer["/Root"]["/PageLabels"]["/Nums"][1].getObject()[
+            "/S"
+        ]
+    except:
+        page_label_type = "/D"
+    try:
+        page_start = pdf.trailer["/Root"]["/PageLabels"]["/Nums"][1].getObject()["/St"]
+    except Exception as e:
+        page_start = 1
+    page_count = pdf.getNumPages()
+    page_stop = page_start + page_count
+
+    if page_label_type == "/D":
+        page_numbers = list(range(page_start, page_stop))
+        for i in range(len(page_numbers)):
+            page_numbers[i] = str(page_numbers[i])
+    elif page_label_type == "/r":
+        page_numbers_arabic = range(page_start, page_stop)
+        page_numbers = []
+        for i in range(len(page_numbers_arabic)):
+            page_numbers.append(arabic_to_roman(page_numbers_arabic[i]))
+
+    return page_count
+
+
+def print_batch(page_count, first_batch):
+    pages = ""
+    if first_batch:
+        for i in range(1, page_count + 1):
+            if i % 2 == 0:
+                continue
+            pages += str(i) + ","
+    else:
+        for i in range(1, page_count + 1):
+            if i % 2 != 0:
+                continue
+            pages += str(i) + ","
+
+    pages = pages.rstrip(",")
+    print_pages(pages)
+
+
+def print_pages(numbers):
+    print("- Printing pages: {}".format(numbers))
+    os.system('lpr -o page-ranges={0} "{1}"'.format(numbers, sys.argv[1]))
+    # print 'lpr -o page-ranges={0} "{1}"'.format(numbers, sys.argv[1])
+
+
+pdf = pyPdf.PdfFileReader(open(sys.argv[1], "rb"))
+page_count = get_page_count(pdf)
+print("- Document pages: {}".format(page_count))
+print_batch(page_count, True)
+input("- Press Enter to continue...")
+print_batch(page_count, False)
