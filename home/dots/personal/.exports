@@ -34,3 +34,7 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 # Overriding debian dpkg pager
 export DPKG_PAGER=cat
+
+# Fixes “Inappropriate ioctl for device” error when using gpg on non-gui machines
+export GPG_TTY=$(tty)
+
