@@ -3,6 +3,10 @@ set background=dark
 colorscheme solarized8
 let g:solarized_termtrans=1
 
+" vim-airline
+let g:airline_theme='solarized'
+let g:airline_powerline_fonts = 1
+
 " Make Vim more useful
 set nocompatible
 " Use the OS clipboard by default (on versions compiled with `+clipboard`)
