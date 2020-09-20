@@ -51,6 +51,9 @@
         path: .bashrc
         force: true
     ~/.gitconfig: .gitconfig
+    ~/.gtkrc-2.0:
+        path: .gtkrc-2.0
+        force: true
     ~/.gtkrc-xfce:
         path: .gtkrc-xfce
         force: true

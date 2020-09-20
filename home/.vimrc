@@ -1,11 +1,14 @@
 " Use the Solarized Dark theme
 set background=dark
-colorscheme solarized8
-let g:solarized_termtrans=1
+"colorscheme solarized8
+"let g:solarized_termtrans=1
 
 " vim-airline
-let g:airline_theme='solarized'
+let g:airline_theme='base16_gruvbox_dark_hard'
 let g:airline_powerline_fonts = 1
+
+" Gruvbox theme
+autocmd vimenter * colorscheme gruvbox
 
 " Make Vim more useful
 set nocompatible
