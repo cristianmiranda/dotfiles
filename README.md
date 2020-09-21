@@ -11,6 +11,7 @@ curl -L git.io/cm.files -o /tmp/cm.files && bash /tmp/cm.files
 ```
 
 ![](https://imgur.com/8GXVIqF.png)
+![](https://imgur.com/93wRx4u.png)
 
 ## Anonymous installation
 ```
