@@ -70,5 +70,5 @@ function gc(){
 function glc(){
   count=`gc`;
   echo "Showing $count commits\n";
-  glog $count;
+  `gl -${count}`;
 }
