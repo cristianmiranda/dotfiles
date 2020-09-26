@@ -9,6 +9,7 @@ REPOSITORIES=(
     kgilmer/speed-ricer         # i3
     snwh/ppa                    # https://snwh.org/moka/download
     tista/adapta                # https://github.com/adapta-project/adapta-gtk-theme
+    alessandro-strada/ppa       # https://github.com/astrada/google-drive-ocamlfuse
 )
 
 for repo in ${REPOSITORIES[@]}; do

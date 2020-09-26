@@ -78,6 +78,7 @@
     - ~/Documents/Work/Workspace_LG
     - ~/Pictures/Screenshots
     - ~/logs
+    - ~/Google Drive
 
 - shell:
     - [git update-index --assume-unchanged .config/xfce4/xfconf/xfce-perchannel-xml/thunar.xml, Ignoring changes on thunar.xml]
