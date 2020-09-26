@@ -29,6 +29,7 @@ PACKAGES=(
     fonts-font-awesome
     flameshot
     git
+    google-drive-ocamlfuse
     htop
     hsetroot
     imagemagick

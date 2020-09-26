@@ -13,7 +13,7 @@ exec_always --no-startup-id xsettingsd &
 exec_always --no-startup-id xmodmap ~/.xmodmap
 exec_always --no-startup-id compton -b
 exec_always --no-startup-id dunst
-exec_always --no-startup-id python3 /opt/thefanclub/overgrive/overgrive
+exec_always --no-startup-id [ -d ~/.gdfuse ] && google-drive-ocamlfuse ~/Google\ Drive || echo "No ~/.gdfuse directory has been found"
 exec_always ~/.config/i3/scripts/autoname_workspaces.py --norenumber_workspaces --icon_list_format mathematician &
 exec_always --no-startup-id nm-applet # network-manager-gnome
 exec_always --no-startup-id docker
