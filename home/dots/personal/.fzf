@@ -1,6 +1,9 @@
 #!/bin/bash
 
+#
 # FZF & FD
+#
+
 export FZF_DEFAULT_OPTS="
 --layout=reverse
 --info=inline
@@ -23,7 +26,10 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 ##########################################################################################
 
+#
 # FORGIT
+#
+
 FORGIT_LOG_FZF_OPTS='
 --bind="ctrl-e:execute(echo {} |grep -Eo [a-f0-9]+ |head -1 |xargs git show | vim -)"
 '
@@ -43,16 +49,3 @@ $FZF_DEFAULT_OPTS
 --layout=reverse
 $FORGIT_FZF_DEFAULT_OPTS
 "
-
-# register aliases
-# shellcheck disable=SC2139
-if [[ -z "$FORGIT_NO_ALIASES" ]]; then
-    alias "${forgit_add:-gadd}"='forgit::add'
-    alias "${forgit_reset_head:-greset}"='forgit::reset::head'
-    alias "${forgit_log:-gl}"='forgit::log'
-    alias "${forgit_diff:-gfd}"='forgit::diff'
-    alias "${forgit_ignore:-gignore}"='forgit::ignore'
-    alias "${forgit_restore:-grestore}"='forgit::restore'
-    alias "${forgit_clean:-gclean}"='forgit::clean'
-    alias "${forgit_stash_show:-gss}"='forgit::stash::show'
-fi

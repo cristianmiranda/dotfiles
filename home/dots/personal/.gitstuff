@@ -1,74 +1,55 @@
 #!/bin/bash
 
-# GIT COMMANDS
-alias st='git status'
-alias br='git branch'
-alias ci='git commit'
-alias co='git checkout '
-alias gk='gitk --all&'
-alias reset='git stash apply'
-alias revert='git reset HEAD~1'
-alias cleanbranches='git branch | grep -v "master" | grep -v "esh-develop" | grep -v "development" | xargs -n 1 git branch -D'
-alias localprune='git branch | grep -v "development" | grep -v "master" | xargs git branch -D'
+# Register aliases
+if [[ -z "$FORGIT_NO_ALIASES" ]]; then
+    alias "${forgit_add:-gadd}"='forgit::add'
+    alias "${forgit_reset_head:-greset}"='forgit::reset::head'
+    alias "${forgit_log:-glog}"='forgit::log'
+    alias "${forgit_diff:-gdiff}"='forgit::diff'
+    alias "${forgit_ignore:-gignore}"='forgit::ignore'
+    alias "${forgit_restore:-grestore}"='forgit::restore'
+    alias "${forgit_clean:-gclean}"='forgit::clean'
+    alias "${forgit_stash_show:-gss}"='forgit::stash::show'
+fi
 
-function got(){
-  echo " -> Fetching new branches ...";
-  git fetch origin;
-  echo " -> Checking out $@ ...";
-  git checkout -b "$@" origin/"$@";
-  echo " -> Pulling latest changes from origin/$@ ...";
-  git pull origin "$@";
-}
-
-function gpl(){
-  git pull --rebase origin `git branch | awk '{if ($1 == "*"){print $2}}'`
-}
-
-function gph(){
-  git push origin `git branch | awk '{if ($1 == "*"){print $2}}'`
-}
-
-function gphf(){
-  git push -f origin `git branch | awk '{if ($1 == "*"){print $2}}'`
-}
-
-function ga(){
-  git commit -a --amend --no-edit
-}
-
-function gr(){
-  git rebase -i --autosquash HEAD~$1
-}
-
-function gf() {
-  git fixup
-}
-
-function gcf(){
-  git ci --fixup $1
-}
-
-function gcaf(){
-  git ci -a --fixup $1
-}
-
-function gwipe(){
-  git branch -D $1 && git push origin :$1
-}
-
+#
+# git count
+# Counts commits from current branch that are ahead of a given branch (fallbacking to default branches)
+#
 function gc(){
-  COMMITS=`git rev-list --count develop..HEAD 2>/dev/null`
-  if [[ $? != 0 ]]; then
-    COMMITS=`git rev-list --count main..HEAD 2>/dev/null`
-  fi
-  if [[ $? != 0 ]]; then
-    COMMITS=`git rev-list --count master..HEAD 2>/dev/null`
+  if [ $# -eq 0 ]; then
+    COMMITS=`git rev-list --count develop..HEAD 2>/dev/null`
+    if [[ $? != 0 ]]; then
+      COMMITS=`git rev-list --count main..HEAD 2>/dev/null`
+    fi
+    if [[ $? != 0 ]]; then
+      COMMITS=`git rev-list --count master..HEAD 2>/dev/null`
+    fi
+  else
+    COMMITS=`git rev-list --count $1..HEAD 2>/dev/null`
   fi
   echo $COMMITS
 }
 
+#
+# git log -<count>
+#
 function glc(){
-  count=`gc`;
+  count=`gc $1`;
   echo "Showing $count commits\n";
-  `gl -${count}`;
+  `glog -${count}`;
+}
+
+#
+# git commit session
+#
+function gci() {
+  gadd && g ci
+}
+
+#
+# git commit session using gitmoji
+#
+function gce() {
+  gadd && g ce
 }
