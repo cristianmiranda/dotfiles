@@ -7,18 +7,7 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/d26f962b6f312f347e73/maintainability)](https://codeclimate.com/github/cristianmiranda/dotfiles/maintainability)
 
 ```bash
-curl -L git.io/cm.files -o /tmp/cm.files && bash /tmp/cm.files
+curl -L git.io/dot.deploy -o /tmp/cm.files && bash /tmp/cm.files
 ```
 
 ![](https://imgur.com/8GXVIqF.png)
-![](https://imgur.com/93wRx4u.png)
-
-## Anonymous installation
-```
-# Clone repo
-cd ~
-git clone --recursive https://github.com/cristianmiranda/dotfiles.git
-
-# Install
-. ~/dotfiles/scripts/anonymous-install.sh
-```
