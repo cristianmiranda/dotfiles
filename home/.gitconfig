@@ -39,7 +39,7 @@
 	# git log
 	#
 	# View abbreviated SHA, description, and history graph of the latest 20 commits
-	l = log --pretty=oneline -n 20 --graph --abbrev-commit
+	l = "!l() { git log --pretty=oneline -n 20 --graph --abbrev-commit | emojify; }; l"
 	# Count commits ahead of a given branch
 	cc = "!c() { git rev-list --count $1..HEAD; }; c"
 
