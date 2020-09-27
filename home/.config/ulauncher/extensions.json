@@ -1,1 +1,51 @@
-{}
+{
+    "com.github.rkarami.ulauncher-gitmoji": {
+        "id": "com.github.rkarami.ulauncher-gitmoji",
+        "url": "https://github.com/rkarami/ulauncher-gitmoji",
+        "updated_at": "2020-09-27T18:43:39.295292",
+        "last_commit": "59ad2d0aa89696d41a29ce0efc845f2138f47b6e",
+        "last_commit_time": "2019-09-26T13:21:43"
+    },
+    "com.github.iboyperson.ulauncher-system": {
+        "id": "com.github.iboyperson.ulauncher-system",
+        "url": "https://github.com/iboyperson/ulauncher-system",
+        "updated_at": "2020-09-27T18:45:56.962644",
+        "last_commit": "3b2639fd106ed3ef664953eb868b80c2fb8428ea",
+        "last_commit_time": "2020-09-22T18:29:15"
+    },
+    "com.github.rabin-io.ulauncher-nm": {
+        "id": "com.github.rabin-io.ulauncher-nm",
+        "url": "https://github.com/rabin-io/ulauncher-nm",
+        "updated_at": "2020-09-27T18:48:00.117837",
+        "last_commit": "9a3682584893a7bee11bee43188ca03e47577567",
+        "last_commit_time": "2020-06-19T12:32:51"
+    },
+    "com.github.luasenvy.ulauncher-expr": {
+        "id": "com.github.luasenvy.ulauncher-expr",
+        "url": "https://github.com/luasenvy/ulauncher-expr",
+        "updated_at": "2020-09-27T18:49:13.258918",
+        "last_commit": "e97ee480e294a5dbdc349f936d85b87fa1bf5811",
+        "last_commit_time": "2019-07-17T08:51:00"
+    },
+    "com.github.ruudjelinssen.ulauncher-imdb": {
+        "id": "com.github.ruudjelinssen.ulauncher-imdb",
+        "url": "https://github.com/ruudjelinssen/ulauncher-imdb",
+        "updated_at": "2020-09-27T18:50:38.783465",
+        "last_commit": "308c0d9c27f29185708e11c5e44f405b68a04dbd",
+        "last_commit_time": "2019-12-07T20:24:49"
+    },
+    "com.github.safaariman.ulauncher-jira": {
+        "id": "com.github.safaariman.ulauncher-jira",
+        "url": "https://github.com/safaariman/ulauncher-jira",
+        "updated_at": "2020-09-27T18:51:10.613521",
+        "last_commit": "2c11f285a2e2f4cd9b4f83a3a212958d50b2985b",
+        "last_commit_time": "2019-08-27T07:09:06"
+    },
+    "com.github.isacikgoz.ukill": {
+        "id": "com.github.isacikgoz.ukill",
+        "url": "https://github.com/isacikgoz/ukill",
+        "updated_at": "2020-09-27T19:03:01.098702",
+        "last_commit": "bc50d9f41d46b6813a5aeebddd15734dcdb9d8db",
+        "last_commit_time": "2019-05-28T18:30:00"
+    }
+}
