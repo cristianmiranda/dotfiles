@@ -1,104 +1,121 @@
 [alias]
 
-	ci = commit
-	co = checkout
-	br = branch
+	#
+	# git status
+	#
+	# Regular status
 	st = status
-	cp = cherry-pick
-
-	# View abbreviated SHA, description, and history graph of the latest 20 commits
-	l = log --pretty=oneline -n 20 --graph --abbrev-commit
-
 	# View the current working tree status using the short format
 	s = status -s
 
-	# Show the diff between the latest commit and the current state
-	d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
-
-	# `git di $number` shows the diff between the state `$number` revisions ago and the current state
-	di = !"d() { git diff --patch-with-stat HEAD~$1; }; git diff-index --quiet HEAD -- || clear; d"
-
-	# Pull in remote changes for the current repository and all its submodules
-	p = pull --recurse-submodules
-
-	# Clone a repository including all submodules
-	c = clone --recursive
-
-	# ~/bin/git-fixup
-	f = fixup
-
-	# Creates a branch for ESH development with the given JIRA ticket as suffix and description 
-	esh = !"f() { desc=`echo \"$2\" | sed 's/ /_/g'`; git checkout -b ESH-\"$1\"_$desc; }; f"
-
-	# Commits only what's been staged for commit using the branch prefix on the message
-	cm = !"f() { branch=`git branch | awk '{if ($1 == \"*\"){print $2}}' | awk -F '_' '{print $1}'`; git commit -m \"$branch $1\"; }; f"
-
-	# Commits EVERYTHING using the branch prefix on the message
-	cot = !"f() { branch=`git branch | awk '{if ($1 == \"*\"){print $2}}' | awk -F '_' '{print $1}'`; git commit -a -m \"$branch $1\"; }; f"
-
+	#
+	# git commit
+	#
+	# Regular commit
+	#
+	# Add to staging area
+	a = add
+	ci = commit
+	# Commits using gitmoji
+	ce = !bash -c 'gitmoji -c'
 	# Commits everything with message
 	cma = commit -a -m
+	# Commits only what's been staged for commit using the branch prefix on the message
+	cpm = "!f() { branch=`git branch | awk '{if ($1 == \"*\"){print $2}}' | awk -F '_' '{print $1}'`; git commit -m \"$branch $1\"; }; f"
+	# Commits EVERYTHING using the branch prefix on the message
+	cpam = "!f() { branch=`git branch | awk '{if ($1 == \"*\"){print $2}}' | awk -F '_' '{print $1}'`; git commit -a -m \"$branch $1\"; }; f"
+	# Amend the currently staged files to the latest commit
+	amend = commit --amend --no-edit
 
+	#
+	# git checkout
+	#
+	# Regular checkout
+	co = checkout
 	# Switch to a branch, creating it if necessary
 	go = "!f() { git checkout -b \"$1\" 2> /dev/null || git checkout \"$1\"; }; f"
 
-	# Show verbose output about tags, branches or remotes
-	tags = tag -l
+	#
+	# git log
+	#
+	# View abbreviated SHA, description, and history graph of the latest 20 commits
+	l = log --pretty=oneline -n 20 --graph --abbrev-commit
+	# Count commits ahead of a given branch
+	cc = "!c() { git rev-list --count $1..HEAD; }; c"
+
+	#
+	# git pull / push
+	#
+	# Pull in remote changes for the current repository and all its submodules
+	pl = pull --rebase --recurse-submodules
+	ph = push
+	phf = push -f
+	wipe = "!w() { git branch -D $1 && git push origin :$1; }; w"
+	
+	#
+	# git diff
+	#
+	# Show the diff between the latest commit and the current state
+	d = !"d() { git diff --patch-with-stat HEAD~0; }; git diff-index --quiet HEAD -- || clear; d"
+	# `git di $number` shows the diff between the state `$number` revisions ago and the current state
+	di = !"d() { git diff --patch-with-stat HEAD~$1; }; git diff-index --quiet HEAD -- || clear; d"
+
+	#
+	# git branch
+	#
+	br = branch
 	branches = branch -a
-	remotes = remote -v
-
-	# List aliases
-	aliases = config --get-regexp alias
-
-	# Amend the currently staged files to the latest commit
-	amend = commit --amend --reuse-message=HEAD
-
-	# Credit an author on the latest commit
-	credit = "!f() { git commit --amend --author \"$1 <$2>\" -C HEAD; }; f"
-
-	# Interactive rebase with the given number of latest commits
-	reb = "!r() { git rebase -i HEAD~$1; }; r"
-
-	# Remove the old tag with this name and tag the latest commit with it.
-	retag = "!r() { git tag -d $1 && git push origin :refs/tags/$1 && git tag $1; }; r"
-
-	# Find branches containing commit
-	fb = "!f() { git branch -a --contains $1; }; f"
-
-	# Find tags containing commit
-	ft = "!f() { git describe --always --contains $1; }; f"
-
-	# Find commits by source code
-	fc = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short -S$1; }; f"
-
-	# Find commits by commit message
-	fm = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short --grep=$1; }; f"
-
 	# Remove branches that have already been merged with master
 	# a.k.a. ‘delete merged’
 	dm = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
 
+	#
+	# Rewriting history
+	#
+	cp = cherry-pick
+	# Interactive rebase with the given number of latest commits
+	r = "!r() { git rebase -i HEAD~$1; }; r"
+	# ~/bin/git-fixup
+	f = fixup
+	# Revert last commit
+	revert = reset HEAD~1
+
+	#
+	# Searching for stuff
+	#
+	# Find branches containing commit
+	fb = "!f() { git branch -a --contains $1; }; f"
+	# Find tags containing commit
+	ft = "!f() { git describe --always --contains $1; }; f"
+	# Find commits by source code
+	fc = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short -S$1; }; f"
+	# Find commits by commit message
+	fm = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short --grep=$1; }; f"
+
+	#
+	# Common commands
+	#
+	# Clone a repository including all submodules
+	c = clone --recursive
+	# Show verbose output about tags, branches or remotes
+	tags = tag -l
+	remotes = remote -v
+	# Credit an author on the latest commit
+	credit = "!f() { git commit --amend --author \"$1 <$2>\" -C HEAD; }; f"
+	# List aliases
+	aliases = config --get-regexp alias
+	# Remove the old tag with this name and tag the latest commit with it.
+	retag = "!r() { git tag -d $1 && git push origin :refs/tags/$1 && git tag $1; }; r"
 	# List contributors with number of commits
 	contributors = shortlog --summary --numbered
-
-	# Merge GitHub pull request on top of the current branch or,
-	# if a branch name is specified, on top of the specified branch
-	mpr = "!f() { \
-		declare currentBranch=\"$(git symbolic-ref --short HEAD)\"; \
-		declare branch=\"${2:-$currentBranch}\"; \
-		if [ $(printf \"%s\" \"$1\" | grep '^[0-9]\\+$' > /dev/null; printf $?) -eq 0 ]; then \
-			git fetch origin refs/pull/$1/head:pr/$1 && \
-			git checkout -B $branch && \
-			git rebase $branch pr/$1 && \
-			git checkout -B $branch && \
-			git merge pr/$1 && \
-			git branch -D pr/$1 && \
-			git commit --amend -m \"$(git log -1 --pretty=%B)\n\nCloses #$1.\"; \
-		fi \
-	}; f"
-
 	# Show the user email for the current repository.
 	whoami = config user.email
+
+	#
+	# Lille Group aliases
+	#
+	# Creates a branch for ESH development with the given JIRA ticket as suffix and description 
+	esh = !"f() { desc=`echo \"$2\" | sed 's/ /_/g'`; git checkout -b ESH-\"$1\"_$desc; }; f"
 
 [apply]
 
@@ -188,10 +205,8 @@
 [user]
 
 	email = crism60@gmail.com
-  name = "Cristian Miranda"
-  signingkey = "E78F28F43BE4B38B"
-
-# URL shorthands
+	name = "Cristian Miranda"
+  	signingkey = "E78F28F43BE4B38B"
 
 [url "git@github.com:"]
 
@@ -214,16 +229,22 @@
 	insteadOf = "gist:"
 	
 [filter "lfs"]
+
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+
 [gpg]
+
 	program = gpg
+	
 [tag]
+
 	forceSignAnnotated = false
 
 [fixup]
+
 	menu = fzf --height '60%' \
              --bind 'tab:toggle-preview' \
              --preview 'git show --color {+1}' \
@@ -232,24 +253,29 @@
 	commit = true
 
 [core]
+
 	pager = delta
 
 [interactive]
+
 	diffFilter = delta --color-only
 
 [delta]
+
     features = line-numbers decorations
     syntax-theme = Dracula
     plus-style = syntax "#003800"
     minus-style = syntax "#3f0001"
 
 [delta "decorations"]
+
     commit-decoration-style = bold yellow box ul
     file-style = bold yellow ul
     file-decoration-style = none
     hunk-header-decoration-style = cyan box ul
 
 [delta "line-numbers"]
+
     line-numbers-left-style = cyan
     line-numbers-right-style = cyan
     line-numbers-minus-style = 124
