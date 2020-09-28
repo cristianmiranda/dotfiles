@@ -17,13 +17,14 @@ exec_always --no-startup-id [ -d ~/.gdfuse ] && google-drive-ocamlfuse ~/Google\
 exec_always ~/.config/i3/scripts/autoname_workspaces.py --norenumber_workspaces --icon_list_format mathematician &
 exec_always --no-startup-id nm-applet # network-manager-gnome
 exec_always --no-startup-id docker
+exec_always --no-startup-id GDK_DPI_SCALE=0.5 GDK_SCALE=2 ulauncher --hide-window
 
 # start a terminal
 bindsym $super+Return exec --no-startup-id terminator
 
 # start dmenu (a program launcher)
 # bindsym $super+space exec --no-startup-id GDK_DPI_SCALE=0.5 GDK_SCALE=2 rofi -show drun -sidebar-mode
-bindsym $super+space exec --no-startup-id GDK_DPI_SCALE=0.5 GDK_SCALE=2 ulauncher
+bindsym --release $super+space exec --no-startup-id "sleep 0.2; xdotool key Ctrl+space"
 
 # Simulate alt+tab
 # bindsym Control+Tab exec --no-startup-id rofi -lines 12 -padding 18 -width 60 -location 0 -show window -sidebar-mode -columns 3 -font 'Noto Sans 8' -theme solarized
