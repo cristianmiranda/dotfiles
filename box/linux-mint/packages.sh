@@ -66,6 +66,7 @@ PACKAGES=(
     w3m-img
     xcalib
     xclip
+    xdotool
     zenity
     zsh
 )
