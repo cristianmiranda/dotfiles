@@ -74,7 +74,7 @@
 	#
 	cp = cherry-pick
 	# Interactive rebase with the given number of latest commits
-	r = "!r() { git rebase -i HEAD~$1; }; r"
+	r = "!r() { git rebase -i --autosquash HEAD~$1; }; r"
 	# ~/bin/git-fixup
 	f = fixup
 	# Revert last commit
