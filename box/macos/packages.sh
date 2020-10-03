@@ -143,6 +143,8 @@ pip3InstallForUser pipenv-shebang
 pip3InstallForUser termdown
 pip3Install PyPDF2
 pip3Install black
+pip3Install PyYAML
+pip3Install osascript
 
 npm i -g gitmoji-cli
 
