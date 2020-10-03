@@ -83,6 +83,7 @@ aptUpgrade compton
 pip3Install pipenv-shebang
 pip3Install termdown
 pip3Install PyPDF2
+pip3Install osascript
 
 # Bumblebee status
 pip3Install setuptools

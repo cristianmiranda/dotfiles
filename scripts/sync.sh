@@ -17,7 +17,7 @@ DOTBOT_MACOS="dotbot.macos.conf.yaml"
 # Fallback profile
 DOTBOT_UNKNOWN=${DOTBOT_MINIMAL}
 
-declare -a HOSTS_MAP
+declare -A HOSTS_MAP
 HOSTS_MAP["Linux-Virtual"]=${DOTBOT_LINUX}      # Vagrant
 HOSTS_MAP["Linux-MBP"]=${DOTBOT_LINUX}          # Main desktop
 HOSTS_MAP["mini-linux"]=${DOTBOT_SERVER}        # Main server
