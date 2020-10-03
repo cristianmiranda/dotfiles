@@ -53,3 +53,15 @@ function gci() {
 function gce() {
   gadd && g ce
 }
+
+function gpl(){
+  git pull --rebase origin `git branch | awk '{if ($1 == "*"){print $2}}'`
+}
+
+function gph() {
+  git push origin `git branch | awk '{if ($1 == "*"){print $2}}'`
+}
+
+function gphf() {
+  git push -f origin `git branch | awk '{if ($1 == "*"){print $2}}'`
+}
