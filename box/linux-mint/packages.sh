@@ -40,7 +40,6 @@ PACKAGES=(
     moka-icon-theme
     neofetch
     network-manager
-    openjdk-8-jdk
     openssh-server
     paper-icon-theme
     p7zip-full
@@ -91,3 +90,7 @@ pip3Install configparser
 pip3Install psutil
 pip3Install black
 
+# SDKMAN
+curl -s "https://get.sdkman.io" | bash
+source "$HOME/.sdkman/bin/sdkman-init.sh"
+sdk install java 11.0.8-amzn
