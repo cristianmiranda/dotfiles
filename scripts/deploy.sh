@@ -27,5 +27,5 @@ else
 
     # Kicks off the installation script
     cd dotfiles
-    bash ${CURRENT_DIR}/install.sh
+    bash scripts/install.sh
 fi
