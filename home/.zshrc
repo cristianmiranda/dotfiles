@@ -60,8 +60,8 @@ source ${HOME}/profiles/common.sh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/Users/cmiranda/.sdkman"
-[[ -s "/Users/cmiranda/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/cmiranda/.sdkman/bin/sdkman-init.sh"
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 # macOS bash completion
 [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
