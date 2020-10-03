@@ -1,4 +1,4 @@
-name: Desktop
+name: Linux
 
 on:
   push:
