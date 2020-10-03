@@ -47,6 +47,8 @@ fi
 # https://upload.wikimedia.org/wikipedia/commons/1/15/Xterm_256color_chart.svg
 #SPACESHIP_DIR_COLOR=178
 #SPACESHIP_CHAR_COLOR_FAILURE=160
+SPACESHIP_DOCKER_SHOW=false
+SPACESHIP_DOCKER_VERBOSE=false
 
 # Common cross-profile stuff
 source ${HOME}/profiles/common.sh
