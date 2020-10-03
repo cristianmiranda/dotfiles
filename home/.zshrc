@@ -9,6 +9,8 @@
 
 # ZSH_THEME=agnoster
 
+export ZSH_DISABLE_COMPFIX=true
+
 # ZGEN
 source "${HOME}/bin/zgen/zgen.zsh"
 
@@ -54,3 +56,10 @@ source ${HOME}/profiles/common.sh
 
 # Command-line Fuzzy Finder - https://github.com/junegunn/fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/Users/cmiranda/.sdkman"
+[[ -s "/Users/cmiranda/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/cmiranda/.sdkman/bin/sdkman-init.sh"
+
+# macOS bash completion
+[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"

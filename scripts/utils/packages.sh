@@ -32,3 +32,29 @@ function pip3Install {
   info ">>> Installing ${1}"
   pip3 install $1 >> $LOG_FILE 2>&1
 }
+
+function pip3InstallForUser {
+  info ">>> Installing ${1}"
+  pip3 install $1 --user >> $LOG_FILE 2>&1
+}
+
+function brewInstall {
+  info ">>> Installing ${1}"
+  brew install $1 >> $LOG_FILE 2>&1
+}
+
+function brewCaskInstall {
+  info ">>> Installing ${1}"
+  brew cask install $1 >> $LOG_FILE 2>&1
+}
+
+function brewUpdateUpgrade {
+  info ">>> Updating & Upgrading packages"
+  brew update >> $LOG_FILE 2>&1
+  brew upgrade >> $LOG_FILE 2>&1
+}
+
+function brewCleanup {
+  info ">>> Removing outdated versions from the cellar"
+  brew cleanup >> $LOG_FILE 2>&1
+}

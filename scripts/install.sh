@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 CURRENT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
@@ -12,9 +12,21 @@ br
 separator 57
 br
 
-info ">> Installing dependencies for current user and root ..."
-bash ${CURRENT_DIR}/dependencies.sh >> $LOG_FILE 2>&1
-sudo bash ${CURRENT_DIR}/dependencies.sh >> $LOG_FILE 2>&1
+unameOut="$(uname -s)"
+case "${unameOut}" in
+    Linux*)     machine=Linux;;
+    Darwin*)    machine=Mac;;
+    *)          machine="UNKNOWN:${unameOut}" && exit 1
+esac
+
+if [[ $machine == "Mac" ]]; then
+    info ">> Installing dependencies for current user ..."
+    bash ${DOTFILES_PATH}/box/macos/dependencies.sh >> $LOG_FILE 2>&1
+elif [[ $machine == "Linux" ]]; then
+    info ">> Installing dependencies for current user and root ..."
+    bash ${CURRENT_DIR}/dependencies.sh >> $LOG_FILE 2>&1
+    sudo bash ${CURRENT_DIR}/dependencies.sh >> $LOG_FILE 2>&1
+fi
 
 br
 info ">> Revealing secrets ..."
@@ -55,8 +67,7 @@ br
 ask_caution "Shall we proceed?" CONTINUE
 br
 
-if [[ $CONTINUE =~ y|Y ]];
-then
+if [[ $CONTINUE =~ y|Y ]]; then
 
     banner "           >>> Continue <<<           "
     br
