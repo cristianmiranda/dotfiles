@@ -14,9 +14,6 @@ then
     # Install
     . ~/dotfiles/scripts/anonymous-install.sh
 else
-    # Just in case
-    sudo apt-get install -y git
-
     # Grabs ssh & gpg keys
     cd $HOME
     BACKUP_DIR=/data/ssd/backups/manual/secrets
