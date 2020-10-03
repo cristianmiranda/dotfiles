@@ -14,11 +14,11 @@ if [[ $WINE_INSTALLED == 1 ]]; then
   sudo dpkg --add-architecture i386
   wget -nc https://dl.winehq.org/wine-builds/winehq.key
   sudo apt-key add winehq.key
-  sudo add-apt-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ bionic main'  # Ubuntu 18.04
+  sudo add-apt-repository -y 'deb https://dl.winehq.org/wine-builds/ubuntu/ bionic main'  # Ubuntu 18.04
   # sudo add-apt-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ focal main' # Ubuntu 20.04
   sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys DFA175A75104960E
   sudo apt update
-  sudo apt install --install-recommends winehq-stable
+  sudo apt install -y --install-recommends winehq-stable
   # winecfg # Run after installation
 fi
 
