@@ -1,0 +1,63 @@
+- defaults:
+    link:
+      relink: true
+      create: true
+
+- clean:
+    ~/:
+        force: true
+    ~/.config:
+        recursive: true
+
+- link:
+    # Link to self
+    ~/dotfiles: '../.'
+    
+    # Hidden directories
+    ~/.config/:
+        glob: true
+        path: .config/*
+        force: true
+    ~/.gnupg/gpg-agent.conf: .gnupg/gpg-agent.conf
+    ~/.ssh/config: 
+        path: .ssh/config
+        force: true
+    ~/.vim: .vim
+
+    # Regular directories
+    ~/bin: bin
+    ~/docker: docker
+    ~/dots: dots
+    ~/fzf: ../fzf
+    ~/profiles: profiles
+    ~/wallpapers: wallpapers
+
+    # Hidden Files
+    ~/.bash_profile:
+        path: .bash_profile
+        force: true
+    ~/.bashrc: 
+        path: .bashrc
+        force: true
+    ~/.gitconfig: .gitconfig
+    ~/.gvimrc: .gvimrc
+    ~/.inputrc: .inputrc
+    ~/.vimrc: .vimrc
+    ~/.zshrc:
+        path: .zshrc
+        force: true
+    
+- create:
+    - ~/Documents/Work/Workspace
+    - ~/Documents/Work/Workspace_LG
+    - ~/Pictures/Screenshots
+    - ~/logs
+    
+- shell:
+    -
+        command: cd $HOME/fzf && bash $HOME/fzf/install --all
+        description:  Upgrading/Installing fzf
+        stdin: true
+        stdout: true
+        stderr: true
+        quiet: false
