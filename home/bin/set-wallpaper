@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 
 import os
+import osascript
+import platform
+import subprocess
 import sys
 
 sys.path.append(os.popen("echo $HOME").read().strip())
@@ -17,17 +20,24 @@ def setWallpaper(wallpaper):
     data = config.getConfig()
     wallpapers = data["path"]["wallpaper"]
 
-    monitors = int(os.popen('xrandr --listmonitors | grep "+" | wc -l').read())
+    if platform.system() == "Linux":
+        monitors = int(os.popen('xrandr --listmonitors | grep "+" | wc -l').read())
 
-    if wallpaper == "default":
-        if monitors == 2:
-            print("Dual monitor")
-            os.popen("hsetroot -cover {}".format(wallpapers["dual"]))
-        elif monitors == 1:
-            print("Single monitor")
-            os.popen("hsetroot -cover {}".format(wallpapers["single"]))
+        if wallpaper == "default":
+            if monitors == 2:
+                print("Dual monitor")
+                os.popen("hsetroot -cover {}".format(wallpapers["dual"]))
+            elif monitors == 1:
+                print("Single monitor")
+                os.popen("hsetroot -cover {}".format(wallpapers["single"]))
+        else:
+            os.popen("hsetroot -cover {}".format(wallpaper))
     else:
-        os.popen("hsetroot -cover {}".format(wallpaper))
+        if wallpaper == "default":
+            wallpaper = wallpapers["single"]
+
+        osascript.run("tell application \"System Events\" to tell every desktop to set picture to \"{}\"".format(wallpaper))
+
 
 
 if __name__ == "__main__":
