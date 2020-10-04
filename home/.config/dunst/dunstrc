@@ -143,23 +143,23 @@
 [urgency_low]
     # This urgency should be used only 
     # for volume/brightness notification
-    background = "#32302f"
-    foreground = "#ebdbb2"
+    background = "#002b36"
+    foreground = "#eee8d5"
     timeout = 10
     icon = /dev/null
 
 [urgency_normal]
-    background = "#32302f"
-    foreground = "#ebdbb2"
+    background = "#002b36"
+    foreground = "#eee8d5"
     timeout = 10
     icon = /dev/null
 
 [urgency_critical]
-    background = "#cc241d"
-    foreground = "#edbdd2"
-    frame_color = "#cc241d"
+    background = "#d64e4e"
+    foreground = "#f0e0e0"
+    frame_color = "#d64e4e"
     timeout = 0
-    icon = /usr/share/icons/Paper/16x16/status/dialog-warning.png
+    icon = /usr/share/icons/Paper/48x48/status/dialog-warning.png
 
 [update_notifications_count]
     script = update-notifications-count
