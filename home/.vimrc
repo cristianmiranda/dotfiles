@@ -1,14 +1,15 @@
 " Use the Solarized Dark theme
-set background=dark
-"colorscheme solarized8
-"let g:solarized_termtrans=1
+" set background=dark
+" colorscheme solarized8
+" let g:solarized_termtrans=1
+
+" One Dark Theme
+syntax on
+colorscheme onedark
 
 " vim-airline
-let g:airline_theme='base16_gruvbox_dark_hard'
+let g:airline_theme='onedark'
 let g:airline_powerline_fonts = 1
-
-" Gruvbox theme
-autocmd vimenter * colorscheme gruvbox
 
 " Make Vim more useful
 set nocompatible
@@ -111,3 +112,21 @@ if has("autocmd")
 	" Treat .md files as Markdown
 	autocmd BufNewFile,BufRead *.md setlocal filetype=markdown
 endif
+
+" Specify a directory for plugins
+" - For Neovim: stdpath('data') . '/plugged'
+" - Avoid using standard Vim directory names like 'plugin'
+call plug#begin('~/.vim/plugged')
+
+" Make sure you use single quotes
+
+" Syntax highlighting
+Plug 'sheerun/vim-polyglot'
+
+" Rainbow brackets
+Plug 'frazrepo/vim-rainbow'
+
+" Initialize plugin system
+call plug#end()
+
+let g:rainbow_active = 1
