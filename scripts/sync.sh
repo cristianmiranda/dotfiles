@@ -9,18 +9,18 @@ DOTBOT_DIR="../dotbot"
 DOTBOT_BIN="bin/dotbot"
 
 # Profiles
-DOTBOT_MINIMAL="dotbot.minimal.conf.yaml"
+DOTBOT_ANONYMOUS="dotbot.anonymous.conf.yaml"
 DOTBOT_LINUX="dotbot.linux.conf.yaml"
 DOTBOT_SERVER="dotbot.server.conf.yaml"
 DOTBOT_MACOS="dotbot.macos.conf.yaml"
 
 # Fallback profile
-DOTBOT_UNKNOWN=${DOTBOT_MINIMAL}
+DOTBOT_UNKNOWN=${DOTBOT_ANONYMOUS}
 
 declare -A HOSTS_MAP
-HOSTS_MAP["Linux-Virtual"]=${DOTBOT_LINUX}      # Vagrant
-HOSTS_MAP["Linux-MBP"]=${DOTBOT_LINUX}          # Main desktop
-HOSTS_MAP["mini-linux"]=${DOTBOT_SERVER}        # Main server
+HOSTS_MAP["Linux-Virtual"]=${DOTBOT_LINUX}      # Vagrant, Parallels, Virtualbox
+HOSTS_MAP["Linux-MBP"]=${DOTBOT_LINUX}          # Linux Desktop
+HOSTS_MAP["mini-linux"]=${DOTBOT_SERVER}        # Linux Server
 HOSTS_MAP["raspberrypi"]=${DOTBOT_SERVER}       # Raspberry Pi 3/4
 HOSTS_MAP["Cristians-MBP"]=${DOTBOT_MACOS}      # macOS
 
