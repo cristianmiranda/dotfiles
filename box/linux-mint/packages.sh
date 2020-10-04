@@ -84,12 +84,6 @@ pip3Install termdown
 pip3Install PyPDF2
 pip3Install osascript
 
-# Bumblebee status
-pip3Install setuptools
-pip3Install configparser
-pip3Install psutil
-pip3Install black
-
 # SDKMAN
 curl -s "https://get.sdkman.io" | bash
 source "$HOME/.sdkman/bin/sdkman-init.sh"
