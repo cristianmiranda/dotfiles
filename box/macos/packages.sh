@@ -13,6 +13,15 @@ fi
 # Ask for the administrator password upfront
 sudo -v
 
+# MANUALLY:
+# - https://www.sempliva.com/tiles/
+# - iStat Menus
+
+# APP STORE:
+# - Spark
+# - ToothFairy
+# - Twitter
+
 # Make sure we’re using the latest Homebrew.
 # Upgrade any already-installed formulae.
 brewUpdateUpgrade
