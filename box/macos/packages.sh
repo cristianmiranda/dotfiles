@@ -63,6 +63,7 @@ PACKAGES=(
 	node
 	ranger
 	svn
+	tmux
 	yarn
 	w3m
 )
