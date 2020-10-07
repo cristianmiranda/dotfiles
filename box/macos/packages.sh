@@ -49,57 +49,57 @@ ESSENTIALS=(
 )
 
 PACKAGES=(
-    bat
-    bash-completion
-    jakehilborn/jakehilborn/displayplacer
-    fd
+	bat
+	bash-completion
+	jakehilborn/jakehilborn/displayplacer
+	fd
 	ffmpeg
-    git-delta
-    git-lfs
-    git-secret
+	git-delta
+	git-lfs
+	git-secret
 	htop
 	jq
 	maven
-    node
+	node
 	ranger
-    svn
-    yarn
+	svn
+	yarn
 	w3m
 )
 
 CASKS=(
 	1password
-    discord
+	discord
 	docker
-    dozer
-    duplicati
-    element
+	dozer
+	duplicati
+	element
 	evernote
 	firefox
 	homebrew/cask-versions/firefox-developer-edition
-    gitify
-    gitkraken
-  	google-backup-and-sync
+	gitify
+	gitkraken
+	google-backup-and-sync
 	google-chrome
-    gpg-suite
+	gpg-suite
 	iterm2
 	jetbrains-toolbox
 	jitsi-meet
-  maccy
-    microsoft-office
-    nordvpn
+	maccy
+	microsoft-office
+	nordvpn
 	openvpn-connect
 	paragon-extfs
 	paragon-ntfs
 	postman
 	slack
 	spotify
-    steam
-  	telegram
+	steam
+	telegram
 	the-unarchiver
 	visual-studio-code
 	whatsapp
-    zoomus
+	zoomus
 )
 
 FONTS=(
