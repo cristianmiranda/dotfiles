@@ -85,6 +85,7 @@ CASKS=(
 	iterm2
 	jetbrains-toolbox
 	jitsi-meet
+  maccy
     microsoft-office
     nordvpn
 	openvpn-connect
