@@ -1,0 +1,84 @@
+#!/usr/bin/perl
+use strict;
+use warnings;
+use IO::Select;
+use List::Util qw(shuffle);
+
+my $stdinDelayMillis = 100;
+
+my $usage = "Usage:
+  $0 -h|--help
+    show this message
+
+  $0 [OPTIONS]
+    -wait ${stdinDelayMillis}ms
+    -if STDIN is available using select():
+       read all lines from STDIN and print one at random
+    -if STDIN is empty or unavailable using select():
+      print a random real number between 0 and 1 using perl's rand()
+
+  $0 [OPTIONS] FILE
+    randomy select one line of the file and print it
+
+  $0 [OPTIONS] WORD WORD [WORD WORD WORD ..]
+    randomly select one of the given WORDs and print it
+
+  OPTIONS
+    -p | --permute
+      print the whole list of items in a random order, one per line
+";
+
+sub canReadStdin();
+
+sub main(@){
+  if(@_ == 1 and $_[0] =~ /^(-h|--help)$/){
+    die $usage;
+  }
+
+  my $permute = 0;
+  while(@_ > 0 and $_[0] =~ /^(-p|--permute)$/){
+    my $opt = shift;
+    if($opt =~ /^(-p|--permute)$/){
+      $permute = 1;
+    }
+  }
+
+  my @items;
+  if(@_ == 0){
+    if(canReadStdin()){
+      @items = <STDIN>;
+    }else{
+      @items = rand();
+    }
+  }elsif(@_ == 1 and -f $_[0]){
+    open FH, "< $_[0]" or die "could not read $_[0]\n$!\n";
+    @items = <FH>;
+    close FH;
+  }elsif(@_ >= 2){
+    @items = @_;
+  }else{
+    die $usage;
+  }
+
+  chomp foreach @items;
+
+  @items = shuffle @items;
+
+  if($permute){
+    print "$_\n" foreach @items;
+  }else{
+    print "$items[0]\n";
+  }
+}
+
+sub canReadStdin(){
+  my $stdin = IO::Select->new();
+  $stdin->add(\*STDIN);
+  if($stdin->can_read($stdinDelayMillis / 1000.0)){
+    return 1;
+  }else{
+    return 0;
+  }
+}
+
+&main(@ARGV);
