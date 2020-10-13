@@ -57,7 +57,9 @@ PACKAGES=(
 	git-delta
 	git-lfs
 	git-secret
+	gqlplus
 	htop
+	InstantClientTap/instantclient/instantclient-sqlplus
 	jq
 	maven
 	node
