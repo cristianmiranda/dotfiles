@@ -11,3 +11,4 @@
 
     # Hidden Files
     ~/.gitconfig: .gitconfig
+    ~/.tmux.conf: .tmux.conf
