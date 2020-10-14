@@ -28,6 +28,7 @@
         path: .ssh/config
         force: true
     ~/.themes: .themes
+    ~/.tmux.conf: .tmux.conf
     ~/.vim: .vim
 
     # Regular directories

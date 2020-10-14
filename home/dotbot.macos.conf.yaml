@@ -42,6 +42,7 @@
     ~/.gitconfig: .gitconfig
     ~/.gvimrc: .gvimrc
     ~/.inputrc: .inputrc
+    ~/.tmux.conf: .tmux.conf
     ~/.vimrc: .vimrc
     ~/.zshrc:
         path: .zshrc
