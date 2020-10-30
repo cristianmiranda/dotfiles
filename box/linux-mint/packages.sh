@@ -58,7 +58,7 @@ PACKAGES=(
     sox
     terminator
     thunar
-		tmux
+    tmux
     tree
     unrar
     vim
