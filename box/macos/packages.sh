@@ -153,7 +153,7 @@ for pkg in ${FONTS[@]}; do
 done
 
 pip3InstallForUser pipenv-shebang
-pip3InstallForUser termdown
+pip3Install termdown
 pip3Install PyPDF2
 pip3Install black
 pip3Install PyYAML
