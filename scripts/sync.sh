@@ -42,11 +42,13 @@ fi
 cd "${BASEDIR}";
 echo -e "\n>> Using ${HOSTNAME}'s config file => $CONFIG_FILE \n"
 
-git pull origin master || echo "Could not update repo. Maybe ssh-keys are out of date?"
+# git pull origin master || echo "Could not update repo. Maybe ssh-keys are out of date?"
 
+echo -e ">> Submodules sync..."
 git -C "${DOTBOT_DIR}" submodule sync --quiet --recursive || echo "Could not sync dotbot submodule"
+echo -e ">> Submodules update..."
 git submodule update --init --recursive "${DOTBOT_DIR}" || echo "Could not update dotbot submodule"
-
+echo -e ">> Submodules pull...\n"
 git pull --recurse-submodules && git submodule update
 
 cd "${CONFIG_HOME}"
