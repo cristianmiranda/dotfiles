@@ -60,3 +60,4 @@ alias path='echo -e ${PATH//:/\\n}'
 # bat's plain output. Clipboard friendly
 alias rat='bat --plain '
 
+alias libgen='libgen-downloader'
