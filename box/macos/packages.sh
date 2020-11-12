@@ -161,6 +161,7 @@ pip3Install PyYAML
 pip3Install osascript
 
 npm i -g gitmoji-cli
+npm i -g libgen-downloader
 
 # SDKMAN
 curl -s "https://get.sdkman.io" | bash
