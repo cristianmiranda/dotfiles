@@ -159,6 +159,7 @@ pip3Install PyPDF2
 pip3Install black
 pip3Install PyYAML
 pip3Install osascript
+pip3Install bpytop
 
 npm i -g gitmoji-cli
 npm i -g libgen-downloader

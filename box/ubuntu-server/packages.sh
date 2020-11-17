@@ -12,7 +12,6 @@ fi
 aptUpgrade
 
 PACKAGES=(
-    bashtop
     curl
     figlet
     git
@@ -36,4 +35,5 @@ for pkg in ${PACKAGES[@]}; do
     aptInstall $pkg
 done
 
-pip3 install pipenv-shebang
+pip3Install pipenv-shebang
+pip3Install bpytop

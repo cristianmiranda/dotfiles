@@ -3,7 +3,6 @@
 . ${UTILS_PATH}/packages.sh
 
 REPOSITORIES=(
-    bashtop-monitor/bashtop
     sicklylife/filezilla
     sicklylife/flameshot
     kgilmer/speed-ricer         # i3
