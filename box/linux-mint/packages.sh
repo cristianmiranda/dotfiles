@@ -16,7 +16,6 @@ PACKAGES=(
     apt-transport-https
     arandr
     autoconf
-    bashtop
     breeze-cursor-theme
     cargo
     curl
@@ -84,6 +83,7 @@ pip3Install pipenv-shebang
 pip3Install termdown
 pip3Install PyPDF2
 pip3Install osascript
+pip3Install bpytop
 
 # SDKMAN
 curl -s "https://get.sdkman.io" | bash
