@@ -1,0 +1,8 @@
+#!/bin/bash
+
+LAST_TWO_TAGS=`git for-each-ref --sort=-creatordate --count=2 --format '%(refname)' refs/tags`
+
+LATEST_TAG=`echo $LAST_TWO_TAGS | tail -n+1 | head -n1`
+PREVIOUS_TAG=`echo $LAST_TWO_TAGS | tail -n+2 | head -n1`
+
+git log --pretty=oneline $LATEST_TAG...$PREVIOUS_TAG | grep 'Merge pull request' | awk ' { print "pr"$5" - "$7 } ' | sed 's/lillegroup\///g'
