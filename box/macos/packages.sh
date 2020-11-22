@@ -95,6 +95,7 @@ CASKS=(
 	openvpn-connect
 	paragon-extfs
 	paragon-ntfs
+	pgadmin4
 	postman
 	slack
 	spotify
