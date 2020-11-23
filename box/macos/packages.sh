@@ -49,6 +49,7 @@ ESSENTIALS=(
 )
 
 PACKAGES=(
+	ant
 	bat
 	bash-completion
 	jakehilborn/jakehilborn/displayplacer
