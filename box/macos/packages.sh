@@ -104,6 +104,7 @@ CASKS=(
 	steam
 	telegram
 	the-unarchiver
+	transmission
 	visual-studio-code
 	whatsapp
 	zoomus
