@@ -73,6 +73,7 @@ PACKAGES=(
 
 CASKS=(
 	1password
+	balenaetcher
 	discord
 	docker
 	dozer
