@@ -18,7 +18,9 @@
         glob: true
         path: .config/*
         force: true
-    ~/.gnupg/gpg-agent.conf: .gnupg/gpg-agent.conf
+    ~/.gnupg/gpg-agent.conf:
+        path: .gnupg/gpg-agent.conf
+        force: true
     ~/.ssh/config: 
         path: .ssh/config
         force: true
