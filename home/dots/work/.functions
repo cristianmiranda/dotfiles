@@ -46,3 +46,7 @@ function migs() {
 
   cd -
 }
+
+function devs() {
+  echo "bart" "bogdan" "dawid" "ewolk" "jan" "luciano"
+}
