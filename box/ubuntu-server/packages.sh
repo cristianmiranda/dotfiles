@@ -37,3 +37,4 @@ done
 
 pip3Install pipenv-shebang
 pip3Install bpytop
+pip3Install virtualenv
