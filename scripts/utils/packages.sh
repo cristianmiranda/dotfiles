@@ -45,7 +45,7 @@ function brewInstall {
 
 function brewCaskInstall {
   info ">>> Installing ${1}"
-  brew cask install $1 >> $LOG_FILE 2>&1
+  brew install --cask $1 >> $LOG_FILE 2>&1
 }
 
 function brewUpdateUpgrade {
