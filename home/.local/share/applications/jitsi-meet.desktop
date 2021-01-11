@@ -1,9 +1,0 @@
-[Desktop Entry]
-Name=Jitsi Meet
-GenericName=Jitsi Meet
-Exec=/usr/local/jitsi-meet/jitsi-meet --no-sandbox
-Terminal=false
-Icon=/usr/local/jitsi-meet/icon.png
-Type=Application
-Categories=Application;Network;X-Developer;
-Comment=Videoconference app.
