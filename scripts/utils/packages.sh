@@ -23,6 +23,17 @@ function aptInstall {
   fi
 }
 
+function yayInstall {
+  pacman -Qi $1 &> /dev/null
+
+  if [ $? -ne 0 ]; then
+    info ">>> Installing ${1}"
+    yes | yay --noconfirm -S $1 >> $LOG_FILE 2>&1
+  else
+    warning ">>> Already installed: ${1}"
+  fi
+}
+
 function aptUpgrade {
   info ">>> Upgrading ${1}"
   sudo apt-get -y --only-upgrade install $1 >> $LOG_FILE 2>&1

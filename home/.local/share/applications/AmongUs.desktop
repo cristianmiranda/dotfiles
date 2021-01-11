@@ -1,8 +1,0 @@
-[Desktop Entry]
-Encoding=UTF-8
-Name=Among Us
-Exec=wine /home/cmiranda/Games/AmongUs/Among\ Us.exe %U
-Icon=/home/cmiranda/Games/AmongUs/icon.png
-Terminal=false
-Type=Application
-Categories=Development;

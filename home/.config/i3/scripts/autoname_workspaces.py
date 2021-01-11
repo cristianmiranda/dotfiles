@@ -179,6 +179,11 @@ def rename_workspaces(i3, icon_list_format="default"):
         new_name = construct_workspace_name(
             NameParts(num=new_num, shortname=name_parts.shortname, icons=new_icons)
         )
+
+        if new_icons:
+            new_name = new_num + ": " + new_name
+            new_name += " "
+            
         if workspace.name == new_name:
             continue
         i3.command('rename workspace "%s" to "%s"' % (workspace.name, new_name))

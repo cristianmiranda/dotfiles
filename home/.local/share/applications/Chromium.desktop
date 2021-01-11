@@ -1,8 +1,0 @@
-[Desktop Entry]
-Encoding=UTF-8
-Name=Chrome
-Exec=/home/cmiranda/.local/bin/chromium/latest/chrome %U
-Icon=/home/cmiranda/.local/bin/chromium/latest/product_logo_48.png
-Terminal=false
-Type=Application
-Categories=Development;

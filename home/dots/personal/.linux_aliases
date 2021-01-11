@@ -15,3 +15,8 @@ alias airpodsconnect="bluetoothctl connect 7C:9A:1D:BA:BD:D6"
 
 # Spotify
 alias restartspotifyd="systemctl --user restart spotifyd.service"
+
+# Identify keys
+function scankeys() {
+    xev | awk -F'[ )]+' '/^KeyPress/ { a[NR+2] } NR in a { printf "%-3s %s\n", $5, $8 }'
+}

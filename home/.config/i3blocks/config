@@ -1,0 +1,108 @@
+# i3blocks config file
+#
+# Please see man i3blocks for a complete reference!
+# The man page is also hosted at http://vivien.github.io/i3blocks
+#
+# List of valid properties:
+#
+# align
+# color
+# command
+# full_text
+# instance
+# interval
+# label
+# min_width
+# name
+# separator
+# separator_block_width
+# short_text
+# signal
+# urgent
+
+# Global properties
+#
+# The top properties below are applied to every block, but can be overridden.
+# Each block command defaults to the script name to avoid boilerplate.
+command=/usr/lib/i3blocks/$BLOCK_NAME/$BLOCK_NAME
+separator_block_width=15
+markup=pango
+
+# Packages
+[packages]
+command=$HOME/.config/i3blocks/scripts/packages.sh
+interval=7200
+
+# Volume indicator
+#
+# The first parameter sets the step (and units to display)
+# The second parameter overrides the mixer selection
+# See the script for details.
+[volume]
+#label=VOL
+label=🔊 
+#instance=Master
+#instance=PCM
+interval=once
+signal=10
+
+# Memory usage
+#
+# The type defaults to "mem" if the instance is not specified.
+[memory]
+label=M 
+separator=false
+interval=30
+
+[memory]
+label=SW 
+instance=swap
+separator=false
+interval=30
+
+#[bandwidth]
+#instance=eth0
+#interval=5
+
+[nm-vpn]
+#label=VPN:
+command=$HOME/.config/i3blocks/scripts/nm-vpn.sh
+interval=5
+
+# CPU usage
+#
+# The script may be called with -w and -c switches to specify thresholds,
+# see the script for details.
+[cpu_usage]
+label=⚙️ 
+interval=10
+#min_width=CPU: 100.00%
+#separator=false
+
+#[load_average]
+#interval=10
+
+# Battery indicator
+#
+# The battery instance defaults to 0.
+[battery]
+#label=BAT
+label=⚡
+#instance=1
+#command=$HOME/.config/i3blocks/scripts/battery.sh BAT0
+interval=5
+
+[weather]
+command=curl "wttr.in/?format=1"
+interval=1800
+
+# Date Time
+#
+[time_nyc]
+command=echo 🗽 $(TZ=":America/New_York" date +%H:%M:%S)
+interval=1
+
+[time]
+command=echo $(echo 📅 $(date '+%d/%m/%Y') 🕑 $(date '+%H:%M:%S'))
+interval=1
+
