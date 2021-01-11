@@ -10,8 +10,8 @@ export QT_AUTO_SCREEN_SCALE_FACTOR=1
 export PATH=~/.local/bin:$PATH
 export PATH=~/bin:$PATH
 
-# Make vim the default editor.
 export EDITOR='vim';
+export BROWSER=/usr/bin/firefox
 
 # Increase Bash history size. Allow 32³ entries; the default is 500.
 export HISTSIZE='32768';

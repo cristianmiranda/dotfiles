@@ -50,7 +50,6 @@ home/.local/share/applications/userapp-Firefox*
 
 # dotfiles' secrets
 home/.ssh/config
-home/.config/bumblebee-status.conf
 home/dots/work/.aliases
 home/.config/filezilla/sitemanager.xml
 config.yaml

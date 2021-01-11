@@ -19,6 +19,7 @@ DOTBOT_UNKNOWN=${DOTBOT_ANONYMOUS}
 
 declare -A HOSTS_MAP
 HOSTS_MAP["Linux-Virtual"]=${DOTBOT_LINUX}      # Vagrant, Parallels, Virtualbox
+HOSTS_MAP["dell-latitude"]=${DOTBOT_LINUX}      # Dell Latitude
 HOSTS_MAP["Linux-MBP"]=${DOTBOT_LINUX}          # Linux Desktop
 HOSTS_MAP["mini-linux"]=${DOTBOT_SERVER}        # Linux Server
 HOSTS_MAP["raspberrypi"]=${DOTBOT_SERVER}       # Raspberry Pi 3/4

@@ -18,11 +18,7 @@
         glob: true
         path: .config/*
         force: true
-    ~/.dmrc: 
-        path: .dmrc
-        force: true
     ~/.local/share/fonts: .local/share/fonts
-    ~/.local/share/applications: .local/share/applications
     ~/.screenlayout: .screenlayout
     ~/.ssh/config: 
         path: .ssh/config
@@ -33,7 +29,6 @@
 
     # Regular directories
     ~/bin: bin
-    ~/bumblebee-status: ../bumblebee-status
     ~/docker: docker
     ~/dots: dots
     ~/profiles: profiles
@@ -52,8 +47,8 @@
         path: .bashrc
         force: true
     ~/.gitconfig: .gitconfig
-    ~/.gtkrc-2.0:
-        path: .gtkrc-2.0
+    ~/.gtkrc-2.0.mine:
+        path: .gtkrc-2.0.mine
         force: true
     ~/.gtkrc-xfce:
         path: .gtkrc-xfce
@@ -62,11 +57,15 @@
     ~/.inputrc: .inputrc
     ~/.p10k.zsh: .p10k.zsh
     ~/.vimrc: .vimrc
-    ~/.xinitrc: .xinitrc
+    ~/.xinitrc:
+        path: .xinitrc
+        force: true
     ~/.xmodmap.apple: .xmodmap.apple
     ~/.xmodmap.macbook: .xmodmap.macbook
     ~/.Xdbus: .Xdbus
-    ~/.Xresources: .Xresources
+    ~/.Xresources: 
+        path: .Xresources
+        force: true
     ~/.Xresources.asus: .Xresources.asus
     ~/.Xresources.macbook: .Xresources.macbook
     ~/.xsettingsd: .xsettingsd
@@ -82,7 +81,7 @@
     - ~/Google Drive
 
 - shell:
-    - [git update-index --assume-unchanged .config/xfce4/xfconf/xfce-perchannel-xml/thunar.xml, Ignoring changes on thunar.xml]
+    # - [git update-index --assume-unchanged .config/xfce4/xfconf/xfce-perchannel-xml/thunar.xml, Ignoring changes on thunar.xml]
     -
         command: cd $HOME/fzf && bash $HOME/fzf/install --all
         description:  Upgrading/Installing fzf
