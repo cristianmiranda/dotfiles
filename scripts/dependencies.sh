@@ -1,6 +1,8 @@
 #!/bin/bash
 
-yes | yay -S git-secret figlet lolcat
+yay -Syu
+
+yay -S git-secret figlet lolcat
 
 pip3 list --format=columns | grep setuptools || pip3 install setuptools
 pip3 list --format=columns | grep click || pip3 install click
