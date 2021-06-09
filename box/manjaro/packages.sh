@@ -11,6 +11,9 @@ then
 fi
 
 PACKAGES=(
+    alsa-firmware
+    alsa-ucm-conf
+    alsa-utils
     autoconf
     balena-etcher
     bat
@@ -32,6 +35,7 @@ PACKAGES=(
     i3blocks
     i3blocks-contrib
     imagemagick
+    intellij-idea-ultimate-edition-jre
     jetbrains-toolbox
     jitsi-meet-electron
     jq
@@ -47,6 +51,7 @@ PACKAGES=(
     rofi
     simplescreenrecorder
     screen
+    sof-firmware
     sox
     spotify
     sysstat
