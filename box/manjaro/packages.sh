@@ -32,6 +32,7 @@ PACKAGES=(
     flameshot
     git-delta-bin
     hsetroot
+    i3-gaps
     i3blocks
     i3blocks-contrib
     imagemagick
