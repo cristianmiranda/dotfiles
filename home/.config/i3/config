@@ -21,6 +21,7 @@ exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
 exec_always --no-startup-id nitrogen --set-zoom-fill ~/wallpapers/single/main-wall.jpg
 exec_always --no-startup-id docker
+exec_always --no-startup-id libinput-gestures-setup autostart start
 exec_always ~/.config/i3/scripts/autoname_workspaces.py --norenumber_workspaces --icon_list_format mathematician &
 # exec_always --no-startup-id xsettingsd &
 # exec_always --no-startup-id xmodmap ~/.xmodmap
@@ -32,7 +33,7 @@ exec_always ~/.config/i3/scripts/autoname_workspaces.py --norenumber_workspaces 
 # exec_always --no-startup-id sbxkb
 # exec --no-startup-id start_conky_maia
 # exec --no-startup-id start_conky_green
-# exec --no-startup-id xautolock -time 10 -locker blurlock
+exec --no-startup-id xautolock -time 10 -locker blurlock
 
 # start a terminal
 bindsym $super+Return exec --no-startup-id terminator
@@ -74,9 +75,9 @@ exec --no-startup-id volumeicon
 #bindsym XF86AudioPrev exec playerctl -p spotifyd previous
 #bindsym XF86AudioPlay exec playerctl -p spotifyd play-pause
 #bindsym XF86AudioNext exec playerctl -p spotifyd next
-bindsym XF86AudioPrev exec --no-startup-id dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
-bindsym XF86AudioPlay exec --no-startup-id dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
-bindsym XF86AudioNext exec --no-startup-id dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
+bindsym Shift+F10 exec --no-startup-id dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
+bindsym Shift+F12 exec --no-startup-id dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
+bindsym Shift+F11 exec --no-startup-id dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
 
 # kill focused window
 bindsym $super+q kill

@@ -16,6 +16,7 @@ PACKAGES=(
     alsa-utils
     autoconf
     balena-etcher
+    bashtop
     bat
     cargo
     chromium
@@ -27,6 +28,7 @@ PACKAGES=(
     filezilla
     firefox
     firefox-developer-edition
+    firefox-nightly
     fd
     ffmpeg
     flameshot
@@ -38,11 +40,13 @@ PACKAGES=(
     imagemagick
     intellij-idea-ultimate-edition-jre
     jetbrains-toolbox
-    jitsi-meet-electron
+    jitsi-meet-desktop-bin
     jq
+    libinput-gestures
     neofetch
     nitrogen
     nodejs-gitmoji-cli
+    nordvpn-bin
     noto-fonts-emoji
     nvm
     p7zip
@@ -88,6 +92,9 @@ yay -Syyu >> $LOG_FILE 2>&1
 # Reinstall pambase
 # See https://bbs.archlinux.org/viewtopic.php?id=142720
 yayInstall pambase >> $LOG_FILE 2>&1
+
+# Update keys
+gpg --refresh-keys --keyserver hkps://keys.openpgp.org
 
 for pkg in ${PACKAGES[@]}; do
     yayInstall $pkg
