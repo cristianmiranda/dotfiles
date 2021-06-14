@@ -1,5 +1,6 @@
 [Alsa]
-card=default
+card=sof-hda-dsp
+channel=Master
 
 [Notification]
 show_notification=false
@@ -20,6 +21,6 @@ use_transparent_background=false
 up_enabled=true
 down_enabled=true
 mute_enabled=true
-up=XF86AudioRaiseVolume
-down=XF86AudioLowerVolume
-mute=XF86AudioMute
+up=AudioRaiseVolume
+down=AudioLowerVolume
+mute=AudioMute

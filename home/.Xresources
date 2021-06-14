@@ -1,9 +1,9 @@
-Xft.dpi:       96
+Xft.dpi:       192
 Xft.antialias: true
 Xft.hinting:   true
 Xft.rgba:      rgb
 Xft.autohint:  false
-Xft.hintstyle: hintslight
+Xft.hintstyle: hintfull
 Xft.lcdfilter: lcddefault
 
 XTerm*background:        #222D31
@@ -55,7 +55,7 @@ XTerm*selectToClipboard: true
 *color15:                         #f8f8f8
 
 Xcursor.theme: xcursor-breeze
-Xcursor.size:                     0
+Xcursor.size:                     16
 
 URxvt.font:                       9x15,xft:TerminessTTFNerdFontMono
 
