@@ -43,6 +43,7 @@ PACKAGES=(
     jitsi-meet-desktop-bin
     jq
     libinput-gestures
+    libreoffice-still
     neofetch
     nitrogen
     nodejs-gitmoji-cli
