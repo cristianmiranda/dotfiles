@@ -21,6 +21,7 @@ exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
 exec_always --no-startup-id nitrogen --set-zoom-fill ~/wallpapers/single/main-wall.jpg
 exec_always --no-startup-id docker
+exec_always --no-startup-id xset -b
 exec_always --no-startup-id libinput-gestures-setup autostart start
 exec_always ~/.config/i3/scripts/autoname_workspaces.py --norenumber_workspaces --icon_list_format mathematician &
 # exec_always --no-startup-id xsettingsd &
