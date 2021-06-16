@@ -162,4 +162,8 @@
     icon = /usr/share/icons/Paper/48x48/status/dialog-warning.png
 
 [update_notifications_count]
-    script = update-notifications-count
+    script = /home/cmiranda/bin/update-notifications-count
+
+[element_notifications]
+   appname = Element
+   script = /home/cmiranda/bin/process-element-notifications
