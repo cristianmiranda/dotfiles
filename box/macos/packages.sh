@@ -103,6 +103,7 @@ CASKS=(
 	spotify
 	steam
 	telegram
+	tiles
 	the-unarchiver
 	transmission
 	visual-studio-code
