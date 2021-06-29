@@ -72,10 +72,13 @@ exec --no-startup-id volumeicon
 #bindsym XF86MonBrightnessUp exec --no-startup-id adjust-brightness +
 #bindsym XF86MonBrightnessDown exec --no-startup-id adjust-brightness -
 
+bindsym Shift+F8 exec --no-startup-id nmcli c up LG
+
 # music control
 #bindsym XF86AudioPrev exec playerctl -p spotifyd previous
 #bindsym XF86AudioPlay exec playerctl -p spotifyd play-pause
 #bindsym XF86AudioNext exec playerctl -p spotifyd next
+bindsym Shift+F9 exec --no-startup-id /home/cmiranda/bin/restart-audio
 bindsym Shift+F10 exec --no-startup-id dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
 bindsym Shift+F12 exec --no-startup-id dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
 bindsym Shift+F11 exec --no-startup-id dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
@@ -97,8 +100,8 @@ bindsym $super+Shift+Up move up
 bindsym $super+Shift+Right move right
 
 # move entire focused workspace to left/right output
-bindsym $super+$alt+Left move workspace to output left
-bindsym $super+$alt+Right move workspace to output right
+bindsym Control+$alt+Left move workspace to output left
+bindsym Control+$alt+Right move workspace to output right
 
 # Change split layoyt of current container 
 bindsym $super+h split h
@@ -110,8 +113,8 @@ bindsym $super+Shift+space floating toggle
 #bindsym $super+Shift+space focus mode_toggle
 
 # switch to workspace
-bindsym $alt+Control+Right workspace next
-bindsym $alt+Control+Left workspace prev
+bindsym $super+$alt+Right workspace next
+bindsym $super+$alt+Left workspace prev
 bindsym $super+1 workspace number 1
 bindsym $super+2 workspace number 2
 bindsym $super+3 workspace number 3
@@ -201,6 +204,7 @@ mode "i3-command" {
         bindsym q exec --no-startup-id "i3-nagbar -t warning -m 'Really, exit?' -b 'Yes' 'i3-msg exit'"; mode "default"
         bindsym d exec --no-startup-id bash ~/dotfiles/scripts/sync.sh && i3-msg restart; mode "default"
         bindsym r restart
+        bindsym l exec --no-startup-id blurlock; mode "default"
 
         bindsym Escape mode "default"
         bindsym Return mode "default"
@@ -228,6 +232,7 @@ mode "launch" {
         bindsym p exec --no-startup-id thunar; mode "default"
         bindsym s exec --no-startup-id spotify; mode "default"
         bindsym t exec --no-startup-id telegram-desktop; mode "default"
+        bindsym q exec --no-startup-id pulseeffects; mode "default"
         bindsym w exec --no-startup-id walc; mode "default"
         
         bindsym Escape mode "default"
