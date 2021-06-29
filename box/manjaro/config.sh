@@ -32,3 +32,14 @@ sudo pacman -S manjaro-pipewire gst-plugin-pipewire pulseeffects >> $LOG_FILE 2>
 sudo pacman -S xdg-desktop-portal xdg-desktop-portal-gtk >> $LOG_FILE 2>&1
 systemctl --user unmask pipewire.socket && systemctl --user enable --now pipewire.socket >> $LOG_FILE 2>&1
 
+# Enable ssh server
+sudo systemctl start sshd >> $LOG_FILE 2>&1
+sudo systemctl enable sshd >> $LOG_FILE 2>&1
+
+#
+# Backup
+#
+# /opt/escribe
+# ~/.config/systemd
+# ~/.m2/repository/com/drfirst
+#   

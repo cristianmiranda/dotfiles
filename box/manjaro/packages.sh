@@ -45,11 +45,13 @@ PACKAGES=(
     libinput-gestures
     libreoffice-still
     neofetch
+    net-tools
     nitrogen
     nodejs-gitmoji-cli
     nordvpn-bin
     noto-fonts-emoji
     nvm
+    openssh
     p7zip
     pavucontrol
     playerctl
