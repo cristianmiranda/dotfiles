@@ -20,6 +20,7 @@ PACKAGES=(
     bat
     cargo
     chromium
+    copyq
     discord
     docker
     docker-compose
