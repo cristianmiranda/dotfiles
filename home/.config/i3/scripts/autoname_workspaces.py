@@ -114,7 +114,7 @@ WINDOW_ICONS = {
     "zoom": fa.icons["comment"],
     "telegram-desktop": fa.icons["telegram"],
     "telegram": fa.icons["telegram"],
-    "walc": fa.icons["whatsapp"],
+    "whatsapp-nativefier-d40211": fa.icons["whatsapp"],
     "code": fa.icons["code"],
     "riot": fa.icons["comments"],
     "element": fa.icons["comments"],

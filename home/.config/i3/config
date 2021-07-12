@@ -241,8 +241,8 @@ mode "launch" {
 
 bindsym $super+c exec --no-startup-id i3-msg '[class="(?i)Code"] focus'
 bindsym $super+d exec --no-startup-id i3-msg '[class="(?i)Discord"] focus'
-bindsym $super+e exec --no-startup-id i3-msg '[class="Firefox Developer Edition$"] focus'
-bindsym $super+f exec --no-startup-id i3-msg '[class="Firefox$"] focus'
+bindsym $super+e exec --no-startup-id i3-msg '[class="firefoxdeveloperedition$"] focus'
+bindsym $super+f exec --no-startup-id i3-msg '[class="firefox$"] focus'
 bindsym $super+g exec --no-startup-id i3-msg '[class="(?i)GitKraken"] focus'
 bindsym $super+i exec --no-startup-id i3-msg '[class="(?i)idea"] focus'
 bindsym $super+j exec --no-startup-id i3-msg '[class="(?i)jitsi"] focus'
@@ -251,7 +251,7 @@ bindsym $super+p exec --no-startup-id i3-msg '[class="(?i)Thunar"] focus'
 bindsym $super+r exec --no-startup-id i3-msg '[class="(?i)element"] focus'
 bindsym $super+s exec --no-startup-id i3-msg '[class="(?i)spotify"] focus'
 bindsym $super+t exec --no-startup-id i3-msg '[class="(?i)telegram"] focus'
-bindsym $super+w exec --no-startup-id i3-msg '[class="(?i)walc"] focus'
+bindsym $super+w exec --no-startup-id i3-msg '[class="(?i)whatsapp"] focus'
 
 bindsym $super+Shift+d mode "set-display"
 bindsym $super+Shift+g mode "gaps"
