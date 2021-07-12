@@ -18,6 +18,7 @@ PACKAGES=(
     balena-etcher
     bashtop
     bat
+    brightnessctl
     cargo
     chromium
     copyq
