@@ -1,0 +1,79 @@
+#!/bin/bash
+
+INCR='5'
+MIN_VOLUME=0
+MAX_VOLUME=100
+
+# Arbitrary but unique message id for dunst notifications
+MSG_ID="991049"
+
+function volume() {
+  VOLUME="`/usr/bin/amixer get Master  | grep % | awk '{print $5}'| sed 's/[^0-9]//g' | sed -n 1p`"
+  if [[ $? -eq 0 ]]; then
+    echo $VOLUME
+  else
+    echo 0
+  fi
+  unset VOLUME
+}
+
+function soundFeeback() {
+  # Play the volume changed sound
+  canberra-gtk-play -i audio-volume-change -d "changeVolume"
+}
+
+# volume
+
+if [[ -z "$1" ]]; then
+  echo "Usage: $0 <up | down | mute | unmute | toggle>"
+  exit 1
+fi
+
+case "$1" in
+  up)
+    /usr/bin/amixer set 'Master' ${INCR}%+
+    VOLUME="`volume`"
+    if [[ $VOLUME -gt $MAX_VOLUME ]]; then
+      /usr/bin/amixer set 'Master' ${MAX_VOLUME}%
+    fi
+    soundFeeback
+    ;;
+  down)
+    /usr/bin/amixer set 'Master' ${INCR}%-
+    VOLUME="`volume`"
+    if [[ $VOLUME -lt $MIN_VOLUME ]]; then
+      /usr/bin/amixer set 'Master' ${MIN_VOLUME}%
+    fi
+    soundFeeback
+    ;;
+  mute)
+    /usr/bin/amixer set 'Master' mute
+    brightnessctl --device='platform::mute' set 1
+    ;;
+  unmute)
+    /usr/bin/amixer set 'Master' unmute
+    brightnessctl --device='platform::mute' set 0
+    ;;
+  toggle)
+    MUTED="`amixer get Master | grep % | awk '{print $6}'| sed 's/[^a-z]//g' | sed -n 1p`"
+    if [[ $MUTED == "on" ]]; then
+      amixer-vol mute
+    else
+      amixer-vol unmute
+      soundFeeback
+    fi
+    ;;
+  toggle-mic)
+    MIC="`amixer get Capture | grep % | sed -r 's/.*%\]\s\[(.*)\]/\1/' | sed -n 1p`"
+    if [[ $MIC == "on" ]]; then
+      brightnessctl --device='platform::micmute' set 1
+    else
+      brightnessctl --device='platform::micmute' set 0
+    fi
+    amixer set Capture toggle
+    ;;
+  *)
+    echo "Unknown command: $1"
+    exit 1
+    ;;
+esac

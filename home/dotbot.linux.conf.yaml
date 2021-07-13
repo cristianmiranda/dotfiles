@@ -57,6 +57,7 @@
     ~/.inputrc: .inputrc
     ~/.p10k.zsh: .p10k.zsh
     ~/.vimrc: .vimrc
+    ~/.xbindkeysrc: .xbindkeysrc
     ~/.xinitrc:
         path: .xinitrc
         force: true
