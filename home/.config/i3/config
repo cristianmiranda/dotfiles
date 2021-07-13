@@ -211,6 +211,14 @@ mode "i3-command" {
         bindsym Return mode "default"
 }
 
+mode "airpods" {
+        bindsym s exec --no-startup-id /home/cmiranda/bin/airpods speaker; mode "default"
+        bindsym h exec --no-startup-id /home/cmiranda/bin/airpods headset; mode "default"
+        
+        bindsym Escape  mode "default"
+        bindsym Return  mode "default"
+}
+
 mode "gaps" {
         bindsym Down	gaps outer current plus 5
         bindsym Left    gaps outer current plus 5
@@ -254,6 +262,7 @@ bindsym $super+s exec --no-startup-id i3-msg '[class="(?i)spotify"] focus'
 bindsym $super+t exec --no-startup-id i3-msg '[class="(?i)telegram"] focus'
 bindsym $super+w exec --no-startup-id i3-msg '[class="(?i)whatsapp"] focus'
 
+bindsym $super+Shift+a mode "airpods"
 bindsym $super+Shift+d mode "set-display"
 bindsym $super+Shift+g mode "gaps"
 bindsym $super+Shift+i mode "init-workspace"
