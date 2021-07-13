@@ -1,0 +1,18 @@
+#!/bin/bash
+
+AIRPODS_CARD='bluez_card.7C_9A_1D_BA_BD_D6'
+HEADSET_PROFILE='headset-head-unit'
+SPEAKER_PROFILE='a2dp-sink-sbc'
+
+case "$1" in
+  headset)
+    pactl set-card-profile $AIRPODS_CARD $HEADSET_PROFILE
+    ;;
+  speaker)
+    pactl set-card-profile $AIRPODS_CARD $SPEAKER_PROFILE
+    ;;
+  *)
+    echo "Unknown command: $1"
+    exit 1
+    ;;
+esac
