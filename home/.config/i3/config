@@ -65,9 +65,9 @@ exec --no-startup-id volumeicon
 ################################################################################################
 
 # Pulse Audio controls
-#bindsym XF86AudioRaiseVolume exec --no-startup-id pa-vol up
-#bindsym XF86AudioLowerVolume exec --no-startup-id pa-vol down
-#bindsym XF86AudioMute exec --no-startup-id pa-vol toggle
+#bindsym XF86AudioRaiseVolume exec --no-startup-id amixer-vol up
+#bindsym XF86AudioLowerVolume exec --no-startup-id amixer-vol down
+#bindsym XF86AudioMute exec --no-startup-id amixer-vol toggle
 
 # Sreen brightness control
 #bindsym XF86MonBrightnessUp exec --no-startup-id adjust-brightness +
@@ -76,9 +76,9 @@ exec --no-startup-id volumeicon
 bindsym Shift+F8 exec --no-startup-id nmcli c up LG
 
 # music control
-#bindsym XF86AudioPrev exec playerctl -p spotifyd previous
-#bindsym XF86AudioPlay exec playerctl -p spotifyd play-pause
-#bindsym XF86AudioNext exec playerctl -p spotifyd next
+#bindsym XF86AudioPrev exec playerctl -p dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
+#bindsym XF86AudioPlay exec playerctl -p dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
+#bindsym XF86AudioNext exec playerctl -p dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
 bindsym Shift+F9 exec --no-startup-id /home/cmiranda/bin/restart-audio
 bindsym Shift+F10 exec --no-startup-id dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
 bindsym Shift+F12 exec --no-startup-id dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause

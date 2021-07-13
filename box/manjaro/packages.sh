@@ -74,6 +74,7 @@ PACKAGES=(
     unzip
     visual-studio-code-bin
     whatsapp-nativefier
+    xbindkeys
     xclip
     xorg-xev
     yarn
