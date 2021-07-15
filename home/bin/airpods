@@ -1,18 +1,60 @@
 #!/bin/bash
 
-AIRPODS_CARD='bluez_card.7C_9A_1D_BA_BD_D6'
+## i3blocks.conf
+# [airpods]
+# command=/path/to/airpods
+# label=🎧 
+# interval=10
+
+AIRPODS_MAC='7C:9A:1D:BA:BD:D6'
+AIRPODS_NAME='bluez_card.7C_9A_1D_BA_BD_D6'
+
 HEADSET_PROFILE='headset-head-unit'
 SPEAKER_PROFILE='a2dp-sink-sbc'
 
-case "$1" in
-  headset)
-    pactl set-card-profile $AIRPODS_CARD $HEADSET_PROFILE
+case "$BLOCK_BUTTON" in
+    1)
+        bluetooth on
+        sleep 3
+        bluetoothctl connect $AIRPODS_MAC
+        sleep 3
+        pactl set-card-profile $AIRPODS_NAME $SPEAKER_PROFILE
     ;;
-  speaker)
-    pactl set-card-profile $AIRPODS_CARD $SPEAKER_PROFILE
+    2)
+        cur=`pactl list | grep -A 30 $AIRPODS_NAME | grep 'Active Profile:' | cut -d' ' -f3`
+        if [[ $cur == "a2dp-sink-sbc" ]]; then
+            pactl set-card-profile $AIRPODS_NAME $HEADSET_PROFILE
+        else
+            pactl set-card-profile $AIRPODS_NAME $SPEAKER_PROFILE
+        fi
     ;;
-  *)
-    echo "Unknown command: $1"
-    exit 1
+    3)
+        bluetoothctl disconnect $AIRPODS_MAC
+        #bluetooth off
+    ;;
+    10)
+        pactl set-card-profile $AIRPODS_NAME $SPEAKER_PROFILE
+    ;;
+    11)
+        pactl set-card-profile $AIRPODS_NAME $HEADSET_PROFILE
     ;;
 esac
+
+card_no=`pactl list cards short | grep $AIRPODS_NAME | awk '{print $1}'`
+active_profile=`pactl list cards | sed -n -e "/Card #\$card_no/,/Card/ p" | grep 'Active Profile:' | awk '{print $3}'`
+
+if [[ $active_profile == "$SPEAKER_PROFILE" ]]; then
+    active_profile="on"
+else
+    active_profile="mic"
+fi
+
+if pactl list | grep $AIRPODS_NAME &>>/dev/null; then
+    echo "$active_profile"
+    echo "active_profile"
+    echo "#ffffff"
+else
+    echo "off"
+    echo "off"
+    echo "#a6a6a6"
+fi

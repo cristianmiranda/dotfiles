@@ -213,8 +213,10 @@ mode "i3-command" {
 }
 
 mode "airpods" {
-        bindsym s exec --no-startup-id /home/cmiranda/bin/airpods speaker; mode "default"
-        bindsym h exec --no-startup-id /home/cmiranda/bin/airpods headset; mode "default"
+        bindsym s exec --no-startup-id BLOCK_BUTTON=10 /home/cmiranda/bin/airpods; mode "default"
+        bindsym h exec --no-startup-id BLOCK_BUTTON=11 /home/cmiranda/bin/airpods; mode "default"
+        bindsym t exec --no-startup-id BLOCK_BUTTON=2 /home/cmiranda/bin/airpods; mode "default"
+        bindsym r exec --no-startup-id /home/cmiranda/bin/restart-audio; mode "default"
         
         bindsym Escape  mode "default"
         bindsym Return  mode "default"
