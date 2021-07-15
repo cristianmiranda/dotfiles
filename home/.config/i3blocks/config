@@ -110,3 +110,12 @@ interval=1
 command=echo $(echo 📅 $(date '+%d/%m/%Y') 🕑 $(date '+%H:%M:%S'))
 interval=1
 
+[dunstctl]
+command=$HOME/.config/i3blocks/scripts/dunstctl
+interval=5
+separator=false
+
+[beginning]
+command=echo ''
+interval=7200
+separator=false
