@@ -28,12 +28,11 @@ command=/usr/lib/i3blocks/$BLOCK_NAME/$BLOCK_NAME
 separator_block_width=15
 markup=pango
 
-# Packages
 [packages]
-command=$HOME/.config/i3blocks/scripts/packages.sh
-interval=7200
+command=$HOME/.config/i3blocks/scripts/packages
+interval=600
 
-# [airpods]
+[airpods]
 command=$HOME/bin/airpods
 label=🎧 
 interval=10
