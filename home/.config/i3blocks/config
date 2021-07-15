@@ -33,6 +33,11 @@ markup=pango
 command=$HOME/.config/i3blocks/scripts/packages.sh
 interval=7200
 
+# [airpods]
+command=$HOME/bin/airpods
+label=🎧 
+interval=10
+
 # Volume indicator
 #
 # The first parameter sets the step (and units to display)
