@@ -58,11 +58,11 @@ label=M
 separator=false
 interval=30
 
-[memory]
-label=SW 
-instance=swap
-separator=false
-interval=30
+#[memory]
+#label=SW 
+#instance=swap
+#separator=false
+#interval=30
 
 #[bandwidth]
 #instance=eth0
