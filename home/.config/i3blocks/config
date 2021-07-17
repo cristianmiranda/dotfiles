@@ -55,6 +55,10 @@ label=🔊
 interval=1
 signal=10
 
+[lg_vpn]
+command=$HOME/.config/i3blocks/scripts/lg-vpn
+interval=10
+
 # CPU usage
 #
 # The script may be called with -w and -c switches to specify thresholds,
