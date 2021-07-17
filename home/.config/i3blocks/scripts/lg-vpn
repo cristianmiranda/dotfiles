@@ -1,0 +1,23 @@
+#!/bin/bash
+
+case "$BLOCK_BUTTON" in
+    1)
+        nmcli c up LG
+    ;;
+    3)  
+        nmcli c down LG
+    ;;
+esac
+
+active=$(nmcli con show --active | grep -i LG | wc -l)
+if [[ "${active}" = "1" ]]; then
+    echo "🔒 LG"
+    echo "🔒 LG"
+    echo "#ffffff"
+else
+    echo "🔓 LG"
+    echo "🔓 LG"
+    echo "#a6a6a6"
+fi
+
+exit 0
