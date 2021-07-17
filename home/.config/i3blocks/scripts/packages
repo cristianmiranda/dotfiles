@@ -6,7 +6,11 @@ case "$BLOCK_BUTTON" in
     ;;
 esac
 
-packages_count=$(checkupdates | wc -l)
+aur_count=$(yay -Qu | wc -l)
+arch_count=$(checkupdates | wc -l)
+
+packages_count=$(expr $aur_count + $arch_count)
+
 [[ "${packages_count}" = "0" ]] && exit 0
 
 echo "📦 $packages_count"
