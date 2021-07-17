@@ -28,6 +28,11 @@ command=/usr/lib/i3blocks/$BLOCK_NAME/$BLOCK_NAME
 separator_block_width=30
 markup=pango
 
+[github]
+command=$HOME/.config/i3blocks/scripts/github
+interval=60
+separator=false
+
 [packages]
 command=$HOME/.config/i3blocks/scripts/packages
 interval=600
