@@ -1,0 +1,29 @@
+#!/bin/sh
+
+capacity=$(cat /sys/class/power_supply/BAT0/capacity) || exit
+status=$(cat /sys/class/power_supply/BAT0/status)
+
+if [ "$capacity" -ge 75 ]; then
+	icon=""
+	color="#0cc078"
+elif [ "$capacity" -ge 50 ]; then
+	icon=""
+	color="#79de79"
+elif [ "$capacity" -ge 25 ]; then
+	icon=""
+	color="#fcfc99"
+else
+	icon=""
+	color="#fb6962"
+fi
+
+[ -z $warn ] && warn=" "
+
+if [[ "$status" = "Charging" || "$status" = "Unknown" || "$status" = "Full" ]]; then
+	icon=""
+	color="#ffffff"
+fi
+
+echo "$icon $capacity"%
+echo "$icon $capacity"%
+echo $color

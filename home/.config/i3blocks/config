@@ -94,14 +94,8 @@ interval=5
 #[load_average]
 #interval=10
 
-# Battery indicator
-#
-# The battery instance defaults to 0.
 [battery]
-#label=BAT
-label=⚡
-#instance=1
-#command=$HOME/.config/i3blocks/scripts/battery.sh BAT0
+command=$HOME/.config/i3blocks/scripts/battery
 interval=5
 
 [weather]
