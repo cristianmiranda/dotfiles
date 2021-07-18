@@ -317,7 +317,7 @@ bar {
 
 	bindsym button4 nop
 	bindsym button5 nop
-        font pango:Fira Code Retina 10
+        font pango:Fira Code Retina 10.5
 	strip_workspace_numbers yes
 
     colors {
