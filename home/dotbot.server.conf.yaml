@@ -59,7 +59,7 @@
     ~/.xmodmap.macbook: .xmodmap.macbook
     ~/.Xresources: .Xresources
     ~/.Xresources.asus: .Xresources.asus
-    ~/.Xresources.macbook: .Xresources.macbook
+    ~/.Xresources.laptop: .Xresources.laptop
     ~/.xsettingsd: .xsettingsd
     ~/.zshrc:
         path: .zshrc

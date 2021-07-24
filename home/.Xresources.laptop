@@ -5,5 +5,3 @@ Xft.rgba:      rgb
 Xft.autohint:  false
 Xft.hintstyle: hintfull
 Xft.lcdfilter: lcddefault
-
-rofi.dpi: 288

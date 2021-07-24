@@ -10,7 +10,7 @@ set $mod Mod4
 floating_modifier $super
 
 # Autostart
-# exec --no-startup-id xrdb -merge ~/.Xresources.macbook
+# exec --no-startup-id xrdb -merge ~/.Xresources.laptop
 # exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id picom -b
 exec --no-startup-id nm-applet
@@ -190,9 +190,8 @@ mode "init-workspace" {
 }
 
 mode "set-display" {
-        bindsym s exec --no-startup-id set-display single; mode "default"
-        bindsym d exec --no-startup-id set-display dual; mode "default"
-        bindsym m exec --no-startup-id set-display macbook; mode "default"
+        bindsym s exec --no-startup-id /home/cmiranda/bin/set-display single; mode "default"
+        bindsym l exec --no-startup-id /home/cmiranda/bin/set-display laptop; mode "default"
         bindsym i exec --no-startup-id xcalib -a -i; mode "default"
 
         bindsym Escape mode "default"

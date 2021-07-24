@@ -1,46 +1,25 @@
 #!/bin/bash
 
-PROFILE_MACBOOK="macbook";
+PROFILE_LAPTOP="laptop";
 PROFILE_SINGLE="single";
-PROFILE_DUAL="dual";
 
-LAPTOP_DISPLAY="eDP-1";
-
-export XRANDR_DISPLAY_PROFILE=$1
+XRANDR_DISPLAY_PROFILE=$1
 
 echo "Applying display profile: $XRANDR_DISPLAY_PROFILE"
 
 # Reload Xresources
 xrdb ~/.Xresources
 
-if [[ "$XRANDR_DISPLAY_PROFILE" == "$PROFILE_MACBOOK" ]]; then
-    xrdb -merge ~/.Xresources.macbook
+if [[ "$XRANDR_DISPLAY_PROFILE" == "$PROFILE_LAPTOP" ]]; then
+    xrdb -merge ~/.Xresources.laptop
     
-    sed -i 's/layout.css.devPixelsPerPx", "1"/layout.css.devPixelsPerPx", "2"/g' ~/.mozilla/**/*/prefs.js
-    
-    bash ~/.screenlayout/laptop.sh $LAPTOP_DISPLAY
+    bash ~/.screenlayout/laptop.sh
 fi
-
-if [[ "$XRANDR_DISPLAY_PROFILE" == "$PROFILE_DUAL" ]]; then
-    xrdb -merge ~/.Xresources.asus
-    
-    sed -i 's/layout.css.devPixelsPerPx", "2"/layout.css.devPixelsPerPx", "1"/g' ~/.mozilla/**/*/prefs.js
-
-    EXTERNAL_DISPLAYS=`xrandr -q | grep ' connected ' | grep -v $LAPTOP_DISPLAY | awk '{ print $1 }'`
-    ASUS_1=`echo $EXTERNAL_DISPLAYS | sed '1q;d'`
-    ASUS_2=`echo $EXTERNAL_DISPLAYS | sed '2q;d'`
-    bash ~/.screenlayout/asus.sh $LAPTOP_DISPLAY $ASUS_1 $ASUS_2
-fi
-
 
 if [[ "$XRANDR_DISPLAY_PROFILE" == "$PROFILE_SINGLE" ]]; then
     xrdb -merge ~/.Xresources.asus
     
-    sed -i 's/layout.css.devPixelsPerPx", "2"/layout.css.devPixelsPerPx", "1"/g' ~/.mozilla/**/*/prefs.js
-
-    EXTERNAL_DISPLAYS=`xrandr -q | grep ' connected ' | grep -v $LAPTOP_DISPLAY | awk '{ print $1 }'`
-    ASUS_1=`echo $EXTERNAL_DISPLAYS | sed '1q;d'`
-    bash ~/.screenlayout/asus_single.sh $LAPTOP_DISPLAY $ASUS_1
+    bash ~/.screenlayout/asus_single.sh
 fi
 
 
