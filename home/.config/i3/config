@@ -25,6 +25,7 @@ exec_always --no-startup-id docker
 exec_always --no-startup-id xset -b
 exec_always --no-startup-id brightnessctl --device='tpacpi::kbd_backlight' set 1
 exec_always --no-startup-id libinput-gestures-setup autostart start
+exec_always --no-startup-id bluetoothctl power on
 exec_always ~/.config/i3/scripts/autoname_workspaces.py --norenumber_workspaces --icon_list_format mathematician &
 # exec_always --no-startup-id xsettingsd &
 # exec_always --no-startup-id xmodmap ~/.xmodmap
