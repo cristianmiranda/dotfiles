@@ -46,6 +46,7 @@
     ~/.bashrc: 
         path: .bashrc
         force: true
+    ~/.crontab: .crontab
     ~/.gitconfig: .gitconfig
     ~/.gtkrc-2.0.mine:
         path: .gtkrc-2.0.mine
