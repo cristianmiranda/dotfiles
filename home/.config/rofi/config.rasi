@@ -42,7 +42,7 @@ configuration {
 	hide-scrollbar: true;
 /*	fullscreen: false;*/
 /*	fake-transparency: false;*/
-	dpi: 288;
+	dpi: 192;
 /*	threads: 0;*/
 /*	scrollbar-width: 8;*/
 /*	scroll-method: 0;*/
