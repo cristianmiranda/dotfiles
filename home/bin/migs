@@ -1,0 +1,38 @@
+#!/bin/env bash
+
+BLUE='\e[34m'
+GREEN='\e[92m'
+RED='\033[0;31m'
+CYAN='\033[0;36m'
+NC='\033[0m' # No Color
+
+ENV=$1
+cd migrations
+
+echo '';
+echo -e "$BLUE>> Getting all pending migrations for ${NC}${RED}${ENV}${NC}";
+
+PENDING=`./migrate status --env=$1 | grep ' ...pending... '`;
+AMOUNT=`echo "$PENDING" | awk NF | wc -l`
+
+echo -e "$BLUE>> Pending migrations on ${ENV}: ${AMOUNT}";
+
+if [ $AMOUNT -gt 0 ]; then
+    echo '';
+    echo -e $CYAN "$PENDING" $NC | sed 's/ *$//g';
+    echo '';
+    echo -e "$BLUE>> Apply all pending migrations?: [y/n] $NC";
+    read apply;
+    echo -e $BLUE;
+    
+    if [[ "$apply" = "y" || "$apply" = "Y" ]]; then
+        ./migrate pending --env=$ENV | grep 'MyBatis Migrations'
+        echo -e "$GREEN>> Success. $AMOUNT migrations have been applied. $NC"
+    else
+        echo -e "$RED>> Aborted. 0 migrations have been applied. $NC"
+    fi
+else
+    echo -e "$GREEN>> No pending migrations need to be applied. $NC"
+fi
+
+cd -

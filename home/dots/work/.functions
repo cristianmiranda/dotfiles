@@ -12,41 +12,6 @@ function esh() {
   sudo cp /opt/escribe/conf/db.properties.${1} /opt/escribe/conf/db.properties;
 }
 
-function migs() {
-  cd $LG_BASE_DIR/escribehost/migrations
-  
-  ENV=$1
-  
-  echo '';
-  echo -e "$BLUE>> Getting all pending migrations for ${NC}${RED_BG}${ENV}${NC}";
-  
-  PENDING=`./migrate status --env=$1 | grep ' ...pending... '`;
-  AMOUNT=`echo $PENDING | awk NF | wc -l`
-  
-  echo -e "$BLUE>> Pending migrations on ${ENV}: ${AMOUNT}";
-  
-	if [ $AMOUNT -gt 0 ];
-  then
-    echo '';
-    echo -e $CYAN $PENDING $NC;
-    echo '';
-    echo -e "$BLUE>> Apply all pending migrations?: [y/n] $NC";
-    read apply;
-    echo -e $BLUE;
-    if [[ $apply =~ 'y|Y' ]];
-    then
-      ./migrate pending --env=$ENV | grep 'MyBatis Migrations'
-      echo -e "$GREEN>> Success. $AMOUNT migrations have been applied. $NC"
-    else
-      echo -e "$RED>> Aborted. 0 migrations have been applied. $NC"
-    fi
-  else
-    echo -e "$GREEN>> No pending migrations need to be applied. $NC"
-  fi
-
-  cd -
-}
-
 function devs() {
   echo "bart" "bogdan" "dawid" "ewolk" "jan" "luciano"
 }
