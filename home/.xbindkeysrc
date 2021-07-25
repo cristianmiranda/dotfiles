@@ -65,6 +65,10 @@
 "amixer-vol toggle-mic"
   XF86AudioMicMute
 
+# Toggle microphone
+"amixer-vol toggle-mic"
+  XF86Eject
+
 #"xterm -geom 50x20+20+20"
 #   Shift+Mod2+alt + s
 #
