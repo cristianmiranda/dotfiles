@@ -17,7 +17,7 @@ exec --no-startup-id xfce4-power-manager
 exec --no-startup-id copyq
 exec --no-startup-id blueman-applet
 exec_always --no-startup-id crontab ~/.crontab
-exec_always --no-startup-id killall picom && picom -b
+exec_always --no-startup-id picom -b
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
 exec_always --no-startup-id nitrogen --set-zoom-fill ~/wallpapers/single/main-wall.jpg
