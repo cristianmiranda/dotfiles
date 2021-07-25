@@ -10,7 +10,7 @@ AIRPODS_MAC='7C:9A:1D:BA:BD:D6'
 AIRPODS_NAME='bluez_card.7C_9A_1D_BA_BD_D6'
 
 HEADSET_PROFILE='headset-head-unit'
-SPEAKER_PROFILE='a2dp-sink-sbc'
+SPEAKER_PROFILE='a2dp-sink-aac'
 
 case "$BLOCK_BUTTON" in
     1)
