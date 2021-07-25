@@ -1,0 +1,22 @@
+#!/bin/bash
+
+case "$BLOCK_BUTTON" in
+    1)
+        amixer set Capture toggle > /dev/null
+    ;;
+esac
+
+MIC="`amixer get Capture | grep % | sed -r 's/.*%\]\s\[(.*)\]/\1/' | sed -n 1p`"
+if [[ $MIC == "on" ]]; then
+    brightnessctl --device='platform::micmute' set 0 > /dev/null
+    echo " on"
+    echo " on"
+    echo "#77DD77"
+else
+    brightnessctl --device='platform::micmute' set 1 > /dev/null
+    echo " off"
+    echo " off"
+    echo "#FF6961"
+fi
+
+exit 0

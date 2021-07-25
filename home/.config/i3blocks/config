@@ -37,6 +37,10 @@ separator=false
 command=$HOME/.config/i3blocks/scripts/packages
 interval=600
 
+[microphone]
+command=$HOME/.config/i3blocks/scripts/mic-status
+interval=1
+
 [airpods]
 command=$HOME/bin/airpods
 label=🎧 
