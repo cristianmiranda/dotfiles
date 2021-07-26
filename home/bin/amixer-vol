@@ -1,6 +1,6 @@
 #!/bin/bash
 
-INCR='5'
+INCR='1'
 MIN_VOLUME=0
 MAX_VOLUME=100
 
