@@ -126,6 +126,9 @@ Plug 'sheerun/vim-polyglot'
 " Rainbow brackets
 Plug 'frazrepo/vim-rainbow'
 
+" Surroundings (parentheses, brackets, quotes, etc)
+Plug 'tpope/vim-surround'
+
 " Initialize plugin system
 call plug#end()
 
