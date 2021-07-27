@@ -32,6 +32,13 @@ markup=pango
 command=$HOME/.config/i3blocks/scripts/github
 interval=60
 separator=false
+separator_block_width=15
+
+[thunderbird]
+command=$HOME/.config/i3blocks/scripts/thunderbird
+interval=5
+separator=false
+separator_block_width=15
 
 [packages]
 command=$HOME/.config/i3blocks/scripts/packages
