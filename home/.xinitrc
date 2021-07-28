@@ -1,2 +1,2 @@
 # Load custom keyboard mappings
-set-keyboard macbook
+# set-keyboard macbook
