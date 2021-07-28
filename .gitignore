@@ -44,6 +44,9 @@ home/.local/share/applications/jetbrains-webstorm.desktop
 home/.local/share/applications/mimeinfo.cache
 home/.local/share/applications/userapp-Firefox*
 
+# Thunar
+home/.config/xfce4/xfconf/xfce-perchannel-xml/thunar.xml
+
 # git-secrets
 .gitsecret/keys/random_seed
 !*.secret
