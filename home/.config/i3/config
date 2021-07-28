@@ -347,7 +347,7 @@ client.placeholder      #000000 #0c0c0c #ffffff #000000
 
 client.background       #2B2C2B
 
-for_window [class=Xviewer|Pix|Viewnior|feh|Audacious|File-roller|Lxappearance|Lxtask|Pavucontrol] floating enable
+for_window [class=Xviewer|Pix|Viewnior|feh|Audacious|File-roller|Lxappearance|Lxtask] floating enable
 for_window [class=URxvt|Firefox|Geany|Evince|Soffice|libreoffice*|mpv|Ghb|Xfburn|Gimp*|Inkscape|Vlc|Lxappearance|Audacity] focus
 for_window [class=Xfburn|GParted|System-config-printer.py|Lxtask|Pavucontrol|Exo-helper*|Lxrandr|Arandr] focus
 
