@@ -9,13 +9,16 @@ set $mod Mod4
 # Use Mouse+$super to drag floating windows to their wanted position
 floating_modifier $super
 
+#
 # Autostart
-# exec --no-startup-id xrdb -merge ~/.Xresources.laptop
-# exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+#
 exec --no-startup-id nm-applet
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id copyq
 exec --no-startup-id blueman-applet
+exec --no-startup-id xautolock -time 10 -locker blurlock
+
+exec_always --no-startup-id bluetoothctl power on
 exec_always --no-startup-id crontab ~/.crontab
 exec_always --no-startup-id picom -b
 exec_always --no-startup-id ff-theme-util
@@ -25,96 +28,80 @@ exec_always --no-startup-id docker
 exec_always --no-startup-id xset -b
 exec_always --no-startup-id brightnessctl --device='tpacpi::kbd_backlight' set 1
 exec_always --no-startup-id libinput-gestures-setup autostart start
-exec_always --no-startup-id bluetoothctl power on
-exec_always ~/.config/i3/scripts/autoname_workspaces.py --norenumber_workspaces --icon_list_format mathematician &
-# exec_always --no-startup-id xsettingsd &
-# exec_always --no-startup-id xmodmap ~/.xmodmap
-# exec_always --no-startup-id comtpon -b
-# exec_always --no-startup-id dunst
-# exec_always --no-startup-id [ -d ~/.gdfuse ] && google-drive-ocamlfuse ~/Google\ Drive || echo "No ~/.gdfuse directory has been found"
-# exec --no-startup-id manjaro-hello
-# exec_always --no-startup-id sbxkb
-# exec --no-startup-id start_conky_maia
-# exec --no-startup-id start_conky_green
-exec --no-startup-id xautolock -time 10 -locker blurlock
+exec_always --no-startup-id ~/.config/i3/scripts/autoname_workspaces.py --norenumber_workspaces --icon_list_format mathematician &
 
-# start a terminal
+#
+# Terminal
+#
 bindsym $super+Return exec --no-startup-id terminator
 
-# start dmenu (a program launcher)
+#
+# Rofi
+#
 bindsym $super+space exec --no-startup-id rofi -show drun -sidebar-mode
 #bindsym $super+space exec --no-startup-id GDK_DPI_SCALE=0.5 GDK_SCALE=2 rofi -show drun -sidebar-mode
-#bindsym --release $super+space exec --no-startup-id "sleep 0.2; xdotool key Ctrl+space"
 
-# Simulate alt+tab
-# bindsym Control+Tab exec --no-startup-id rofi -lines 12 -padding 18 -width 60 -location 0 -show window -sidebar-mode -columns 3 -font 'Noto Sans 8' -theme solarized
-
+#
 # Screenshots
-bindsym Control+Shift+3 exec --no-startup-id flameshot full -p ~/Pictures/Screenshots
-bindsym Control+Shift+4 exec --no-startup-id flameshot gui -p ~/Pictures/Screenshots
+#
+bindsym $super+Shift+3 exec --no-startup-id flameshot full -p ~/Pictures/Screenshots
+bindsym $super+Shift+4 exec --no-startup-id flameshot gui -p ~/Pictures/Screenshots
 
-################################################################################################
-## sound-section - DO NOT EDIT if you wish to automatically upgrade Alsa -> Pulseaudio later! ##
-################################################################################################
-
-# exec --no-startup-id volumeicon
-#bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
-#exec --no-startup-id pulseaudio
-#exec --no-startup-id pa-applet
-#bindsym $mod+Ctrl+m exec pavucontrol
-
-################################################################################################
-
-# Pulse Audio controls
-#bindsym XF86AudioRaiseVolume exec --no-startup-id amixer-vol up
-#bindsym XF86AudioLowerVolume exec --no-startup-id amixer-vol down
-#bindsym XF86AudioMute exec --no-startup-id amixer-vol toggle
-
-# Sreen brightness control
-#bindsym XF86MonBrightnessUp exec --no-startup-id adjust-brightness +
-#bindsym XF86MonBrightnessDown exec --no-startup-id adjust-brightness -
-
+#
+# VPN
+#
 bindsym Shift+F8 exec --no-startup-id nmcli c up LG
 
-# music control
-#bindsym XF86AudioPrev exec playerctl -p dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
-#bindsym XF86AudioPlay exec playerctl -p dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
-#bindsym XF86AudioNext exec playerctl -p dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
+#
+# Music control - See ~/.xbindkeysrc for more keybindings
+#
 bindsym Shift+F9 exec --no-startup-id /home/cmiranda/bin/restart-audio
 bindsym Shift+F10 exec --no-startup-id dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
 bindsym Shift+F12 exec --no-startup-id dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
 bindsym Shift+F11 exec --no-startup-id dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
 
-# kill focused window
+#
+# Kill focused window
+#
 bindsym $super+q kill
 bindsym Control+q kill
 
-# change focus
+#
+# Change focus
+#
 bindsym $super+Left focus left
 bindsym $super+Down focus down
 bindsym $super+Up focus up
 bindsym $super+Right focus right
 
-# move focused window
+#
+# Move focused window
+#
 bindsym $super+Shift+Left move left
 bindsym $super+Shift+Down move down
 bindsym $super+Shift+Up move up
 bindsym $super+Shift+Right move right
 
-# move entire focused workspace to left/right output
+#
+# Move entire focused workspace to left/right output
+#
 bindsym Control+$alt+Left move workspace to output left
 bindsym Control+$alt+Right move workspace to output right
 
-# Change split layoyt of current container 
+#
+# Change split layout of current container 
+#
 bindsym $super+h split h
 bindsym $super+v split v
 
-# toggle tiling / floating
+#
+# Toggle tiling / floating
+#
 bindsym $super+Shift+space floating toggle
-# change focus between tiling / floating windows
-#bindsym $super+Shift+space focus mode_toggle
 
-# switch to workspace
+#
+# Switch to workspace
+#
 bindsym $super+$alt+Right workspace next
 bindsym $super+$alt+Left workspace prev
 bindsym $super+1 workspace number 1
@@ -128,9 +115,15 @@ bindsym $super+8 workspace number 8
 bindsym $super+9 workspace number 9
 bindsym $super+0 workspace number 10
 
+#
 # Alt + Tab
+#
 bindsym Control+Tab workspace back_and_forth
 bindsym $mod+Tab workspace back_and_forth
+
+###########
+## MODES ##
+###########
 
 mode "resize" {
         bindsym Left    resize shrink width 5 px or 5 ppt
@@ -304,40 +297,40 @@ set_from_resource $term_color13    color13
 set_from_resource $term_color14    color14
 set_from_resource $term_color15    color15
 
-# Start i3bar to display a workspace bar (plus the system information i3status if available)
 bar {
 	i3bar_command i3bar
-	# status_command i3status
 	status_command i3blocks
 	position top
 
-## please set your primary output first. Example: 'xrandr --output eDP1 --primary'
-#	tray_output primary
-#	tray_output eDP1
+        # Set your primary output first. Example: 'xrandr --output eDP1 --primary'
+        # tray_output primary
+        # tray_output eDP1
 
 	bindsym button4 nop
 	bindsym button5 nop
         font pango:Fira Code Retina 10.5
 	strip_workspace_numbers yes
 
-    colors {
-        background #222D31
-        statusline #F9FAF9
-        separator  #454947
+        colors {
+                background #222D31
+                statusline #F9FAF9
+                separator  #454947
 
-#                          border  backgr. text
-        focused_workspace  #F9FAF9 #16a085 #292F34
-        active_workspace   #595B5B #353836 #FDF6E3
-        inactive_workspace #595B5B #222D31 #EEE8D5
-        binding_mode       #16a085 #2C2C2C #F9FAF9
-        urgent_workspace   #16a085 #FDF6E3 #E5201D
-    }
+#                                  border  backgr  text
+                focused_workspace  #F9FAF9 #16a085 #292F34
+                active_workspace   #595B5B #353836 #FDF6E3
+                inactive_workspace #595B5B #222D31 #EEE8D5
+                binding_mode       #16a085 #2C2C2C #F9FAF9
+                urgent_workspace   #16a085 #FDF6E3 #E5201D
+        }
 }
 
 # hide/unhide i3status bar
-# bindsym $mod+m bar mode toggle
+bindsym $super+b bar mode toggle
 
+#
 # Theme colors
+#
 # class                 border  backgr. text    indic.  child_border
 client.focused          #556064 #556064 #80FFF9 #FDF6E3 #16a085
 client.focused_inactive #2F3D44 #2F3D44 #1ABC9C #454948 #556064
@@ -347,6 +340,9 @@ client.placeholder      #000000 #0c0c0c #ffffff #000000
 
 client.background       #2B2C2B
 
+#
+# Floating / Focus satatus per window
+#
 for_window [class=Xviewer|Pix|Viewnior|feh|Audacious|File-roller|Lxappearance|Lxtask] floating enable
 for_window [class=URxvt|Firefox|Geany|Evince|Soffice|libreoffice*|mpv|Ghb|Xfburn|Gimp*|Inkscape|Vlc|Lxappearance|Audacity] focus
 for_window [class=Xfburn|GParted|System-config-printer.py|Lxtask|Pavucontrol|Exo-helper*|Lxrandr|Arandr] focus
@@ -354,9 +350,9 @@ for_window [class=Xfburn|GParted|System-config-printer.py|Lxtask|Pavucontrol|Exo
                                            ###########
 ########################################## # i3-gaps # ##########################################
                                            ###########
-#Needed for i3-gaps, hide_edge_borders both
 for_window [class="^.*"] border pixel 2
-for_window [class="^Ulauncher*"] border pixel 0
 
 gaps inner 5
 gaps outer 5
+
+#################################################################################################
