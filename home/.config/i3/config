@@ -16,7 +16,7 @@ exec --no-startup-id nm-applet
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id copyq
 exec --no-startup-id blueman-applet
-exec --no-startup-id xautolock -time 10 -locker blurlock
+exec --no-startup-id xautolock -time 10 -locker blurlocklibinput-gestures-setup autostart start
 
 exec_always --no-startup-id bluetoothctl power on
 exec_always --no-startup-id crontab ~/.crontab
@@ -27,7 +27,7 @@ exec_always --no-startup-id nitrogen --set-zoom-fill ~/wallpapers/single/main-wa
 exec_always --no-startup-id docker
 exec_always --no-startup-id xset -b
 exec_always --no-startup-id brightnessctl --device='tpacpi::kbd_backlight' set 1
-exec_always --no-startup-id libinput-gestures-setup autostart start
+exec_always --no-startup-id libinput-gestures-setup stop && libinput-gestures-setup start
 exec_always --no-startup-id ~/.config/i3/scripts/autoname_workspaces.py --norenumber_workspaces --icon_list_format mathematician &
 exec_always --no-startup-id alttab -d 1 -w 1 -i 100x100 -t 100x100 -bg "#002B36" -frame "#16a085" -s 2
 

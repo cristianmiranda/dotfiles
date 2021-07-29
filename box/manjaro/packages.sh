@@ -79,7 +79,9 @@ PACKAGES=(
     xbindkeys
     xcalib
     xclip
+    xf86-input-libinput
     xorg-xev
+    xorg-xinput
     yarn
     zip
     zoom
