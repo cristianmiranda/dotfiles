@@ -14,6 +14,7 @@ PACKAGES=(
     alsa-firmware
     alsa-ucm-conf
     alsa-utils
+    alttab-git
     autoconf
     balena-etcher
     bashtop

@@ -29,6 +29,7 @@ exec_always --no-startup-id xset -b
 exec_always --no-startup-id brightnessctl --device='tpacpi::kbd_backlight' set 1
 exec_always --no-startup-id libinput-gestures-setup autostart start
 exec_always --no-startup-id ~/.config/i3/scripts/autoname_workspaces.py --norenumber_workspaces --icon_list_format mathematician &
+exec_always --no-startup-id alttab -d 1 -w 1 -i 100x100 -t 100x100 -bg "#002B36" -frame "#16a085" -s 2
 
 #
 # Terminal
@@ -118,7 +119,7 @@ bindsym $super+0 workspace number 10
 #
 # Alt + Tab
 #
-bindsym Control+Tab workspace back_and_forth
+#bindsym Control+Tab workspace back_and_forth
 bindsym $mod+Tab workspace back_and_forth
 
 ###########
