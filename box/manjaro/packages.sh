@@ -22,6 +22,7 @@ PACKAGES=(
     brightnessctl
     cargo
     chromium
+    cmatrix
     copyq
     discord
     docker
