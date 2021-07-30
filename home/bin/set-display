@@ -2,6 +2,8 @@
 
 PROFILE_LAPTOP="laptop";
 PROFILE_SINGLE="single";
+PROFILE_DUAL="dual";
+PROFILE_DUAL_INVERTED="dual-inverted";
 
 XRANDR_DISPLAY_PROFILE=$1
 
@@ -22,6 +24,17 @@ if [[ "$XRANDR_DISPLAY_PROFILE" == "$PROFILE_SINGLE" ]]; then
     bash ~/.screenlayout/asus_single.sh
 fi
 
+if [[ "$XRANDR_DISPLAY_PROFILE" == "$PROFILE_DUAL" ]]; then
+    xrdb -merge ~/.Xresources.asus
+    
+    bash ~/.screenlayout/asus_dual.sh
+fi
+
+if [[ "$XRANDR_DISPLAY_PROFILE" == "$PROFILE_DUAL_INVERTED" ]]; then
+    xrdb -merge ~/.Xresources.asus
+    
+    bash ~/.screenlayout/asus_dual_inverted.sh
+fi
 
 # Restart i3-wm
 i3-msg restart

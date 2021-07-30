@@ -130,6 +130,6 @@ separator=false
 separator_block_width=15
 
 [start]
-command=echo ''
+command=echo ' '
 interval=7200
 separator=false
