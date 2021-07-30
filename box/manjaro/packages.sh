@@ -27,6 +27,7 @@ PACKAGES=(
     discord
     docker
     docker-compose
+    ebtables
     element-desktop
     emojify
     filezilla
@@ -60,6 +61,7 @@ PACKAGES=(
     pavucontrol
     playerctl
     postman-bin
+    qemu
     rofi
     simplescreenrecorder
     screen
@@ -74,6 +76,7 @@ PACKAGES=(
     tmux
     unrar
     unzip
+    virt-manager
     visual-studio-code-bin
     whatsapp-nativefier
     xbindkeys
