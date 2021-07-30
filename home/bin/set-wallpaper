@@ -26,12 +26,12 @@ def setWallpaper(wallpaper):
         if wallpaper == "default":
             if monitors == 2:
                 print("Dual monitor")
-                os.popen("hsetroot -cover {}".format(wallpapers["dual"]))
+                os.popen("hsetroot -root -cover {}".format(wallpapers["dual"]))
             elif monitors == 1:
                 print("Single monitor")
                 os.popen("hsetroot -cover {}".format(wallpapers["single"]))
         else:
-            os.popen("hsetroot -cover {}".format(wallpaper))
+            os.popen("hsetroot -root -cover {}".format(wallpaper))
     else:
         if wallpaper == "default":
             wallpaper = wallpapers["single"]
