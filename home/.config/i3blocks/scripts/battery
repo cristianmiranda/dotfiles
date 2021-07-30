@@ -2,6 +2,7 @@
 
 capacity=$(cat /sys/class/power_supply/BAT0/capacity) || exit
 status=$(cat /sys/class/power_supply/BAT0/status)
+docked=$(cat /proc/acpi/button/lid/LID/state | grep closed | wc -l)
 
 if [ "$capacity" -ge 75 ]; then
 	icon=""
@@ -21,6 +22,11 @@ fi
 
 if [[ "$status" = "Charging" || "$status" = "Unknown" || "$status" = "Full" ]]; then
 	icon=""
+	color="#ffffff"
+fi
+
+if [[ $docked == 1 ]]; then
+	icon=""
 	color="#ffffff"
 fi
 
