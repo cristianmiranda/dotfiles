@@ -23,7 +23,7 @@ exec_always --no-startup-id crontab ~/.crontab
 exec_always --no-startup-id picom -b
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
-exec_always --no-startup-id nitrogen --set-zoom-fill ~/wallpapers/single/main-wall.jpg
+exec_always --no-startup-id set-wallpaper
 exec_always --no-startup-id docker
 exec_always --no-startup-id xset -b
 exec_always --no-startup-id brightnessctl --device='tpacpi::kbd_backlight' set 1
@@ -186,6 +186,8 @@ mode "init-workspace" {
 
 mode "set-display" {
         bindsym s exec --no-startup-id /home/cmiranda/bin/set-display single; mode "default"
+        bindsym d exec --no-startup-id /home/cmiranda/bin/set-display dual; mode "default"
+        bindsym e exec --no-startup-id /home/cmiranda/bin/set-display dual-inverted; mode "default"
         bindsym l exec --no-startup-id /home/cmiranda/bin/set-display laptop; mode "default"
         bindsym i exec --no-startup-id xcalib -a -i; mode "default"
 
@@ -304,7 +306,7 @@ bar {
 	position top
 
         # Set your primary output first. Example: 'xrandr --output eDP1 --primary'
-        # tray_output primary
+        tray_output primary
         # tray_output eDP1
 
 	bindsym button4 nop
