@@ -31,8 +31,27 @@ sudo pacman -S manjaro-pipewire gst-plugin-pipewire >> $LOG_FILE 2>&1
 systemctl --user unmask pipewire.socket && systemctl --user enable --now pipewire.socket >> $LOG_FILE 2>&1
 
 # Enable ssh server
-sudo systemctl start sshd >> $LOG_FILE 2>&1
 sudo systemctl enable sshd >> $LOG_FILE 2>&1
+sudo systemctl start sshd >> $LOG_FILE 2>&1
+
+# Virtualization (virt-manager)
+sudo systemctl enable libvirtd >> $LOG_FILE 2>&1
+sudo systemctl start libvirtd >> $LOG_FILE 2>&1
+sudo usermod -G libvirt -a cmiranda
+
+#
+# If Spotify or Virt-Manager cannot connect to the internet
+# replace the contents of /usr/lib/NetworkManager/conf.d/20-connectivity.conf
+# with the following (create the file if doesn't exist):
+#
+# [connectivity]
+# .set.enabled=false
+#
+# See more @ https://wiki.archlinux.org/title/NetworkManager#Checking_connectivity
+# and more @ https://www.reddit.com/r/archlinux/comments/jltdb9/arch_linux_spotify_stuck_offiline/gkxicuy?utm_source=share&utm_medium=web2x&context=3
+#
+# Then restart NetworkManager service
+#
 
 #
 # Backup
