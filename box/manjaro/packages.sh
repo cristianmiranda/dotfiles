@@ -71,6 +71,7 @@ PACKAGES=(
     sysstat
     terminator
     telegram-desktop-bin
+    timeshift
     thunar
     thunderbird
     tmux
