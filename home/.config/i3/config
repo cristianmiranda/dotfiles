@@ -184,9 +184,10 @@ mode "init-workspace" {
 }
 
 mode "set-display" {
+        bindsym a exec --no-startup-id /home/cmiranda/bin/set-display single-inverted; mode "default"
         bindsym s exec --no-startup-id /home/cmiranda/bin/set-display single; mode "default"
         bindsym d exec --no-startup-id /home/cmiranda/bin/set-display dual; mode "default"
-        bindsym e exec --no-startup-id /home/cmiranda/bin/set-display dual-inverted; mode "default"
+        bindsym f exec --no-startup-id /home/cmiranda/bin/set-display dual-inverted; mode "default"
         bindsym l exec --no-startup-id /home/cmiranda/bin/set-display laptop; mode "default"
         bindsym i exec --no-startup-id xcalib -a -i; mode "default"
 

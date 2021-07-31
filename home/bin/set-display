@@ -2,6 +2,7 @@
 
 PROFILE_LAPTOP="laptop";
 PROFILE_SINGLE="single";
+PROFILE_SINGLE_INVERTED="single-inverted";
 PROFILE_DUAL="dual";
 PROFILE_DUAL_INVERTED="dual-inverted";
 
@@ -22,6 +23,12 @@ if [[ "$XRANDR_DISPLAY_PROFILE" == "$PROFILE_SINGLE" ]]; then
     xrdb -merge ~/.Xresources.asus
     
     bash ~/.screenlayout/asus_single.sh
+fi
+
+if [[ "$XRANDR_DISPLAY_PROFILE" == "$PROFILE_SINGLE_INVERTED" ]]; then
+    xrdb -merge ~/.Xresources.asus
+    
+    bash ~/.screenlayout/asus_single_inverted.sh
 fi
 
 if [[ "$XRANDR_DISPLAY_PROFILE" == "$PROFILE_DUAL" ]]; then
