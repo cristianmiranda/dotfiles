@@ -59,6 +59,7 @@ PACKAGES=(
     nvm
     openssh
     p7zip
+    pasystray
     pavucontrol
     playerctl
     postman-bin

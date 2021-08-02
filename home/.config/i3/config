@@ -15,8 +15,9 @@ floating_modifier $super
 exec --no-startup-id set-display laptop
 
 exec_always --no-startup-id "killall nm-applet || true; sleep 2; nm-applet"
-exec_always --no-startup-id xfce4-power-manager
 exec_always --no-startup-id "killall copyq || true; sleep 2; copyq"
+exec_always --no-startup-id "killall pasystray || true; sleep 2; pasystray"
+exec_always --no-startup-id xfce4-power-manager
 exec_always --no-startup-id blueman-applet
 exec_always --no-startup-id bluetoothctl power on
 exec_always --no-startup-id crontab ~/.crontab
