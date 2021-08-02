@@ -12,6 +12,8 @@ floating_modifier $super
 #
 # Autostart
 #
+exec --no-startup-id set-display laptop
+
 exec_always --no-startup-id nm-applet
 exec_always --no-startup-id xfce4-power-manager
 exec_always --no-startup-id copyq
