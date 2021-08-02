@@ -104,9 +104,6 @@ PIP_PACKAGES=(
     fontawesome
 )
 
-# Upgrade everything
-yay -Syyu >> $LOG_FILE 2>&1
-
 # Reinstall pambase
 # See https://bbs.archlinux.org/viewtopic.php?id=142720
 yayInstall pambase >> $LOG_FILE 2>&1
