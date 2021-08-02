@@ -64,6 +64,7 @@ PACKAGES=(
     postman-bin
     qemu
     rofi
+    rofi-calc
     simplescreenrecorder
     screen
     sof-firmware

@@ -1,13 +1,15 @@
 configuration {
-	modi: "";
+	modi: "drun,calc";
 	font: "Fira Code Retina 12";
 	show-icons: true;
 	display-drun: "";
+	display-calc: "";
 	hide-scrollbar: true;
 	dpi: 192;
-	theme: ".config/rofi/themes/slate";
+	theme: "~/.config/rofi/themes/slate";
 	lines: 6;
 	drun-display-format: "{name}";
+	calc-command: "echo -n '{result}' | copyq copy -";
 /*	width: 50;*/
 /*	columns: 1;*/
 /*	bw: 1;*/
