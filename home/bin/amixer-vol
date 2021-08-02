@@ -8,7 +8,7 @@ MAX_VOLUME=100
 MSG_ID="991049"
 
 function volume() {
-  VOLUME="`/usr/bin/amixer get Master  | grep % | awk '{print $5}'| sed 's/[^0-9]//g' | sed -n 1p`"
+  VOLUME="`pamixer --get-volume`"
   if [[ $? -eq 0 ]]; then
     echo $VOLUME
   else
@@ -29,39 +29,34 @@ if [[ -z "$1" ]]; then
   exit 1
 fi
 
+VOLUME="`volume`"
+
 case "$1" in
   up)
-    /usr/bin/amixer set 'Master' ${INCR}%+
-    VOLUME="`volume`"
+    pamixer -i $INCR
     if [[ $VOLUME -gt $MAX_VOLUME ]]; then
-      /usr/bin/amixer set 'Master' ${MAX_VOLUME}%
+      pamixer --set-volume ${MAX_VOLUME}
     fi
     soundFeeback
     ;;
   down)
-    /usr/bin/amixer set 'Master' ${INCR}%-
-    VOLUME="`volume`"
+    pamixer -d $INCR
     if [[ $VOLUME -lt $MIN_VOLUME ]]; then
-      /usr/bin/amixer set 'Master' ${MIN_VOLUME}%
+      pamixer --set-volume ${MIN_VOLUME}
     fi
     soundFeeback
     ;;
   mute)
-    /usr/bin/amixer set 'Master' mute
+    pamixer -m
     brightnessctl --device='platform::mute' set 1
     ;;
   unmute)
-    /usr/bin/amixer set 'Master' unmute
+    pamixer -u
     brightnessctl --device='platform::mute' set 0
     ;;
   toggle)
-    MUTED="`amixer get Master | grep % | awk '{print $6}'| sed 's/[^a-z]//g' | sed -n 1p`"
-    if [[ $MUTED == "on" ]]; then
-      amixer-vol mute
-    else
-      amixer-vol unmute
-      soundFeeback
-    fi
+    pamixer -t
+    soundFeeback
     ;;
   toggle-mic)
     MIC="`amixer get Capture | grep % | sed -r 's/.*%\]\s\[(.*)\]/\1/' | sed -n 1p`"
