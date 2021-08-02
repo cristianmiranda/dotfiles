@@ -23,9 +23,8 @@ if [[ $machine == "Mac" ]]; then
     info ">> Installing dependencies for current user ..."
     bash ${DOTFILES_PATH}/box/macos/dependencies.sh >> $LOG_FILE 2>&1
 elif [[ $machine == "Linux" ]]; then
-    info ">> Installing dependencies for current user and root ..."
+    info ">> Installing dependencies for current user ..."
     bash ${CURRENT_DIR}/dependencies.sh >> $LOG_FILE 2>&1
-    sudo bash ${CURRENT_DIR}/dependencies.sh >> $LOG_FILE 2>&1
 fi
 
 br
