@@ -44,6 +44,7 @@ PACKAGES=(
     i3blocks-contrib
     imagemagick
     intellij-idea-ultimate-edition-jre
+    insync
     jetbrains-toolbox
     jitsi-meet-desktop-bin
     jq
