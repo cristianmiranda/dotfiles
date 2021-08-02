@@ -1,5 +1,13 @@
 #!/bin/zsh
 
+#
+# Used to profile zsh plugins
+# Uncomment line and run "zprof"
+#
+# zmodload zsh/zprof
+#
+# To launch 10 zsh instances and measure time --> for i in $(seq 1 10); do time $SHELL -i -c exit; done
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -32,6 +40,7 @@ if ! zgen saved; then
   zgen load zsh-users/zsh-autosuggestions
   zgen load zsh-users/zsh-syntax-highlighting
   zgen load wfxr/forgit
+  zgen load lukechilds/zsh-nvm
 
   # theme
   zgen load denysdovhan/spaceship-prompt spaceship

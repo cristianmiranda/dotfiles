@@ -56,7 +56,6 @@ PACKAGES=(
     nodejs-gitmoji-cli
     nordvpn-bin
     noto-fonts-emoji
-    nvm
     openssh
     p7zip
     pasystray
