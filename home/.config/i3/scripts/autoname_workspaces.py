@@ -124,6 +124,7 @@ WINDOW_ICONS = {
     "gitkraken": fa.icons["github"],
     "VirtualBox Manager": fa.icons["linux"],
     "VirtualBox Machine": fa.icons["linux"],
+    "virt-manager": fa.icons["linux"],
 }
 
 # This icon is used for any application not in the list above
