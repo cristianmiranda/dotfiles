@@ -1,16 +1,21 @@
 configuration {
 	modi: "";
-/*	width: 50;*/
-/*	lines: 15;*/
-/*	columns: 1;*/
 	font: "Fira Code Retina 12";
+	show-icons: true;
+	display-drun: "";
+	hide-scrollbar: true;
+	dpi: 192;
+	theme: ".config/rofi/themes/slate";
+	lines: 6;
+	drun-display-format: "{name}";
+/*	width: 50;*/
+/*	columns: 1;*/
 /*	bw: 1;*/
 /*	location: 0;*/
 /*	padding: 5;*/
 /*	yoffset: 0;*/
 /*	xoffset: 0;*/
 /*	fixed-num-lines: true;*/
-	show-icons: true;
 /*	terminal: "rofi-sensible-terminal";*/
 /*	ssh-client: "ssh";*/
 /*	ssh-command: "{terminal} -e {ssh-client} {host}";*/
@@ -39,10 +44,8 @@ configuration {
 /*	line-padding: 1;*/
 /*	filter: ;*/
 /*	separator-style: "dash";*/
-	hide-scrollbar: true;
 /*	fullscreen: false;*/
 /*	fake-transparency: false;*/
-	dpi: 192;
 /*	threads: 0;*/
 /*	scrollbar-width: 8;*/
 /*	scroll-method: 0;*/
@@ -50,7 +53,6 @@ configuration {
 /*	window-format: "{w}    {i}{c}   {t}";*/
 /*	click-to-exit: true;*/
 /*	show-match: true;*/
-	theme: "android_notification";
 /*	color-normal: ;*/
 /*	color-urgent: ;*/
 /*	color-active: ;*/
@@ -62,7 +64,6 @@ configuration {
 /*	display-windowcd: ;*/
 /*	display-run: ;*/
 /*	display-ssh: ;*/
-	display-drun: "";
 /*	display-combi: ;*/
 /*	display-keys: ;*/
 /*	kb-primary-paste: "Control+V,Shift+Insert";*/
