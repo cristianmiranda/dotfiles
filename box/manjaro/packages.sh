@@ -60,6 +60,7 @@ PACKAGES=(
     openssh
     p7zip
     pasystray
+    pamixer
     pavucontrol
     playerctl
     postman-bin
