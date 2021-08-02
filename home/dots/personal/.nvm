@@ -2,5 +2,12 @@
 
 # nvm stuff
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+export NVM_LAZY_LOAD=true
+
+#
+# Replaced with zsh-nvm
+# See more @ https://blog.mattclemente.com/2020/06/26/oh-my-zsh-slow-to-load.html
+# And more @ https://github.com/lukechilds/zsh-nvm
+#
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
