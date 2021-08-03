@@ -19,7 +19,9 @@
         path: .config/*
         force: true
     ~/.local/share/fonts: .local/share/fonts
-    ~/.local/share/icons: .local/share/icons
+    ~/.local/share/icons: 
+        path: .local/share/icons
+        force: true
     ~/.screenlayout: .screenlayout
     ~/.ssh/config: 
         path: .ssh/config
