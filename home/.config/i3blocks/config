@@ -28,11 +28,9 @@ command=/usr/lib/i3blocks/$BLOCK_NAME/$BLOCK_NAME
 separator_block_width=25
 markup=pango
 
-[github]
-command=$HOME/.config/i3blocks/scripts/github
-interval=60
-separator=false
-separator_block_width=15
+#
+# FONTAWESOME BLOCKS
+#
 
 [thunderbird]
 command=$HOME/.config/i3blocks/scripts/thunderbird
@@ -40,13 +38,35 @@ interval=5
 separator=false
 separator_block_width=15
 
-[packages]
-command=$HOME/.config/i3blocks/scripts/packages
-interval=600
+[github]
+command=$HOME/.config/i3blocks/scripts/github
+interval=60
+separator=false
+separator_block_width=15
+
+[spotify]
+command=$HOME/.config/i3blocks/scripts/spotify
+interval=5
+separator=false
+separator_block_width=15
 
 [microphone]
 command=$HOME/.config/i3blocks/scripts/mic-status
 interval=1
+separator=false
+separator_block_width=15
+
+#
+# EMOJI BLOCKS
+#
+
+[packages]
+command=$HOME/.config/i3blocks/scripts/packages
+interval=600
+
+#
+#
+#
 
 [airpods]
 command=$HOME/bin/airpods
@@ -130,6 +150,6 @@ separator=false
 separator_block_width=15
 
 [start]
-command=echo ' '
+command=echo '<span size="xx-large"></span> '
 interval=7200
 separator=false
