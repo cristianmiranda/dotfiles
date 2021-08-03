@@ -50,6 +50,7 @@ PACKAGES=(
     jetbrains-toolbox
     jitsi-meet-desktop-bin
     jq
+    lazydocker
     libinput-gestures
     libreoffice-still
     neofetch
