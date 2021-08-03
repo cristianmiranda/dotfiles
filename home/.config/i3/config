@@ -58,9 +58,9 @@ bindsym Shift+F8 exec --no-startup-id nmcli c up LG
 # Music control - See ~/.xbindkeysrc for more keybindings
 #
 bindsym Shift+F9 exec --no-startup-id /home/cmiranda/bin/restart-audio
-bindsym Shift+F10 exec --no-startup-id dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
-bindsym Shift+F12 exec --no-startup-id dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
-bindsym Shift+F11 exec --no-startup-id dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
+bindsym Shift+F10 exec --no-startup-id sp prev
+bindsym Shift+F12 exec --no-startup-id sp play
+bindsym Shift+F11 exec --no-startup-id sp next
 
 #
 # Kill focused window
