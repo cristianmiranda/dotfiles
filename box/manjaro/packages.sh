@@ -38,6 +38,7 @@ PACKAGES=(
     fd
     ffmpeg
     flameshot
+    font-manager
     git-delta-bin
     git-lfs
     hsetroot
@@ -54,6 +55,7 @@ PACKAGES=(
     libinput-gestures
     libreoffice-still
     neofetch
+    nerd-fonts-fira-code
     net-tools
     nitrogen
     nodejs-gitmoji-cli

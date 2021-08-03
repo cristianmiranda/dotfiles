@@ -317,13 +317,13 @@ bar {
 	status_command i3blocks
 	position top
 
-        # Set your primary output first. Example: 'xrandr --output eDP1 --primary'
-        tray_output primary
-        # tray_output eDP1
+	# Set your primary output first. Example: 'xrandr --output eDP1 --primary'
+	tray_output primary
+	# tray_output eDP1
 
 	bindsym button4 nop
 	bindsym button5 nop
-        font pango:Fira Code Retina 10.5
+	font pango:FiraCode Nerd Font Mono Regular 10.5
 	strip_workspace_numbers yes
 
         colors {

@@ -1,0 +1,26 @@
+#!/bin/sh
+
+case $BLOCK_BUTTON in
+    1)
+        i3-msg '[class="Spotify$"] focus' > /dev/null
+    ;;
+	3)
+        ~/bin/sp play
+    ;;
+esac
+
+status=$(playerctl -p spotify status)
+
+if [ "$status" == "Paused" ]; then
+	icon=""
+	color="#a6a6a6"
+elif [ "$status" == "Playing" ]; then
+	icon=""
+	color="#0cc078"
+else
+	exit 0;
+fi
+
+echo "<span size='x-large'>$icon</span>"
+echo "<span size='x-large'>$icon</span>"
+echo $color
