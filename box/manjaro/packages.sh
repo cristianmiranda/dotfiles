@@ -11,6 +11,7 @@ then
 fi
 
 PACKAGES=(
+    1password
     alsa-firmware
     alsa-ucm-conf
     alsa-utils
