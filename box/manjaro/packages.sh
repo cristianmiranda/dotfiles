@@ -38,6 +38,7 @@ PACKAGES=(
     ffmpeg
     flameshot
     git-delta-bin
+    git-lfs
     hsetroot
     i3-gaps
     i3blocks
