@@ -67,6 +67,7 @@ PACKAGES=(
     pasystray
     pamixer
     pavucontrol
+    peek
     playerctl
     postman-bin
     qemu

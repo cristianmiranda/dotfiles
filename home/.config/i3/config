@@ -49,6 +49,7 @@ bindsym $super+space exec --no-startup-id rofi -show drun
 bindsym $super+Shift+2 exec --no-startup-id "flameshot gui -r > /tmp/clipboard.png && ~/bin/imgur /tmp/clipboard.png && dunstify 'Screenshot uploaded to imgur'"
 bindsym $super+Shift+3 exec --no-startup-id flameshot full -p ~/Pictures/Screenshots
 bindsym $super+Shift+4 exec --no-startup-id flameshot gui -p ~/Pictures/Screenshots
+bindsym $super+Shift+5 exec --no-startup-id peek
 
 #
 # VPN
