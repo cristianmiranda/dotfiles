@@ -250,6 +250,7 @@ mode "launch" {
         bindsym j exec --no-startup-id /usr/local/jitsi-meet/jitsi-meet; mode "default"
         bindsym m exec --no-startup-id thunderbird; mode "default"
         bindsym p exec --no-startup-id thunar; mode "default"
+        bindsym r exec --no-startup-id "streamlink -Q --player='mpv --cache 4096' https://www.twitch.tv/urbanaplay best"; mode "default"
         bindsym s exec --no-startup-id spotify; mode "default"
         bindsym t exec --no-startup-id telegram-desktop; mode "default"
         bindsym w exec --no-startup-id walc; mode "default"
