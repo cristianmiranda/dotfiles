@@ -128,7 +128,7 @@ WINDOW_ICONS = {
 }
 
 # This icon is used for any application not in the list above
-DEFAULT_ICON = "*"
+DEFAULT_ICON = fa.icons["question-circle"]
 
 # Global setting that determines whether workspaces will be automatically
 # re-numbered in ascending order with a "gap" left on each monitor. This is
