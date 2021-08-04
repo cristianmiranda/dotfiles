@@ -54,6 +54,7 @@ PACKAGES=(
     lazydocker
     libinput-gestures
     libreoffice-still
+    mpv
     neofetch
     nerd-fonts-fira-code
     net-tools
@@ -76,6 +77,7 @@ PACKAGES=(
     sof-firmware
     sox
     spotify
+    streamlink
     sysstat
     terminator
     telegram-desktop-bin
