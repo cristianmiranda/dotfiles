@@ -21,7 +21,7 @@ exec_always --no-startup-id xfce4-power-manager
 exec_always --no-startup-id blueman-applet
 exec_always --no-startup-id bluetoothctl power on
 exec_always --no-startup-id crontab ~/.crontab
-exec_always --no-startup-id picom -b
+exec_always --no-startup-id picom -b --experimental-backends
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
 exec_always --no-startup-id ~/bin/set-wallpaper
