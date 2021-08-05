@@ -251,10 +251,20 @@ mode "launch" {
         bindsym j exec --no-startup-id /usr/local/jitsi-meet/jitsi-meet; mode "default"
         bindsym m exec --no-startup-id thunderbird; mode "default"
         bindsym p exec --no-startup-id thunar; mode "default"
-        bindsym r exec --no-startup-id "streamlink -Q --player='mpv --cache 4096' https://www.twitch.tv/urbanaplay best"; mode "default"
         bindsym s exec --no-startup-id spotify; mode "default"
         bindsym t exec --no-startup-id telegram-desktop; mode "default"
         bindsym w exec --no-startup-id walc; mode "default"
+        
+        bindsym Escape mode "default"
+        bindsym Return mode "default"
+}
+
+mode "radio-station" {
+        bindsym 0 exec --no-startup-id ~/bin/radio off; mode "default"
+        bindsym 1 exec --no-startup-id ~/bin/radio 100.7; mode "default"
+        bindsym 2 exec --no-startup-id ~/bin/radio 102.3; mode "default"
+        bindsym 3 exec --no-startup-id ~/bin/radio 104.3; mode "default"
+        bindsym 4 exec --no-startup-id ~/bin/radio 105.5; mode "default"
         
         bindsym Escape mode "default"
         bindsym Return mode "default"
@@ -282,6 +292,7 @@ bindsym $super+Shift+l mode "launch"
 bindsym $super+Shift+m mode "move-to-workspace"
 bindsym $super+Shift+r mode "resize"
 bindsym $super+Shift+s mode "swap-with-workspace"
+bindsym $super+Shift+u mode "radio-station"
 bindsym $super+Shift+x mode "i3-command"
 
 # Color palette used for the terminal ( ~/.Xresources file )

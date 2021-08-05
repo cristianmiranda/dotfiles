@@ -53,12 +53,14 @@ separator_block_width=15
 [microphone]
 command=$HOME/.config/i3blocks/scripts/mic-status
 interval=1
-separator=false
-separator_block_width=15
 
 #
 # EMOJI BLOCKS
 #
+
+[radio]
+command=$HOME/.config/i3blocks/scripts/radio
+interval=5
 
 [packages]
 command=$HOME/.config/i3blocks/scripts/packages

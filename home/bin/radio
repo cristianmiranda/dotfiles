@@ -1,0 +1,37 @@
+#!/bin/bash
+
+CURRENT_RADIO_STATION_FILE=/tmp/current-radio-station
+
+declare -A stations
+
+# Blue
+stations['100.7']='https://mdstrm.com/audio/60a2745ff943100826374a70/icecast.audio'
+# Aspen
+stations['102.3']='https://playerservices.streamtheworld.com/api/livestream-redirect/BLUE_FM_100_7AAC.aac'
+# Urbana Play
+stations['104.3']='https://www.twitch.tv/urbanaplay'
+# 40 Principales
+stations['105.5']='http://playerservices.streamtheworld.com/api/livestream-redirect/LOS40_ARGENTINAAAC'
+
+if [[ $1 == "" ]]; then
+	echo "Usage: radio [station]"
+elif [[ $1 == "off" ]]; then
+	killall vlc;
+	killall mpv;
+	rm $CURRENT_RADIO_STATION_FILE
+else 
+	station="${stations[$1]}"
+
+	if [[ $station ]]; then
+		echo $1 > $CURRENT_RADIO_STATION_FILE
+		killall vlc;
+		killall mpv;
+		if [[ $station =~ "twitch" || $station =~ "youtube" ]]; then
+			streamlink -Q --player='mpv --cache 4096' $station best
+		else
+			cvlc $station 2> /dev/null;		
+		fi
+	else
+		echo "Radio station not found"
+	fi
+fi
