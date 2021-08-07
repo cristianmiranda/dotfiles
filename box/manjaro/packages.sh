@@ -62,7 +62,10 @@ PACKAGES=(
     nodejs-gitmoji-cli
     nordvpn-bin
     noto-fonts-emoji
+    nvidia
     openssh
+    optimus-manager
+    optimus-manager-qt
     p7zip
     pasystray
     pamixer
