@@ -64,8 +64,8 @@
     ~/.secrets: .secrets
     ~/.vimrc: .vimrc
     ~/.xbindkeysrc: .xbindkeysrc
-    ~/.xinitrc:
-        path: .xinitrc
+    ~/.xsession:
+        path: .xsession
         force: true
     ~/.xmodmap.apple: .xmodmap.apple
     ~/.xmodmap.macbook: .xmodmap.macbook

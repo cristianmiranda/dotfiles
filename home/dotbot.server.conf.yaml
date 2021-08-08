@@ -54,7 +54,7 @@
     ~/.inputrc: .inputrc
     ~/.p10k.zsh: .p10k.zsh
     ~/.vimrc: .vimrc
-    ~/.xinitrc: .xinitrc
+    ~/.xsession: .xsession
     ~/.xmodmap.apple: .xmodmap.apple
     ~/.xmodmap.macbook: .xmodmap.macbook
     ~/.Xresources: .Xresources
