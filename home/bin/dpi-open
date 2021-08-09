@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+MONITOR_RESOLUTION=`~/bin/get-resolution`
+
+if [[ "$MONITOR_RESOLUTION" == "2K" ]]; then
+    $1
+elif [[ "$MONITOR_RESOLUTION" == "4K" ]]; then
+    GDK_DPI_SCALE=0.5 GDK_SCALE=2 $1
+fi
