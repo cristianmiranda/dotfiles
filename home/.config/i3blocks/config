@@ -92,20 +92,29 @@ signal=10
 command=$HOME/.config/i3blocks/scripts/lg-vpn
 interval=10
 
+[bandwidth]
+command=$HOME/.config/i3blocks/scripts/bandwidth
+interval=5
+#INTERFACE=eth0
+INLABEL=<span size='large'> </span>
+OUTLABEL=<span size='large'> </span>
+#TREAT_UNKNOWN_AS_UP=0
+#min_width= 000K  00K
+
 # CPU usage
 #
 # The script may be called with -w and -c switches to specify thresholds,
 # see the script for details.
 [cpu_usage]
-label=⚙️ 
+label=<span size='large'> </span>
 interval=10
-min_width=⚙️ 99.99%
+min_width= 99.99%
 
 # Memory usage
 #
 # The type defaults to "mem" if the instance is not specified.
 [memory]
-label=M 
+label=<span size='large'> </span>
 separator=true
 interval=30
 
@@ -114,10 +123,6 @@ interval=30
 #instance=swap
 #separator=false
 #interval=30
-
-#[bandwidth]
-#instance=eth0
-#interval=5
 
 [nm-vpn]
 #label=VPN:
@@ -137,9 +142,9 @@ interval=1800
 
 # Date Time
 #
-[time_nyc]
-command=echo 🗽 $(TZ=":America/New_York" date +%H:%M:%S)
-interval=1
+#[time_nyc]
+#command=echo 🗽 $(TZ=":America/New_York" date +%H:%M:%S)
+#interval=1
 
 [time]
 command=echo $(echo 📅 $(date '+%d/%m/%Y') 🕑 $(date '+%H:%M:%S'))
