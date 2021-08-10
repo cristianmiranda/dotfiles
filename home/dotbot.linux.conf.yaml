@@ -23,6 +23,7 @@
         path: .local/share/icons
         force: true
     ~/.local/share/applications/io.optimus_manager.OptimusManagerQt.desktop: .local/share/applications/io.optimus_manager.OptimusManagerQt.desktop
+    ~/.local/share/applications/spotify.desktop: .local/share/applications/spotify.desktop
     ~/.local/share/applications/thunar.desktop: .local/share/applications/thunar.desktop
     ~/.local/share/applications/thunar-settings.desktop: .local/share/applications/thunar-settings.desktop
     ~/.local/share/applications/thunar-bulk-rename.desktop: .local/share/applications/thunar-bulk-rename.desktop
