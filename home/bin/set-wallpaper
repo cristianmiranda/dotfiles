@@ -14,7 +14,7 @@ from dotfiles.scripts.utils import config
 
 
 @click.command()
-@click.argument("wallpaper", default="default")
+@click.argument("wallpaper", default="random")
 def setWallpaper(wallpaper):
 
     data = config.getConfig()
@@ -23,17 +23,17 @@ def setWallpaper(wallpaper):
     if platform.system() == "Linux":
         monitors = int(os.popen('xrandr --listmonitors | grep "+" | wc -l').read())
 
-        if wallpaper == "default":
+        if wallpaper == "random":
             if monitors == 2:
                 print("Dual monitor")
-                os.popen("hsetroot -root -cover {}".format(wallpapers["dual"]))
+                os.popen("set-random-wallpaper")
             elif monitors == 1:
                 print("Single monitor")
-                os.popen("hsetroot -cover {}".format(wallpapers["single"]))
+                os.popen("set-random-wallpaper")
         else:
             os.popen("hsetroot -root -cover {}".format(wallpaper))
     else:
-        if wallpaper == "default":
+        if wallpaper == "random":
             wallpaper = wallpapers["single"]
 
         osascript.run("tell application \"System Events\" to tell every desktop to set picture to \"{}\"".format(wallpaper))
