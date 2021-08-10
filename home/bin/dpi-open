@@ -5,5 +5,9 @@ MONITOR_RESOLUTION=`~/bin/get-resolution`
 if [[ "$MONITOR_RESOLUTION" == "2K" ]]; then
     $1
 elif [[ "$MONITOR_RESOLUTION" == "4K" ]]; then
-    GDK_DPI_SCALE=0.5 GDK_SCALE=2 $1
+    if [[ $1 == "spotify" ]]; then
+        spotify --force-device-scale-factor=2
+    else
+        GDK_DPI_SCALE=0.5 GDK_SCALE=2 $1
+    fi
 fi
