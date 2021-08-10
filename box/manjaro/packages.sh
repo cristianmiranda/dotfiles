@@ -72,6 +72,7 @@ PACKAGES=(
     pavucontrol
     peek
     playerctl
+    plex-media-player
     postman-bin
     qemu
     rofi
