@@ -84,7 +84,7 @@ PACKAGES=(
     streamlink
     sysstat
     terminator
-    telegram-desktop-bin
+    telegram-desktop
     timeshift
     thunar
     thunderbird
@@ -100,6 +100,7 @@ PACKAGES=(
     xf86-input-libinput
     xorg-xev
     xorg-xinput
+    xsettingsd
     yarn
     zip
     zoom

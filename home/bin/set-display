@@ -15,33 +15,51 @@ xrdb ~/.Xresources
 
 if [[ "$XRANDR_DISPLAY_PROFILE" == "$PROFILE_LAPTOP" ]]; then
     xrdb -merge ~/.Xresources.laptop
+
+    # Xresources.DPI * 1024
+    echo "Xft/DPI 196608" > ~/.xsettingsd
     
     bash ~/.screenlayout/laptop.sh
 fi
 
 if [[ "$XRANDR_DISPLAY_PROFILE" == "$PROFILE_SINGLE" ]]; then
     xrdb -merge ~/.Xresources.asus
+
+    # Xresources.DPI * 1024
+    echo "Xft/DPI 98304" > ~/.xsettingsd
     
     bash ~/.screenlayout/asus_single.sh
 fi
 
 if [[ "$XRANDR_DISPLAY_PROFILE" == "$PROFILE_SINGLE_INVERTED" ]]; then
     xrdb -merge ~/.Xresources.asus
-    
+
+    # Xresources.DPI * 1024
+    echo "Xft/DPI 98304" > ~/.xsettingsd
+
     bash ~/.screenlayout/asus_single_inverted.sh
 fi
 
 if [[ "$XRANDR_DISPLAY_PROFILE" == "$PROFILE_DUAL" ]]; then
     xrdb -merge ~/.Xresources.asus
-    
+
+    # Xresources.DPI * 1024
+    echo "Xft/DPI 98304" > ~/.xsettingsd
+
     bash ~/.screenlayout/asus_dual.sh
 fi
 
 if [[ "$XRANDR_DISPLAY_PROFILE" == "$PROFILE_DUAL_INVERTED" ]]; then
     xrdb -merge ~/.Xresources.asus
-    
+
+    # Xresources.DPI * 1024
+    echo "Xft/DPI 98304" > ~/.xsettingsd
+
     bash ~/.screenlayout/asus_dual_inverted.sh
 fi
 
-# Restart i3-wm
+# Kill xsettingsd to be restarted by i3. Used to scale GTK apps when going 2K <=> 4K
+killall -HUP xsettingsd
+
+# Restart i3wm
 i3-msg restart
