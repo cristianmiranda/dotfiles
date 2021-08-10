@@ -55,7 +55,7 @@
 
     # The frame color and width of the notification
     frame_width = 0
-    frame_color = ""
+    # frame_color = ""
 
     sort = yes
 
@@ -146,20 +146,20 @@
     background = "#002b36"
     foreground = "#eee8d5"
     timeout = 10
-    icon = /dev/null
+    # icon = /dev/null
 
 [urgency_normal]
     background = "#002b36"
     foreground = "#eee8d5"
     timeout = 10
-    icon = /dev/null
+    # icon = /dev/null
 
 [urgency_critical]
     background = "#d64e4e"
     foreground = "#f0e0e0"
     frame_color = "#d64e4e"
     timeout = 0
-    icon = /usr/share/icons/Paper/48x48/status/dialog-warning.png
+    # icon = /usr/share/icons/Paper/48x48/status/dialog-warning.png
 
 [update_notifications_count]
     script = /home/cmiranda/bin/update-notifications-count
