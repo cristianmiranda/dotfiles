@@ -1,2 +1,3 @@
 # Custom cron
 
+*/5 * * * * bash /home/$USER/bin/set-random-wallpaper
