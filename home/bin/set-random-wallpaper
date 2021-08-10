@@ -10,6 +10,10 @@ else
     TYPE="dual"
 fi
 
-WALLPAPERS_PATH="/home/$USER/wallpapers/${TYPE}"
+if [[ $1 != "" ]]; then
+    WALLPAPERS_PATH=$1
+else
+    WALLPAPERS_PATH="/home/$USER/wallpapers/${TYPE}"
+fi
 
 find $WALLPAPERS_PATH -type f | shuf -n 1 | xargs -I {} /home/$USER/bin/set-wallpaper {}
