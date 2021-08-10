@@ -25,7 +25,7 @@ exec_always --no-startup-id crontab ~/.crontab
 exec_always --no-startup-id picom -b --experimental-backends
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
-exec_always --no-startup-id ~/bin/set-random-wallpaper
+exec_always --no-startup-id ~/bin/set-wallpaper ~/wallpapers/single/dots.png
 exec_always --no-startup-id docker
 exec_always --no-startup-id xset -b
 exec_always --no-startup-id brightnessctl --device='tpacpi::kbd_backlight' set 1
