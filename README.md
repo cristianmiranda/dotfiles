@@ -9,4 +9,4 @@
 curl -L git.io/dot.deploy -o /tmp/cm.files && bash /tmp/cm.files
 ```
 
-![](https://imgur.com/BNhxLU6.png)
+![](https://i.imgur.com/8K6LBsK.jpg)
