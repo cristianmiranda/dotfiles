@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+export DISPLAY=":0.0"
+
+MONITORS=`xrandr --listmonitors | sed 's/Monitors: //g' | head -n 1`
+
+if [[ "$MONITORS" == 1 ]]; then
+    TYPE="single"
+else
+    TYPE="dual"
+fi
+
+WALLPAPERS_PATH="/home/$USER/wallpapers/${TYPE}"
+
+find $WALLPAPERS_PATH -type f | shuf -n 1 | xargs -I {} /home/$USER/bin/set-wallpaper {}
