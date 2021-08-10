@@ -14,7 +14,7 @@ floating_modifier $super
 #
 exec --no-startup-id set-display laptop
 
-exec_always --no-startup-id "killall nm-applet || true; sleep 2; nm-applet"
+exec_always --no-startup-id nm-applet
 exec_always --no-startup-id "killall copyq || true; sleep 2; copyq"
 exec_always --no-startup-id "killall pasystray || true; sleep 2; pasystray"
 exec_always --no-startup-id "killall optimus-manager-qt || true; sleep 2; optimus-manager-qt"
@@ -33,6 +33,7 @@ exec_always --no-startup-id libinput-gestures-setup stop && libinput-gestures-se
 exec_always --no-startup-id ~/.config/i3/scripts/autoname_workspaces.py --norenumber_workspaces --icon_list_format mathematician &
 exec_always --no-startup-id alttab -d 1 -w 1 -i 100x100 -t 100x100 -bg "#002B36" -frame "#16a085" -s 2
 exec_always --no-startup-id "killall xautolock || true; sleep 2; xautolock -time 5 -corners 00+0 -cornerdelay 1 -cornerredelay 10 -locker 'xset dpms force off' -notify 5 -notifier 'blurlock'"
+exec_always --no-startup-id xsettingsd
 
 #
 # Terminal

@@ -60,7 +60,6 @@
     ~/.Xresources: .Xresources
     ~/.Xresources.asus: .Xresources.asus
     ~/.Xresources.laptop: .Xresources.laptop
-    ~/.xsettingsd: .xsettingsd
     ~/.zshrc:
         path: .zshrc
         force: true
