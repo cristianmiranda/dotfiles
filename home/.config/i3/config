@@ -35,6 +35,7 @@ exec_always --no-startup-id alttab -d 1 -w 1 -i 100x100 -t 100x100 -bg "#002B36"
 exec_always --no-startup-id "killall xautolock || true; sleep 2; xautolock -time 5 -corners 00+0 -cornerdelay 1 -cornerredelay 10 -locker 'xset dpms force off' -notify 5 -notifier 'blurlock'"
 exec_always --no-startup-id xsettingsd
 exec_always --no-startup-id "killall insync || true; QT_AUTO_SCREEN_SCALE_FACTOR=1 insync start"
+exec_always --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 
 #
 # Terminal
