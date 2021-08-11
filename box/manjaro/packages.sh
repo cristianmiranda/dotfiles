@@ -73,6 +73,7 @@ PACKAGES=(
     peek
     playerctl
     plex-media-player
+    polkit-gnome
     postman-bin
     qemu
     rofi
