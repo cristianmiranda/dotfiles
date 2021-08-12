@@ -83,6 +83,7 @@ PACKAGES=(
     sof-firmware
     sox
     spotify
+    steam
     streamlink
     sysstat
     terminator
