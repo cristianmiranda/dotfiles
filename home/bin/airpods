@@ -10,7 +10,8 @@ AIRPODS_MAC='7C:9A:1D:BA:BD:D6'
 AIRPODS_NAME='bluez_card.7C_9A_1D_BA_BD_D6'
 
 HEADSET_PROFILE='headset-head-unit'
-SPEAKER_PROFILE='a2dp-sink-aac'
+SPEAKER_PROFILE_AAC='a2dp-sink-aac'
+SPEAKER_PROFILE_SBC='a2dp-sink-sbc'
 
 case "$BLOCK_BUTTON" in
     1)
@@ -18,14 +19,18 @@ case "$BLOCK_BUTTON" in
         sleep 3
         bluetoothctl connect $AIRPODS_MAC
         sleep 3
-        pactl set-card-profile $AIRPODS_NAME $SPEAKER_PROFILE
+        pactl set-card-profile $AIRPODS_NAME $SPEAKER_PROFILE_SBC
+        sleep 1
+        pactl set-card-profile $AIRPODS_NAME $SPEAKER_PROFILE_AAC
     ;;
     2)
         cur=`pactl list | grep -A 30 $AIRPODS_NAME | grep 'Active Profile:' | cut -d' ' -f3`
         if [[ $cur == "a2dp-sink-sbc" ]]; then
             pactl set-card-profile $AIRPODS_NAME $HEADSET_PROFILE
         else
-            pactl set-card-profile $AIRPODS_NAME $SPEAKER_PROFILE
+            pactl set-card-profile $AIRPODS_NAME $SPEAKER_PROFILE_SBC
+            sleep 1
+            pactl set-card-profile $AIRPODS_NAME $SPEAKER_PROFILE_AAC
         fi
     ;;
     3)
@@ -33,7 +38,9 @@ case "$BLOCK_BUTTON" in
         #bluetooth off
     ;;
     10)
-        pactl set-card-profile $AIRPODS_NAME $SPEAKER_PROFILE
+        pactl set-card-profile $AIRPODS_NAME $SPEAKER_PROFILE_SBC
+        sleep 1
+        pactl set-card-profile $AIRPODS_NAME $SPEAKER_PROFILE_AAC
     ;;
     11)
         pactl set-card-profile $AIRPODS_NAME $HEADSET_PROFILE
@@ -43,7 +50,7 @@ esac
 card_no=`pactl list cards short | grep $AIRPODS_NAME | awk '{print $1}'`
 active_profile=`pactl list cards | sed -n -e "/Card #\$card_no/,/Card/ p" | grep 'Active Profile:' | awk '{print $3}'`
 
-if [[ $active_profile == "$SPEAKER_PROFILE" ]]; then
+if [[ $active_profile == "$SPEAKER_PROFILE_AAC" ]]; then
     active_profile="on"
 else
     active_profile="mic"
