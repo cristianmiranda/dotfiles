@@ -25,6 +25,7 @@ PACKAGES=(
     chromium
     cmatrix
     copyq
+    deluge-gtk
     discord
     docker
     docker-compose
