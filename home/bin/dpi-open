@@ -10,4 +10,6 @@ elif [[ "$MONITOR_RESOLUTION" == "4K" ]]; then
     else
         GDK_DPI_SCALE=0.5 GDK_SCALE=2 $1
     fi
+else
+    $1
 fi

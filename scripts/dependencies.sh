@@ -1,7 +1,7 @@
 #!/bin/bash
 
 sudo pacman --noconfirm -Syu
-sudo pacman --noconfirm -S go gcc
+sudo pacman --noconfirm -S go gcc git
 
 git clone https://aur.archlinux.org/yay.git ~/yay
 cd ~/yay
