@@ -19,6 +19,8 @@ else
     BACKUP_DIR=/data/ssd/backups/manual/secrets
     scp -r -P 62022 cmiranda@crismiranda.net:"${BACKUP_DIR}/.gnupg ${BACKUP_DIR}/.ssh ${BACKUP_DIR}/.cert" .
 
+    sudo pacman -S git
+
     # Clones repo
     WORKSPACE=$HOME/Documents/Work/Workspace
     mkdir -p $WORKSPACE
