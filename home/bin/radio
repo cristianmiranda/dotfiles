@@ -5,9 +5,9 @@ CURRENT_RADIO_STATION_FILE=/tmp/current-radio-station
 declare -A stations
 
 # Blue
-stations['100.7']='https://mdstrm.com/audio/60a2745ff943100826374a70/icecast.audio'
+stations['100.7']='https://playerservices.streamtheworld.com/api/livestream-redirect/BLUE_FM_100_7AAC.aac'
 # Aspen
-stations['102.3']='https://playerservices.streamtheworld.com/api/livestream-redirect/BLUE_FM_100_7AAC.aac'
+stations['102.3']='https://mdstrm.com/audio/60a2745ff943100826374a70/icecast.audio'
 # Urbana Play
 stations['104.3']='https://www.twitch.tv/urbanaplay'
 # 40 Principales
