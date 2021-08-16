@@ -92,6 +92,7 @@ PACKAGES=(
     plex-media-player
     polkit-gnome
     postman-bin
+    qalculate-gtk
     qemu
     rofi
     rofi-calc
