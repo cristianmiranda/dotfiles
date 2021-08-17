@@ -22,6 +22,7 @@
     ~/.local/share/icons: 
         path: .local/share/icons
         force: true
+    ~/.local/share/applications/hp-uiscan.desktop: .local/share/applications/hp-uiscan.desktop
     ~/.local/share/applications/io.optimus_manager.OptimusManagerQt.desktop: .local/share/applications/io.optimus_manager.OptimusManagerQt.desktop
     ~/.local/share/applications/picom.desktop: .local/share/applications/picom.desktop
     ~/.local/share/applications/spotify.desktop: .local/share/applications/spotify.desktop

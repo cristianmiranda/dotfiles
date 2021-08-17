@@ -25,6 +25,7 @@ PACKAGES=(
     chromium
     cmatrix
     copyq
+    cups
     deluge-gtk
     discord
     docker
@@ -43,6 +44,7 @@ PACKAGES=(
     git-delta-bin
     git-lfs
     hsetroot
+    hplip
     i3-gaps
     i3blocks
     i3blocks-contrib
@@ -88,6 +90,7 @@ PACKAGES=(
     steam
     streamlink
     sysstat
+    system-config-printer
     terminator
     telegram-desktop
     timeshift
