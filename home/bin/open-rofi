@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+MONITOR_RESOLUTION=`~/bin/get-resolution`
+
+DPI=192
+
+if [[ "$MONITOR_RESOLUTION" == "4K" ]]; then
+    DPI=284
+fi
+
+rofi -show drun -dpi $DPI

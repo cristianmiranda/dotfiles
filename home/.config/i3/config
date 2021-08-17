@@ -44,7 +44,7 @@ bindsym $super+Return exec --no-startup-id terminator
 #
 # Rofi
 #
-bindsym $super+space exec --no-startup-id rofi -show drun
+bindsym $super+space exec --no-startup-id $HOME/bin/open-rofi
 
 #
 # Screenshots
