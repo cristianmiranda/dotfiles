@@ -206,6 +206,7 @@ mode "set-display" {
         bindsym d exec --no-startup-id /home/cmiranda/bin/set-display dual; mode "default"
         bindsym f exec --no-startup-id /home/cmiranda/bin/set-display dual-inverted; mode "default"
         bindsym l exec --no-startup-id /home/cmiranda/bin/set-display laptop; mode "default"
+        bindsym v exec --no-startup-id /home/cmiranda/bin/set-display virtual; mode "default"
         bindsym i exec --no-startup-id xcalib -a -i; mode "default"
 
         bindsym Escape mode "default"

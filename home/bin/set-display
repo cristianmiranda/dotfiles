@@ -5,6 +5,7 @@ PROFILE_SINGLE="single";
 PROFILE_SINGLE_INVERTED="single-inverted";
 PROFILE_DUAL="dual";
 PROFILE_DUAL_INVERTED="dual-inverted";
+PROFILE_VIRTUAL="virtual"
 
 XRANDR_DISPLAY_PROFILE=$1
 
@@ -56,6 +57,15 @@ if [[ "$XRANDR_DISPLAY_PROFILE" == "$PROFILE_DUAL_INVERTED" ]]; then
     echo "Xft/DPI 98304" > ~/.xsettingsd
 
     bash ~/.screenlayout/asus_dual_inverted.sh
+fi
+
+if [[ "$XRANDR_DISPLAY_PROFILE" == "$PROFILE_VIRTUAL" ]]; then
+    xrdb -merge ~/.Xresources.asus
+
+    # Xresources.DPI * 1024
+    echo "Xft/DPI 98304" > ~/.xsettingsd
+    
+    bash ~/.screenlayout/virtual.sh
 fi
 
 # Kill xsettingsd to be restarted by i3. Used to scale GTK apps when going 2K <=> 4K
