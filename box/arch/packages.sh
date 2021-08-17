@@ -12,6 +12,7 @@ fi
 
 PACKAGES=(
     1password
+    accountsservice
     alsa-firmware
     alsa-ucm-conf
     alsa-utils
@@ -96,6 +97,7 @@ PACKAGES=(
     postman-bin
     qalculate-gtk
     qemu
+    ranger
     rofi
     rofi-calc
     simplescreenrecorder
