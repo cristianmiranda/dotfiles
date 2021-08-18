@@ -350,11 +350,11 @@ bar {
                 separator  #454947
 
 #                                  border  backgr  text
-                focused_workspace  #F9FAF9 #16a085 #292F34
+                focused_workspace  #F9FAF9 #1793D1 #1C1C1C
                 active_workspace   #595B5B #353836 #FDF6E3
                 inactive_workspace #595B5B #222D31 #EEE8D5
                 binding_mode       #16a085 #2C2C2C #F9FAF9
-                urgent_workspace   #16a085 #FDF6E3 #E5201D
+                urgent_workspace   #595B5B #FDF6E3 #E5201D
         }
 }
 
@@ -365,7 +365,7 @@ bindsym $super+b bar mode toggle
 # Theme colors
 #
 # class                 border  backgr. text    indic.  child_border
-client.focused          #556064 #556064 #80FFF9 #FDF6E3 #16a085
+client.focused          #1481B8 #556064 #80FFF9 #FDF6E3 #1481B8
 client.focused_inactive #2F3D44 #2F3D44 #1ABC9C #454948 #556064
 client.unfocused        #2F3D44 #2F3D44 #1ABC9C #454948
 client.urgent           #CB4B16 #FDF6E3 #1ABC9C #268BD2
