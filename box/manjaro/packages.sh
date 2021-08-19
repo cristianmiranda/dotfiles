@@ -57,6 +57,7 @@ PACKAGES=(
     lazydocker
     libinput-gestures
     libreoffice-still
+    meld
     mpv
     neofetch
     nerd-fonts-fira-code

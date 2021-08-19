@@ -68,6 +68,7 @@ PACKAGES=(
     libreoffice-still
     lxappearance
     matcha-gtk-theme
+    meld
     mpv
     neofetch
     nerd-fonts-fira-code
