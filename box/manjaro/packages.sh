@@ -12,6 +12,7 @@ fi
 
 PACKAGES=(
     1password
+    acpi_call
     alsa-firmware
     alsa-ucm-conf
     alsa-utils
@@ -98,6 +99,7 @@ PACKAGES=(
     thunar
     thunderbird
     tmux
+    tlp
     unrar
     unzip
     virt-manager
