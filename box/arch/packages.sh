@@ -118,6 +118,7 @@ PACKAGES=(
     thunderbird
     tmux
     tlp
+    tlpui-git
     unrar
     unzip
     virt-manager
