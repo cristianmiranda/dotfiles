@@ -63,10 +63,9 @@ bindsym Shift+F8 exec --no-startup-id nmcli c up LG
 #
 # Music control - See ~/.xbindkeysrc for more keybindings
 #
-bindsym Shift+F9 exec --no-startup-id /home/cmiranda/bin/restart-audio
-bindsym Shift+F10 exec --no-startup-id sp prev
-bindsym Shift+F12 exec --no-startup-id sp play
-bindsym Shift+F11 exec --no-startup-id sp next
+bindsym Shift+F10 exec --no-startup-id $HOME/bin/sp prev
+bindsym Shift+F11 exec --no-startup-id $HOME/bin/sp next
+bindsym Shift+F12 exec --no-startup-id $HOME/bin/sp play
 
 #
 # Kill focused window
