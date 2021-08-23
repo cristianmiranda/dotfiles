@@ -39,6 +39,10 @@ sudo systemctl enable libvirtd >> $LOG_FILE 2>&1
 sudo systemctl start libvirtd >> $LOG_FILE 2>&1
 sudo usermod -G libvirt -a cmiranda
 
+# Yubikey Manager
+sudo systemctl enable pcscd.service
+sudo systemctl start pcscd.service
+
 #
 # If Spotify or Virt-Manager cannot connect to the internet
 # replace the contents of /usr/lib/NetworkManager/conf.d/20-connectivity.conf

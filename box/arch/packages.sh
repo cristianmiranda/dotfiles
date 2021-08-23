@@ -135,6 +135,7 @@ PACKAGES=(
     xorg-xrandr
     xsettingsd
     yarn
+    yubikey-manager-qt
     zip
     zoom
     zsh

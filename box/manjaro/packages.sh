@@ -114,6 +114,7 @@ PACKAGES=(
     xorg-xinput
     xsettingsd
     yarn
+    yubikey-manager-qt
     zip
     zoom
 )
