@@ -83,6 +83,7 @@ PACKAGES=(
     noto-fonts
     noto-fonts-emoji
     nvidia
+    okular
     openssh
     optimus-manager
     optimus-manager-qt

@@ -68,6 +68,7 @@ PACKAGES=(
     nordvpn-bin
     noto-fonts-emoji
     nvidia
+    okular
     openssh
     optimus-manager
     optimus-manager-qt
