@@ -42,6 +42,7 @@
     ~/docker: docker
     ~/dots: dots
     ~/profiles: profiles
+    ~/sounds: sounds
     ~/wallpapers: wallpapers
 
     # fzf
