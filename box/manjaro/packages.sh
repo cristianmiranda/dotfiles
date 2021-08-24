@@ -96,6 +96,7 @@ PACKAGES=(
     system-config-printer
     terminator
     telegram-desktop
+    termdown
     timeshift
     thunar
     thunderbird
@@ -122,7 +123,6 @@ PACKAGES=(
 
 PIP_PACKAGES=(
     pipenv-shebang
-    termdown
     PyPDF2
     osascript
     bpytop
