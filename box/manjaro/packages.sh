@@ -17,6 +17,7 @@ PACKAGES=(
     alsa-ucm-conf
     alsa-utils
     alttab-git
+    auto-cpufreq
     autoconf
     balena-etcher
     bashtop

@@ -19,6 +19,7 @@ PACKAGES=(
     alsa-utils
     alttab-git
     arandr
+    auto-cpufreq
     autoconf
     base-devel
     bashtop

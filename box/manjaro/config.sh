@@ -43,6 +43,10 @@ sudo usermod -G libvirt -a cmiranda
 sudo systemctl enable pcscd.service
 sudo systemctl start pcscd.service
 
+# auto-cpufreq
+sudo systemctl enable auto-cpufreq
+sudo systemctl start auto-cpufreq
+
 #
 # If Spotify or Virt-Manager cannot connect to the internet
 # replace the contents of /usr/lib/NetworkManager/conf.d/20-connectivity.conf
