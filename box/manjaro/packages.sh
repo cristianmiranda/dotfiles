@@ -34,6 +34,7 @@ PACKAGES=(
     ebtables
     element-desktop
     emojify
+    espeak
     filezilla
     firefox
     firefox-developer-edition
