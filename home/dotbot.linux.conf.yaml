@@ -22,6 +22,9 @@
     ~/.local/share/icons: 
         path: .local/share/icons
         force: true
+    ~/.local/share/applications/firefox.desktop: .local/share/applications/firefox.desktop
+    ~/.local/share/applications/firefox-developer-edition.desktop: .local/share/applications/firefox-developer-edition.desktop
+    ~/.local/share/applications/firefox-nightly.desktop: .local/share/applications/firefox-nightly.desktop
     ~/.local/share/applications/hp-uiscan.desktop: .local/share/applications/hp-uiscan.desktop
     ~/.local/share/applications/io.optimus_manager.OptimusManagerQt.desktop: .local/share/applications/io.optimus_manager.OptimusManagerQt.desktop
     ~/.local/share/applications/picom.desktop: .local/share/applications/picom.desktop
