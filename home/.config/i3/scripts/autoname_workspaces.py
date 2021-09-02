@@ -125,6 +125,7 @@ WINDOW_ICONS = {
     "VirtualBox Manager": fa.icons["linux"],
     "VirtualBox Machine": fa.icons["linux"],
     "virt-manager": fa.icons["linux"],
+    "plexmediaplayer": fa.icons["film"],
 }
 
 # This icon is used for any application not in the list above
