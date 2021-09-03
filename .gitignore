@@ -58,7 +58,7 @@ home/.config/xfce4/xfconf/xfce-perchannel-xml/thunar.xml
 home/.ssh/config
 home/dots/work/.aliases
 home/.config/filezilla/sitemanager.xml
-config.yaml
+/config.yaml
 backup/Linux+Mint+-+MacBook+Pro-duplicati-config.json
 backup/macOS+-+MacBook+Pro+i9-duplicati-config.json
 home/.config/ulauncher/ext_preferences/com.github.safaariman.ulauncher-jira.db

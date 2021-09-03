@@ -1,0 +1,25 @@
+% ssh, places
+
+# Close all connections
+sshc --close-all
+
+# Connect to custom place
+sshc <place>
+
+# Connect to Mini Server
+sshc mini.global
+
+# Connect to Lillegroup's dev Server
+sshc ehr.dev
+
+# Connect to Lillegroup's stage Server
+sshc ehr.stage
+
+# Connect to Lillegroup's stage aux Server
+sshc ehr-aux.stage
+
+# Connect to Lillegroup's prod Server
+sshc ehr.prod
+
+# Connect to Lillegroup's prod aux Server
+sshc ehr-aux.prod

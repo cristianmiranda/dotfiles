@@ -1,0 +1,7 @@
+% weather
+
+# Show weather info for current location
+curl -s "v2.wttr.in"
+
+# Show weather info for a specific location
+curl -s "v2.wttr.in/<location>"

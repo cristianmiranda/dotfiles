@@ -73,6 +73,7 @@ PACKAGES=(
     matcha-gtk-theme
     meld
     mpv
+    navi
     neofetch
     nerd-fonts-fira-code
     net-tools

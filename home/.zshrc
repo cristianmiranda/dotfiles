@@ -74,3 +74,6 @@ export SDKMAN_DIR="$HOME/.sdkman"
 
 # macOS bash completion
 [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
+
+# Navi - https://github.com/denisidoro/navi#customization
+eval "$(navi widget zsh)"

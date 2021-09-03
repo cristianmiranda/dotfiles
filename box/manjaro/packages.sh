@@ -62,6 +62,7 @@ PACKAGES=(
     libreoffice-still
     meld
     mpv
+    navi
     neofetch
     nerd-fonts-fira-code
     net-tools

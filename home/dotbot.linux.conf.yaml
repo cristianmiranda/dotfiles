@@ -25,6 +25,7 @@
     ~/.local/share/applications/:
         glob: true
         path: .local/share/applications/*.desktop
+    ~/.local/share/navi: .local/share/navi
     ~/.screenlayout: .screenlayout
     ~/.ssh/config: 
         path: .ssh/config
