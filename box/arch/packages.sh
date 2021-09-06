@@ -115,6 +115,7 @@ PACKAGES=(
     streamlink
     sysstat
     system-config-printer
+    teamviewer
     terminator
     telegram-desktop
     termdown
