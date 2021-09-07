@@ -109,6 +109,7 @@ PACKAGES=(
     tlpui-git
     unrar
     unzip
+    variety
     virt-manager
     visual-studio-code-bin
     whatsapp-nativefier
