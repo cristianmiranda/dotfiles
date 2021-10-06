@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+
+# Function to output usage instructions
+function usage {
+	echo "Usage: $(basename $0) <options>" >&2
+	echo
+	echo "Gets the current USD value" >&2
+  echo
+	echo "OPTIONS:" >&2
+	echo "  --blue    | -b : Dólar Blue" >&2
+	echo "  --oficial | -o : Dólar Oficial" >&2
+}
+
+function fetchUSDValue {
+	curl -s https://www.dolarsi.com/api/dolarSiInfo.xml | xmlstarlet select --template --value-of cotiza/valor_general_dolar/$1/venta; echo
+}
+
+# Check arguments
+if [ "$1" == "-h" -o "$1" == "--help" ]; then
+	usage
+	exit 0
+elif [ $# -eq 0 ]; then
+	echo "No file specified; reading from stdin" >&2
+	exec "$0" -
+fi
+
+# Check curl is available
+type curl &>/dev/null || {
+	echo "Couldn't find curl, which is required." >&2
+	exit 17
+}
+
+# Loop through arguments
+while [ $# -gt 0 ]; do
+	arg="$1"
+	shift
+
+	if [ "$arg" == "-b" -o "$arg" == "--blue" ]; then
+    fetchUSDValue blue
+  fi
+
+  if [ "$arg" == "-o" -o "$arg" == "--oficial" ]; then
+    fetchUSDValue oficial/Capital_federal
+  fi
+done
