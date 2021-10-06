@@ -117,6 +117,7 @@ PACKAGES=(
     xcalib
     xclip
     xf86-input-libinput
+    xmlstarlet
     xorg-xev
     xorg-xinput
     xsettingsd
