@@ -106,7 +106,8 @@ OUTLABEL=<span size='large'> </span>
 # The script may be called with -w and -c switches to specify thresholds,
 # see the script for details.
 [cpu_usage]
-label=<span size='large'> </span>
+command=$HOME/.config/i3blocks/scripts/cpu_usage
+#label=<span size='large'> </span>
 interval=10
 min_width= 99.99%
 
