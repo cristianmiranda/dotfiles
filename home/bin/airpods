@@ -58,7 +58,7 @@ fi
 
 if pactl list | grep $AIRPODS_NAME &>>/dev/null; then
     echo "$active_profile"
-    echo "active_profile"
+    echo "$active_profile"
     echo "#ffffff"
 else
     echo "off"
