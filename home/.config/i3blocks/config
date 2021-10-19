@@ -114,7 +114,8 @@ min_width= 99.99%
 #
 # The type defaults to "mem" if the instance is not specified.
 [memory]
-label=<span size='large'> </span>
+command=$HOME/.config/i3blocks/scripts/memory
+#label=<span size='large'> </span>
 separator=true
 interval=30
 
