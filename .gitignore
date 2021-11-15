@@ -54,6 +54,9 @@ home/.config/xfce4/xfconf/xfce-perchannel-xml/thunar.xml
 .gitsecret/keys/random_seed
 !*.secret
 
+# Steam games icons
+steam_icon_*.png
+
 # dotfiles' secrets
 home/.ssh/config
 home/dots/work/.aliases
