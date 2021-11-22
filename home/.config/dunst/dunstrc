@@ -17,7 +17,29 @@
     # the top and down respectively.
     # The width can be negative.  In this case the actual width is the
     # screen width minus the width defined in within the geometry option.
-    geometry = "800x5-30+20"
+    #geometry = "800x5-30+20"
+
+    ### Geometry ###
+
+    # dynamic width from 0 to 300
+    # width = (0, 300)
+    # constant width of 300
+    width = 800
+
+    # The maximum height of a single notification, excluding the frame.
+    #height = 50
+
+    # Position the notification in the top right corner
+    origin = top-right
+
+    # Offset from the origin
+    offset = 32x32
+
+    # Scale factor. It is auto-detected if value is 0.
+    scale = 0
+
+    # Maximum number of notification (0 means no limit)
+    notification_limit = 0
 
     # Radius of the four corners of the notification
     corner_radius = 15
