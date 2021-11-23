@@ -13,4 +13,4 @@ curl -L git.io/dot.deploy -o /tmp/cm.files && bash /tmp/cm.files
 
 * [Arch](docs/Arch.md)
 
-![](https://i.imgur.com/8K6LBsK.jpg)
+![](https://i.imgur.com/wM2b46p.jpg)
