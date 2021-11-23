@@ -89,6 +89,7 @@ PACKAGES=(
     rofi
     rofi-calc
     simplescreenrecorder
+    skypeforlinux-stable-bin
     screen
     sof-firmware
     sox
