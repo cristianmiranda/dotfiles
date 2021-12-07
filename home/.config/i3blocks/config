@@ -53,10 +53,16 @@ separator_block_width=15
 [microphone]
 command=$HOME/.config/i3blocks/scripts/mic-status
 interval=1
+separator=false
+separator_block_width=15
 
 #
 # EMOJI BLOCKS
 #
+
+[airpods]
+command=$HOME/.config/i3blocks/scripts/airpods
+interval=5
 
 [radio]
 command=$HOME/.config/i3blocks/scripts/radio
@@ -69,11 +75,6 @@ interval=600
 #
 #
 #
-
-[airpods]
-command=$HOME/bin/airpods
-label=🎧 
-interval=5
 
 # Volume indicator
 #

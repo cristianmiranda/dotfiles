@@ -1,0 +1,35 @@
+#!/bin/bash
+
+AIRPODS_NAME='bluez_card.7C_9A_1D_BA_BD_D6'
+SPEAKER_PROFILE_SBC='a2dp-sink-sbc'
+
+case "$BLOCK_BUTTON" in
+    1)
+        ~/bin/airpods connect
+    ;;
+    3)
+        ~/bin/airpods disconnect
+    ;;
+esac
+
+card_no=`pactl list cards short | grep $AIRPODS_NAME | awk '{print $1}'`
+active_profile=`pactl list cards | sed -n -e "/Card #\$card_no/,/Card/ p" | grep 'Active Profile:' | awk '{print $3}'`
+
+if [[ $active_profile == "$SPEAKER_PROFILE_SBC" ]]; then
+    active_profile=""
+else
+    active_profile=""
+fi
+
+if pactl list | grep $AIRPODS_NAME &>>/dev/null; then
+    echo "<span size='x-large'>$active_profile</span>"
+    echo "<span size='x-large'>$active_profile</span>"
+    #echo "$active_profile"
+    #echo "$active_profile"
+    echo "#ededed"
+else
+    # OFF
+    echo "🎧"
+    echo "🎧"
+    echo "#a6a6a6"
+fi
