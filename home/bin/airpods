@@ -8,10 +8,16 @@
 
 AIRPODS_MAC='7C:9A:1D:BA:BD:D6'
 AIRPODS_NAME='bluez_card.7C_9A_1D_BA_BD_D6'
+AIRPODS_SINK='bluez_output.7C_9A_1D_BA_BD_D6'
+AIRPODS_SOURCE='bluez_input.7C_9A_1D_BA_BD_D6'
 
 HEADSET_PROFILE='headset-head-unit'
 SPEAKER_PROFILE_AAC='a2dp-sink-aac'
 SPEAKER_PROFILE_SBC='a2dp-sink-sbc'
+
+SPEAKER_SINK='a2dp-sink'
+HEADSET_SINK='headset-head-unit'
+HEADSET_SOURCE='headset-head-unit'
 
 case "$BLOCK_BUTTON" in
     1)
@@ -38,12 +44,16 @@ case "$BLOCK_BUTTON" in
         #bluetooth off
     ;;
     10)
+        pactl set-card-profile $AIRPODS_NAME $SPEAKER_PROFILE_AAC
         pactl set-card-profile $AIRPODS_NAME $SPEAKER_PROFILE_SBC
         sleep 1
-        pactl set-card-profile $AIRPODS_NAME $SPEAKER_PROFILE_AAC
+        pactl set-default-sink $AIRPODS_SINK.$SPEAKER_SINK
     ;;
     11)
         pactl set-card-profile $AIRPODS_NAME $HEADSET_PROFILE
+        sleep 1
+        pactl set-default-sink $AIRPODS_SINK.$HEADSET_SINK
+        pactl set-default-source $AIRPODS_SOURCE.$HEADSET_SOURCE
     ;;
 esac
 
