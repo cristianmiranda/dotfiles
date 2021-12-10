@@ -33,6 +33,7 @@ VOLUME="`volume`"
 
 case "$1" in
   up)
+    amixer-vol unmute
     pamixer -i $INCR
     if [[ $VOLUME -gt $MAX_VOLUME ]]; then
       pamixer --set-volume ${MAX_VOLUME}
@@ -40,6 +41,7 @@ case "$1" in
     soundFeeback
     ;;
   down)
+    amixer-vol unmute
     pamixer -d $INCR
     if [[ $VOLUME -lt $MIN_VOLUME ]]; then
       pamixer --set-volume ${MIN_VOLUME}
