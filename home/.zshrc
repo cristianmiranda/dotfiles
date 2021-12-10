@@ -41,6 +41,7 @@ if ! zgen saved; then
   zgen load zsh-users/zsh-syntax-highlighting
   zgen load wfxr/forgit
   zgen load lukechilds/zsh-nvm
+  zgen load matthieusb/zsh-sdkman
 
   # theme
   zgen load denysdovhan/spaceship-prompt spaceship
@@ -50,6 +51,8 @@ if ! zgen saved; then
   # generate the init script from plugins above
   zgen save
 fi
+
+zmodload zsh/zprof
 
 #prompt_context(){}
 
@@ -67,10 +70,6 @@ source ${HOME}/profiles/common.sh
 
 # Command-line Fuzzy Finder - https://github.com/junegunn/fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-# THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 # macOS bash completion
 [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
