@@ -5,7 +5,6 @@ configuration {
 	display-drun: "";
 	display-calc: "";
 	dpi: 192;
-	theme: "~/.config/rofi/themes/slate";
 	drun-display-format: "{name}";
 /*	width: 50;*/
 /*	columns: 1;*/
@@ -137,3 +136,5 @@ configuration {
 /*	me-accept-entry: "MouseDPrimary";*/
 /*	me-accept-custom: "Control+MouseDPrimary";*/
 }
+
+@theme "~/.config/rofi/themes/slate"
