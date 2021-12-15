@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Albion Online
+Comment=Play this game on Steam
+Exec=steam steam://rungameid/761890
+Icon=steam_icon_761890
+Terminal=false
+Type=Application
+Categories=Game;

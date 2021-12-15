@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Super Animal Royale
+Comment=Play this game on Steam
+Exec=steam steam://rungameid/843380
+Icon=steam_icon_843380
+Terminal=false
+Type=Application
+Categories=Game;
