@@ -88,6 +88,7 @@ PACKAGES=(
     qemu
     rofi
     rofi-calc
+    ruby-colorls
     simplescreenrecorder
     skypeforlinux-stable-bin
     screen

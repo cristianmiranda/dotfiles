@@ -24,6 +24,7 @@ PACKAGES=(
     p7zip-full
     python3-pip
     ranger
+    ruby-dev
     tree
     vim
     xclip
@@ -38,3 +39,5 @@ done
 pip3Install pipenv-shebang
 pip3Install bpytop
 pip3Install virtualenv
+
+sudo gem install colorls
