@@ -24,6 +24,7 @@ PACKAGES=(
     bat
     brightnessctl
     cargo
+    cawbird-git
     chromium
     cmatrix
     copyq

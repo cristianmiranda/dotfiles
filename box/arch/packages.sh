@@ -29,6 +29,7 @@ PACKAGES=(
     blueman
     brightnessctl
     cargo
+    cawbird-git
     chromium
     cmatrix
     copyq
