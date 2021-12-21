@@ -47,6 +47,9 @@
     ~/.fzf.bash: .fzf.bash
     ~/.fzf.zsh: .fzf.zsh
 
+    # QUEMU GPU Passthrough battery mock file
+    ~/quemu_battery_mock.dat: quemu_battery_mock.dat
+
     # Hidden Files
     ~/.bash_profile:
         path: .bash_profile

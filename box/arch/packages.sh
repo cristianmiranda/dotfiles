@@ -40,6 +40,7 @@ PACKAGES=(
     docker-compose
     dunst
     ebtables
+    edk2-ovmf
     element-desktop
     emojify
     espeak

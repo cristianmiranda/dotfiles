@@ -34,6 +34,7 @@ PACKAGES=(
     docker
     docker-compose
     ebtables
+    edk2-ovmf
     element-desktop
     emojify
     espeak
