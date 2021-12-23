@@ -56,6 +56,7 @@ PACKAGES=(
     git-delta-bin
     git-lfs
     go
+    gtkpod
     hplip
     hsetroot
     i3-gaps
@@ -147,6 +148,7 @@ PACKAGES=(
     xorg-xrandr
     xsettingsd
     yarn
+    youtube-dl
     yubikey-manager-qt
     zip
     zoom

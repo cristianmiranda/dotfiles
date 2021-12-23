@@ -48,6 +48,7 @@ PACKAGES=(
     font-manager
     git-delta-bin
     git-lfs
+    gtkpod
     hsetroot
     hplip
     i3-gaps
@@ -126,6 +127,7 @@ PACKAGES=(
     xorg-xinput
     xsettingsd
     yarn
+    youtube-dl
     yubikey-manager-qt
     zip
     zoom
