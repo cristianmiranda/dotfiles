@@ -87,6 +87,7 @@ PACKAGES=(
     plex-media-player
     polkit-gnome
     postman-bin
+    python-spotdl
     qalculate-gtk
     qemu
     rofi
