@@ -81,6 +81,26 @@ dmesg | grep -i vfio
 Now download Windows ISO and create a VM following instructions here: https://youtu.be/eBJBH7LFd0E?t=407
 
 ---
+## Custom image and grub entry
+
+It's possible to create a custom image (mkinitcpio.conf) and a new GRUB entry to switch between the two modes (Linux using both GPUs  & Linux using only the iGPU and passing through the dGPU to the VM).
+
+```bash
+# Copy the base conf file
+sudo cp /etc/mkinitcpio.conf /etc/mkinitcpio-gpu-passthrough.conf
+
+# Edit MODULES as explained before
+MODULES=(... vfio_pci vfio vfio_iommu_type1 vfio_virqfd ...)
+
+# Generate the custom image
+sudo cp /etc/mkinitcpio.conf /etc/mkinitcpio-gpu-passthrough.conf
+```
+
+Then create a new GRUB entry using the newly generated image
+
+![](https://i.imgur.com/X0msXfT.png)
+
+---
 
 ## Extras
 
