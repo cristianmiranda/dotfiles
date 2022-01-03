@@ -104,6 +104,7 @@ PACKAGES=(
     plex-media-player
     polkit-gnome
     postman-bin
+    proton-ge-custom-bin
     python-spotdl
     qalculate-gtk
     qemu
