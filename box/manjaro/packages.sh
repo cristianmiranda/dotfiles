@@ -137,6 +137,7 @@ PACKAGES=(
 
 PIP_PACKAGES=(
     pipenv-shebang
+    pipenv
     PyPDF2
     osascript
     bpytop
