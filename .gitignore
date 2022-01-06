@@ -55,7 +55,7 @@ home/.config/xfce4/xfconf/xfce-perchannel-xml/thunar.xml
 !*.secret
 
 # Steam games icons
-steam_icon_*.png
+home/**/steam_icon_*.png
 
 # dotfiles' secrets
 home/.ssh/config
