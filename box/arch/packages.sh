@@ -91,7 +91,7 @@ PACKAGES=(
     nvidia
     okular
     openssh
-    optimus-manager
+    optimus-manager-git
     optimus-manager-qt
     p7zip
     pasystray
