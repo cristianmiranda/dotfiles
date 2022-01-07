@@ -67,3 +67,4 @@ backup/macOS+-+MacBook+Pro+i9-duplicati-config.json
 home/.config/ulauncher/ext_preferences/com.github.safaariman.ulauncher-jira.db
 home/bin/process-element-notifications
 home/.secrets
+home/.switch/prod.keys

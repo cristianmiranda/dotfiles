@@ -30,6 +30,7 @@
     ~/.ssh/config: 
         path: .ssh/config
         force: true
+    ~/.switch: .switch
     ~/.themes: .themes
     ~/.tmux.conf: .tmux.conf
     ~/.vim: .vim

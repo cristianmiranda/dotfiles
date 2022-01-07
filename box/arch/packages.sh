@@ -165,6 +165,7 @@ PIP_PACKAGES=(
     bpytop
     i3ipc
     fontawesome
+    nsz
 )
 
 # Reinstall pambase
