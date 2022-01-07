@@ -63,3 +63,5 @@ alias path='echo -e ${PATH//:/\\n}'
 alias rat='bat --plain '
 
 alias libgen='libgen-downloader'
+
+alias scpc='sshc --rsync -avP'
