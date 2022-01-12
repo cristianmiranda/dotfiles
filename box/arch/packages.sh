@@ -72,7 +72,6 @@ PACKAGES=(
     jq
     lazydocker
     libinput-gestures
-    libreoffice-still
     lxappearance
     matcha-gtk-theme
     meld
@@ -91,6 +90,7 @@ PACKAGES=(
     noto-fonts-emoji
     nvidia
     okular
+    onlyoffice-bin
     openssh
     optimus-manager-git
     optimus-manager-qt
