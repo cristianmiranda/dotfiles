@@ -8,7 +8,10 @@ WRONG='#cc0000'
 WRONG_FILL='#ffd9cc'
 VERIFYING='#1793D1'
 
+dunstctl set-paused true
+
 i3lock \
+--nofork                     \
 --insidever-color=$CLEAR     \
 --ringver-color=$VERIFYING   \
 \
@@ -42,3 +45,5 @@ i3lock \
 --date-font="FiraCode Nerd Font Mono" \
 --pass-media-keys            \
 --special-passthrough        \
+
+dunstctl set-paused false
