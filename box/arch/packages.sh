@@ -62,6 +62,7 @@ PACKAGES=(
     i3-gaps
     i3blocks
     i3blocks-contrib
+    i3lock-color-git
     imagemagick
     inetutils
     intellij-idea-ultimate-edition-jre

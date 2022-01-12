@@ -33,7 +33,7 @@ exec_always --no-startup-id libinput-gestures-setup stop && libinput-gestures-se
 exec_always --no-startup-id ~/.config/i3/scripts/autoname_workspaces.py --norenumber_workspaces --icon_list_format mathematician &
 exec_always --no-startup-id ~/.config/i3/scripts/alternating_layouts.py &
 exec_always --no-startup-id alttab -d 1 -w 1 -i 100x100 -t 100x100 -bg "#002B36" -frame "#16a085" -s 2
-exec_always --no-startup-id "killall xautolock || true; sleep 2; xautolock -time 15 -corners 00+0 -cornerdelay 1 -cornerredelay 10 -locker 'xset dpms force off' -notify 5 -notifier '$HOME/bin/blur-lock'"
+exec_always --no-startup-id "killall xautolock || true; sleep 2; xautolock -time 15 -corners 00+0 -cornerdelay 1 -cornerredelay 10 -locker 'xset dpms force off' -notify 5 -notifier '$HOME/bin/lock-screen'"
 exec_always --no-startup-id xsettingsd
 exec_always --no-startup-id "killall insync || true; QT_AUTO_SCREEN_SCALE_FACTOR=1 insync start"
 exec_always --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
@@ -220,7 +220,7 @@ mode "i3-command" {
         bindsym q exec --no-startup-id "i3-nagbar -t warning -m 'Really, exit?' -b 'Yes' 'i3-msg exit'"; mode "default"
         bindsym d exec --no-startup-id bash ~/dotfiles/scripts/sync.sh && i3-msg restart; mode "default"
         bindsym r restart
-        bindsym l exec --no-startup-id blurlock; mode "default"
+        bindsym l exec --no-startup-id /home/cmiranda/bin/lock-screen; mode "default"
 
         bindsym Escape mode "default"
         bindsym Return mode "default"

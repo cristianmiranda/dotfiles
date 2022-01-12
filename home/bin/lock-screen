@@ -1,0 +1,44 @@
+#!/bin/bash
+
+BLANK='#00000000'
+CLEAR='#ffffff22'
+DEFAULT='#1793D1'
+TEXT='#1793D1'
+WRONG='#cc0000'
+WRONG_FILL='#ffd9cc'
+VERIFYING='#1793D1'
+
+i3lock \
+--insidever-color=$CLEAR     \
+--ringver-color=$VERIFYING   \
+\
+--insidewrong-color=$WRONG_FILL \
+--ringwrong-color=$WRONG     \
+\
+--inside-color=$BLANK        \
+--ring-color=$DEFAULT        \
+--line-color=$BLANK          \
+--separator-color=$DEFAULT   \
+\
+--verif-color=$TEXT          \
+--wrong-color=$WRONG         \
+--time-color=$TEXT           \
+--date-color=$TEXT           \
+--layout-color=$TEXT         \
+--keyhl-color=$WRONG         \
+--bshl-color=$WRONG          \
+\
+--screen 1                   \
+--blur 5                     \
+--radius 180                 \
+--ring-width 20              \
+--clock                      \
+--indicator                  \
+--time-str="%H:%M:%S"        \
+--time-size=50               \
+--time-font="FiraCode Nerd Font Mono" \
+--date-str=""                \
+--date-size=20              \
+--date-font="FiraCode Nerd Font Mono" \
+--pass-media-keys            \
+--special-passthrough        \
