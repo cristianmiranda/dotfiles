@@ -24,7 +24,7 @@
     # dynamic width from 0 to 300
     # width = (0, 300)
     # constant width of 300
-    width = 800
+    width = 600
 
     # The maximum height of a single notification, excluding the frame.
     height = 150
@@ -42,7 +42,7 @@
     notification_limit = 0
 
     # Radius of the four corners of the notification
-    corner_radius = 15
+    corner_radius = 0
 
     # Show how many messages are currently hidden (because of geometry).
     indicate_hidden = yes
@@ -70,10 +70,9 @@
     separator_color = auto
 
     # Add vertical padding to the inside of the notification
-    padding = 20
-
+    padding = 15
     # Add horizontal padding for when the text gets long enough
-    horizontal_padding = 20
+    horizontal_padding = 15
 
     # The frame color and width of the notification
     frame_width = 0
@@ -87,7 +86,7 @@
     idle_threshold = 0
 
     # Font and typography settings
-    font = MesloLGS NF 11
+    font = FiraCode Nerd Font Mono Retina 11
     alignment = left
     word_wrap = yes
 
