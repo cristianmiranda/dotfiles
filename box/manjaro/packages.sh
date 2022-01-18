@@ -89,6 +89,8 @@ PACKAGES=(
     polkit-gnome
     postman-bin
     proton-ge-custom-bin
+    pyenv
+    pyenv-virtualenv
     python-spotdl
     qalculate-gtk
     qemu
