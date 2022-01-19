@@ -127,6 +127,7 @@ WINDOW_ICONS = {
     "virt-manager": fa.icons["linux"],
     "plexmediaplayer": fa.icons["film"],
     "cawbird": fa.icons["twitter"],
+    "jetbrains-pycharm": fa.icons["code"],
 }
 
 # This icon is used for any application not in the list above
