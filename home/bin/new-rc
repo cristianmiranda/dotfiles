@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+NEW_VERSION=$1
+NEXT_VERSION=$2
+
+git checkout develop
+git pull -r origin develop
+
+git checkout -b release/${NEW_VERSION}
+sed -i "s/\"version\": \"${NEW_VERSION}-SNAPSHOT\"/\"version\": \"${NEW_VERSION}\"/g" package.json
+git commit -am "app-version: ${NEW_VERSION}-SNAPSHOT => ${NEW_VERSION}"
+git push origin release/${NEW_VERSION}
+
+git checkout develop
+git rebase release/${NEW_VERSION}
+sed -i "s/\"version\": \"${NEW_VERSION}\"/\"version\": \"${NEXT_VERSION}-SNAPSHOT\"/g" package.json
+git commit -am "app-version: ${NEW_VERSION} => ${NEXT_VERSION}-SNAPSHOT"
+git push origin develop
+
+git checkout release/${NEW_VERSION}
