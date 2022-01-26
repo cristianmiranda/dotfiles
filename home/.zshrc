@@ -11,9 +11,9 @@
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+#if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+#  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+#fi
 
 # ZSH_THEME=agnoster
 
@@ -44,9 +44,9 @@ if ! zgen saved; then
   zgen load matthieusb/zsh-sdkman
 
   # theme
-  # zgen load denysdovhan/spaceship-prompt spaceship
+  zgen load denysdovhan/spaceship-prompt spaceship
   # zgen load agnoster/agnoster-zsh-theme
-  zgen load romkatv/powerlevel10k powerlevel10k
+  # zgen load romkatv/powerlevel10k powerlevel10k
 
   # generate the init script from plugins above
   zgen save
@@ -76,6 +76,6 @@ source ${HOME}/profiles/common.sh
 eval "$(navi widget zsh)"
 
 # To customize prompt, run `p10k configure` or edit ~/Documents/Work/Workspace/dotfiles/home/.p10k.zsh.
-[[ ! -f ~/Documents/Work/Workspace/dotfiles/home/.p10k.zsh ]] || source ~/Documents/Work/Workspace/dotfiles/home/.p10k.zsh
+# [[ ! -f ~/Documents/Work/Workspace/dotfiles/home/.p10k.zsh ]] || source ~/Documents/Work/Workspace/dotfiles/home/.p10k.zsh
 
-typeset -g POWERLEVEL9K_PROMPT_CHAR_{OK,ERROR}_VIINS_CONTENT_EXPANSION='➜'
+# typeset -g POWERLEVEL9K_PROMPT_CHAR_{OK,ERROR}_VIINS_CONTENT_EXPANSION='➜'
