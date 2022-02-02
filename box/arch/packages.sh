@@ -32,6 +32,7 @@ PACKAGES=(
     cawbird-git
     chromium
     cmatrix
+    cloud-sql-proxy-bin
     copyq
     cups
     deluge-gtk
@@ -56,6 +57,7 @@ PACKAGES=(
     git-delta-bin
     git-lfs
     go
+    google-cloud-sdk
     gtkpod
     hplip
     hsetroot
