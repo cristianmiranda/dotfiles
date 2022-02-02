@@ -65,6 +65,7 @@ PACKAGES=(
     jq
     lazydocker
     libinput-gestures
+    libreoffice-fresh
     meld
     mpv
     navi
@@ -77,7 +78,6 @@ PACKAGES=(
     noto-fonts-emoji
     nvidia
     okular
-    onlyoffice-bin
     openssh
     optimus-manager-git
     optimus-manager-qt
