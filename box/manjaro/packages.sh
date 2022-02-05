@@ -102,6 +102,7 @@ PACKAGES=(
     simplescreenrecorder
     skypeforlinux-stable-bin
     screen
+    slack-desktop
     sof-firmware
     sox
     spotify
