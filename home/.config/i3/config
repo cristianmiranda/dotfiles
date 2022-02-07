@@ -20,7 +20,7 @@ exec_always --no-startup-id "killall copyq || true; sleep 2; copyq"
 exec_always --no-startup-id "killall pasystray || true; sleep 2; pasystray"
 exec_always --no-startup-id "killall optimus-manager-qt || true; sleep 2; optimus-manager-qt"
 # exec_always --no-startup-id ~/bin/set-random-wallpaper ~/wallpapers/single/artistic2
-exec_always --no-startup-id ~/bin/set-wallpaper ~/wallpapers/single/astronaut.jpg
+exec_always --no-startup-id ~/bin/set-wallpaper ~/wallpapers/single/macos/macos-blue.jpg
 exec_always --no-startup-id xfce4-power-manager
 exec_always --no-startup-id blueman-applet
 exec_always --no-startup-id crontab ~/.crontab
