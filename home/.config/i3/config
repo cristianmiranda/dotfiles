@@ -52,8 +52,8 @@ bindsym $super+space exec --no-startup-id $HOME/bin/open-rofi
 # Screenshots
 #
 bindsym $super+Shift+2 exec --no-startup-id "flameshot gui -r > /tmp/clipboard.png && ~/bin/imgur /tmp/clipboard.png && dunstify 'Screenshot uploaded to imgur'"
-bindsym $super+Shift+3 exec --no-startup-id flameshot full -p "/home/cmiranda/Pictures/Screenshots"
-bindsym $super+Shift+4 exec --no-startup-id flameshot gui -p "/home/cmiranda/Pictures/Screenshots"
+bindsym $super+Shift+3 exec --no-startup-id flameshot full
+bindsym $super+Shift+4 exec --no-startup-id flameshot gui
 bindsym $super+Shift+5 exec --no-startup-id peek
 
 #
