@@ -63,6 +63,7 @@ PACKAGES=(
     jetbrains-toolbox
     jitsi-meet-desktop-bin
     jq
+    keepassxc
     lazydocker
     libinput-gestures
     libreoffice-fresh
