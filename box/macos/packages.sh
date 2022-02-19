@@ -63,6 +63,7 @@ PACKAGES=(
 	InstantClientTap/instantclient/instantclient-sqlplus
 	jq
 	maven
+	navi
 	node
 	ranger
 	svn
@@ -84,8 +85,8 @@ CASKS=(
 	homebrew/cask-versions/firefox-developer-edition
 	gitify
 	gitkraken
-	google-backup-and-sync
 	google-chrome
+	google-drive
 	gpg-suite
 	iterm2
 	jetbrains-toolbox

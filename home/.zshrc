@@ -63,14 +63,22 @@ SPACESHIP_GCLOUD_SHOW=false
 SPACESHIP_DOCKER_SHOW=false
 SPACESHIP_DOCKER_VERBOSE=false
 
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  # macOS bash completion
+  [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
+  
+  # Brew
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+
+  # Override python 2.7 with 3
+  alias python=python3
+fi
+
 # Common cross-profile stuff
 source ${HOME}/profiles/common.sh
 
 # Command-line Fuzzy Finder - https://github.com/junegunn/fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-# macOS bash completion
-[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
 
 # Navi - https://github.com/denisidoro/navi#customization
 eval "$(navi widget zsh)"

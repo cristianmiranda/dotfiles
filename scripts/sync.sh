@@ -25,7 +25,8 @@ HOSTS_MAP["x1-extreme"]=${DOTBOT_LINUX}         # Lenovo X1 Extreme
 HOSTS_MAP["Linux-MBP"]=${DOTBOT_LINUX}          # Linux Desktop
 HOSTS_MAP["mini-linux"]=${DOTBOT_SERVER}        # Linux Server
 HOSTS_MAP["raspberrypi"]=${DOTBOT_SERVER}       # Raspberry Pi 3/4
-HOSTS_MAP["Cristians-MBP"]=${DOTBOT_MACOS}      # macOS
+HOSTS_MAP["Cristians-MBP"]=${DOTBOT_MACOS}      # macOS 15
+HOSTS_MAP["CristiansMBP13"]=${DOTBOT_MACOS}     # macOS 13
 
 #
 # Getting config file for host
