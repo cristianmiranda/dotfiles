@@ -137,6 +137,7 @@ PACKAGES=(
     xsettingsd
     yarn
     youtube-dl
+    yq
     yubikey-manager-qt
     zip
     zoom

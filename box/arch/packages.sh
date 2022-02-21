@@ -157,6 +157,7 @@ PACKAGES=(
     xorg-xrandr
     xsettingsd
     yarn
+    yq
     youtube-dl
     yubikey-manager-qt
     zip
