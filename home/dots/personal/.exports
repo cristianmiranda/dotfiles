@@ -38,3 +38,9 @@ export DPKG_PAGER=cat
 # Fixes “Inappropriate ioctl for device” error when using gpg on non-gui machines
 export GPG_TTY=$(tty)
 
+# Export path with ruby gems
+# https://wiki.archlinux.org/title/ruby
+#
+export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
+export PATH="$PATH:$GEM_HOME/bin"
+
