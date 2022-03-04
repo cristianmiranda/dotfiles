@@ -73,6 +73,7 @@ PACKAGES=(
     jitsi-meet-desktop-bin
     jq
     keepassxc
+    korganizer
     lazydocker
     libinput-gestures
     libreoffice-fresh
