@@ -128,6 +128,7 @@ WINDOW_ICONS = {
     "plexmediaplayer": fa.icons["film"],
     "cawbird": fa.icons["twitter"],
     "jetbrains-pycharm": fa.icons["code"],
+    "korganizer": fa.icons["calendar"],
 }
 
 # This icon is used for any application not in the list above
