@@ -46,6 +46,7 @@ PACKAGES=(
     element-desktop
     emojify
     espeak
+    extra/bind
     filezilla
     firefox
     firefox-developer-edition
