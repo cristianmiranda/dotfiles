@@ -126,6 +126,7 @@ PACKAGES=(
     screen
     slack-desktop
     sof-firmware
+    sops
     sox
     spotify
     steam
