@@ -66,6 +66,7 @@ PACKAGES=(
 	navi
 	node
 	ranger
+	sops
 	svn
 	tmux
 	yarn
