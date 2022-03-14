@@ -74,6 +74,7 @@ PACKAGES=(
 
 CASKS=(
 	1password
+	authy
 	balenaetcher
 	discord
 	docker
