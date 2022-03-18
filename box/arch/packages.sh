@@ -58,6 +58,7 @@ PACKAGES=(
     font-manager
     git-delta-bin
     git-lfs
+    gitkraken
     go
     google-cloud-sdk
     gtkpod
