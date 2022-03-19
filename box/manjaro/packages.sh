@@ -69,6 +69,7 @@ PACKAGES=(
     jq
     keepassxc
     korganizer
+    kubectl
     lazydocker
     libinput-gestures
     libreoffice-fresh
