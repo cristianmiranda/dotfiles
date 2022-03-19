@@ -50,6 +50,7 @@ PACKAGES=(
     ffmpeg
     flameshot
     font-manager
+    freerdp
     git-delta-bin
     git-lfs
     gitkraken
