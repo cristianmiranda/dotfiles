@@ -23,6 +23,7 @@ PACKAGES=(
     balena-etcher
     bashtop
     bat
+    brave-bin
     brightnessctl
     cargo
     cawbird-git

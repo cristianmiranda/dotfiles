@@ -28,6 +28,7 @@ PACKAGES=(
     bluez
     bluez-utils
     blueman
+    brave-bin
     brightnessctl
     cargo
     cawbird-git
