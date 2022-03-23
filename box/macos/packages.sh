@@ -50,6 +50,7 @@ ESSENTIALS=(
 
 PACKAGES=(
 	ant
+	awscli
 	bat
 	bash-completion
 	jakehilborn/jakehilborn/displayplacer
