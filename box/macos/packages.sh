@@ -79,6 +79,7 @@ CASKS=(
 	1password
 	authy
 	balenaetcher
+	dbeaver-community
 	discord
 	docker
 	dozer
