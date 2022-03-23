@@ -68,6 +68,7 @@ PACKAGES=(
 	ranger
 	sops
 	svn
+	terraform
 	tmux
 	yarn
 	w3m
