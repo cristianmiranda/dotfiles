@@ -21,6 +21,9 @@
     ~/.gnupg/gpg-agent.conf:
         path: .gnupg/gpg-agent.conf
         force: true
+    ~/Library/Application Support/navi: 
+        path: .local/share/navi
+        force: true
     ~/.ssh/config: 
         path: .ssh/config
         force: true
