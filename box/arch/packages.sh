@@ -122,6 +122,7 @@ PACKAGES=(
     qalculate-gtk
     qemu
     ranger
+    redli
     rofi
     rofi-calc
     ruby-colorls

@@ -104,6 +104,7 @@ PACKAGES=(
     python-spotdl
     qalculate-gtk
     qemu
+    redli
     rofi
     rofi-calc
     ruby-colorls
