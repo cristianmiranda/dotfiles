@@ -25,5 +25,14 @@ if [[ $machine == "Mac" ]]; then
     done
 elif [[ $machine == "Linux" ]]; then
     echo ">> Linux machine detected"
-    # TODO: Use xdotool to move mouse around
+    while true; do
+        xdotool mousemove 100 200
+        sleep 1
+        xdotool mousemove 2400 200
+        sleep 1
+        xdotool mousemove 100 1200
+        sleep 1
+        xdotool mousemove 2400 1200
+        sleep 1
+    done
 fi

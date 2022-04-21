@@ -276,6 +276,14 @@ mode "radio-station" {
         bindsym Return mode "default"
 }
 
+mode "owl" {
+        bindsym a exec --no-startup-id ~/bin/owl; mode "default"
+        bindsym d exec --no-startup-id killall owl; mode "default"
+        
+        bindsym Escape mode "default"
+        bindsym Return mode "default"
+}
+
 bindsym $super+c exec --no-startup-id i3-msg '[class="(?i)Code"] focus'
 bindsym $super+d exec --no-startup-id i3-msg '[class="(?i)Discord"] focus'
 bindsym $super+e exec --no-startup-id i3-msg '[class="firefoxdeveloperedition$"] focus'
@@ -297,6 +305,7 @@ bindsym $super+Shift+g mode "gaps"
 bindsym $super+Shift+i mode "init-workspace"
 bindsym $super+Shift+l mode "launch"
 bindsym $super+Shift+m mode "move-to-workspace"
+bindsym $super+Shift+o mode "owl"
 bindsym $super+Shift+r mode "resize"
 bindsym $super+Shift+s mode "swap-with-workspace"
 bindsym $super+Shift+u mode "radio-station"
