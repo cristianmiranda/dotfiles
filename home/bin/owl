@@ -1,0 +1,29 @@
+#!/bin/bash
+
+set -e
+
+echo "🦉 Owl!"
+
+unameOut="$(uname -s)"
+case "${unameOut}" in
+    Linux*)     machine=Linux;;
+    Darwin*)    machine=Mac;;
+    *)          machine="UNKNOWN:${unameOut}" && exit 1
+esac
+
+if [[ $machine == "Mac" ]]; then
+    echo ">> macOS machine detected"
+    while true; do
+        cliclick m:0,0
+        sleep 1
+        cliclick m:224,65
+        sleep 1
+        cliclick m:844,286
+        sleep 1
+        cliclick m:133,804
+        sleep 1
+    done
+elif [[ $machine == "Linux" ]]; then
+    echo ">> Linux machine detected"
+    # TODO: Use xdotool to move mouse around
+fi

@@ -53,6 +53,7 @@ PACKAGES=(
 	awscli
 	bat
 	bash-completion
+	cliclick
 	jakehilborn/jakehilborn/displayplacer
 	fd
 	ffmpeg
