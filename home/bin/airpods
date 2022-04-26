@@ -40,8 +40,6 @@ headset() {
 speaker() {
     pactl set-card-profile $AIRPODS_NAME $SPEAKER_PROFILE_AAC
     sleep 1
-    pactl set-card-profile $AIRPODS_NAME $SPEAKER_PROFILE_SBC
-    sleep 1
     pactl set-default-sink $AIRPODS_SINK.$SPEAKER_SINK
 }
 
