@@ -1,0 +1,42 @@
+FROM archlinux:latest
+
+ENV HOSTNAME linux-docker
+ENV USER cmiranda
+ENV PASSWORD cmiranda
+
+ENV SHELL=/bin/zsh
+ENV TERM=xterm-256color
+
+RUN echo "[multilib]" >> /etc/pacman.conf && \
+    echo "Include = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf && \
+    sed -i "s/#MAKEFLAGS=\"-j2\"/MAKEFLAGS=\"-j$(nproc)\"/" /etc/makepkg.conf
+
+RUN pacman --noconfirm -Syu \
+    base-devel \
+    git \
+    inetutils \
+    jq \
+    openssh \
+    sudo \
+    zsh
+
+RUN chsh -s /bin/zsh root
+
+RUN groupadd --gid 500 $USER && \
+    useradd --create-home --system --shell /usr/sbin/zsh --uid 500 --gid 500 $USER && \
+    passwd -d $PASSWORD && \
+    chsh -s /bin/zsh $USER && \
+    echo $USER 'ALL=(ALL) ALL' >> /etc/sudoers && \
+    chown -R $USER:$USER /home/$USER
+
+USER $USER
+
+RUN mkdir /home/$USER/dotfiles
+WORKDIR /home/$USER/dotfiles
+COPY . .
+RUN sudo chown -R $USER:$USER /home/$USER/dotfiles
+
+RUN bash scripts/dependencies.sh
+RUN bash scripts/tests/mock-secrets.sh .
+
+CMD	["/usr/bin/zsh"]

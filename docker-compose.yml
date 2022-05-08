@@ -1,7 +1,19 @@
-version: '3.3'
+version: "3.3"
 
 services:
   dots:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile.ubuntu
     image: dotfiles
-    container_name: 'dots'
+    container_name: "dots"
+  arco:
+    build:
+      context: .
+      dockerfile: Dockerfile.arch
+    volumes:
+      - ~/Desktop:/home/cmiranda/Desktop
+      - ~/Downloads:/home/cmiranda/Downloads
+    container_name: arco
+    tty: true
+    command: "/bin/bash"

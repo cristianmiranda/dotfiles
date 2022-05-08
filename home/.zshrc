@@ -81,7 +81,7 @@ source ${HOME}/profiles/common.sh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Navi - https://github.com/denisidoro/navi#customization
-eval "$(navi widget zsh)"
+where navi > /dev/null 2>&1 && eval "$(navi widget zsh)"
 
 # To customize prompt, run `p10k configure` or edit ~/Documents/Work/Workspace/dotfiles/home/.p10k.zsh.
 # [[ ! -f ~/Documents/Work/Workspace/dotfiles/home/.p10k.zsh ]] || source ~/Documents/Work/Workspace/dotfiles/home/.p10k.zsh

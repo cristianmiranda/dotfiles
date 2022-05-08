@@ -18,6 +18,7 @@ DOTBOT_MACOS="dotbot.macos.conf.yaml"
 DOTBOT_UNKNOWN=${DOTBOT_ANONYMOUS}
 
 declare -A HOSTS_MAP
+HOSTS_MAP["linux-docker"]=${DOTBOT_LINUX}       # Linux Docker
 HOSTS_MAP["Linux-Virtual"]=${DOTBOT_LINUX}      # Vagrant, Parallels, Virtualbox
 HOSTS_MAP["virt-manager"]=${DOTBOT_LINUX}       # Virt Manager
 HOSTS_MAP["dell-latitude"]=${DOTBOT_LINUX}      # Dell Latitude
