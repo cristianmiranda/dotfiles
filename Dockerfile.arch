@@ -13,9 +13,8 @@ RUN echo "[multilib]" >> /etc/pacman.conf && \
 
 RUN pacman --noconfirm -Syu \
     base-devel \
+    curl \
     git \
-    inetutils \
-    jq \
     openssh \
     sudo \
     zsh
@@ -23,20 +22,31 @@ RUN pacman --noconfirm -Syu \
 RUN chsh -s /bin/zsh root
 
 RUN groupadd --gid 500 $USER && \
-    useradd --create-home --system --shell /usr/sbin/zsh --uid 500 --gid 500 $USER && \
-    passwd -d $PASSWORD && \
-    chsh -s /bin/zsh $USER && \
+    useradd --create-home --system --shell /usr/sbin/zsh --uid 500 --gid 500 $USER
+
+RUN echo $USER:$PASSWORD | chpasswd
+
+RUN chsh -s /bin/zsh $USER && \
     echo $USER 'ALL=(ALL) ALL' >> /etc/sudoers && \
     chown -R $USER:$USER /home/$USER
 
 USER $USER
 
-RUN mkdir /home/$USER/dotfiles
-WORKDIR /home/$USER/dotfiles
-COPY . .
-RUN sudo chown -R $USER:$USER /home/$USER/dotfiles
+WORKDIR /home/$USER
 
-RUN bash scripts/dependencies.sh
-RUN bash scripts/tests/mock-secrets.sh .
+# RUN mkdir /home/$USER/dotfiles
+# WORKDIR /home/$USER/dotfiles
+# COPY . .
+# RUN sudo chown -R $USER:$USER /home/$USER/dotfiles
+
+# RUN bash scripts/dependencies.sh
+# RUN bash scripts/tests/mock-secrets.sh .
+
+# BACKUP_DIR=/data/ssd/backups/manual/secrets
+# scp -r -P 62022 cmiranda@cmiranda.ar:${BACKUP_DIR}/.gnupg .
+# scp -r -P 62022 cmiranda@cmiranda.ar:${BACKUP_DIR}/.ssh .
+# scp -r -P 62022 cmiranda@cmiranda.ar:${BACKUP_DIR}/.cert .
+# bash scripts/secrets.sh
+# bash scripts/sync.sh
 
 CMD	["/usr/bin/zsh"]

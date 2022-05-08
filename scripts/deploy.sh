@@ -17,7 +17,9 @@ else
     # Grabs ssh & gpg keys
     cd $HOME
     BACKUP_DIR=/data/ssd/backups/manual/secrets
-    scp -r -P 62022 cmiranda@crismiranda.net:"${BACKUP_DIR}/.gnupg ${BACKUP_DIR}/.ssh ${BACKUP_DIR}/.cert" .
+    scp -r -P 62022 cmiranda@cmiranda.ar:"${BACKUP_DIR}/.gnupg" .
+    scp -r -P 62022 cmiranda@cmiranda.ar:"${BACKUP_DIR}/.ssh" .
+    scp -r -P 62022 cmiranda@cmiranda.ar:"${BACKUP_DIR}/.cert" .
 
     sudo pacman -S git
 
