@@ -20,6 +20,7 @@ PACKAGES=(
     authy
     auto-cpufreq
     autoconf
+    autojump
     balena-etcher
     bashtop
     bat

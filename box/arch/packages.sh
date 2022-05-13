@@ -22,6 +22,7 @@ PACKAGES=(
     authy
     auto-cpufreq
     autoconf
+    autojump
     base-devel
     bashtop
     bat
