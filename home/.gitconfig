@@ -111,11 +111,10 @@
 	# Show the user email for the current repository.
 	whoami = config user.email
 
-	#
-	# Lille Group aliases
-	#
 	# Creates a branch for ESH development with the given JIRA ticket as suffix and description 
 	esh = !"f() { desc=`echo \"$2\" | sed 's/ /_/g'`; git checkout -b ESH-\"$1\"_$desc; }; f"
+	# Creates a branch for DVPS development with the given JIRA ticket as suffix and description 
+	dvps = !"f() { desc=`echo \"$2\" | sed 's/ /-/g'`; git checkout -b DVPS-\"$1\"_$desc; }; f"
 
 [apply]
 
