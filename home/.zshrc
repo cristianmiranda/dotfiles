@@ -42,6 +42,7 @@ if ! zgen saved; then
   zgen load wfxr/forgit
   zgen load lukechilds/zsh-nvm
   zgen load matthieusb/zsh-sdkman
+  zgen load ChrisPenner/copy-pasta
 
   # theme
   zgen load denysdovhan/spaceship-prompt spaceship
