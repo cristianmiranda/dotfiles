@@ -50,6 +50,7 @@ ESSENTIALS=(
 
 PACKAGES=(
 	ant
+	autojump
 	awscli
 	bat
 	bash-completion
