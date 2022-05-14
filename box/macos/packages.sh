@@ -62,6 +62,7 @@ PACKAGES=(
 	git-delta
 	git-lfs
 	git-secret
+	gitmoji
 	gqlplus
 	htop
 	InstantClientTap/instantclient/instantclient-sqlplus
@@ -175,7 +176,6 @@ pip3Install PyYAML
 pip3Install osascript
 pip3Install bpytop
 
-npm i -g gitmoji-cli
 npm i -g libgen-downloader
 
 # SDKMAN
