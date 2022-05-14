@@ -69,6 +69,7 @@ PACKAGES=(
 	jq
 	maven
 	navi
+	neofetch
 	node
 	ranger
 	sops
