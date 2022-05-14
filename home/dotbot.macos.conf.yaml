@@ -60,6 +60,7 @@
     - ~/logs
     
 - shell:
+    - [ git update-index --assume-unchanged .config/flameshot/flameshot.ini, Ignoring changes on Flameshot config ]
     -
         command: cd $HOME/fzf && bash $HOME/fzf/install --all
         description:  Upgrading/Installing fzf

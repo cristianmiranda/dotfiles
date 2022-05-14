@@ -57,6 +57,7 @@ PACKAGES=(
 	jakehilborn/jakehilborn/displayplacer
 	fd
 	ffmpeg
+	flameshot
 	git-delta
 	git-lfs
 	git-secret
