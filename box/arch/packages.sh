@@ -98,6 +98,7 @@ PACKAGES=(
     nitrogen
     nodejs-gitmoji-cli
     nordvpn-bin
+    notion-app-enhanced
     noto-fonts
     noto-fonts-emoji
     nvidia
