@@ -99,6 +99,7 @@ PACKAGES=(
     nodejs-gitmoji-cli
     nordvpn-bin
     notion-app-enhanced
+    noto-color-emoji-fontconfig
     noto-fonts
     noto-fonts-emoji
     nvidia
