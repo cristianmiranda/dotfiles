@@ -70,9 +70,15 @@ source ${HOME}/profiles/common.sh
 # Command-line Fuzzy Finder - https://github.com/junegunn/fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+#
 # https://github.com/wting/autojump
+#
+# Arch Linux
 [[ -s /etc/profile.d/autojump.sh ]] && source /etc/profile.d/autojump.sh
+# macOS
 [ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
+# Ubuntu Server
+[[ -s /home/cmiranda/.autojump/etc/profile.d/autojump.sh ]] && source /home/cmiranda/.autojump/etc/profile.d/autojump.sh
 
 # Navi - https://github.com/denisidoro/navi#customization
 where navi > /dev/null 2>&1 && eval "$(navi widget zsh)"
