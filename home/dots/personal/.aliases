@@ -29,7 +29,7 @@ alias mediabox="cd /data/ssd/mediabox/repo"
 # ~/dotfiles
 alias dot="cd ~/dotfiles"
 alias dotsync="bash ~/dotfiles/scripts/sync.sh && resetzgen"
-alias resetzgen="zgen reset && source ~/.zshrc"
+alias resetzgen="zgen reset && zgen update && source ~/.zshrc"
 alias vbx="sudo /usr/lib/virtualbox/VirtualBoxVM --comment Linux Mint 19.3 --startvm 63e218f5-8cc4-4c09-8444-1e1fb0500332 --no-startvm-errormsgbox"
 
 # Yabai
