@@ -226,11 +226,18 @@ mode "i3-command" {
         bindsym Return mode "default"
 }
 
+#################
+# APPLE AIRPODS #
+############################################
+# - 7C:9A:1D:BA:BD:D6   # Cris'  AirPods 2 #
+# - C4:14:11:1B:0D:07   # Anto's AirPods 1 #
+# - 44:1B:88:07:A8:C8   # Cris'  AirPods   #
+############################################
 mode "airpods" {
-        bindsym c exec --no-startup-id /home/cmiranda/bin/airpods connect; mode "default"
-        bindsym d exec --no-startup-id /home/cmiranda/bin/airpods disconnect; mode "default"
-        bindsym s exec --no-startup-id /home/cmiranda/bin/airpods speaker; mode "default"
-        bindsym h exec --no-startup-id /home/cmiranda/bin/airpods headset; mode "default"
+        bindsym c exec --no-startup-id /home/cmiranda/bin/airpods connect '44:1B:88:07:A8:C8'; mode "default"
+        bindsym d exec --no-startup-id /home/cmiranda/bin/airpods disconnect '44:1B:88:07:A8:C8'; mode "default"
+        bindsym s exec --no-startup-id /home/cmiranda/bin/airpods speaker '44:1B:88:07:A8:C8'; mode "default"
+        bindsym h exec --no-startup-id /home/cmiranda/bin/airpods headset '44:1B:88:07:A8:C8'; mode "default"
         bindsym r exec --no-startup-id /home/cmiranda/bin/restart-audio; mode "default"
         
         bindsym Escape  mode "default"

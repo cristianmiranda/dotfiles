@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
 
-#AIRPODS_MAC='7C:9A:1D:BA:BD:D6'
-AIRPODS_MAC='C4:14:11:1B:0D:07'
-AIRPODS_NAME='bluez_card.C4_14_11_1B_0D_07'
-AIRPODS_SINK='bluez_output.C4_14_11_1B_0D_07'
-AIRPODS_SOURCE='bluez_input.C4_14_11_1B_0D_07'
+AIRPODS_MAC=$2
+AIRPODS_MAC_UNDERSCORED=$(echo $AIRPODS_MAC | sed 's/:/_/g')
+
+AIRPODS_NAME="bluez_card.$AIRPODS_MAC_UNDERSCORED"
+AIRPODS_SINK="bluez_output.$AIRPODS_MAC_UNDERSCORED"
+AIRPODS_SOURCE="bluez_input.$AIRPODS_MAC_UNDERSCORED"
 
 HEADSET_PROFILE='headset-head-unit'
 SPEAKER_PROFILE_AAC='a2dp-sink-aac'
@@ -14,8 +15,8 @@ SPEAKER_SINK='a2dp-sink'
 HEADSET_SINK='headset-head-unit'
 HEADSET_SOURCE='headset-head-unit'
 
-if [[ -z "$1" ]]; then
-  echo "Usage: $0 <connect | disconnect | headset | speaker>"
+if [[ -z "$2" ]]; then
+  echo "Usage: $0 <connect | disconnect | headset | speaker> [airpods_mac_address]"
   exit 1
 fi
 
