@@ -23,6 +23,9 @@
     ~/.ssh/config: 
         path: .ssh/config
         force: true
+    ~/.ssh/keypairs: 
+        path: .ssh/keypairs
+        force: true
     ~/.themes: .themes
     ~/.tmux.conf: .tmux.conf
     ~/.vim: .vim
@@ -53,6 +56,7 @@
     ~/.gvimrc: .gvimrc
     ~/.inputrc: .inputrc
     ~/.p10k.zsh: .p10k.zsh
+    ~/.ssh/authorized_keys: .ssh/authorized_keys
     ~/.vimrc: .vimrc
     ~/.xsession: .xsession
     ~/.xmodmap.apple: .xmodmap.apple

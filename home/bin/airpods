@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 
-AIRPODS_MAC='7C:9A:1D:BA:BD:D6'
-AIRPODS_NAME='bluez_card.7C_9A_1D_BA_BD_D6'
-AIRPODS_SINK='bluez_output.7C_9A_1D_BA_BD_D6'
-AIRPODS_SOURCE='bluez_input.7C_9A_1D_BA_BD_D6'
+#AIRPODS_MAC='7C:9A:1D:BA:BD:D6'
+AIRPODS_MAC='C4:14:11:1B:0D:07'
+AIRPODS_NAME='bluez_card.C4_14_11_1B_0D_07'
+AIRPODS_SINK='bluez_output.C4_14_11_1B_0D_07'
+AIRPODS_SOURCE='bluez_input.C4_14_11_1B_0D_07'
 
 HEADSET_PROFILE='headset-head-unit'
 SPEAKER_PROFILE_AAC='a2dp-sink-aac'

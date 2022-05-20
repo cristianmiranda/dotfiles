@@ -27,6 +27,9 @@
     ~/.ssh/config: 
         path: .ssh/config
         force: true
+    ~/.ssh/keypairs: 
+        path: .ssh/keypairs
+        force: true
     ~/.vim: .vim
 
     # Regular directories
@@ -47,6 +50,7 @@
     ~/.gitconfig: .gitconfig
     ~/.gvimrc: .gvimrc
     ~/.inputrc: .inputrc
+    ~/.ssh/authorized_keys: .ssh/authorized_keys
     ~/.tmux.conf: .tmux.conf
     ~/.vimrc: .vimrc
     ~/.zshrc:
