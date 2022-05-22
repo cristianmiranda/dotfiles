@@ -82,3 +82,7 @@ source ${HOME}/profiles/common.sh
 
 # Navi - https://github.com/denisidoro/navi#customization
 where navi > /dev/null 2>&1 && eval "$(navi widget zsh)"
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
