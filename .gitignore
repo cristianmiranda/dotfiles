@@ -72,3 +72,4 @@ home/.ssh/authorized_keys
 home/.ssh/keypairs/dev-box.pem
 home/.ssh/keypairs/kkns.pem
 home/.ssh/keypairs/sx_sPi_rsa
+home/.ssh/vpn/lg.ovpn
