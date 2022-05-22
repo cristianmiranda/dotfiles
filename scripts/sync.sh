@@ -28,6 +28,7 @@ HOSTS_MAP["mini-linux"]=${DOTBOT_SERVER}        # Linux Server
 HOSTS_MAP["raspberrypi"]=${DOTBOT_SERVER}       # Raspberry Pi 3/4
 HOSTS_MAP["Cristians-MBP"]=${DOTBOT_MACOS}      # macOS 15
 HOSTS_MAP["CristiansMBP13"]=${DOTBOT_MACOS}     # macOS 13
+HOSTS_MAP["ip-172-31-60-0"]=${DOTBOT_LINUX}     # AWS EC2 Ubuntu Server
 
 #
 # Getting config file for host
