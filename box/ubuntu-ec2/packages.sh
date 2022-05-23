@@ -39,3 +39,5 @@ done
 
 pip3Install pipenv-shebang
 pip3Install virtualenv
+
+sudo ln -s /usr/bin/python3 /usr/bin/python
