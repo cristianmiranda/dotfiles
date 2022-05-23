@@ -9,7 +9,7 @@ function addAptRepository {
 }
 
 function aptUpdate {
-  sudo apt update >> $LOG_FILE 2>&1
+  sudo DEBIAN_FRONTEND=noninteractive apt update >> $LOG_FILE 2>&1
 }
 
 function aptInstall {
@@ -17,7 +17,7 @@ function aptInstall {
 
   if [ $? -ne 0 ]; then
     info ">>> Installing ${1}"
-    sudo apt-get install -y $1 >> $LOG_FILE 2>&1
+    sudo DEBIAN_FRONTEND=noninteractive apt-get install -y $1 >> $LOG_FILE 2>&1
   else
     warning ">>> Already installed: ${1}"
   fi

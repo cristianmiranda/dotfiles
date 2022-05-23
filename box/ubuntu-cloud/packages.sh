@@ -9,6 +9,7 @@ then
     exit 0
 fi
 
+aptUpdate
 aptUpgrade
 
 PACKAGES=(
@@ -22,9 +23,11 @@ PACKAGES=(
     neofetch
     nodejs
     npm
+    openvpn
     p7zip-full
     python3-pip
     ranger
+    resolvconf
     ruby-dev
     tree
     vim

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 unameOut="$(uname -a)"
-[[ "$unameOut" =~ "MANJARO" ]]; then
+if [[ "$unameOut" =~ "MANJARO" ]]; then
     DISTRO="MANJARO"
 elif [[ "$unameOut" =~ "Ubuntu" ]]; then
     DISTRO="UBUNTU"
@@ -9,13 +9,13 @@ else
     echo "Unsuported Linux distribution" && exit 1
 fi
 
-[[ "$DISTRO" == "UBUNTU" ]]; then
+if [[ "$DISTRO" == "UBUNTU" ]]; then
 
-    sudo apt-get -y update
-    sudo apt-get -y install golang-go gcc git
-    sudo apt-get -y install python3-pip git-secret figlet lolcat
+    sudo DEBIAN_FRONTEND=noninteractive apt-get -y update
+    sudo DEBIAN_FRONTEND=noninteractive apt-get -y install golang-go gcc git
+    sudo DEBIAN_FRONTEND=noninteractive apt-get -y install python3-pip git-secret figlet lolcat
 
-elif [[ $DISTRO == "MANJARO"]]; then
+elif [[ $DISTRO == "MANJARO" ]]; then
 
     sudo pacman --noconfirm -Syu
     sudo pacman --noconfirm -S go gcc git
