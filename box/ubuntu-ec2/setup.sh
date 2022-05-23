@@ -25,3 +25,8 @@ br
 bash $CURRENT_DIR/programs.sh
 
 br
+banner "        >>> server/work <<<           "
+br
+bash $CURRENT_DIR/work.sh
+
+br
