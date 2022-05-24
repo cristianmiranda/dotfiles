@@ -74,3 +74,4 @@ home/.ssh/keypairs/kkns.pem
 home/.ssh/keypairs/sx_sPi_rsa
 home/.ssh/vpn/lg.ovpn
 box/ubuntu-cloud/work.sh
+home/.ssh/keypairs/sx-bast-prod.pem
