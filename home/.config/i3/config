@@ -16,6 +16,7 @@ exec --no-startup-id set-display laptop
 exec --no-startup-id bluetoothctl power on
 
 exec_always --no-startup-id nm-applet
+exec_always --no-startup-id caffeine
 exec_always --no-startup-id "killall copyq || true; sleep 2; copyq"
 exec_always --no-startup-id "killall pasystray || true; sleep 2; pasystray"
 exec_always --no-startup-id "killall optimus-manager-qt || true; sleep 2; optimus-manager-qt"
