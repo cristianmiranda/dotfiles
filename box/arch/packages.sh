@@ -31,6 +31,7 @@ PACKAGES=(
     blueman
     brave-bin
     brightnessctl
+    caffeine-ng
     cargo
     cawbird-git
     chromium

@@ -26,6 +26,7 @@ PACKAGES=(
     bat
     brave-bin
     brightnessctl
+    caffeine-ng
     cargo
     cawbird-git
     chromium
