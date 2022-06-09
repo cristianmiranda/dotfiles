@@ -14,30 +14,49 @@ from dotfiles.scripts.utils import config
 
 
 @click.command()
-@click.argument("wallpaper", default="random")
-def setWallpaper(wallpaper):
+@click.option("--random", is_flag=True)
+@click.option("--wide", is_flag=True)
+@click.option("--use-config", is_flag=True)
+@click.argument("wallpaper", required=False)
+def setWallpaper(random, wide, use_config, wallpaper):
 
     data = config.getConfig()
     wallpapers = data["path"]["wallpaper"]
 
     if platform.system() == "Linux":
-        monitors = int(os.popen('xrandr --listmonitors | grep "+" | wc -l').read())
-
-        if wallpaper == "random":
+        if random:
+            os.popen("set-random-wallpaper")
+        elif use_config:
+            monitors = int(os.popen('xrandr --listmonitors | grep "+" | wc -l').read())
             if monitors == 2:
-                print("Dual monitor")
-                os.popen("set-random-wallpaper")
+                if wide:
+                    wallpaper = wallpapers["dual"]
+                    os.popen("hsetroot -root -cover {}".format(wallpaper))
+                else:
+                    wallpaper = wallpapers["single"]
+                    os.popen("hsetroot -screens 1 -cover {}".format(wallpaper))
             elif monitors == 1:
-                print("Single monitor")
-                os.popen("set-random-wallpaper")
+                wallpaper = wallpapers["single"]
+                os.popen("hsetroot -root -cover {}".format(wallpaper))
         else:
-            os.popen("hsetroot -root -cover {}".format(wallpaper))
+            monitors = int(os.popen('xrandr --listmonitors | grep "+" | wc -l').read())
+            if monitors == 2:
+                if wide:
+                    os.popen("hsetroot -root -cover {}".format(wallpaper))
+                else:
+                    os.popen("hsetroot -screens 1 -cover {}".format(wallpaper))
+            elif monitors == 1:
+                os.popen("hsetroot -root -cover {}".format(wallpaper))
+
     else:
-        if wallpaper == "random":
+        if random:
             wallpaper = wallpapers["single"]
 
-        osascript.run("tell application \"System Events\" to tell every desktop to set picture to \"{}\"".format(wallpaper))
-
+        osascript.run(
+            'tell application "System Events" to tell every desktop to set picture to "{}"'.format(
+                wallpaper
+            )
+        )
 
 
 if __name__ == "__main__":
