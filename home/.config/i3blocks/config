@@ -32,6 +32,12 @@ markup=pango
 # FONTAWESOME BLOCKS
 #
 
+[owl]
+command=$HOME/.config/i3blocks/scripts/owl
+interval=5
+separator=false
+separator_block_width=15
+
 [thunderbird]
 command=$HOME/.config/i3blocks/scripts/thunderbird
 interval=5

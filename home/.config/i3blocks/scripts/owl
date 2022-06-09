@@ -1,0 +1,14 @@
+#!/bin/sh
+
+RUNNING=`pgrep owl | wc -l`
+
+if [[ "$RUNNING" == "3" ]]; then
+	icon=""
+	color="#ffffff"
+else
+	exit 0
+fi
+
+echo "<span>$icon</span>"
+echo "<span>$icon</span>"
+echo $color
