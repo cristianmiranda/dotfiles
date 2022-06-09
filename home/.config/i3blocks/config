@@ -66,6 +66,12 @@ separator_block_width=15
 # EMOJI BLOCKS
 #
 
+[coffee]
+command=$HOME/.config/i3blocks/scripts/coffee
+interval=5
+separator=false
+separator_block_width=15
+
 [airpods]
 command=$HOME/.config/i3blocks/scripts/airpods
 interval=5

@@ -286,7 +286,8 @@ mode "radio-station" {
 
 mode "owl" {
         bindsym a exec --no-startup-id ~/bin/owl; mode "default"
-        bindsym d exec --no-startup-id killall owl; mode "default"
+        bindsym c exec --no-startup-id ~/bin/coffee; mode "default"
+        bindsym d exec --no-startup-id killall owl coffee; mode "default"
         
         bindsym Escape mode "default"
         bindsym Return mode "default"
