@@ -29,7 +29,7 @@ fi
 
 br
 info ">> Revealing secrets ..."
-bash ${CURRENT_DIR}/secrets.sh
+git-secret reveal -f
 
 br
 banner ">>> Welcome to cmiranda's dotfiles <<<"

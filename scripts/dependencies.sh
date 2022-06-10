@@ -1,8 +1,8 @@
 #!/bin/bash
 
 unameOut="$(uname -a)"
-if [[ "$unameOut" =~ "MANJARO" ]]; then
-    DISTRO="MANJARO"
+if [[ "$unameOut" =~ "MANJARO" || "$unameOut" =~ "arch" ]]; then
+    DISTRO="ARCH"
 elif [[ "$unameOut" =~ "Ubuntu" ]]; then
     DISTRO="UBUNTU"
 else
@@ -15,7 +15,7 @@ if [[ "$DISTRO" == "UBUNTU" ]]; then
     sudo DEBIAN_FRONTEND=noninteractive apt-get -y install golang-go gcc git
     sudo DEBIAN_FRONTEND=noninteractive apt-get -y install python3-pip git-secret figlet lolcat
 
-elif [[ $DISTRO == "MANJARO" ]]; then
+elif [[ $DISTRO == "ARCH" ]]; then
 
     sudo pacman --noconfirm -Syu
     sudo pacman --noconfirm -S go gcc git
