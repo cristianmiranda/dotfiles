@@ -111,6 +111,7 @@ PACKAGES=(
     redli
     rofi
     rofi-calc
+    rofi-emoji
     ruby-colorls
     simplescreenrecorder
     skypeforlinux-stable-bin
