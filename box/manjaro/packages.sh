@@ -101,6 +101,7 @@ PACKAGES=(
     playerctl
     plex-media-player
     polkit-gnome
+    polybar
     postman-bin
     proton-ge-custom-bin
     pyenv

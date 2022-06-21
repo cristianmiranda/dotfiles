@@ -1,0 +1,9 @@
+#!/bin/sh
+
+RUNNING=`pgrep coffee 2> /dev/null | wc -l`
+
+if [[ "$RUNNING" == "0" ]]; then
+	echo ""
+else
+	echo "☕"
+fi

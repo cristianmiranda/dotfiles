@@ -1,0 +1,22 @@
+#!/bin/bash
+
+total_unread_count=0
+unread_count_by_inbox=`find ~/.thunderbird -name 'INBOX.msf' -exec grep -REo 'A2=[0-9]' {} + | tac | awk '!visited[$0]++'`
+
+declare -A count_by_inbox=()
+
+while IFS= read -r line; do
+    inbox=`echo "$line" | awk -F ':A2=' '{ print $1 }'`
+    count=`echo "$line" | awk -F ':A2=' '{ print $2 }'`
+    ! [[ ${count_by_inbox["$inbox"]+Y} ]] && count_by_inbox["$inbox"]=$count
+done <<< "$unread_count_by_inbox"
+
+for inbox in "${!count_by_inbox[@]}"
+do
+  count=${count_by_inbox[$inbox]}
+  total_unread_count=$(expr $total_unread_count + $count)
+done
+
+[[ "${total_unread_count}" = "0" ]] && echo ""
+
+echo "✉️"

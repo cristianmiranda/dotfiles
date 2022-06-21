@@ -31,13 +31,14 @@ exec_always --no-startup-id docker
 exec_always --no-startup-id xset -b
 exec_always --no-startup-id brightnessctl --device='tpacpi::kbd_backlight' set 1
 exec_always --no-startup-id libinput-gestures-setup stop && libinput-gestures-setup start
-exec_always --no-startup-id ~/.config/i3/scripts/autoname_workspaces.py --norenumber_workspaces --icon_list_format mathematician &
+# exec_always --no-startup-id ~/.config/i3/scripts/autoname_workspaces.py --norenumber_workspaces --icon_list_format mathematician &
 # exec_always --no-startup-id ~/.config/i3/scripts/alternating_layouts.py &
 exec_always --no-startup-id alttab -d 1 -w 1 -i 100x100 -t 100x100 -bg "#002B36" -frame "#16a085" -s 2
 exec_always --no-startup-id "killall xautolock || true; sleep 2; xautolock -time 15 -corners 00+0 -cornerdelay 1 -cornerredelay 10 -locker 'xset dpms force off' -notify 5 -notifier '$HOME/bin/lock-screen'"
 exec_always --no-startup-id xsettingsd
 exec_always --no-startup-id "killall insync || true; QT_AUTO_SCREEN_SCALE_FACTOR=1 insync start"
 exec_always --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+exec_always --no-startup-id ~/.config/polybar/launch.sh
 
 #
 # Terminal
@@ -372,42 +373,42 @@ set_from_resource $term_color13    color13
 set_from_resource $term_color14    color14
 set_from_resource $term_color15    color15
 
-bar {
-	i3bar_command i3bar
-	status_command i3blocks
-	position top
-
-	# Set your primary output first. Example: 'xrandr --output eDP1 --primary'
-	tray_output primary
-	# tray_output eDP1
-
-	bindsym button4 nop
-	bindsym button5 nop
-	font pango:FiraCode Nerd Font Mono Regular 10.5
-	strip_workspace_numbers yes
-
-        colors {
-                background #222D31
-                statusline #F9FAF9
-                separator  #454947
-
-#                                  border  backgr  text
-                focused_workspace  #F9FAF9 #1793D1 #1C1C1C
-                active_workspace   #595B5B #353836 #FDF6E3
-                inactive_workspace #595B5B #222D31 #EEE8D5
-                binding_mode       #16a085 #2C2C2C #F9FAF9
-                urgent_workspace   #595B5B #FDF6E3 #E5201D
-        }
-}
+# bar {
+# 	i3bar_command i3bar
+# 	status_command i3blocks
+# 	position top
+#
+#	# Set your primary output first. Example: 'xrandr --output eDP1 --primary'
+# 	tray_output primary
+#	# tray_output eDP1
+#
+# 	bindsym button4 nop
+# 	bindsym button5 nop
+# 	font pango:FiraCode Nerd Font Mono Regular 10.5
+# 	strip_workspace_numbers yes
+#
+#         colors {
+#                 background #222D31
+#                 statusline #F9FAF9
+#                 separator  #454947
+#
+# #                                  border  backgr  text
+#                 focused_workspace  #F9FAF9 #1793D1 #1C1C1C
+#                 active_workspace   #595B5B #353836 #FDF6E3
+#                 inactive_workspace #595B5B #222D31 #EEE8D5
+#                 binding_mode       #16a085 #2C2C2C #F9FAF9
+#                 urgent_workspace   #595B5B #FDF6E3 #E5201D
+#         }
+# }
 
 # hide/unhide i3status bar
-bindsym $super+b bar mode toggle
+# bindsym $super+b bar mode toggle
 
 #
 # Theme colors
 #
 # class                 border  backgr. text    indic.  child_border
-client.focused          #1481B8 #556064 #80FFF9 #FDF6E3 #b8142d
+client.focused          #1481B8 #556064 #80FFF9 #FDF6E3 #1793D1
 client.focused_inactive #2F3D44 #2F3D44 #1ABC9C #454948 #556064
 client.unfocused        #2F3D44 #2F3D44 #1ABC9C #454948
 client.urgent           #CB4B16 #FDF6E3 #1ABC9C #268BD2
