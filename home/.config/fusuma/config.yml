@@ -1,0 +1,28 @@
+swipe:
+  3: 
+    left: 
+      command: 'xdotool key alt+Right'
+    right: 
+      command: 'xdotool key alt+Left'
+    up: 
+      command: 'xdotool key ctrl+shift+plus'
+    down: 
+      command: 'xdotool key ctrl+minus'
+  4:
+    left:
+      command: "xdotool key super+alt+Left" # Switch to next workspace
+    right:
+      command: "xdotool key super+alt+Right" # Switch to previous workspace
+pinch:
+  in:
+    command: 'xdotool key ctrl+plus'
+  out:
+    command: 'xdotool key ctrl+minus'
+
+threshold:
+  swipe: 0.7
+  pinch: 0.2
+
+interval:
+  swipe: 1
+  pinch: 1
