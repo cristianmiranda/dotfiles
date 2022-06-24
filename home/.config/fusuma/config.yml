@@ -13,6 +13,8 @@ swipe:
       command: "xdotool key super+alt+Left" # Switch to next workspace
     right:
       command: "xdotool key super+alt+Right" # Switch to previous workspace
+    down:
+      command: "xdotool key ctrl+r"
 pinch:
   in:
     command: 'xdotool key ctrl+plus'
