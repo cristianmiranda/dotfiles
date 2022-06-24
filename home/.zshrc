@@ -32,8 +32,8 @@ if ! zgen saved; then
   zgen load zsh-users/zsh-autosuggestions
   zgen load zsh-users/zsh-syntax-highlighting
   zgen load wfxr/forgit
-  zgen load lukechilds/zsh-nvm
-  zgen load matthieusb/zsh-sdkman
+  # zgen load lukechilds/zsh-nvm
+  # zgen load matthieusb/zsh-sdkman
   zgen load ChrisPenner/copy-pasta
 
   # theme
