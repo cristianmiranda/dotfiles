@@ -49,8 +49,10 @@ bindsym $super+Return exec --no-startup-id terminator
 #
 # Rofi
 #
-bindsym $super+space exec --no-startup-id $HOME/bin/open-rofi
-bindsym $super+Shift+e exec --no-startup-id rofi -show emoji -modi emoji
+bindsym $super+space exec --no-startup-id $HOME/bin/open-rofi drun $HOME/.config/rofi/launchers/misc/row_dock.rasi
+bindsym $super+Shift+e exec --no-startup-id $HOME/bin/open-rofi emoji $HOME/.config/rofi/launchers/text/emoji.rasi
+bindsym $super+Shift+c exec --no-startup-id $HOME/bin/open-rofi calc $HOME/.config/rofi/launchers/text/calc.rasi
+bindsym $super+Shift+p exec --no-startup-id $HOME/.config/rofi/powermenu/powermenu.sh
 
 #
 # Screenshots

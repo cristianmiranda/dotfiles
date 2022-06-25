@@ -4,7 +4,7 @@
 killall -q polybar
 
 # Wait until the processes have been shut down
-while pgrep -x polybar >/dev/null; do sleep 1; done
+while pgrep -x polybar >/dev/null; do sleep 2; done
 
 # Launch polybar
 K2_MONITORS=`xrandr --listmonitors | grep x1440 | wc -l`

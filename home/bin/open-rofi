@@ -2,10 +2,14 @@
 
 MONITOR_RESOLUTION=`~/bin/get-resolution`
 
-DPI=192
+DPI=96
 
 if [[ "$MONITOR_RESOLUTION" == "4K" ]]; then
-    DPI=284
+    DPI=192
 fi
 
-rofi -show drun -dpi $DPI
+if [[ "$1" == "calc" ]]; then
+    LC_NUMERIC=en_US.UTF-8 LC_MONETARY=en_US.UTF-8 rofi -show calc -modi calc -no-lazy-grab -no-persist-history -no-history -theme $2 -dpi $DPI -calc-command "copyq copy {result}"
+else
+    rofi -no-lazy-grab -show $1 -modi $1 -theme $2 -dpi $DPI
+fi
