@@ -1,10 +1,16 @@
 #!/bin/bash
 
 MIC="`amixer get Capture | grep % | sed -r 's/.*%\]\s\[(.*)\]/\1/' | sed -n 1p`"
+LED_NOT_FOUND="brightnessctl --device='platform::micmute' | grep 'not found'"
+
 if [[ $MIC == "on" ]]; then
-    brightnessctl --device='platform::micmute' set 0 > /dev/null
+    if [[ ! $LED_NOT_FOUND ]]; then
+        brightnessctl --device='platform::micmute' set 0 > /dev/null
+    fi
     echo "%{F#20c418}%{F-}"
 else
-    brightnessctl --device='platform::micmute' set 1 > /dev/null
+    if [[ ! $LED_NOT_FOUND ]]; then
+        brightnessctl --device='platform::micmute' set 1 > /dev/null
+    fi
     echo "%{F#f53636}%{F-}"
 fi

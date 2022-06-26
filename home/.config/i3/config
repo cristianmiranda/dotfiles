@@ -25,7 +25,7 @@ exec_always --no-startup-id ~/bin/set-wallpaper --use-config
 exec_always --no-startup-id xfce4-power-manager
 exec_always --no-startup-id blueman-applet
 exec_always --no-startup-id crontab ~/.crontab
-exec_always --no-startup-id "if [[ $(hostname) != 'virt-manager' ]]; then picom -b --experimental-backends; fi"
+exec_always --no-startup-id "if [[ $(hostname) != 'Linux-Virtual' ]]; then picom -b --experimental-backends; fi"
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id docker
 exec_always --no-startup-id xset -b

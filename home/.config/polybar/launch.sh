@@ -24,6 +24,6 @@ if [[ "$K2_MONITORS" != "0" ]]; then
         MONITOR=$mon TRAY_POS=$tray_pos polybar --reload asus 2>&1 | tee -a /tmp/polybar-monitor-"$mon".log & disown                                                     
     done                                                                           
 
-elif [[ "$K4_MONITORS" != "0" ]]; then
+else
     polybar --reload laptop 2>&1 | tee -a /tmp/polybar-laptop.log & disown    
 fi
