@@ -199,7 +199,7 @@ Name[wo]=Palanteer bu bees
 Name[xh]=Ifestile entsha
 Name[zh_CN]=新建窗口
 Name[zh_TW]=開新視窗
-Exec=/opt/firefox-nightly/firefox --new-window %u
+Exec=/home/cmiranda/bin/dpi-open /opt/firefox-nightly/firefox --new-window %u
 
 [Desktop Action new-private-window]
 Name=New Private Window
@@ -307,4 +307,4 @@ Name[wo]=Panlanteeru biir bu bees
 Name[xh]=Ifestile yangasese entsha
 Name[zh_CN]=新建隐私浏览窗口
 Name[zh_TW]=新增隱私視窗
-Exec=/opt/firefox-nightly/firefox --private-window %u
+Exec=/home/cmiranda/bin/dpi-open /opt/firefox-nightly/firefox --private-window %u

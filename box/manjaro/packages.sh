@@ -13,6 +13,7 @@ fi
 PACKAGES=(
     1password
     acpi_call
+    alacarte
     alsa-firmware
     alsa-ucm-conf
     alsa-utils

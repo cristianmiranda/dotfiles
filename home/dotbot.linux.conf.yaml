@@ -22,6 +22,7 @@
     ~/.local/share/icons: 
         path: .local/share/icons
         force: true
+    ~/.local/share/applications/mimeapps.list: .local/share/applications/mimeapps.list
     ~/.local/share/applications/:
         glob: true
         path: .local/share/applications/*.desktop

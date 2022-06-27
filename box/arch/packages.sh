@@ -14,6 +14,7 @@ PACKAGES=(
     1password
     accountsservice
     acpi_call
+    alacarte
     alsa-firmware
     alsa-ucm-conf
     alsa-utils
