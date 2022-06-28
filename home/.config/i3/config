@@ -319,6 +319,7 @@ mode "owl" {
 }
 
 mode "set-url-handler" {
+        bindsym a exec --no-startup-id ~/bin/set-url-handler adaptative; mode "default"
         bindsym f exec --no-startup-id ~/bin/set-url-handler firefox; mode "default"
         bindsym d exec --no-startup-id ~/bin/set-url-handler firefox-developer-edition; mode "default"
         bindsym n exec --no-startup-id ~/bin/set-url-handler firefox-nightly; mode "default"

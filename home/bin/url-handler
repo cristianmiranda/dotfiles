@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+CURRENT_URL_HANDLER_FILENAME="/tmp/current-url-handler"
+
+if [ ! -f "$CURRENT_URL_HANDLER_FILENAME" ]; then
+    echo "No current url handler set. Will determine current url handler automatically using custom rules."
+    context=`$HOME/bin/get-word-context $@`
+
+    case "$context" in
+        personal)
+            url_handler="firefox"
+            ;;
+        lg)
+            url_handler="firefox-developer-edition"
+            ;;
+        sky)
+            url_handler="firefox-nightly"
+            ;;
+        *)
+            echo "Unkown context"
+            url_handler="firefox"
+            ;;
+    esac
+else
+    url_handler=$(cat $CURRENT_URL_HANDLER_FILENAME)
+fi
+
+$HOME/bin/dpi-open $url_handler $@

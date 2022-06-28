@@ -6,6 +6,9 @@ case "$1" in
     firefox|firefox-developer-edition|firefox-nightly)
         echo $1 > $CURRENT_URL_HANDLER_FILENAME
         ;;
+    adaptative)
+        rm $CURRENT_URL_HANDLER_FILENAME
+        ;;
     *)
         echo "Unkown value: $1"
         exit 1

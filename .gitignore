@@ -75,3 +75,4 @@ home/.ssh/keypairs/sx_sPi_rsa
 home/.ssh/vpn/lg.ovpn
 box/ubuntu-cloud/work.sh
 home/.ssh/keypairs/sx-bast-prod.pem
+home/bin/get-word-context
