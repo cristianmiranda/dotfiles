@@ -1,0 +1,15 @@
+#!/bin/bash
+
+if [[ ! -f "/tmp/current-url-handler" ]]; then
+    echo "%{F#A1A1A1}%{F-}"
+else
+    current_url_handler=$(cat /tmp/current-url-handler)
+
+    if [[ "${current_url_handler}" = "firefox" ]]; then
+        echo "%{F#FFA537}%{F-}"
+    elif [[ "${current_url_handler}" = "firefox-developer-edition" ]]; then
+        echo "%{F#00B3F5}%{F-}"
+    elif [[ "${current_url_handler}" = "firefox-nightly" ]]; then
+        echo "%{F#F564FF}%{F-}"
+    fi
+fi

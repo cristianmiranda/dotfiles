@@ -318,6 +318,15 @@ mode "owl" {
         bindsym Return mode "default"
 }
 
+mode "set-url-handler" {
+        bindsym f exec --no-startup-id ~/bin/set-url-handler firefox; mode "default"
+        bindsym d exec --no-startup-id ~/bin/set-url-handler firefox-developer-edition; mode "default"
+        bindsym n exec --no-startup-id ~/bin/set-url-handler firefox-nightly; mode "default"
+        
+        bindsym Escape mode "default"
+        bindsym Return mode "default"
+}
+
 bindsym $super+c exec --no-startup-id i3-msg '[class="(?i)Code"] focus'
 bindsym $super+d exec --no-startup-id i3-msg '[class="(?i)Discord"] focus'
 bindsym $super+e exec --no-startup-id i3-msg '[class="firefoxdeveloperedition$"] focus'
@@ -342,7 +351,8 @@ bindsym $super+Shift+m mode "move-to-workspace"
 bindsym $super+Shift+o mode "owl"
 bindsym $super+Shift+r mode "resize"
 bindsym $super+Shift+s mode "swap-with-workspace"
-bindsym $super+Shift+u mode "radio-station"
+bindsym $super+Shift+u mode "set-url-handler"
+bindsym $super+Shift+y mode "radio-station"
 bindsym $super+Shift+x mode "i3-command"
 
 # Color palette used for the terminal ( ~/.Xresources file )

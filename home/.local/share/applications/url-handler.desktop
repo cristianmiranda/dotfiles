@@ -1,0 +1,19 @@
+[Desktop Entry]
+Version=1.0
+Name=URL Handler
+GenericName=Web Browser
+Exec=/home/cmiranda/bin/dpi-open $(cat /tmp/current-url-handler) %u
+Terminal=false
+X-MultipleArgs=false
+Type=Application
+StartupNotify=true
+Actions=new-window;new-private-window;
+NoDisplay=true
+
+[Desktop Action new-window]
+Name=New Window
+Exec=/home/cmiranda/bin/dpi-open $(cat /tmp/current-url-handler) --new-window %u
+
+[Desktop Action new-private-window]
+Name=New Private Window
+Exec=/home/cmiranda/bin/dpi-open $(cat /tmp/current-url-handler) --private-window %u

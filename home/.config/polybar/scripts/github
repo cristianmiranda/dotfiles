@@ -7,5 +7,5 @@ notifications_count=`curl -s -H "Authorization: Bearer ${GITHUB_TOKEN}" https://
 if [[ "$notifications_count" -eq "0" ]]; then
     echo ""
 else
-    echo "👾"
+    echo "%{F#FFFFFF}%{F-}"
 fi

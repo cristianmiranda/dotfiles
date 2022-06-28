@@ -1,6 +1,6 @@
 [Default Applications]
-x-scheme-handler/http=firefox-developer-edition.desktop
-x-scheme-handler/https=firefox-developer-edition.desktop
+x-scheme-handler/http=url-handler.desktop
+x-scheme-handler/https=url-handler.desktop
 text/plain=org.xfce.mousepad.desktop
 application/json=visual-studio-code.desktop
 application/sql=visual-studio-code.desktop

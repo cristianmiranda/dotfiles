@@ -22,5 +22,5 @@ else
 
   [[ "${total_unread_count}" = "0" ]] && echo ""
 
-  echo "✉️"
+  echo "%{F#FFFFFF}%{F-}"
 fi
