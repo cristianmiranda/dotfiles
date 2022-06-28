@@ -8,15 +8,13 @@ swipe:
       accel: 2
     end:
       command: xdotool mouseup 1
-  4: 
-    left: 
-      command: 'xdotool key alt+Right'
-    right: 
-      command: 'xdotool key alt+Left'
-    up: 
-      command: 'xdotool key ctrl+shift+plus'
-    down: 
-      command: 'xdotool key ctrl+minus'
+  4:
+    left:
+      command: "xdotool key alt+Right"
+    right:
+      command: "xdotool key alt+Left"
+    down:
+      command: "xdotool key ctrl+r"
 #  3:
 #    left:
 #      command: "xdotool key super+alt+Left" # Switch to next workspace
@@ -26,9 +24,9 @@ swipe:
 #      command: "xdotool key ctrl+r"
 pinch:
   in:
-    command: 'xdotool key ctrl+plus'
+    command: "xdotool key ctrl+plus"
   out:
-    command: 'xdotool key ctrl+minus'
+    command: "xdotool key ctrl+minus"
 
 threshold:
   swipe: 0.7
