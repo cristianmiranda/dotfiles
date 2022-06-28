@@ -6,6 +6,7 @@ application/json=visual-studio-code.desktop
 application/sql=visual-studio-code.desktop
 image/gif=viewnior.desktop
 image/jpeg=viewnior.desktop
+image/png=viewnior.desktop
 application/pdf=okularApplication_pdf.desktop
 
 [Added Associations]
@@ -14,5 +15,6 @@ application/json=visual-studio-code.desktop;
 application/sql=visual-studio-code.desktop;
 image/gif=viewnior.desktop;
 image/jpeg=viewnior.desktop;
+image/png=viewnior.desktop
 application/pdf=okularApplication_pdf.desktop;
 application/vnd.openxmlformats-officedocument.wordprocessingml.document=libreoffice-startcenter.desktop;
