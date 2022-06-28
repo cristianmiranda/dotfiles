@@ -9,16 +9,20 @@ if [ ! -f "$CURRENT_URL_HANDLER_FILENAME" ]; then
     case "$context" in
         personal)
             url_handler="firefox"
+            wm_class="firefox$"
             ;;
         lg)
             url_handler="firefox-developer-edition"
+            wm_class="firefoxdeveloperedition$"
             ;;
         sky)
             url_handler="firefox-nightly"
+            wm_class="firefox-nightly$"
             ;;
         *)
             echo "Unkown context"
             url_handler="firefox"
+            wm_class="firefox$"
             ;;
     esac
 else
@@ -26,3 +30,5 @@ else
 fi
 
 $HOME/bin/dpi-open $url_handler $@
+
+i3-msg '[class="'$wm_class'"] focus'
