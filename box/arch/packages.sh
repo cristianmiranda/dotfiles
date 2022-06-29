@@ -45,6 +45,7 @@ PACKAGES=(
     docker
     docker-compose
     dunst
+    easyeffects
     ebtables
     edk2-ovmf
     element-desktop

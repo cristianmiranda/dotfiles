@@ -14,6 +14,7 @@ floating_modifier $super
 #
 exec --no-startup-id set-display laptop
 exec --no-startup-id bluetoothctl power on
+exec --no-startup-id easyeffects --gapplication-service
 
 exec_always --no-startup-id nm-applet
 exec_always --no-startup-id caffeine
@@ -260,6 +261,7 @@ mode "i3-command" {
 # - 44:1B:88:07:A8:C8   # Cris'  AirPods   #
 ############################################
 mode "airpods" {
+        bindsym e exec --no-startup-id easyeffects --gapplication-service; mode "default"
         bindsym c exec --no-startup-id /home/cmiranda/bin/airpods connect '44:1B:88:07:A8:C8'; mode "default"
         bindsym d exec --no-startup-id /home/cmiranda/bin/airpods disconnect '44:1B:88:07:A8:C8'; mode "default"
         bindsym s exec --no-startup-id /home/cmiranda/bin/airpods speaker '44:1B:88:07:A8:C8'; mode "default"

@@ -39,6 +39,7 @@ PACKAGES=(
     discord
     docker
     docker-compose
+    easyeffects
     ebtables
     edk2-ovmf
     element-desktop
