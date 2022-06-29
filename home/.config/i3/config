@@ -16,31 +16,45 @@ exec --no-startup-id set-display laptop
 exec --no-startup-id bluetoothctl power on
 exec --no-startup-id easyeffects --gapplication-service
 
+#
+# Autostart (even when restarting i3)
+#
+exec_always --no-startup-id blueman-applet
+exec_always --no-startup-id docker
+exec_always --no-startup-id crontab ~/.crontab
 exec_always --no-startup-id nm-applet
-exec_always --no-startup-id caffeine
+exec_always --no-startup-id xfce4-power-manager
+exec_always --no-startup-id xset -b
+exec_always --no-startup-id xsettingsd
+exec_always --no-startup-id "caffeine kill || true; sleep 2; caffeine start"
 exec_always --no-startup-id "killall copyq || true; sleep 2; copyq"
 exec_always --no-startup-id "killall pasystray || true; sleep 2; pasystray"
 exec_always --no-startup-id "killall optimus-manager-qt || true; sleep 2; optimus-manager-qt"
-# exec_always --no-startup-id ~/bin/set-random-wallpaper ~/wallpapers/single/artistic2
-exec_always --no-startup-id ~/bin/set-wallpaper --use-config
-exec_always --no-startup-id xfce4-power-manager
-exec_always --no-startup-id blueman-applet
-exec_always --no-startup-id crontab ~/.crontab
-exec_always --no-startup-id "if [[ $(hostname) != 'Linux-Virtual' ]]; then picom -b --experimental-backends; fi"
-exec_always --no-startup-id ff-theme-util
-exec_always --no-startup-id docker
-exec_always --no-startup-id xset -b
-exec_always --no-startup-id brightnessctl --device='tpacpi::kbd_backlight' set 1
-# exec_always --no-startup-id libinput-gestures-setup stop && libinput-gestures-setup start
 exec_always --no-startup-id "killall fusuma || true; sleep 2; fusuma"
+exec_always --no-startup-id "killall xautolock || true; sleep 2; xautolock -time 15 -corners 00+0 -cornerdelay 1 -cornerredelay 10 -locker 'xset dpms force off' -notify 5 -notifier '$HOME/bin/lock-screen'"
+exec_always --no-startup-id "killall insync || true; sleep 2; QT_AUTO_SCREEN_SCALE_FACTOR=1 insync start"
+exec_always --no-startup-id "if [[ $(hostname) != 'Linux-Virtual' ]]; then picom -b --experimental-backends; fi"
+exec_always --no-startup-id brightnessctl --device='tpacpi::kbd_backlight' set 1
+exec_always --no-startup-id alttab -d 1 -w 1 -i 100x100 -t 100x100 -bg "#002B36" -frame "#16a085" -s 2
+exec_always --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+
+#
+# Wallpaper
+#
+exec_always --no-startup-id ~/bin/set-wallpaper --use-config
+# exec_always --no-startup-id ~/bin/set-random-wallpaper ~/wallpapers/single/artistic2
+
+#
+# i3 custom stuff
+#
 # exec_always --no-startup-id ~/.config/i3/scripts/autoname_workspaces.py --norenumber_workspaces --icon_list_format mathematician &
 # exec_always --no-startup-id ~/.config/i3/scripts/alternating_layouts.py &
-exec_always --no-startup-id alttab -d 1 -w 1 -i 100x100 -t 100x100 -bg "#002B36" -frame "#16a085" -s 2
-exec_always --no-startup-id "killall xautolock || true; sleep 2; xautolock -time 15 -corners 00+0 -cornerdelay 1 -cornerredelay 10 -locker 'xset dpms force off' -notify 5 -notifier '$HOME/bin/lock-screen'"
-exec_always --no-startup-id xsettingsd
-exec_always --no-startup-id "killall insync || true; QT_AUTO_SCREEN_SCALE_FACTOR=1 insync start"
-exec_always --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+
+#
+# Polybar
+#
 exec_always --no-startup-id ~/.config/polybar/launch.sh
+bindsym $super+b exec polybar-msg cmd toggle
 
 #
 # Terminal
