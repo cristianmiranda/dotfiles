@@ -54,6 +54,9 @@ br
 declare -A install_box=()
 for box in $(ls ${DOTFILES_PATH}/box); do
 	ask "Setup ${box}?" install_box[$box]
+    if [[ ${install_box[$box]} =~ y|Y ]]; then
+        break
+    fi
 done;
 export install_box
 
@@ -72,15 +75,19 @@ if [[ $CONTINUE =~ y|Y ]]; then
     br
 
     for box in $(ls ${DOTFILES_PATH}/box); do
-        if [[ ${install_box[$box]} =~ n|N ]]; then
-            br
-            warning ">>> Skipping box: ${box}..."
-            br
-        else
+        if [[ ${install_box[$box]} =~ y|Y ]]; then
+            separator 57
             br
             figlet "> ${box} <" | lolcat
             br
             bash ${DOTFILES_PATH}/box/$box/setup.sh
+            separator 57
+        else
+            separator 57
+            br
+            warning ">>> Skipping box: ${box}..."
+            br
+            separator 57
         fi
     done;
 
