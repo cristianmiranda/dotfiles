@@ -59,6 +59,7 @@ PACKAGES=(
     git-lfs
     gitkraken
     google-cloud-sdk
+    google-cloud-sdk-gke-gcloud-auth-plugin
     gtkpod
     hsetroot
     hplip

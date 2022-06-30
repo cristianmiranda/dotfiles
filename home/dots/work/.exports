@@ -14,4 +14,4 @@ export LG_BASE_DIR="${BASE_WORK_DIR}/Workspace_LG"
 #
 export PATH="$PATH:/opt/oracle/instantclient"
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/opt/oracle/instantclient"
-
+export USE_GKE_GCLOUD_AUTH_PLUGIN=True

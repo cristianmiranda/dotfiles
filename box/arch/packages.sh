@@ -67,6 +67,7 @@ PACKAGES=(
     gitkraken
     go
     google-cloud-sdk
+    google-cloud-sdk-gke-gcloud-auth-plugin
     gtkpod
     hplip
     hsetroot
