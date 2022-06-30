@@ -12,7 +12,7 @@ bash $CURRENT_DIR/packages.sh
 br
 banner "         >>> linux/programs <<<       "
 br
-bash $CURRENT_DIR/programs.sh
+bash $CURRENT_DIR/../arch/programs.sh
 
 br
 banner "         >>> linux/config <<<         "
