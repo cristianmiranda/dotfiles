@@ -107,6 +107,7 @@ PACKAGES=(
     noto-fonts
     noto-fonts-emoji
     nvidia
+    neovim
     okular
     openssh
     optimus-manager-git
