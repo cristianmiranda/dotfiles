@@ -2,14 +2,30 @@
   borderless = True
   inactive_color_offset = 1.0
 [keybindings]
-  group_tab = None
-  move_tab_left = None
-  move_tab_right = None
   new_tab = None
-  new_terminator = None
-  new_window = None
+  move_tab_right = None
+  move_tab_left = None
   next_tab = None
   prev_tab = None
+  group_tab = None
+  new_window = None
+  new_terminator = None
+[profiles]
+  [[default]]
+    audible_bell = True
+    background_color = "#1e2127"
+    background_darkness = 0.0
+    backspace_binding = automatic
+    cursor_color = "#676c76"
+    cursor_color_fg = False
+    font = Fira Code weight=450 11
+    foreground_color = "#839496"
+    show_titlebar = False
+    scrollbar_position = hidden
+    scrollback_infinite = True
+    palette = "#000000:#e06c75:#98c379:#d19a66:#61afef:#c678dd:#56b6c2:#abb2bf:#5c6370:#e06c75:#98c379:#d19a66:#61afef:#c678dd:#56b6c2:#fffefe"
+    use_system_font = False
+    copy_on_selection = True
 [layouts]
   [[default]]
     [[[child1]]]
@@ -19,20 +35,3 @@
       parent = ""
       type = Window
 [plugins]
-[profiles]
-  [[default]]
-    audible_bell = True
-    background_color = "#1e2127"
-    background_darkness = 0.0
-    backspace_binding = automatic
-    copy_on_selection = True
-    cursor_color = "#676c76"
-    cursor_color_fg = False
-    cursor_shape = underline
-    font = Fira Code weight=450 11
-    foreground_color = "#839496"
-    palette = "#000000:#e06c75:#98c379:#d19a66:#61afef:#c678dd:#56b6c2:#abb2bf:#5c6370:#e06c75:#98c379:#d19a66:#61afef:#c678dd:#56b6c2:#fffefe"
-    scrollback_infinite = True
-    scrollbar_position = hidden
-    show_titlebar = False
-    use_system_font = False

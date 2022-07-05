@@ -7,9 +7,15 @@
 syntax on
 colorscheme onedark
 
-" vim-airline
-let g:airline_theme='onedark'
+let g:airline_theme = 'onedark'
 let g:airline_powerline_fonts = 1
+" Enable the list of buffers
+let g:airline#extensions#tabline#enabled = 1
+
+let g:rainbow_active = 1
+
+let g:floaterm_wintype = 'split'
+let g:floaterm_height = 0.3
 
 " Make Vim more useful
 set nocompatible
@@ -84,10 +90,10 @@ set title
 " Show the (partial) command as it’s being typed
 set showcmd
 " Use relative line numbers
-"if exists("&relativenumber")
-"	set relativenumber
-"	au BufReadPost * set relativenumber
-"endif
+if exists("&relativenumber")
+	set relativenumber
+	au BufReadPost * set relativenumber
+endif
 " Start scrolling three lines before the horizontal window border
 set scrolloff=3
 
@@ -99,16 +105,34 @@ function! StripWhitespace()
 	call setpos('.', save_cursor)
 	call setreg('/', old_query)
 endfunction
-noremap <leader>ss :call StripWhitespace()<CR>
+"noremap <leader>ss :call StripWhitespace()<CR>
 " Save a file as root (,W)
-noremap <leader>W :w !sudo tee % > /dev/null<CR>
+"noremap <leader>W :w !sudo tee % > /dev/null<CR>
+
+" Toggles NERDTree
+nnoremap <leader>n :NERDTreeToggle<CR>
+" Toggles Terminal
+nnoremap <leader>t :FloatermToggle<CR>
+" FZF Files
+nnoremap <leader>f :FZF<CR>
+" FZF Buffers
+nnoremap <leader>b :Buffers<CR>
+" Smart way to move between buffers
+nnoremap <C-left> :bp<CR>
+nnoremap <C-right> :bn<CR>
+" Indent
+nnoremap <Tab> >>_
+nnoremap <S-Tab> <<_
+inoremap <S-Tab> <C-D>
+vnoremap <Tab> >gv
+vnoremap <S-Tab> <gv
 
 " Automatic commands
 if has("autocmd")
 	" Enable file type detection
 	filetype on
 	" Treat .json files as .js
-	autocmd BufNewFile,BufRead *.json setfiletype json syntax=javascript
+	"autocmd BufNewFile,BufRead *.json setfiletype json syntax=javascript
 	" Treat .md files as Markdown
 	autocmd BufNewFile,BufRead *.md setlocal filetype=markdown
 endif
@@ -118,10 +142,11 @@ endif
 " - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.vim/plugged')
 
-" Make sure you use single quotes
-
 " Syntax highlighting
 Plug 'sheerun/vim-polyglot'
+
+" Tabs
+Plug 'pacha/vem-tabline'
 
 " Rainbow brackets
 Plug 'frazrepo/vim-rainbow'
@@ -129,7 +154,30 @@ Plug 'frazrepo/vim-rainbow'
 " Surroundings (parentheses, brackets, quotes, etc)
 Plug 'tpope/vim-surround'
 
+" fzf
+Plug 'junegunn/fzf.vim'
+
+" Floating Terminal
+Plug 'voldikss/vim-floaterm'
+
+" The NERDTree
+Plug 'preservim/nerdtree'
+
+" Git Wrapper
+Plug 'tpope/vim-fugitive'
+
+" Git lines changed
+Plug 'airblade/vim-gitgutter'
+
+" ALE linting
+Plug 'dense-analysis/ale'
+
+" Autocomplete
+Plug 'davidhalter/jedi-vim'
+
+" VIM dev-icons
+Plug 'ryanoasis/vim-devicons'
+
 " Initialize plugin system
 call plug#end()
 
-let g:rainbow_active = 1
