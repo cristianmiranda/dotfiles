@@ -20,6 +20,7 @@ PACKAGES=(
     alsa-utils
     alttab-git
     arandr
+    asciinema
     authy
     auto-cpufreq
     autoconf
