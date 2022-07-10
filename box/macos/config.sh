@@ -224,3 +224,8 @@ defaults write com.googlecode.iterm2 PromptOnQuit -bool false >> $LOG_FILE 2>&1
 info ">>> Google Chrome: Expand the print dialog by default"
 defaults write com.google.Chrome PMPrintingExpandedStateForPrint2 -bool true >> $LOG_FILE 2>&1
 defaults write com.google.Chrome.canary PMPrintingExpandedStateForPrint2 -bool true >> $LOG_FILE 2>&1
+
+# tmux plugin manager
+# Run prefix + I to install plugins
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+

@@ -41,6 +41,10 @@ sudo systemctl start pcscd.service
 sudo systemctl enable auto-cpufreq
 sudo systemctl start auto-cpufreq
 
+# tmux plugin manager
+# Run prefix + I to install plugins
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
 #
 # If Spotify or Virt-Manager cannot connect to the internet
 # replace the contents of /usr/lib/NetworkManager/conf.d/20-connectivity.conf
