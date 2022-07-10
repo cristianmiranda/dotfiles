@@ -11,7 +11,7 @@ curl -L git.io/dot.deploy -o /tmp/cm.files && bash /tmp/cm.files
 
 ## 📚 Docs
 
-* [Arch](docs/Arch.md)
+* [Linux](docs/Linux.md)
 * [GPU Passthrough](docs/GPU_Passthrough.md)
 
 ![](https://i.imgur.com/wM2b46p.jpg)

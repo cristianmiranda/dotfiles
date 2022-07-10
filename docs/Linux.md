@@ -1,4 +1,14 @@
-# Arch
+# 🐧 Linux
+
+## 📝 vim
+
+1. Enter vim
+2. Run `:PlugInstall` to install plugins
+
+## 🪟 tmux
+
+1. Run tmux
+2. Press `prefix + I` to install plugins
 
 ## 🖱️ Touchpad
 
