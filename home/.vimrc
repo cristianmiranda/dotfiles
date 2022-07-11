@@ -17,6 +17,16 @@ let g:rainbow_active = 1
 let g:floaterm_wintype = 'split'
 let g:floaterm_height = 0.3
 
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+let g:ctrlp_show_hidden = 1
+
 " Make Vim more useful
 set nocompatible
 " Use the OS clipboard by default (on versions compiled with `+clipboard`)
@@ -118,8 +128,8 @@ nnoremap <leader>f :FZF<CR>
 " FZF Buffers
 nnoremap <leader>b :Buffers<CR>
 " Smart way to move between buffers
-nnoremap <C-left> :bp<CR>
-nnoremap <C-right> :bn<CR>
+nnoremap <leader>p :bp<CR>
+nnoremap <leader>n :bn<CR>
 " Indent
 nnoremap <Tab> >>_
 nnoremap <S-Tab> <<_
@@ -156,6 +166,7 @@ Plug 'tpope/vim-surround'
 
 " fzf
 Plug 'junegunn/fzf.vim'
+Plug 'kien/ctrlp.vim'
 
 " Floating Terminal
 Plug 'voldikss/vim-floaterm'
@@ -169,11 +180,8 @@ Plug 'tpope/vim-fugitive'
 " Git lines changed
 Plug 'airblade/vim-gitgutter'
 
-" ALE linting
-Plug 'dense-analysis/ale'
-
-" Autocomplete
-Plug 'davidhalter/jedi-vim'
+" Syntax linting
+Plug 'scrooloose/syntastic'
 
 " VIM dev-icons
 Plug 'ryanoasis/vim-devicons'

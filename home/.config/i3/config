@@ -14,7 +14,6 @@ floating_modifier $super
 #
 exec --no-startup-id set-display laptop
 exec --no-startup-id bluetoothctl power on
-exec --no-startup-id easyeffects --gapplication-service
 
 #
 # Autostart (even when restarting i3)
@@ -26,6 +25,7 @@ exec_always --no-startup-id nm-applet
 exec_always --no-startup-id xfce4-power-manager
 exec_always --no-startup-id xset -b
 exec_always --no-startup-id xsettingsd
+exec_always --no-startup-id easyeffects --gapplication-service
 exec_always --no-startup-id "caffeine kill || true; sleep 2; caffeine start"
 exec_always --no-startup-id "killall copyq || true; sleep 2; copyq"
 exec_always --no-startup-id "killall pasystray || true; sleep 2; pasystray"
@@ -41,7 +41,8 @@ exec_always --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-ag
 #
 # Wallpaper
 #
-exec_always --no-startup-id ~/bin/set-wallpaper --use-config
+exec_always --no-startup-id variety
+# exec_always --no-startup-id ~/bin/set-wallpaper --use-config
 # exec_always --no-startup-id ~/bin/set-random-wallpaper ~/wallpapers/single/artistic2
 
 #
