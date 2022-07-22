@@ -1,0 +1,7 @@
+# ignore everything (dirs, files, sub-dirs, sub-files)
+/*
+# but do not ignore the .gitignore file
+!.gitignore
+# but do ont ignore variety.conf
+!variety.conf
+
