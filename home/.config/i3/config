@@ -26,7 +26,7 @@ exec_always --no-startup-id nm-applet
 exec_always --no-startup-id xfce4-power-manager
 exec_always --no-startup-id xset -b
 exec_always --no-startup-id xsettingsd
-exec_always --no-startup-id easyeffects --gapplication-service
+#exec_always --no-startup-id easyeffects --gapplication-service
 exec_always --no-startup-id "caffeine kill || true; sleep 2; caffeine start"
 exec_always --no-startup-id "killall copyq || true; sleep 2; copyq"
 exec_always --no-startup-id "killall pasystray || true; sleep 2; pasystray"
