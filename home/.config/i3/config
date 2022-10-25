@@ -42,7 +42,7 @@ exec_always --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-ag
 #
 # Wallpaper
 #
-# exec_always --no-startup-id variety
+exec_always --no-startup-id ps aux | grep "variety" | grep -v "grep" || variety
 # exec_always --no-startup-id ~/bin/set-wallpaper --use-config
 # exec_always --no-startup-id ~/bin/set-random-wallpaper ~/wallpapers/single/artistic2
 
