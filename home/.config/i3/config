@@ -12,6 +12,7 @@ floating_modifier $super
 #
 # Autostart
 #
+exec --no-startup-id eval `ssh-agent -s`
 exec --no-startup-id set-display laptop
 exec --no-startup-id bluetoothctl power on
 
