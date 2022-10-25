@@ -17,7 +17,7 @@ if [ ! -f "$CURRENT_URL_HANDLER_FILENAME" ]; then
             ;;
         sky)
             url_handler="firefox-nightly"
-            wm_class="firefox-nightly$"
+            wm_class="firefoxnightly$"
             ;;
         *)
             echo "Unkown context"
