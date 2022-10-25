@@ -1,0 +1,10 @@
+#!/bin/bash
+
+
+WEATHER=$(curl -s "wttr.in/?format=1"); 
+
+if [[ "$WEATHER" =~ "Unknown" ]]; then 
+    echo "🌪️"
+else 
+    echo $WEATHER; 
+fi
