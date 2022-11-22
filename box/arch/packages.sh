@@ -56,7 +56,7 @@ PACKAGES=(
     filezilla
     firefox
     firefox-developer-edition
-    firefox-nightly
+    firefox-nightly-bin
     fd
     ff-theme-util
     ffmpeg
