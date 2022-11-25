@@ -155,6 +155,7 @@ PACKAGES=(
     terminator
     telegram-desktop
     termdown
+    ticktick
     timeshift
     thunar
     thunderbird
