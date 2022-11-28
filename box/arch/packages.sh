@@ -21,7 +21,6 @@ PACKAGES=(
     alttab-git
     arandr
     asciinema
-    authy
     auto-cpufreq
     autoconf
     autojump
