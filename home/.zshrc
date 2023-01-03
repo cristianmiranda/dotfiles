@@ -59,10 +59,10 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   
   # Brew
   eval "$(/opt/homebrew/bin/brew shellenv)"
-
-  # Override python 2.7 with 3
-  alias python=python3
 fi
+
+# Override python 2.7 with 3
+alias python=python3
 
 # Common cross-profile stuff
 source ${HOME}/profiles/common.sh
