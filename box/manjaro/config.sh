@@ -44,8 +44,8 @@ sudo systemctl enable pcscd.service
 sudo systemctl start pcscd.service
 
 # auto-cpufreq
-sudo systemctl enable auto-cpufreq
-sudo systemctl start auto-cpufreq
+# sudo systemctl enable auto-cpufreq
+# sudo systemctl start auto-cpufreq
 
 #
 # If Spotify or Virt-Manager cannot connect to the internet
