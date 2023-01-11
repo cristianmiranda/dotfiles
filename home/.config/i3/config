@@ -325,6 +325,7 @@ mode "radio-station" {
         bindsym 2 exec --no-startup-id ~/bin/radio 102.3; mode "default"
         bindsym 3 exec --no-startup-id ~/bin/radio 104.3; mode "default"
         bindsym 4 exec --no-startup-id ~/bin/radio 105.5; mode "default"
+        bindsym 5 exec --no-startup-id ~/bin/radio 99.9; mode "default"
         
         bindsym Escape mode "default"
         bindsym Return mode "default"
