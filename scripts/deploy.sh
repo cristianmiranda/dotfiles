@@ -17,11 +17,15 @@ else
     # Grabs ssh & gpg keys
     cd $HOME
     BACKUP_DIR=/data/ssd/backups/manual/secrets
-    scp -r -P 62022 cmiranda@cmiranda.ar:"${BACKUP_DIR}/.gnupg" .
-    scp -r -P 62022 cmiranda@cmiranda.ar:"${BACKUP_DIR}/.ssh" .
-    scp -r -P 62022 cmiranda@cmiranda.ar:"${BACKUP_DIR}/.cert" .
+    
+    sudo pacman -S git unzip
 
-    sudo pacman -S git
+    printf "%s " "Please import ~/.ssh and ~/.gnupg manually. Once finished press enter to continue."
+    read ans
+
+    # scp -r -P 62022 cmiranda@cmiranda.ar:"${BACKUP_DIR}/.gnupg" .
+    # scp -r -P 62022 cmiranda@cmiranda.ar:"${BACKUP_DIR}/.ssh" .
+    # scp -r -P 62022 cmiranda@cmiranda.ar:"${BACKUP_DIR}/.cert" .
 
     # Clones repo
     WORKSPACE=$HOME/Documents/Work/Workspace
