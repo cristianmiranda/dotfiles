@@ -9,7 +9,7 @@ stations['100.7']='https://playerservices.streamtheworld.com/api/livestream-redi
 # Aspen
 stations['102.3']='https://mdstrm.com/audio/60a2745ff943100826374a70/icecast.audio'
 # Urbana Play
-stations['104.3']='https://www.twitch.tv/urbanaplay'
+stations['104.3']='https://www.twitch.tv/urbanaplayfm'
 # 40 Principales
 stations['105.5']='http://playerservices.streamtheworld.com/api/livestream-redirect/LOS40_ARGENTINAAAC'
 # La 100
