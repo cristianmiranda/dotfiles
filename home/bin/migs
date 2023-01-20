@@ -1,4 +1,4 @@
-#!/bin/env bash
+#!/bin/bash
 
 BLUE='\e[34m'
 GREEN='\e[92m'
