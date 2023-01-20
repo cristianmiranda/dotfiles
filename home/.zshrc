@@ -58,7 +58,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
   
   # Brew
-  eval "$(/opt/homebrew/bin/brew shellenv)"
+  # eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
 # Override python 2.7 with 3
