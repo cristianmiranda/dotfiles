@@ -70,7 +70,7 @@ PACKAGES=(
     gtkpod
     hplip
     hsetroot
-    i3-gaps
+    i3-wm
     i3blocks
     i3blocks-contrib
     i3lock-color-git
