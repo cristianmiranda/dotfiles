@@ -5,7 +5,8 @@ PROFILE_SINGLE="single";
 PROFILE_SINGLE_INVERTED="single-inverted";
 PROFILE_DUAL="dual";
 PROFILE_DUAL_INVERTED="dual-inverted";
-PROFILE_VIRTUAL="virtual"
+PROFILE_VIRTUAL="virtual";
+PROFILE_HDMI="hdmi"
 
 XRANDR_DISPLAY_PROFILE=$1
 
@@ -66,6 +67,15 @@ if [[ "$XRANDR_DISPLAY_PROFILE" == "$PROFILE_VIRTUAL" ]]; then
     echo "Xft/DPI 98304" > ~/.xsettingsd
     
     bash ~/.screenlayout/virtual.sh
+fi
+
+if [[ "$XRANDR_DISPLAY_PROFILE" == "$PROFILE_HDMI" ]]; then
+    xrdb -merge ~/.Xresources.asus
+
+    # Xresources.DPI * 1024
+    echo "Xft/DPI 98304" > ~/.xsettingsd
+    
+    bash ~/.screenlayout/asus_hdmi.sh
 fi
 
 # Kill xsettingsd to be restarted by i3. Used to scale GTK apps when going 2K <=> 4K
