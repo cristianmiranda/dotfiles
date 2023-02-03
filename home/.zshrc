@@ -59,6 +59,9 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   
   # Brew
   # eval "$(/opt/homebrew/bin/brew shellenv)"
+
+  export PATH="$HOME/.rbenv/bin:$PATH"
+  eval "$(rbenv init -)"
 fi
 
 # Override python 2.7 with 3
