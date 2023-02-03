@@ -10,6 +10,8 @@ VERIFYING='#1793D1'
 
 dunstctl set-paused true
 
+xset dpms force off
+
 i3lock \
 --nofork                     \
 --insidever-color=$CLEAR     \

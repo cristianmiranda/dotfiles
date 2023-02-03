@@ -32,7 +32,7 @@ exec_always --no-startup-id "killall copyq || true; sleep 2; copyq"
 exec_always --no-startup-id "killall pasystray || true; sleep 2; pasystray"
 exec_always --no-startup-id "killall optimus-manager-qt || true; sleep 2; optimus-manager-qt"
 exec_always --no-startup-id "killall fusuma || true; sleep 2; fusuma"
-exec_always --no-startup-id "killall xautolock || true; sleep 2; xautolock -time 15 -corners 00+0 -cornerdelay 1 -cornerredelay 10 -locker 'xset dpms force off' -notify 5 -notifier '$HOME/bin/lock-screen'"
+exec_always --no-startup-id "killall xautolock || true; sleep 2; xautolock -time 15 -corners 00+0 -cornerdelay 1 -cornerredelay 10 -locker '$HOME/bin/lock-screen'"
 exec_always --no-startup-id "killall insync || true; sleep 2; QT_AUTO_SCREEN_SCALE_FACTOR=1 insync start"
 exec_always --no-startup-id "if [[ $(hostname) != 'Linux-Virtual' ]]; then picom -b;  fi"
 exec_always --no-startup-id brightnessctl --device='tpacpi::kbd_backlight' set 1
