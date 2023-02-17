@@ -63,5 +63,5 @@ function gph() {
 }
 
 function gphf() {
-  git push -f origin `git branch | awk '{if ($1 == "*"){print $2}}'`
+  git push --force-with-lease origin `git branch | awk '{if ($1 == "*"){print $2}}'`
 }
