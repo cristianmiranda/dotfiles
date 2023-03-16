@@ -362,7 +362,7 @@ bindsym $super+m exec --no-startup-id i3-msg '[class="(?i)thunderbird"] focus'
 bindsym $super+p exec --no-startup-id i3-msg '[class="(?i)pycharm"] focus'
 bindsym $super+o exec --no-startup-id i3-msg '[class="(?i)webstorm"] focus'
 bindsym $super+r exec --no-startup-id i3-msg '[class="(?i)element"] focus'
-bindsym $super+s exec --no-startup-id i3-msg '[class="(?i)slack"] focus'
+bindsym $super+s exec --no-startup-id i3-msg '[class="(?i)spotify"] focus'
 bindsym $super+t exec --no-startup-id i3-msg '[class="(?i)telegram"] focus'
 bindsym $super+w exec --no-startup-id i3-msg '[class="(?i)whatsapp"] focus'
 
