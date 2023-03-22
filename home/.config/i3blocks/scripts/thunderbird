@@ -2,7 +2,7 @@
 
 case "$BLOCK_BUTTON" in
     1)
-        i3-msg '[class="Thunderbird$"] focus' > /dev/null
+        i3-msg '[class="thunderbird$"] focus' > /dev/null
     ;;
 esac
 
