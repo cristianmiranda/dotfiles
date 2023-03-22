@@ -65,3 +65,7 @@ alias rat='bat --plain '
 alias libgen='libgen-downloader'
 
 alias scpc='sshc --rsync -avP'
+
+alias t='tmux'
+alias ta='tmux a'
+
