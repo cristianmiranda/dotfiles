@@ -12,7 +12,7 @@
 
 ## 🖱️ Touchpad
 
-Enable "tap to click"
+Enable "tap to click" & change mouse acceleration
 ```bash
 sudo vim /etc/X11/xorg.conf.d/30-touchpad.conf
 ```
@@ -22,8 +22,12 @@ Section "InputClass"
     Driver "libinput"
     MatchIsTouchpad "on"
     Option "Tapping" "on"
+    Option "AccelSpeed" "0.5"
 EndSection
 ```
+
+See more @ https://wiki.archlinux.org/title/Mouse_acceleration
+
 
 ## 📦 Pacman
 
