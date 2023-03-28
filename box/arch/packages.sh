@@ -63,6 +63,7 @@ PACKAGES=(
     freerdp
     git-delta-bin
     git-lfs
+    github-copilot-cli
     gitkraken
     go
     google-cloud-sdk
