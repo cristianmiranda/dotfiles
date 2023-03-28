@@ -115,6 +115,7 @@ PACKAGES=(
     optimus-manager-git
     optimus-manager-qt
     p7zip
+    pacman-contrib
     pasystray
     pamixer
     papirus-icon-theme
