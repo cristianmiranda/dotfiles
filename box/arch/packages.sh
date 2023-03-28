@@ -93,6 +93,7 @@ PACKAGES=(
     meld
     mpv
     navi
+    ncdu
     neofetch
     nerd-fonts-fira-code
     net-tools
