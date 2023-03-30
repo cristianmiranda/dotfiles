@@ -18,6 +18,7 @@ alias dt="cd ~/Desktop"
 alias pc="cd ~/Pictures"
 alias repo="cd ${BASE_WORK_DIR}"
 alias g="git"
+alias yy="yay && yaycache"
 
 # macOS
 # alias resetdock="osascript -e 'quit application \"Dock\"'"
