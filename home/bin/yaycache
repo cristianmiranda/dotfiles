@@ -2,8 +2,12 @@
 
 yay_cache=`find $(yay -Pg | jq -r .buildDir) -maxdepth 1 -type d | awk '{ print "-c " $1 }' | tail -n +2`
 
-echo -e "\n🧐 Looking for prunable uninstalled packages..."
-paccache -ruvk0 $yay_cache
-echo -e "\n🧐 Looking for prunable installed packages..."
-paccache -rvk2 $yay_cache
+echo -e "\n🧐 [pacman] Looking for prunable installed packages..."
+paccache -rvk2
+echo -e "\n🧐 [pacman] Looking for prunable uninstalled packages..."
+paccache -ruvk0
+echo -e "\n🧐 [yay] Looking for prunable installed packages..."
+paccache -rvk0 $yay_cache
+echo -e "\n🧐 [yay] Looking for prunable uninstalled packages..."
+paccache -ruvk2 $yay_cache
 
