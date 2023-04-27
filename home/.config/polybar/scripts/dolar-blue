@@ -1,0 +1,4 @@
+#!/bin/bash
+
+$HOME/bin/dolar -b | awk -F " //" '{print $1}'
+

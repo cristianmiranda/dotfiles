@@ -5,14 +5,27 @@ function usage {
 	echo "Usage: $(basename $0) <options>" >&2
 	echo
 	echo "Gets the current USD value" >&2
-  echo
+	echo
 	echo "OPTIONS:" >&2
 	echo "  --blue    | -b : Dólar Blue" >&2
 	echo "  --oficial | -o : Dólar Oficial" >&2
 }
 
 function fetchUSDValue {
-	curl -s https://www.dolarsi.com/api/dolarSiInfo.xml | xmlstarlet select --template --value-of cotiza/valor_general_dolar/$1/venta; echo
+	output=$(curl -s https://mercados.ambito.com/dolar/$1/variacion)
+
+	buyPrice=$(echo $output | jq '.compra' | sed 's/"//g')
+	sellPrice=$(echo $output | jq '.venta' | sed 's/"//g')
+	variation=$(echo $output | jq '.variacion' | sed 's/"//g')
+	lastClosingValue=$(echo $output | jq '.valor_cierre_ant' | sed 's/"//g')
+
+	if [[ $variation == *-* ]]; then
+		variation="🔴 $variation"
+	else
+		variation="🟢 $variation"
+	fi
+
+	echo "💵 $buyPrice / $sellPrice // $variation ($lastClosingValue)"
 }
 
 # Check arguments
@@ -36,10 +49,10 @@ while [ $# -gt 0 ]; do
 	shift
 
 	if [ "$arg" == "-b" -o "$arg" == "--blue" ]; then
-    fetchUSDValue blue
-  fi
+		fetchUSDValue informal
+	fi
 
-  if [ "$arg" == "-o" -o "$arg" == "--oficial" ]; then
-    fetchUSDValue oficial/Capital_federal
-  fi
+	if [ "$arg" == "-o" -o "$arg" == "--oficial" ]; then
+		fetchUSDValue oficial
+	fi
 done
