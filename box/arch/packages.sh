@@ -83,7 +83,6 @@ PACKAGES=(
     jitsi-meet-desktop-bin
     jq
     keepassxc
-    korganizer
     kubectl
     kubectx
     lazydocker
