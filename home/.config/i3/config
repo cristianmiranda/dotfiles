@@ -311,6 +311,7 @@ mode "launch" {
         bindsym i exec --no-startup-id intellij-idea-ultimate; mode "default"
         bindsym j exec --no-startup-id /usr/local/jitsi-meet/jitsi-meet; mode "default"
         bindsym m exec --no-startup-id thunderbird; mode "default"
+        bindsym n exec --no-startup-id notion-app; mode "default"
         bindsym p exec --no-startup-id $HOME/bin/dpi-open thunar; mode "default"
         bindsym s exec --no-startup-id spotify; mode "default"
         bindsym t exec --no-startup-id telegram-desktop; mode "default"
