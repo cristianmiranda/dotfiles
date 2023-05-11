@@ -303,7 +303,7 @@ mode "gaps" {
 }
 
 mode "launch" {
-        bindsym c exec --no-startup-id terminator --command 'python'; mode "default"
+        bindsym c exec --no-startup-id firefox --new-window https://chat.openai.com/?model=gpt-4; mode "default"
         bindsym d exec --no-startup-id discord; mode "default"
         bindsym e exec --no-startup-id /usr/local/firefox_dev/firefox; mode "default"
         bindsym f exec --no-startup-id firefox; mode "default"
