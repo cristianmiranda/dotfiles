@@ -56,7 +56,7 @@ SPACESHIP_DOCKER_VERBOSE=false
 if [[ "$OSTYPE" == "darwin"* ]]; then
   # macOS bash completion
   [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
-  
+
   # Brew
   # eval "$(/opt/homebrew/bin/brew shellenv)"
 
@@ -78,13 +78,15 @@ source ${HOME}/profiles/common.sh
 #
 # Arch Linux
 [[ -s /etc/profile.d/autojump.sh ]] && source /etc/profile.d/autojump.sh
+# autojump-git
+[[ -s /home/cmiranda/.cache/yay/autojump-git/pkg/autojump-git/etc/profile.d/autojump.sh ]] && source /home/cmiranda/.cache/yay/autojump-git/pkg/autojump-git/etc/profile.d/autojump.sh
 # macOS
 [ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
 # Ubuntu Server
 [[ -s /home/cmiranda/.autojump/etc/profile.d/autojump.sh ]] && source /home/cmiranda/.autojump/etc/profile.d/autojump.sh
 
 # Navi - https://github.com/denisidoro/navi#customization
-where navi > /dev/null 2>&1 && eval "$(navi widget zsh)"
+where navi >/dev/null 2>&1 && eval "$(navi widget zsh)"
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"

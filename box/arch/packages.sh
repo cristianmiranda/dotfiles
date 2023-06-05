@@ -22,7 +22,7 @@ PACKAGES=(
     arandr
     asciinema
     autoconf
-    autojump
+    autojump-git
     base-devel
     bashtop
     bat
