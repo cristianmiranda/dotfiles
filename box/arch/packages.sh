@@ -133,6 +133,7 @@ PACKAGES=(
     qalculate-gtk
     qemu
     ranger
+    rebuild-detector
     redli
     rofi
     rofi-calc
