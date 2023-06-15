@@ -311,6 +311,7 @@ mode "launch" {
         bindsym p exec --no-startup-id $HOME/bin/dpi-open thunar; mode "default"
         bindsym s exec --no-startup-id spotify; mode "default"
         bindsym t exec --no-startup-id telegram-desktop; mode "default"
+        bindsym v exec --no-startup-id nmcli c up LG; mode "default"
         bindsym w exec --no-startup-id walc; mode "default"
         
         bindsym Escape mode "default"
