@@ -4,26 +4,22 @@ CURRENT_URL_HANDLER_FILENAME="/tmp/current-url-handler"
 
 if [ ! -f "$CURRENT_URL_HANDLER_FILENAME" ]; then
     echo "No current url handler set. Will determine current url handler automatically using custom rules."
-    context=`$HOME/bin/get-word-context $@`
+    context=$($HOME/bin/get-word-context $@)
 
     case "$context" in
-        personal)
-            url_handler="firefox"
-            wm_class="firefox$"
-            ;;
-        lg)
-            url_handler="firefox-developer-edition"
-            wm_class="firefoxdeveloperedition$"
-            ;;
-        sky)
-            url_handler="firefox-nightly"
-            wm_class="firefoxnightly$"
-            ;;
-        *)
-            echo "Unkown context"
-            url_handler="firefox"
-            wm_class="firefox$"
-            ;;
+    personal)
+        url_handler="firefox"
+        wm_class="firefox$"
+        ;;
+    lg)
+        url_handler="firefox-developer-edition"
+        wm_class="firefoxdeveloperedition$"
+        ;;
+    *)
+        echo "Unkown context"
+        url_handler="firefox"
+        wm_class="firefox$"
+        ;;
     esac
 else
     url_handler=$(cat $CURRENT_URL_HANDLER_FILENAME)
