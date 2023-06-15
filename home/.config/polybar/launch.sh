@@ -1,5 +1,8 @@
 #!/usr/bin/env sh
 
+# Wait a bit until displays are on and xrandr is ready
+sleep 5
+
 # Terminate already running bar instances
 killall -q polybar
 
