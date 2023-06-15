@@ -4,8 +4,7 @@
 . ${UTILS_PATH}/packages.sh
 . ${UTILS_PATH}/path.sh
 
-if [[ $INSTALL_PACKAGES =~ n|N ]];
-then
+if [[ $INSTALL_PACKAGES =~ n|N ]]; then
     warning ">>> Skipping Packages..."
     exit 0
 fi
@@ -150,6 +149,7 @@ PACKAGES=(
     spotify
     steam
     streamlink
+    sxhkd
     sysstat
     system-config-printer
     teamviewer
@@ -169,7 +169,6 @@ PACKAGES=(
     virt-manager
     visual-studio-code-bin
     whatsapp-nativefier
-    xbindkeys
     xcalib
     xclip
     xcursor-breeze
@@ -202,7 +201,7 @@ PIP_PACKAGES=(
 
 # Reinstall pambase
 # See https://bbs.archlinux.org/viewtopic.php?id=142720
-yayInstall pambase >> $LOG_FILE 2>&1
+yayInstall pambase >>$LOG_FILE 2>&1
 
 # Update keys
 gpg --refresh-keys --keyserver hkps://keys.openpgp.org

@@ -1,0 +1,31 @@
+# Rewind
+XF86AudioPrev
+    dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
+
+# Play/Pause
+XF86AudioPlay
+    dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
+
+# Forward
+XF86AudioNext
+    dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
+
+# Volume Up
+XF86AudioRaiseVolume
+    /home/cmiranda/bin/amixer-vol up
+
+# Volume Down
+XF86AudioLowerVolume
+    /home/cmiranda/bin/amixer-vol down
+
+# Toggle volume
+XF86AudioMute
+    /home/cmiranda/bin/amixer-vol toggle
+
+# Toggle microphone
+XF86AudioMicMute
+    /home/cmiranda/bin/amixer-vol toggle-mic
+
+# Toggle microphone
+XF86Eject
+    /home/cmiranda/bin/amixer-vol toggle-mic

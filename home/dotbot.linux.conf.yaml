@@ -5,38 +5,38 @@
 
 - clean:
     ~/:
-        force: true
+      force: true
     ~/.config:
-        recursive: true
+      recursive: true
 
 - link:
     # Link to self
-    ~/dotfiles: '../.'
-    
+    ~/dotfiles: "../."
+
     # Hidden directories
     ~/.config/:
-        glob: true
-        path: .config/*
-        force: true
+      glob: true
+      path: .config/*
+      force: true
     ~/.local/share/fonts: .local/share/fonts
-    ~/.local/share/icons: 
-        path: .local/share/icons
-        force: true
+    ~/.local/share/icons:
+      path: .local/share/icons
+      force: true
     ~/.local/share/applications/mimeapps.list: .local/share/applications/mimeapps.list
     ~/.local/share/applications/:
-        glob: true
-        path: .local/share/applications/*.desktop
+      glob: true
+      path: .local/share/applications/*.desktop
     ~/.local/share/navi: .local/share/navi
     ~/.screenlayout: .screenlayout
-    ~/.ssh/config: 
-        path: .ssh/config
-        force: true
-    ~/.ssh/keypairs: 
-        path: .ssh/keypairs
-        force: true
-    ~/.ssh/vpn: 
-        path: .ssh/vpn
-        force: true
+    ~/.ssh/config:
+      path: .ssh/config
+      force: true
+    ~/.ssh/keypairs:
+      path: .ssh/keypairs
+      force: true
+    ~/.ssh/vpn:
+      path: .ssh/vpn
+      force: true
     ~/.switch: .switch
     ~/.themes: .themes
     ~/.tmux.conf: .tmux.conf
@@ -60,41 +60,40 @@
 
     # Hidden Files
     ~/.bash_profile:
-        path: .bash_profile
-        force: true
-    ~/.bashrc: 
-        path: .bashrc
-        force: true
+      path: .bash_profile
+      force: true
+    ~/.bashrc:
+      path: .bashrc
+      force: true
     ~/.crontab: .crontab
     ~/.gitconfig: .gitconfig
     ~/.gtkrc-2.0.mine:
-        path: .gtkrc-2.0.mine
-        force: true
+      path: .gtkrc-2.0.mine
+      force: true
     ~/.gtkrc-xfce:
-        path: .gtkrc-xfce
-        force: true
+      path: .gtkrc-xfce
+      force: true
     ~/.gvimrc: .gvimrc
     ~/.inputrc: .inputrc
     ~/.p10k.zsh: .p10k.zsh
     ~/.secrets: .secrets
     ~/.ssh/authorized_keys: .ssh/authorized_keys
     ~/.vimrc: .vimrc
-    ~/.xbindkeysrc: .xbindkeysrc
     ~/.xsession:
-        path: .xsession
-        force: true
+      path: .xsession
+      force: true
     ~/.xmodmap.apple: .xmodmap.apple
     ~/.xmodmap.macbook: .xmodmap.macbook
     ~/.Xdbus: .Xdbus
-    ~/.Xresources: 
-        path: .Xresources
-        force: true
+    ~/.Xresources:
+      path: .Xresources
+      force: true
     ~/.Xresources.asus: .Xresources.asus
     ~/.Xresources.laptop: .Xresources.laptop
     ~/.zshrc:
-        path: .zshrc
-        force: true
-    
+      path: .zshrc
+      force: true
+
 - create:
     - ~/Documents/Work/Workspace
     - ~/Documents/Work/Workspace_LG
@@ -104,10 +103,9 @@
 
 - shell:
     # - [git update-index --assume-unchanged .config/xfce4/xfconf/xfce-perchannel-xml/thunar.xml, Ignoring changes on thunar.xml]
-    -
-        command: cd $HOME/fzf && bash $HOME/fzf/install --all
-        description:  Upgrading/Installing fzf
-        stdin: true
-        stdout: true
-        stderr: true
-        quiet: false
+    - command: cd $HOME/fzf && bash $HOME/fzf/install --all
+      description: Upgrading/Installing fzf
+      stdin: true
+      stdout: true
+      stderr: true
+      quiet: false
