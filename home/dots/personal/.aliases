@@ -71,5 +71,4 @@ alias t='tmux'
 alias ta='tmux a'
 
 # GitHub Copilot
-[[ -f /usr/bin/github-copilot-cli ]] && eval "$(github-copilot-cli alias -- "$0")"
-
+# [[ -f /usr/bin/github-copilot-cli ]] && eval "$(github-copilot-cli alias -- "$0")"

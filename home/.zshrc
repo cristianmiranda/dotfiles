@@ -47,8 +47,6 @@ if ! zgen saved; then
 fi
 
 # https://upload.wikimedia.org/wikipedia/commons/1/15/Xterm_256color_chart.svg
-#SPACESHIP_DIR_COLOR=178
-#SPACESHIP_CHAR_COLOR_FAILURE=160
 SPACESHIP_GCLOUD_SHOW=false
 SPACESHIP_DOCKER_SHOW=false
 SPACESHIP_DOCKER_VERBOSE=false
@@ -56,12 +54,6 @@ SPACESHIP_DOCKER_VERBOSE=false
 if [[ "$OSTYPE" == "darwin"* ]]; then
   # macOS bash completion
   [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
-
-  # Brew
-  # eval "$(/opt/homebrew/bin/brew shellenv)"
-
-  export PATH="$HOME/.rbenv/bin:$PATH"
-  eval "$(rbenv init -)"
 fi
 
 # Override python 2.7 with 3
@@ -86,7 +78,7 @@ source ${HOME}/profiles/common.sh
 [[ -s /home/cmiranda/.autojump/etc/profile.d/autojump.sh ]] && source /home/cmiranda/.autojump/etc/profile.d/autojump.sh
 
 # Navi - https://github.com/denisidoro/navi#customization
-where navi >/dev/null 2>&1 && eval "$(navi widget zsh)"
+# where navi >/dev/null 2>&1 && eval "$(navi widget zsh)"
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
