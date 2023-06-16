@@ -305,7 +305,7 @@ mode "launch" {
         bindsym f exec --no-startup-id firefox; mode "default"
         bindsym g exec --no-startup-id gitkraken && i3-msg '[class="(?i)GitKraken"] focus'; mode "default"
         bindsym i exec --no-startup-id intellij-idea-ultimate; mode "default"
-        bindsym j exec --no-startup-id /usr/local/jitsi-meet/jitsi-meet; mode "default"
+        bindsym j exec --no-startup-id jitsi-meet-desktop; mode "default"
         bindsym m exec --no-startup-id thunderbird; mode "default"
         bindsym n exec --no-startup-id notion-app; mode "default"
         bindsym p exec --no-startup-id $HOME/bin/dpi-open thunar; mode "default"
