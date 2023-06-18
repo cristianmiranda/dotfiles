@@ -3,8 +3,7 @@
 . ${UTILS_PATH}/ui.sh
 . ${UTILS_PATH}/path.sh
 
-if [[ $APPLY_CONFIG =~ n|N ]];
-then
+if [[ $APPLY_CONFIG =~ n|N ]]; then
     warning ">>> Skipping config..."
     exit 0
 fi
@@ -12,30 +11,35 @@ fi
 # Sets computer's bell off
 xset -b
 
+# Battery
+sudo systemctl enable tlp.service >>$LOG_FILE 2>&1
+sudo systemctl start tlp.service >>$LOG_FILE 2>&1
+sudo systemctl mask systemd-rfkill.service >>$LOG_FILE 2>&1
+sudo systemctl mask systemd-rfkill.socket >>$LOG_FILE 2>&1
+
 # Enable/Start NetworkManager
-sudo systemctl enable NetworkManager.service >> $LOG_FILE 2>&1
-sudo systemctl start NetworkManager.service >> $LOG_FILE 2>&1
+sudo systemctl enable NetworkManager.service >>$LOG_FILE 2>&1
+sudo systemctl start NetworkManager.service >>$LOG_FILE 2>&1
 
 # Enable/Start bluetooth
-sudo systemctl enable bluetooth.service >> $LOG_FILE 2>&1
-sudo systemctl start bluetooth.service >> $LOG_FILE 2>&1
+sudo systemctl enable bluetooth.service >>$LOG_FILE 2>&1
+sudo systemctl start bluetooth.service >>$LOG_FILE 2>&1
 
 # Enable/Start ssh server
-sudo systemctl enable sshd >> $LOG_FILE 2>&1
-sudo systemctl start sshd >> $LOG_FILE 2>&1
-
-# Setup libinput gestures
-sudo gpasswd -a $USER input >> $LOG_FILE 2>&1
-libinput-gestures-setup service >> $LOG_FILE 2>&1
+sudo systemctl enable sshd >>$LOG_FILE 2>&1
+sudo systemctl start sshd >>$LOG_FILE 2>&1
 
 # Virtualization (virt-manager)
-sudo systemctl enable libvirtd >> $LOG_FILE 2>&1
-sudo systemctl start libvirtd >> $LOG_FILE 2>&1
+sudo systemctl enable libvirtd >>$LOG_FILE 2>&1
+sudo systemctl start libvirtd >>$LOG_FILE 2>&1
 sudo usermod -G libvirt -a cmiranda
 
 # Yubikey Manager
 sudo systemctl enable pcscd.service
 sudo systemctl start pcscd.service
+
+# LightDM
+sudo systemctl enable lightdm.service >>$LOG_FILE 2>&1
 
 # auto-cpufreq
 # sudo systemctl enable auto-cpufreq

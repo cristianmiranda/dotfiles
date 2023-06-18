@@ -12,6 +12,7 @@ fi
 PACKAGES=(
     1password
     accountsservice
+    acpi
     acpi_call
     alacarte
     alsa-firmware
@@ -87,6 +88,8 @@ PACKAGES=(
     lazydocker
     libinput-gestures
     libreoffice-fresh
+    lightdm
+    lightdm-gtk-greeter
     lxappearance
     matcha-gtk-theme
     meld
@@ -125,6 +128,7 @@ PACKAGES=(
     polkit-gnome
     polybar
     postman-bin
+    powertop
     proton-ge-custom-bin
     pyenv
     pyenv-virtualenv
@@ -143,6 +147,7 @@ PACKAGES=(
     skypeforlinux-stable-bin
     screen
     slack-desktop
+    slimbookbattery
     sof-firmware
     sops
     sox
@@ -175,9 +180,9 @@ PACKAGES=(
     xf86-input-libinput
     xfce4-power-manager
     xmlstarlet
-    xorg-xev
-    xorg-xinput
-    xorg-xrandr
+    xorg-apps
+    xorg-server
+    xorg-xinit
     xsettingsd
     yarn
     yq

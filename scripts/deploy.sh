@@ -5,8 +5,7 @@ CURRENT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 echo -ne ">> Install anonymously? [y/n]:"
 read -r $ANONYMOUS
 
-if [[ $ANONYMOUS =~ y|Y ]];
-then
+if [[ $ANONYMOUS =~ y|Y ]]; then
     # Clone repo
     cd ~
     git clone --recursive https://github.com/cristianmiranda/dotfiles.git
@@ -17,7 +16,7 @@ else
     # Grabs ssh & gpg keys
     cd $HOME
     BACKUP_DIR=/data/ssd/backups/manual/secrets
-    
+
     sudo pacman -S git unzip
 
     printf "%s " "Please import ~/.ssh and ~/.gnupg manually. Once finished press enter to continue."
@@ -26,6 +25,9 @@ else
     # scp -r -P 62022 cmiranda@cmiranda.ar:"${BACKUP_DIR}/.gnupg" .
     # scp -r -P 62022 cmiranda@cmiranda.ar:"${BACKUP_DIR}/.ssh" .
     # scp -r -P 62022 cmiranda@cmiranda.ar:"${BACKUP_DIR}/.cert" .
+
+    sudo chmod -R 0700 ~/.ssh
+    sudo chmod -R 0700 ~/.gnupg
 
     # Clones repo
     WORKSPACE=$HOME/Documents/Work/Workspace
