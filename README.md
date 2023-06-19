@@ -15,4 +15,4 @@ curl -L git.io/dot.deploy -o /tmp/cm.files && bash /tmp/cm.files
 - [Linux](docs/Linux.md)
 - [GPU Passthrough](docs/GPU_Passthrough.md)
 
-![](https://i.imgur.com/wM2b46p.jpg)
+![](https://i.imgur.com/dD2S3Ll.jpg)
