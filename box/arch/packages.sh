@@ -50,24 +50,22 @@ PACKAGES=(
     element-desktop
     emojify
     espeak
-    extra/bind
+    bind
     filezilla
     firefox
     firefox-developer-edition
     firefox-nightly-bin
     fd
-    ff-theme-util
     ffmpeg
     flameshot
     font-manager
     freerdp
-    git-delta-bin
+    git-delta
     git-lfs
     github-copilot-cli
     gitkraken
     go
     google-cloud-sdk
-    google-cloud-sdk-gke-gcloud-auth-plugin
     gtkpod
     hplip
     hsetroot
@@ -97,7 +95,7 @@ PACKAGES=(
     navi
     ncdu
     neofetch
-    nerd-fonts-fira-code
+    nerd-fonts-meta
     net-tools
     networkmanager
     networkmanager-openvpn
@@ -129,7 +127,6 @@ PACKAGES=(
     polybar
     postman-bin
     powertop
-    proton-ge-custom-bin
     pyenv
     pyenv-virtualenv
     python-spotdl
