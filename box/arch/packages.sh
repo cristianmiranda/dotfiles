@@ -168,6 +168,7 @@ PACKAGES=(
     unrar
     unzip
     variety
+    viewnior
     virt-manager
     visual-studio-code-bin
     whatsapp-nativefier
