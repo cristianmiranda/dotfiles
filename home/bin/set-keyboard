@@ -1,6 +1,0 @@
-#!/bin/bash
-
-KEYBOARD_PROFILE=$1
-
-echo "Applying ~/.xmodmap.$1 ..."
-xmodmap ~/.xmodmap.$1
