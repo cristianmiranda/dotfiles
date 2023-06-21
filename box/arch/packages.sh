@@ -108,6 +108,8 @@ PACKAGES=(
     noto-fonts
     noto-fonts-emoji
     nvidia
+    nvidia-settings
+    nvidia-utils
     neovim
     okular
     openssh
