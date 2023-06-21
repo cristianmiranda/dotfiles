@@ -79,6 +79,7 @@
     ~/.secrets: .secrets
     ~/.ssh/authorized_keys: .ssh/authorized_keys
     ~/.vimrc: .vimrc
+    ~/.xinitrc: .xinitrc
     ~/.xsession:
       path: .xsession
       force: true
