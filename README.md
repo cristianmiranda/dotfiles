@@ -12,7 +12,7 @@ curl -L git.io/dot.deploy -o /tmp/cm.files && bash /tmp/cm.files
 ## 📚 Docs
 
 - [Arch Linux](docs/Arch.md)
-- [Linux](docs/Linux.md)
+- [Linux Post Install Steps](docs/Linux_Post_Install.md)
 - [GPU Passthrough](docs/GPU_Passthrough.md)
 
 ![](https://i.imgur.com/dD2S3Ll.jpg)

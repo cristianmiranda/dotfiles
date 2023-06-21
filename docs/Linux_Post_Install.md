@@ -1,4 +1,4 @@
-# 🐧 Linux
+# 🐧 Linux (post-install steps)
 
 ## 📝 vim
 
@@ -13,9 +13,11 @@
 ## 🖱️ Touchpad
 
 Enable "tap to click" & change mouse acceleration
+
 ```bash
 sudo vim /etc/X11/xorg.conf.d/30-touchpad.conf
 ```
+
 ```
 Section "InputClass"
     Identifier "tfiouchpad"
@@ -28,12 +30,12 @@ EndSection
 
 See more @ https://wiki.archlinux.org/title/Mouse_acceleration
 
-
 ## 📦 Pacman
 
 ```bash
 sudo vim /etc/pacman.conf
 ```
+
 ```
 # Misc options
 Color
@@ -55,5 +57,7 @@ See more @ https://linrunner.de/tlp/faq/battery.html
 ```
 sudo tlp-stat -b
 ```
+
 ### TLP UI
+
 ![](https://i.imgur.com/TKA52gL.png)
