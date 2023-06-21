@@ -1,0 +1,9 @@
+#!/bin/bash
+
+unameOut="$(uname -a)"
+
+if [[ "$unameOut" =~ "MANJARO" ]]; then
+    echo " %{F#34be5b}%{F-}"
+elif [[ "$unameOut" =~ "arch" ]]; then
+    echo " %{T3}%{F#1793d1}%{F-}%{T-}"
+fi
