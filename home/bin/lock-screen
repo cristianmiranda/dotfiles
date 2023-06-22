@@ -11,6 +11,8 @@ VERIFYING='#1793D1'
 dunstctl set-paused true
 
 xset dpms force off
+/home/cmiranda/bin/amixer-vol mute
+dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Pause
 
 i3lock \
 --nofork                     \
@@ -49,3 +51,4 @@ i3lock \
 --special-passthrough        \
 
 dunstctl set-paused false
+/home/cmiranda/bin/amixer-vol unmute
