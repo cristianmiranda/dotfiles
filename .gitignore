@@ -69,10 +69,6 @@ home/bin/process-element-notifications
 home/.secrets
 home/.switch/prod.keys
 home/.ssh/authorized_keys
-home/.ssh/keypairs/dev-box.pem
-home/.ssh/keypairs/kkns.pem
-home/.ssh/keypairs/sx_sPi_rsa
-home/.ssh/vpn/lg.ovpn
 box/ubuntu-cloud/work.sh
-home/.ssh/keypairs/sx-bast-prod.pem
 home/bin/get-word-context
+home/.config/openvpn/profiles/lg.ovpn

@@ -114,6 +114,7 @@ PACKAGES=(
     nvidia-utils
     neovim
     okular
+    openresolv
     openssh
     optimus-manager-git
     optimus-manager-qt
