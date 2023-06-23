@@ -1,0 +1,6 @@
+{
+    "device": "alsa_output.usb-CalDigit__Inc._CalDigit_Thunderbolt_3_Audio-00.analog-stereo",
+    "device-description": "CalDigit Thunderbolt 3 Audio Analog Stereo",
+    "device-profile": "analog-output-speaker",
+    "preset-name": "X1 Extreme"
+}
