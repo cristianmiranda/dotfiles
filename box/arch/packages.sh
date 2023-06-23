@@ -177,6 +177,7 @@ PACKAGES=(
     virt-manager
     visual-studio-code-bin
     whatsapp-nativefier
+    xautolock
     xcalib
     xclip
     xcursor-breeze
