@@ -47,8 +47,7 @@ i3lock \
 --date-str=""                \
 --date-size=20              \
 --date-font="FiraCode Nerd Font Mono" \
---pass-media-keys            \
---special-passthrough        \
+--pass-media-keys
 
 dunstctl set-paused false
 /home/cmiranda/bin/amixer-vol unmute
