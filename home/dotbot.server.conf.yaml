@@ -23,12 +23,6 @@
     ~/.ssh/config: 
         path: .ssh/config
         force: true
-    ~/.ssh/keypairs: 
-        path: .ssh/keypairs
-        force: true
-    ~/.ssh/vpn: 
-        path: .ssh/vpn
-        force: true
     ~/.themes: .themes
     ~/.tmux.conf: .tmux.conf
     ~/.vim: .vim
