@@ -61,13 +61,13 @@ case "$1" in
     soundFeeback
     ;;
   toggle-mic)
-    MIC="`amixer get Capture | grep % | sed -r 's/.*%\]\s\[(.*)\]/\1/' | sed -n 1p`"
-    if [[ $MIC == "on" ]]; then
+    MUTED="`pamixer --default-source --get-mute`"
+    if [[ $MUTED == "true" ]]; then
       brightnessctl --device='platform::micmute' set 1
     else
       brightnessctl --device='platform::micmute' set 0
     fi
-    amixer set Capture toggle
+    pamixer --default-source -t
     ;;
   *)
     echo "Unknown command: $1"
