@@ -1,2 +1,5 @@
 #!/bin/sh
-xrandr --output DP-0 --off --output DP-1 --primary --mode 2560x1440 --pos 0x0 --rotate normal --output HDMI-0 --off --output eDP-1-1 --off
+
+LAPTOP_DISPLAY=`xrandr --query | grep "eDP" | awk '{print $1}'`
+
+xrandr --output DP-0 --off --output DP-1 --primary --mode 2560x1440 --pos 0x0 --rotate normal --output HDMI-0 --off --output $LAPTOP_DISPLAY --off
