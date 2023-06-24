@@ -105,7 +105,7 @@ PACKAGES=(
     nitrogen
     nodejs-gitmoji-cli
     nordvpn-bin
-    notion-app-enhanced
+    notion-app
     noto-color-emoji-fontconfig
     noto-fonts
     noto-fonts-emoji
@@ -126,12 +126,16 @@ PACKAGES=(
     pavucontrol
     peek
     picom
+    pipewire
+    pipewire-audio
+    pipewire-pulse
     playerctl
     plex-media-player
     polkit-gnome
     polybar
     postman-bin
     powertop
+    pulseaudio-control
     pyenv
     pyenv-virtualenv
     python-spotdl
@@ -143,6 +147,7 @@ PACKAGES=(
     rofi
     rofi-calc
     rofi-emoji
+    rtkit
     ruby-colorls
     ruby-fusuma
     simplescreenrecorder
@@ -176,7 +181,8 @@ PACKAGES=(
     viewnior
     virt-manager
     visual-studio-code-bin
-    whatsapp-nativefier
+    whatsapp-for-linux
+    wireplumber
     xautolock
     xcalib
     xclip

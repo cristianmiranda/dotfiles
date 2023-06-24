@@ -41,6 +41,12 @@ sudo systemctl start pcscd.service
 # LightDM
 sudo systemctl enable lightdm.service >>$LOG_FILE 2>&1
 
+# Audio
+sudo systemctl enable rtkit-daemon.service
+sudo systemctl start rtkit-daemon.service
+sudo systemctl --user enable pipewire
+sudo systemctl --user start pipewire
+
 # auto-cpufreq
 # sudo systemctl enable auto-cpufreq
 # sudo systemctl start auto-cpufreq
