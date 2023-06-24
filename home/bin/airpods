@@ -21,41 +21,41 @@ if [[ -z "$2" ]]; then
 fi
 
 connect() {
-    bluetooth on
-    sleep 3
-    bluetoothctl connect $AIRPODS_MAC
-    sleep 3
-    speaker
+  bluetooth on
+  sleep 3
+  bluetoothctl connect $AIRPODS_MAC
+  sleep 3
+  speaker
 }
 
 disconnect() {
-    bluetoothctl disconnect $AIRPODS_MAC
+  bluetoothctl disconnect $AIRPODS_MAC
 }
 
 headset() {
-    pactl set-card-profile $AIRPODS_NAME $HEADSET_PROFILE
-    sleep 1
-    pactl set-default-sink $AIRPODS_SINK.$HEADSET_SINK
-    pactl set-default-source $AIRPODS_SOURCE.$HEADSET_SOURCE
+  pactl set-card-profile $AIRPODS_NAME $HEADSET_PROFILE
+  sleep 1
+  pactl set-default-sink $AIRPODS_SINK.1.$HEADSET_SINK
+  pactl set-default-source $AIRPODS_SOURCE.0.$HEADSET_SOURCE
 }
 
 speaker() {
-    pactl set-card-profile $AIRPODS_NAME $SPEAKER_PROFILE_AAC
-    sleep 1
-    pactl set-default-sink $AIRPODS_SINK.$SPEAKER_SINK
+  pactl set-card-profile $AIRPODS_NAME $SPEAKER_PROFILE_AAC
+  sleep 1
+  pactl set-default-sink $AIRPODS_SINK.1.$SPEAKER_SINK
 }
 
 case "$1" in
-  connect)
-    connect
-    ;;
-  disconnect)
-    disconnect
-    ;;
-  headset)
-    headset
-    ;;
-  speaker)
-    speaker
-    ;;
+connect)
+  connect
+  ;;
+disconnect)
+  disconnect
+  ;;
+headset)
+  headset
+  ;;
+speaker)
+  speaker
+  ;;
 esac
