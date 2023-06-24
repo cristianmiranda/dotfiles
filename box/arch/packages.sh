@@ -83,7 +83,6 @@ PACKAGES=(
     jetbrains-toolbox
     jitsi-meet-desktop-bin
     jq
-    keepassxc
     kubectl
     kubectx
     lazydocker
