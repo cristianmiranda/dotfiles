@@ -18,7 +18,7 @@ Enable "tap to click" & change mouse acceleration
 sudo vim /etc/X11/xorg.conf.d/30-touchpad.conf
 ```
 
-```
+```conf
 Section "InputClass"
     Identifier "tfiouchpad"
     Driver "libinput"
@@ -29,6 +29,30 @@ EndSection
 ```
 
 See more @ https://wiki.archlinux.org/title/Mouse_acceleration
+
+## 🛜 Bluetooth
+
+Enable experimental features (Apple Magic Keyboard has issues with default settings)
+
+```bash
+sudo vim /etc/bluetooth/main.conf
+```
+
+```conf
+...
+
+# Enables D-Bus experimental interfaces
+# Possible values: true or false
+Experimental = true
+
+# Enables kernel experimental features, alternatively a list of UUIDs
+# can be given.
+# Possible values: true,false,<UUID List>
+# Possible UUIDS:
+...
+# Defaults to false.
+KernelExperimental = true
+```
 
 ## 📦 Pacman
 
