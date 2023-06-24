@@ -54,6 +54,16 @@ Experimental = true
 KernelExperimental = true
 ```
 
+## 💄 Qt5
+
+```bash
+sudo vim /etc/environment
+```
+
+```bash
+QT_QPA_PLATFORMTHEME=qt5ct
+```
+
 ## 📦 Pacman
 
 ```bash

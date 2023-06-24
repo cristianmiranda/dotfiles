@@ -30,6 +30,7 @@ PACKAGES=(
     bluez-utils
     blueman
     brave-bin
+    breeze
     brightnessctl
     caffeine-ng
     cargo
@@ -141,6 +142,7 @@ PACKAGES=(
     python-spotdl
     qalculate-gtk
     qemu
+    qt5ct
     ranger
     rebuild-detector
     redli
@@ -186,7 +188,6 @@ PACKAGES=(
     xautolock
     xcalib
     xclip
-    xcursor-breeze
     xf86-input-libinput
     xfce4-power-manager
     xmlstarlet
