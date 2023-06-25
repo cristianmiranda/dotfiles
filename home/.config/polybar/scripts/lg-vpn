@@ -1,18 +1,18 @@
 #!/bin/bash
 
 case "$1" in
-    --connect)
-        nmcli c up LG
-        ;;
-    --disconnect)
-        nmcli c down LG
-        ;;
-    *)
-        active=$(nmcli con show --active | grep -i LG | wc -l)
-        if [[ "${active}" = "1" ]]; then
-            echo "🔒 %{F#20c418}LG%{F-}"
-        else
-            echo "🔓 LG"
-        fi
-        ;;
+--connect)
+    nmcli c up LG
+    ;;
+--disconnect)
+    nmcli c down LG
+    ;;
+*)
+    active=$(nmcli con show --active | grep -i LG | wc -l)
+    if [[ "${active}" = "1" ]]; then
+        echo "%{F#20c418}󱇱 LG%{F-}"
+    else
+        echo "󰅟 LG"
+    fi
+    ;;
 esac
