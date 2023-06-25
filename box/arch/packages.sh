@@ -182,6 +182,7 @@ PACKAGES=(
     viewnior
     virt-manager
     visual-studio-code-bin
+    web-greeter
     whatsapp-for-linux
     wireplumber
     xautolock

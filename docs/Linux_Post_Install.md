@@ -64,6 +64,21 @@ sudo vim /etc/environment
 QT_QPA_PLATFORMTHEME=qt5ct
 ```
 
+## 👋 LightDM
+
+web-greeter config: `/etc/lightdm/web-greeter.yml`
+
+```bash
+sudo vim /etc/lightdm/lightdm.conf
+```
+
+```conf
+[Seat:*]
+...
+greeter-session=web-greeter
+...
+```
+
 ## 📦 Pacman
 
 ```bash
