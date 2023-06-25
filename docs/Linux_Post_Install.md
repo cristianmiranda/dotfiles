@@ -70,21 +70,6 @@ QT_QPA_PLATFORMTHEME=qt5ct
 wget -O - https://github.com/shvchk/fallout-grub-theme/raw/master/install.sh | bash
 ```
 
-## 👋 LightDM
-
-web-greeter config: `/etc/lightdm/web-greeter.yml`
-
-```bash
-sudo vim /etc/lightdm/lightdm.conf
-```
-
-```conf
-[Seat:*]
-...
-greeter-session=web-greeter
-...
-```
-
 ## 📦 Pacman
 
 ```bash
