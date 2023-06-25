@@ -1,20 +1,20 @@
 #!/bin/bash
 
 case "$1" in
-    --toggle)
-        muted=`dunstctl is-paused 2> /dev/null`
-        if [[ $muted == "true" ]]; then
-            dunstctl set-paused false 2> /dev/null
-        else
-            dunstctl set-paused true 2> /dev/null
-        fi
-        ;;
-    *)
-        muted=`dunstctl is-paused 2> /dev/null`
-        if [[ $muted == "true" ]]; then
-            echo "🤐"
-        else
-            echo "🔔"
-        fi
-        ;;
+--toggle)
+    muted=$(dunstctl is-paused 2>/dev/null)
+    if [[ $muted == "true" ]]; then
+        dunstctl set-paused false 2>/dev/null
+    else
+        dunstctl set-paused true 2>/dev/null
+    fi
+    ;;
+*)
+    muted=$(dunstctl is-paused 2>/dev/null)
+    if [[ $muted == "true" ]]; then
+        echo "%{T3}%{F#858585}󰂛%{F-}%{T-}"
+    else
+        echo "%{T3}%{F#e0b42f}󰂞%{F-}%{T-}"
+    fi
+    ;;
 esac
