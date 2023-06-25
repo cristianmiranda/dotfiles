@@ -74,6 +74,7 @@ PACKAGES=(
     i3blocks
     i3blocks-contrib
     i3lock-color-git
+    i3-layouts
     imagemagick
     inetutils
     intellij-idea-ultimate-edition-jre

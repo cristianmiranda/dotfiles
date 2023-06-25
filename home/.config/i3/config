@@ -38,8 +38,9 @@ exec_always --no-startup-id /home/cmiranda/bin/exterminate xfce4-power-manager; 
 exec_always --no-startup-id /home/cmiranda/bin/exterminate copyq; copyq
 exec_always --no-startup-id /home/cmiranda/bin/exterminate pasystray; pasystray
 exec_always --no-startup-id /home/cmiranda/bin/exterminate optimus-manager-qt; optimus-manager-qt
-exec_always --no-startup-id /home/cmiranda/bin/exterminate  fusuma; fusuma
+exec_always --no-startup-id /home/cmiranda/bin/exterminate fusuma; fusuma
 exec_always --no-startup-id /home/cmiranda/bin/exterminate sxhkd; sxhkd
+exec_always --no-startup-id /home/cmiranda/bin/exterminate i3-layouts; i3-layouts
 exec_always --no-startup-id xautolock -time 15 -corners 00+0 -cornerdelay 1 -locker '$HOME/bin/lock-screen'
 exec_always --no-startup-id alttab -d 1 -w 1 -i 100x100 -t 100x100 -bg "#002B36" -frame "#16a085" -s 2
 exec_always --no-startup-id "if [[ ! $(hostname) =~ 'virt' ]]; /home/cmiranda/bin/exterminate insync; QT_AUTO_SCREEN_SCALE_FACTOR=1 insync start; fi"
@@ -245,6 +246,20 @@ mode "init-workspace" {
         bindsym Return mode "default"
 }
 
+mode "i3-layouts" {
+        bindsym v exec --no-startup-id i3l vstack; mode "default"
+        bindsym h exec --no-startup-id i3l hstack; mode "default"
+        bindsym s exec --no-startup-id i3l spiral; mode "default"
+        bindsym 2 exec --no-startup-id i3l 2columns; mode "default"
+        bindsym 3 exec --no-startup-id i3l 3columns; mode "default"
+        bindsym c exec --no-startup-id i3l companion; mode "default"
+        bindsym a exec --no-startup-id i3l autosplit; mode "default"
+        bindsym n exec --no-startup-id i3l none; mode "default"
+
+        bindsym Escape mode "default"
+        bindsym Return mode "default"
+}
+
 mode "set-display" {
         bindsym a exec --no-startup-id /home/cmiranda/bin/set-display single-inverted; mode "default"
         bindsym s exec --no-startup-id /home/cmiranda/bin/set-display single; mode "default"
@@ -373,7 +388,7 @@ bindsym $super+w exec --no-startup-id i3-msg '[class="(?i)whatsapp"] focus'
 bindsym $super+Shift+a mode "audio"
 bindsym $super+Shift+d mode "set-display"
 bindsym $super+Shift+g mode "gaps"
-bindsym $super+Shift+i mode "init-workspace"
+bindsym $super+Shift+i mode "i3-layouts"
 bindsym $super+Shift+l mode "launch"
 bindsym $super+Shift+m mode "move-to-workspace"
 bindsym $super+Shift+o mode "owl"
@@ -473,3 +488,24 @@ gaps inner 5
 gaps outer 5
 
 #################################################################################################
+
+set $i3l autosplit to workspace 1
+set $i3l autosplit to workspace 2
+set $i3l autosplit to workspace 3
+set $i3l autosplit to workspace 4
+set $i3l autosplit to workspace 5
+set $i3l autosplit to workspace 6
+set $i3l autosplit to workspace 7
+set $i3l autosplit to workspace 8
+set $i3l autosplit to workspace 9
+set $i3l autosplit to workspace 10
+set $i3l autosplit to workspace 11
+set $i3l autosplit to workspace 12
+set $i3l autosplit to workspace 13
+set $i3l autosplit to workspace 14
+set $i3l autosplit to workspace 15
+set $i3l autosplit to workspace 16
+set $i3l autosplit to workspace 17
+set $i3l autosplit to workspace 18
+set $i3l autosplit to workspace 19
+set $i3l autosplit to workspace 20
