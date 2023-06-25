@@ -91,6 +91,7 @@ PACKAGES=(
     lxappearance
     matcha-gtk-theme
     meld
+    mousepad
     mpv
     navi
     ncdu
