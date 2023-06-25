@@ -40,13 +40,11 @@ PACKAGES=(
     cloud-sql-proxy-bin
     copyq
     cups
-    deja-dup
     deluge-gtk
     discord
     docker
     docker-compose
     dunst
-    duplicity
     easyeffects
     ebtables
     edk2-ovmf
