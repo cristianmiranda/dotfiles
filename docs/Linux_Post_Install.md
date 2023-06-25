@@ -64,6 +64,12 @@ sudo vim /etc/environment
 QT_QPA_PLATFORMTHEME=qt5ct
 ```
 
+## ☢️ GRUB Theme
+
+```bash
+wget -O - https://github.com/shvchk/fallout-grub-theme/raw/master/install.sh | bash
+```
+
 ## 👋 LightDM
 
 web-greeter config: `/etc/lightdm/web-greeter.yml`
