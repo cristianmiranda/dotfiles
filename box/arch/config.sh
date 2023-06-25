@@ -32,20 +32,23 @@ sudo systemctl start sshd >>$LOG_FILE 2>&1
 # Virtualization (virt-manager)
 sudo systemctl enable libvirtd >>$LOG_FILE 2>&1
 sudo systemctl start libvirtd >>$LOG_FILE 2>&1
-sudo usermod -G libvirt -a cmiranda
+sudo usermod -G libvirt -a cmiranda >>$LOG_FILE 2>&1
 
 # Yubikey Manager
-sudo systemctl enable pcscd.service
-sudo systemctl start pcscd.service
+sudo systemctl enable pcscd.service >>$LOG_FILE 2>&1
+sudo systemctl start pcscd.service >>$LOG_FILE 2>&1
 
 # LightDM
 sudo systemctl enable lightdm.service >>$LOG_FILE 2>&1
 
 # Audio
-sudo systemctl enable rtkit-daemon.service
-sudo systemctl start rtkit-daemon.service
-sudo systemctl --user enable pipewire
-sudo systemctl --user start pipewire
+sudo systemctl enable rtkit-daemon.service >>$LOG_FILE 2>&1
+sudo systemctl start rtkit-daemon.service >>$LOG_FILE 2>&1
+sudo systemctl --user enable pipewire >>$LOG_FILE 2>&1
+sudo systemctl --user start pipewire >>$LOG_FILE 2>&1
+
+# Input (fusuma mouse gestures)
+sudo usermod -G input -a cmiranda >>$LOG_FILE 2>&1
 
 # auto-cpufreq
 # sudo systemctl enable auto-cpufreq

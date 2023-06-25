@@ -245,7 +245,6 @@ These services will be started automatically when the system boots up.
 ```bash
 pacman -S openssh dhcpcd networkmanager networkmanager-openvpn network-manager-applet
 systemctl enable sshd
-systemctl enable dhcpcd
 systemctl enable NetworkManager
 ```
 

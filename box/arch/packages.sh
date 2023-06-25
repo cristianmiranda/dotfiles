@@ -187,6 +187,7 @@ PACKAGES=(
     xautolock
     xcalib
     xclip
+    xdotool
     xf86-input-libinput
     xfce4-power-manager
     xmlstarlet
