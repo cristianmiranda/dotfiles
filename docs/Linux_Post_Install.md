@@ -10,6 +10,22 @@
 1. Run tmux
 2. Press `prefix + I` to install plugins
 
+## ⌨️ Keyboard
+
+Set default language layout for all keyboards
+
+```bash
+sudo vim /etc/X11/xorg.conf.d/00-keyboard.conf
+```
+
+```conf
+Section "InputClass"
+    Identifier "system-keyboard"
+    MatchIsKeyboard "on"
+    Option "XkbLayout" "es"
+EndSection
+```
+
 ## 🖱️ Touchpad
 
 Enable "tap to click" & change mouse acceleration
