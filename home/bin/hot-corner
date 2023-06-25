@@ -1,0 +1,20 @@
+#!/bin/bash
+
+SCREEN_WIDTH=$(xwininfo -root | awk '$1=="Width:" {print $2}')
+SCREEN_HEIGHT=$(xwininfo -root | awk '$1=="Height:" {print $2}')
+TIME_IN_CORNER=0
+
+while true; do
+    eval $(xdotool getmouselocation --shell)
+    if [[ $X -le 10 && $Y -ge $((SCREEN_HEIGHT - 10)) ]]; then
+        TIME_IN_CORNER=$((TIME_IN_CORNER + 1))
+        if [[ $TIME_IN_CORNER -ge 2 ]]; then
+            xautolock -locknow
+            TIME_IN_CORNER=0
+            sleep 5
+        fi
+    else
+        TIME_IN_CORNER=0
+    fi
+    sleep 2
+done

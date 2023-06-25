@@ -15,39 +15,39 @@ xset dpms force off
 dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Pause
 
 i3lock \
---nofork                     \
---insidever-color=$CLEAR     \
---ringver-color=$VERIFYING   \
-\
---insidewrong-color=$WRONG_FILL \
---ringwrong-color=$WRONG     \
-\
---inside-color=$BLANK        \
---ring-color=$DEFAULT        \
---line-color=$BLANK          \
---separator-color=$DEFAULT   \
-\
---verif-color=$TEXT          \
---wrong-color=$WRONG         \
---time-color=$TEXT           \
---date-color=$TEXT           \
---layout-color=$TEXT         \
---keyhl-color=$WRONG         \
---bshl-color=$WRONG          \
-\
---screen 1                   \
---blur 5                     \
---radius 180                 \
---ring-width 20              \
---clock                      \
---indicator                  \
---time-str="%H:%M:%S"        \
---time-size=50               \
---time-font="FiraCode Nerd Font Mono" \
---date-str=""                \
---date-size=20              \
---date-font="FiraCode Nerd Font Mono" \
---pass-media-keys
+    --nofork \
+    --insidever-color=$CLEAR \
+    --ringver-color=$VERIFYING \
+    \
+    --insidewrong-color=$WRONG_FILL \
+    --ringwrong-color=$WRONG \
+    \
+    --inside-color=$BLANK \
+    --ring-color=$DEFAULT \
+    --line-color=$BLANK \
+    --separator-color=$DEFAULT \
+    \
+    --verif-color=$TEXT \
+    --wrong-color=$WRONG \
+    --time-color=$TEXT \
+    --date-color=$TEXT \
+    --layout-color=$TEXT \
+    --keyhl-color=$WRONG \
+    --bshl-color=$WRONG \
+    \
+    --screen 1 \
+    --blur 5 \
+    --radius 180 \
+    --ring-width 20 \
+    --clock \
+    --indicator \
+    --time-str="%H:%M:%S" \
+    --time-size=50 \
+    --time-font="FiraCode Nerd Font Mono" \
+    --date-str="" \
+    --date-size=20 \
+    --date-font="FiraCode Nerd Font Mono" \
+    --pass-media-keys
 
 dunstctl set-paused false
 /home/cmiranda/bin/amixer-vol unmute

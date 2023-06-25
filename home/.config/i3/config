@@ -21,24 +21,28 @@ exec --no-startup-id setxkbmap es
 #
 # Autostart (even when restarting i3)
 #
-exec_always --no-startup-id blueman-applet
-exec_always --no-startup-id docker
-exec_always --no-startup-id crontab ~/.crontab
-exec_always --no-startup-id nm-applet
-exec_always --no-startup-id xfce4-power-manager
+
+# System
 exec_always --no-startup-id xset -b
 exec_always --no-startup-id xsettingsd
-exec_always --no-startup-id "caffeine kill || true; sleep 2; caffeine start"
-exec_always --no-startup-id "killall copyq || true; sleep 2; copyq"
-exec_always --no-startup-id "killall pasystray || true; sleep 2; pasystray"
-exec_always --no-startup-id "killall optimus-manager-qt || true; sleep 2; optimus-manager-qt"
-exec_always --no-startup-id "killall fusuma || true; sleep 2; fusuma"
-exec_always --no-startup-id "killall sxhkd || true; sleep 2; sxhkd"
-exec_always --no-startup-id "killall xautolock || true; sleep 2; xautolock -time 15 -corners 00+0 -cornerdelay 1 -cornerredelay 10 -locker '$HOME/bin/lock-screen'"
+exec_always --no-startup-id crontab ~/.crontab
 exec_always --no-startup-id brightnessctl --device='tpacpi::kbd_backlight' set 1
-exec_always --no-startup-id alttab -d 1 -w 1 -i 100x100 -t 100x100 -bg "#002B36" -frame "#16a085" -s 2
 exec_always --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
-exec_always --no-startup-id "if [[ ! $(hostname) =~ 'virt' ]]; killall insync || true; sleep 2; QT_AUTO_SCREEN_SCALE_FACTOR=1 insync start; fi"
+
+# Apps
+exec_always --no-startup-id docker
+exec_always --no-startup-id caffeine kill || true; sleep 2; caffeine start
+exec_always --no-startup-id /home/cmiranda/bin/exterminate nm-applet; nm-applet
+exec_always --no-startup-id /home/cmiranda/bin/exterminate blueman-applet; blueman-applet
+exec_always --no-startup-id /home/cmiranda/bin/exterminate xfce4-power-manager; xfce4-power-manager
+exec_always --no-startup-id /home/cmiranda/bin/exterminate copyq; copyq
+exec_always --no-startup-id /home/cmiranda/bin/exterminate pasystray; pasystray
+exec_always --no-startup-id /home/cmiranda/bin/exterminate optimus-manager-qt; optimus-manager-qt
+exec_always --no-startup-id /home/cmiranda/bin/exterminate  fusuma; fusuma
+exec_always --no-startup-id /home/cmiranda/bin/exterminate sxhkd; sxhkd
+exec_always --no-startup-id xautolock -time 15 -corners 00+0 -cornerdelay 1 -locker '$HOME/bin/lock-screen'
+exec_always --no-startup-id alttab -d 1 -w 1 -i 100x100 -t 100x100 -bg "#002B36" -frame "#16a085" -s 2
+exec_always --no-startup-id "if [[ ! $(hostname) =~ 'virt' ]]; /home/cmiranda/bin/exterminate insync; QT_AUTO_SCREEN_SCALE_FACTOR=1 insync start; fi"
 exec_always --no-startup-id "if [[ ! $(hostname) =~ 'virt' ]]; then picom -b; fi"
 
 #
@@ -157,7 +161,6 @@ bindsym $super+$alt+0 workspace number 20
 #
 # Alt + Tab
 #
-#bindsym Control+Tab workspace back_and_forth
 bindsym $mod+Tab workspace back_and_forth
 
 ###########
@@ -314,7 +317,7 @@ mode "launch" {
         bindsym s exec --no-startup-id spotify; mode "default"
         bindsym t exec --no-startup-id telegram-desktop; mode "default"
         bindsym v exec --no-startup-id nmcli c up LG; mode "default"
-        bindsym w exec --no-startup-id walc; mode "default"
+        bindsym w exec --no-startup-id whatsapp-for-linux; mode "default"
         
         bindsym Escape mode "default"
         bindsym Return mode "default"

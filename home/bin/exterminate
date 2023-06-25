@@ -1,0 +1,13 @@
+#!/bin/bash
+
+program=$1
+
+if [[ -z $program ]]; then
+    echo "Usage: $0 <program>"
+    exit 1
+fi
+
+echo "Killing $program..."
+
+killall $program || true
+sleep 1
