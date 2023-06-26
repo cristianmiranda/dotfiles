@@ -110,6 +110,7 @@ PACKAGES=(
     noto-fonts
     noto-fonts-emoji
     nvidia
+    nvidia-lts
     nvidia-settings
     nvidia-utils
     neovim

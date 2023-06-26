@@ -80,6 +80,27 @@ sudo vim /etc/environment
 QT_QPA_PLATFORMTHEME=qt5ct
 ```
 
+## 🐧 Linux LTS
+
+```bash
+sudo pacman -S linux-lts linux-lts-headers
+```
+
+```bash
+sudo vim /etc/default/grub
+```
+
+```conf
+GRUB_DEFAULT=saved
+GRUB_SAVEDEFAULT=true
+```
+
+```bash
+sudo grub-mkconfig -o /boot/grub/grub.cfg
+```
+
+###
+
 ## ☢️ GRUB Theme
 
 ```bash
