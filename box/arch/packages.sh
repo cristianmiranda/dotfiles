@@ -75,7 +75,6 @@ PACKAGES=(
     i3-layouts
     imagemagick
     inetutils
-    intellij-idea-ultimate-edition-jre
     insync
     jetbrains-toolbox
     jitsi-meet-desktop-bin
