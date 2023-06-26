@@ -1,0 +1,24 @@
+#!/bin/bash
+
+update_system_packages() {
+    yay
+    yaycache
+}
+
+echo -e "\n📰 Checking Arch Linux news...\n"
+yay -Pw || echo -e "⚠️  Unable to check Arch Linux news. Go to https://lists.archlinux.org/archives/list/arch-announce@lists.archlinux.org/ and check manually...\n"
+NEW_ARCH_NEWS=$(yay -Pw | wc -l)
+
+if [ $NEW_ARCH_NEWS -gt 0 ]; then
+    echo -e "⚠️ There are news from Arch Linux that might imply manual intervention is required before/after updating."
+    echo -e "Do you want to continue with the upgrade? (y/n)\n"
+    read ans
+
+    if [[ $ans =~ y|Y ]]; then
+        update_system_packages
+    else
+        echo "Aborting..."
+    fi
+else
+    update_system_packages
+fi
