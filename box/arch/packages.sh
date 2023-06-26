@@ -113,6 +113,7 @@ PACKAGES=(
     nvidia-settings
     nvidia-utils
     neovim
+    octopi
     okular
     openresolv
     openssh
