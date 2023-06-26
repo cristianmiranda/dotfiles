@@ -14,24 +14,26 @@ stations['104.3']='https://www.twitch.tv/urbanaplayfm'
 stations['105.5']='http://playerservices.streamtheworld.com/api/livestream-redirect/LOS40_ARGENTINAAAC'
 # La 100
 stations['99.9']='https://playerservices.streamtheworld.com/api/livestream-redirect/FM999_56AAC.aac'
+# Luzu TV
+stations['luzutv']='https://www.twitch.tv/luzu_tv'
 
 if [[ $1 == "" ]]; then
 	echo "Usage: radio [station]"
 elif [[ $1 == "off" ]]; then
-	killall vlc;
-	killall mpv;
+	killall vlc
+	killall mpv
 	rm $CURRENT_RADIO_STATION_FILE
-else 
+else
 	station="${stations[$1]}"
 
 	if [[ $station ]]; then
-		echo $1 > $CURRENT_RADIO_STATION_FILE
-		killall vlc;
-		killall mpv;
+		echo $1 >$CURRENT_RADIO_STATION_FILE
+		killall vlc
+		killall mpv
 		if [[ $station =~ "twitch" || $station =~ "youtube" ]]; then
 			streamlink -Q --player='mpv --cache 4096' $station best
 		else
-			cvlc $station 2> /dev/null;		
+			cvlc $station 2>/dev/null
 		fi
 	else
 		echo "Radio station not found"

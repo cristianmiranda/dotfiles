@@ -184,6 +184,7 @@ PACKAGES=(
     viewnior
     virt-manager
     visual-studio-code-bin
+    vlc
     whatsapp-for-linux
     wireplumber
     xautolock
