@@ -485,8 +485,8 @@ for_window [class=Xfburn|GParted|System-config-printer.py|Lxtask|Pavucontrol|Exo
                                            ###########
 for_window [class="^.*"] border pixel 2
 
-gaps inner 5
-gaps outer 5
+gaps inner 3
+gaps outer 3
 
 #################################################################################################
 
