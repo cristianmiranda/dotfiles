@@ -29,7 +29,6 @@ PACKAGES=(
     bluez
     bluez-utils
     blueman
-    brave-bin
     breeze
     brightnessctl
     caffeine-ng
