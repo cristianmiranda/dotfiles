@@ -67,6 +67,7 @@ PACKAGES=(
     gitkraken
     go
     google-cloud-sdk
+    gqlplus
     gtkpod
     hplip
     hsetroot
@@ -118,6 +119,7 @@ PACKAGES=(
     openssh
     optimus-manager-git
     optimus-manager-qt
+    oracle-instantclient-sqlplus
     p7zip
     pacman-contrib
     pasystray
