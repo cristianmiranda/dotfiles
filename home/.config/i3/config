@@ -1,5 +1,11 @@
-# i3 config file (v4)
-# Please see http://i3wm.org/docs/userguide.html for a complete reference!
+#
+# ██╗██████╗       ██╗    ██╗███╗   ███╗
+# ██║╚════██╗      ██║    ██║████╗ ████║
+# ██║ █████╔╝█████╗██║ █╗ ██║██╔████╔██║
+# ██║ ╚═══██╗╚════╝██║███╗██║██║╚██╔╝██║
+# ██║██████╔╝      ╚███╔███╔╝██║ ╚═╝ ██║
+# ╚═╝╚═════╝        ╚══╝╚══╝ ╚═╝     ╚═╝
+#                                       
 
 # set modifier
 set $super Mod4
@@ -398,68 +404,6 @@ bindsym $super+Shift+s mode "swap-with-workspace"
 bindsym $super+Shift+u mode "set-url-handler"
 bindsym $super+Shift+y mode "radio-station"
 bindsym $super+Shift+x mode "i3-command"
-
-# Color palette used for the terminal ( ~/.Xresources file )
-# Colors are gathered based on the documentation:
-# https://i3wm.org/docs/userguide.html#xresources
-# Change the variable name at the place you want to match the color
-# of your terminal like this:
-# [example]
-# If you want your bar to have the same background color as your 
-# terminal background change the line 362 from:
-# background #14191D
-# to:
-# background $term_background
-# Same logic applied to everything else.
-set_from_resource $term_background background
-set_from_resource $term_foreground foreground
-set_from_resource $term_color0     color0
-set_from_resource $term_color1     color1
-set_from_resource $term_color2     color2
-set_from_resource $term_color3     color3
-set_from_resource $term_color4     color4
-set_from_resource $term_color5     color5
-set_from_resource $term_color6     color6
-set_from_resource $term_color7     color7
-set_from_resource $term_color8     color8
-set_from_resource $term_color9     color9
-set_from_resource $term_color10    color10
-set_from_resource $term_color11    color11
-set_from_resource $term_color12    color12
-set_from_resource $term_color13    color13
-set_from_resource $term_color14    color14
-set_from_resource $term_color15    color15
-
-# bar {
-# 	i3bar_command i3bar
-# 	status_command i3blocks
-# 	position top
-#
-#	# Set your primary output first. Example: 'xrandr --output eDP1 --primary'
-# 	tray_output primary
-#	# tray_output eDP1
-#
-# 	bindsym button4 nop
-# 	bindsym button5 nop
-# 	font pango:FiraCode Nerd Font Mono Regular 10.5
-# 	strip_workspace_numbers yes
-#
-#         colors {
-#                 background #222D31
-#                 statusline #F9FAF9
-#                 separator  #454947
-#
-# #                                  border  backgr  text
-#                 focused_workspace  #F9FAF9 #1793D1 #1C1C1C
-#                 active_workspace   #595B5B #353836 #FDF6E3
-#                 inactive_workspace #595B5B #222D31 #EEE8D5
-#                 binding_mode       #16a085 #2C2C2C #F9FAF9
-#                 urgent_workspace   #595B5B #FDF6E3 #E5201D
-#         }
-# }
-
-# hide/unhide i3status bar
-# bindsym $super+b bar mode toggle
 
 #
 # Theme colors

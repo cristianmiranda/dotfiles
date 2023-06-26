@@ -71,8 +71,6 @@ PACKAGES=(
     hplip
     hsetroot
     i3-wm
-    i3blocks
-    i3blocks-contrib
     i3lock-color-git
     i3-layouts
     imagemagick
