@@ -154,7 +154,6 @@ PACKAGES=(
     skypeforlinux-stable-bin
     screen
     slack-desktop
-    slimbookbattery
     sof-firmware
     sops
     sox
@@ -182,7 +181,7 @@ PACKAGES=(
     virt-manager
     visual-studio-code-bin
     vlc
-    whatsapp-for-linux
+    whatsapp-nativefier
     wireplumber
     xautolock
     xcalib
