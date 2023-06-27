@@ -53,6 +53,7 @@
     ~/.gvimrc: .gvimrc
     ~/.inputrc: .inputrc
     ~/.p10k.zsh: .p10k.zsh
+    ~/.spaceshiprc.zsh: .spaceshiprc.zsh
     ~/.ssh/authorized_keys: .ssh/authorized_keys
     ~/.vimrc: .vimrc
     ~/.xsession: .xsession

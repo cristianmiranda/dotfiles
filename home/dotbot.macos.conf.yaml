@@ -47,6 +47,7 @@
     ~/.gitconfig: .gitconfig
     ~/.gvimrc: .gvimrc
     ~/.inputrc: .inputrc
+    ~/.spaceshiprc.zsh: .spaceshiprc.zsh
     ~/.ssh/authorized_keys: .ssh/authorized_keys
     ~/.tmux.conf: .tmux.conf
     ~/.vimrc: .vimrc
