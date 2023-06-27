@@ -54,7 +54,6 @@ PACKAGES=(
     filezilla
     firefox
     firefox-developer-edition
-    firefox-nightly-bin
     fd
     ffmpeg
     flameshot
