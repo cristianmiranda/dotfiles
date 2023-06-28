@@ -10,6 +10,8 @@ PROFILE_HDMI="hdmi"
 
 XRANDR_DISPLAY_PROFILE=$1
 
+killall -q polybar
+
 echo "Applying display profile: $XRANDR_DISPLAY_PROFILE"
 
 # Reload Xresources
