@@ -6,7 +6,7 @@ DEFAULT='#1793D1'
 TEXT='#1793D1'
 WRONG='#cc0000'
 WRONG_FILL='#ffd9cc'
-VERIFYING='#1793D1'
+VERIFYING='#333333'
 
 dunstctl set-paused true
 
@@ -17,36 +17,37 @@ dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPl
 i3lock \
     --nofork \
     --insidever-color=$CLEAR \
-    --ringver-color=$VERIFYING \
+    --ringver-color=$BLANK \
     \
     --insidewrong-color=$WRONG_FILL \
     --ringwrong-color=$WRONG \
     \
     --inside-color=$BLANK \
-    --ring-color=$DEFAULT \
+    --ring-color=$BLANK \
     --line-color=$BLANK \
-    --separator-color=$DEFAULT \
+    --separator-color=$BLANK \
     \
     --verif-color=$TEXT \
     --wrong-color=$WRONG \
     --time-color=$TEXT \
     --date-color=$TEXT \
     --layout-color=$TEXT \
-    --keyhl-color=$WRONG \
-    --bshl-color=$WRONG \
+    --keyhl-color=$DEFAULT \
+    --bshl-color=$DEFAULT \
     \
     --screen 1 \
-    --blur 5 \
-    --radius 180 \
+    --blur 10 \
+    --radius 360 \
     --ring-width 20 \
     --clock \
-    --indicator \
     --time-str="%H:%M:%S" \
-    --time-size=50 \
+    --time-size=100 \
     --time-font="FiraCode Nerd Font Mono" \
     --date-str="" \
     --date-size=20 \
     --date-font="FiraCode Nerd Font Mono" \
+    --verif-text="Verifying..." \
+    --wrong-text="Wrong!" \
     --pass-media-keys
 
 dunstctl set-paused false

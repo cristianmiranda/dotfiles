@@ -183,7 +183,6 @@ PACKAGES=(
     vlc
     whatsapp-nativefier
     wireplumber
-    xautolock
     xcalib
     xclip
     xdotool
@@ -194,6 +193,7 @@ PACKAGES=(
     xorg-server
     xorg-xinit
     xsettingsd
+    xss-lock
     yarn
     yq
     youtube-dl
