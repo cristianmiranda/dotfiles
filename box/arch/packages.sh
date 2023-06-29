@@ -71,7 +71,6 @@ PACKAGES=(
     hsetroot
     i3-wm
     i3lock-color-git
-    i3-layouts
     imagemagick
     inetutils
     insync
