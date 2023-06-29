@@ -148,7 +148,6 @@ PACKAGES=(
     rofi-calc
     rofi-emoji
     rtkit
-    ruby-colorls
     ruby-fusuma
     simplescreenrecorder
     skypeforlinux-stable-bin
