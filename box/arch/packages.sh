@@ -203,15 +203,10 @@ PACKAGES=(
     zsh
 )
 
-PIP_PACKAGES=(
-    pipenv-shebang
-    pipenv
-    PyPDF2
-    osascript
-    bpytop
+PYTHON_PACKAGES=(
+    bleak
     i3ipc
-    fontawesome
-    nsz
+    pypdf2
 )
 
 # Reinstall pambase
@@ -225,6 +220,6 @@ for pkg in ${PACKAGES[@]}; do
     yayInstall $pkg
 done
 
-for pkg in ${PIP_PACKAGES[@]}; do
-    pip3Install $pkg
+for pkg in ${PYTHON_PACKAGES[@]}; do
+    yayInstall "python-$pkg"
 done
