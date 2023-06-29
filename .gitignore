@@ -72,3 +72,4 @@ home/.ssh/authorized_keys
 box/ubuntu-cloud/work.sh
 home/bin/get-word-context
 home/.config/openvpn/profiles/lg.ovpn
+home/.config/openvpn/profiles/cca.ovpn
