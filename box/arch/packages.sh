@@ -183,6 +183,7 @@ PACKAGES=(
     vlc
     whatsapp-nativefier
     wireplumber
+    xarchiverx
     xcalib
     xclip
     xdotool
