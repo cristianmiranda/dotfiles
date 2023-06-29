@@ -1,9 +1,22 @@
 #!/bin/bash
 
+delete_orphaned_packages() {
+    orphans=$(sudo pacman -Qdtq)
+    if [[ -n $orphans ]]; then
+        echo -e "\n🗑️  [pacman] Deleting orphaned packages...\n"
+        echo $orphans | sudo pacman --noconfirm -Rns -
+    else
+        echo -e "\n🗑️  [pacman] No orphan packages found.\n"
+    fi
+}
+
 update_system_packages() {
     yay
     yaycache
+    delete_orphaned_packages
 }
+
+sudo -v
 
 echo -e "\n📰 Checking Arch Linux news...\n"
 yay -Pw || echo -e "⚠️  Unable to check Arch Linux news. Go to https://lists.archlinux.org/archives/list/arch-announce@lists.archlinux.org/ and check manually...\n"
