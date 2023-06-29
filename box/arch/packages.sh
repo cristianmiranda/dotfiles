@@ -21,6 +21,7 @@ PACKAGES=(
     alttab-git
     arandr
     asciinema
+    atool
     autoconf
     autojump-git
     base-devel
