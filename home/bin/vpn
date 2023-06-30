@@ -1,0 +1,37 @@
+#!/bin/bash
+
+VPNS=(
+    LG
+    CCA
+)
+
+COMMAND=$1
+VPN=$2
+
+ACTIVE_VPN=$(nmcli c show --active | grep -i vpn | awk '{print $1}')
+
+case "$COMMAND" in
+--connect)
+    if [[ -z "$VPN" ]]; then
+        VPN=$(printf "%s\n" "${VPNS[@]}" | $HOME/bin/open-rofi menu $HOME/.config/rofi/launchers/misc/column_menu.rasi)
+    fi
+
+    if [[ ! " ${VPNS[@]} " =~ " ${VPN} " ]]; then
+        echo -e "\n❌ VPN not in list of valid VPNs"
+        exit 1
+    fi
+
+    # if any active vpn connections, disconnect first
+    if [[ ! -z "$ACTIVE_VPN" ]]; then
+        nmcli c down $ACTIVE_VPN
+    fi
+
+    nmcli c up $VPN
+    ;;
+--disconnect)
+    nmcli c down $ACTIVE_VPN
+    ;;
+--active)
+    echo $ACTIVE_VPN
+    ;;
+esac

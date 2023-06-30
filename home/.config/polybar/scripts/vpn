@@ -1,0 +1,26 @@
+#!/bin/bash
+
+case "$1" in
+--connect)
+    $HOME/bin/vpn --connect
+    ;;
+--disconnect)
+    $HOME/bin/vpn --disconnect
+    ;;
+*)
+    ACTIVE_VPN=$($HOME/bin/vpn --active)
+
+    if [[ "${ACTIVE_VPN}" != "" ]]; then
+        IS_CONNECTING=$(nmcli c show $ACTIVE_VPN | grep -i connecting)
+        IS_CONNECTED=$(nmcli c show $ACTIVE_VPN | grep -i connected)
+
+        if [[ "${IS_CONNECTING}" != "" ]]; then
+            echo "%{F#ffbd33}󱇱 $ACTIVE_VPN%{F-}"
+        elif [[ "${IS_CONNECTED}" != "" ]]; then
+            echo "%{F#20c418}󱇱 $ACTIVE_VPN%{F-}"
+        fi
+    else
+        echo "󰅟"
+    fi
+    ;;
+esac
