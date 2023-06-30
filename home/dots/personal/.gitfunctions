@@ -1,67 +1,29 @@
 #!/bin/bash
 
-# Register aliases
-if [[ -z "$FORGIT_NO_ALIASES" ]]; then
-    alias "${forgit_add:-gadd}"='forgit::add'
-    alias "${forgit_reset_head:-greset}"='forgit::reset::head'
-    alias "${forgit_log:-glog}"='forgit::log'
-    alias "${forgit_diff:-gdiff}"='forgit::diff'
-    alias "${forgit_ignore:-gignore}"='forgit::ignore'
-    alias "${forgit_restore:-grestore}"='forgit::restore'
-    alias "${forgit_clean:-gclean}"='forgit::clean'
-    alias "${forgit_stash_show:-gss}"='forgit::stash::show'
-fi
+#
+# Forgit - https://github.com/wfxr/forgit
+#
+
+# Interactive git diff viewer (gd)
+# Interactive git reset HEAD <file> selector (grh)
+# Interactive git checkout <file> selector (gcf)
+# Interactive git checkout <branch> selector (gcb)
+# Interactive git branch -D <branch> selector (gbd)
+# Interactive git checkout <tag> selector (gct)
+# Interactive git checkout <commit> selector (gco)
+# Interactive git revert <commit> selector (grc)
+# Interactive git stash viewer (gss)
+# Interactive git stash push selector (gsp)
+# Interactive git clean selector (gclean)
+# Interactive git cherry-pick selector (gcp)
+# Interactive git rebase -i selector (grb)
+# Interactive git blame selector (gbl)
+# Interactive git commit --fixup && git rebase -i --autosquash selector (gfu)
 
 #
-# git count
-# Counts commits from current branch that are ahead of a given branch (fallbacking to default branches)
+# Custom aliases
 #
-function gc(){
-  if [ $# -eq 0 ]; then
-    COMMITS=`git rev-list --count develop..HEAD 2>/dev/null`
-    if [[ $? != 0 ]]; then
-      COMMITS=`git rev-list --count main..HEAD 2>/dev/null`
-    fi
-    if [[ $? != 0 ]]; then
-      COMMITS=`git rev-list --count master..HEAD 2>/dev/null`
-    fi
-  else
-    COMMITS=`git rev-list --count $1..HEAD 2>/dev/null`
-  fi
-  echo $COMMITS
-}
 
-#
-# git log -<count>
-#
-function glc(){
-  count=`gc $1`;
-  echo "Showing $count commits\n";
-  `glog -${count}`;
-}
-
-#
-# git commit session
-#
-function gci() {
-  gadd && g ci
-}
-
-#
-# git commit session using gitmoji
-#
-function gce() {
-  gadd && g ce
-}
-
-function gpl(){
-  git pull --rebase origin `git branch | awk '{if ($1 == "*"){print $2}}'`
-}
-
-function gph() {
-  git push origin `git branch | awk '{if ($1 == "*"){print $2}}'`
-}
-
-function gphf() {
-  git push --force-with-lease origin `git branch | awk '{if ($1 == "*"){print $2}}'`
-}
+alias gpl='g pl'
+alias gph='g ph'
+alias gphf='g phf'

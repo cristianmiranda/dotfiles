@@ -15,17 +15,21 @@
 	#
 	# Add to staging area
 	a = add
+	# Amend the currently staged files to the latest commit
+	amend = commit --amend --no-edit
 	ci = commit
+	# git commit session
+  	cai = "!f() { git add . && git commit; }; f"
 	# Commits using gitmoji
 	ce = !bash -c 'gitmoji -c'
+	# git commit session using gitmoji
+  	cae = "!f() { git add . && gitmoji -c; }; f"
 	# Commits everything with message
 	cma = commit -a -m
 	# Commits only what's been staged for commit using the branch prefix on the message
-	cpm = "!f() { branch=`git branch | awk '{if ($1 == \"*\"){print $2}}' | awk -F '_' '{print $1}'`; git commit -m \"$branch $1\"; }; f"
+	cmp = "!f() { branch=`git branch | awk '{if ($1 == \"*\"){print $2}}' | awk -F '_' '{print $1}'`; git commit -m \"$branch $1\"; }; f"
 	# Commits EVERYTHING using the branch prefix on the message
-	cpam = "!f() { branch=`git branch | awk '{if ($1 == \"*\"){print $2}}' | awk -F '_' '{print $1}'`; git commit -a -m \"$branch $1\"; }; f"
-	# Amend the currently staged files to the latest commit
-	amend = commit --amend --no-edit
+	cmap = "!f() { branch=`git branch | awk '{if ($1 == \"*\"){print $2}}' | awk -F '_' '{print $1}'`; git commit -a -m \"$branch $1\"; }; f"
 
 	#
 	# git checkout
@@ -42,15 +46,22 @@
 	l = "!l() { git log --pretty=oneline -n 20 --graph --abbrev-commit | emojify; }; l"
 	# Count commits ahead of a given branch
 	cc = "!c() { git rev-list --count $1..HEAD; }; c"
+	cd = "!c() { git rev-list --count develop..HEAD; }; c"
+	cm = "!c() { git rev-list --count master..HEAD; }; c"
+  	# git log -<count>
+  	lc = "!f() { count=`git rev-list --count $1..HEAD`; echo \"Showing $count commits\\n\"; git log -n $count; }; f"
 
 	#
 	# git pull / push
 	#
 	# Pull in remote changes for the current repository and all its submodules
-	pl = pull --rebase --recurse-submodules
-	ph = push
-	phf = push -f
 	wipe = "!w() { git branch -D $1 && git push origin :$1; }; w"
+	# Pull
+	pl = "!f() { git pull --rebase origin $(git symbolic-ref --short HEAD); }; f"
+	# Push
+  	ph = "!f() { git push origin $(git symbolic-ref --short HEAD); }; f"
+	# Push force
+  	phf = "!f() { git push --force-with-lease origin $(git symbolic-ref --short HEAD); }; f"
 	
 	#
 	# git diff
@@ -77,8 +88,6 @@
 	r = "!r() { git rebase -i --autosquash HEAD~$1; }; r"
 	# ~/bin/git-fixup
 	f = fixup
-	# Revert last commit
-	revert = reset HEAD~1
 
 	#
 	# Searching for stuff
@@ -113,8 +122,6 @@
 
 	# Creates a branch for ESH development with the given JIRA ticket as suffix and description 
 	esh = !"f() { desc=`echo \"$2\" | sed 's/ /_/g'`; git checkout -b ESH-\"$1\"_$desc; }; f"
-	# Creates a branch for DVPS development with the given JIRA ticket as suffix and description 
-	dvps = !"f() { desc=`echo \"$2\" | sed 's/ /-/g'`; git checkout -b DVPS-\"$1\"_$desc; }; f"
 
 [apply]
 
@@ -265,6 +272,7 @@
     syntax-theme = Dracula
     plus-style = syntax "#003800"
     minus-style = syntax "#3f0001"
+	side-by-side = true
 
 [delta "decorations"]
 

@@ -12,7 +12,6 @@ alias -- -="cd -"
 # alias ls="colorls"
 
 # Shortcuts
-alias gd="cd ~/Google\ Drive"
 alias dw="cd ~/Downloads"
 alias dt="cd ~/Desktop"
 alias pc="cd ~/Pictures"
