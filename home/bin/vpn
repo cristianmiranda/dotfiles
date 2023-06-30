@@ -3,6 +3,7 @@
 VPNS=(
     LG
     CCA
+    Home
 )
 
 COMMAND=$1
