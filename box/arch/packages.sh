@@ -173,6 +173,7 @@ PACKAGES=(
     tmux
     tlp
     tlpui-git
+    tree
     unrar
     unzip
     variety
