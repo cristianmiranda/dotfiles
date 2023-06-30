@@ -15,12 +15,12 @@ case "$1" in
         IS_CONNECTED=$(nmcli c show $ACTIVE_VPN | grep -i connected)
 
         if [[ "${IS_CONNECTING}" != "" ]]; then
-            echo "%{F#ffbd33}󱇱 $ACTIVE_VPN%{F-}"
+            echo "%{T3}%{F#ffbd33}󱇱%{T-} $ACTIVE_VPN%{F-}"
         elif [[ "${IS_CONNECTED}" != "" ]]; then
-            echo "%{F#20c418}󱇱 $ACTIVE_VPN%{F-}"
+            echo "%{T3}%{F#20c418}󱇱%{T-} $ACTIVE_VPN%{F-}"
         fi
     else
-        echo "󰅟"
+        echo "%{T3}󰅟%{T-}"
     fi
     ;;
 esac

@@ -23,5 +23,5 @@ done <<<"$lines"
 if [[ -z "$unread_count" || "$unread_count" -eq 0 ]]; then
   echo ""
 else
-  echo "%{F#FFFFFF}✉%{F-} $unread_count"
+  echo "%{T3}%{F#FFFFFF}󰇮%{T-}%{F-}"
 fi

@@ -1,11 +1,10 @@
 #!/bin/bash
 
-status=$(playerctl -p spotify status 2> /dev/null)
+status=$(playerctl -p spotify status 2>/dev/null)
 
 if [ "$status" == "Playing" ]; then
-	echo ""
-	polybar-msg action "#spotify.module_show" 2> /dev/null
+	echo "%{T3}%{F#1db954}%{T-}%{F-}"
+	polybar-msg action "#spotify.module_show" 2>/dev/null
 else
-	polybar-msg action "#spotify.module_hide" 2> /dev/null
+	polybar-msg action "#spotify.module_hide" 2>/dev/null
 fi
-
