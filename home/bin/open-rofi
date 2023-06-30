@@ -1,15 +1,19 @@
 #!/usr/bin/env bash
 
-MONITOR_RESOLUTION=`~/bin/get-resolution`
+MONITOR_RESOLUTION=$(~/bin/get-resolution)
 
 DPI=96
 
+# Increase DPI for 4K monitors.
 if [[ "$MONITOR_RESOLUTION" == "4K" ]]; then
     DPI=192
 fi
 
+# Run rofi based on given arguments.
 if [[ "$1" == "calc" ]]; then
     LC_NUMERIC=en_US.UTF-8 LC_MONETARY=en_US.UTF-8 rofi -show calc -modi calc -no-lazy-grab -no-persist-history -no-history -theme $2 -dpi $DPI -calc-command "copyq copy {result}"
+elif [[ "$1" == "menu" ]]; then
+    rofi -dmenu -no-persist-history -no-history -theme $2 -dpi $DPI -calc-command "echo {result}"
 else
     rofi -no-lazy-grab -show $1 -modi $1 -theme $2 -dpi $DPI
 fi
