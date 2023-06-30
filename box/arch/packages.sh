@@ -86,6 +86,7 @@ PACKAGES=(
     lightdm
     lightdm-gtk-greeter
     lxappearance
+    man-db
     matcha-gtk-theme
     meld
     mousepad
