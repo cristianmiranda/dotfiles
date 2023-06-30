@@ -64,3 +64,6 @@ source ${HOME}/profiles/common.sh
 
 # Navi - https://github.com/denisidoro/navi#customization
 # where navi >/dev/null 2>&1 && eval "$(navi widget zsh)"
+
+# thefuck - https://github.com/nvbn/thefuck
+eval $(thefuck --alias)

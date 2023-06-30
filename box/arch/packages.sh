@@ -169,6 +169,7 @@ PACKAGES=(
     termdown
     ticktick
     timeshift
+    thefuck
     thunar
     thunderbird
     tmux
