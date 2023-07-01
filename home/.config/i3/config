@@ -142,6 +142,16 @@ bindsym $super+v split v
 bindsym $super+Shift+space floating toggle
 
 #
+# Scratchpad
+#
+# Make the currently focused window a scratchpad
+bindsym $super+Shift+minus move scratchpad
+# Show the first scratchpad window
+bindsym $super+minus scratchpad show
+# Toggle specific scratchpad window, if any.
+# bindsym $super+Shift+v exec --no-startup-id i3-msg '[class="(?i)thunderbird"] scratchpad show'
+
+#
 # Switch to workspace
 #
 bindsym $super+$alt+Right workspace next
