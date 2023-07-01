@@ -176,6 +176,7 @@ PACKAGES=(
     tlp
     tlpui-git
     tree
+    ueberzug
     unrar
     unzip
     variety
