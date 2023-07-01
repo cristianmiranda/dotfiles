@@ -15,4 +15,4 @@ curl -L git.io/dot.deploy -o /tmp/cm.files && bash /tmp/cm.files
 - [Linux Post Install Steps](docs/Linux_Post_Install.md)
 - [GPU Passthrough](docs/GPU_Passthrough.md)
 
-![](https://i.imgur.com/dD2S3Ll.jpg)
+![](https://i.imgur.com/GEFs9ha.jpg)
