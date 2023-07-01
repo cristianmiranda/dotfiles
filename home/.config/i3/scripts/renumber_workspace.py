@@ -62,10 +62,19 @@ def renumber_workspace(new_number=None):
                 icons=target_workspace_name.icons,
             )
         )
-
-        i3.command(
-            'rename workspace "%s" to "%s"' % (target_workspace.name, target_new_name)
-        )
+        
+        name_swaps = {
+            "%s" % target_workspace.name: "%s-aux" % workspace.name,
+            "%s" % workspace.name: "%s" % target_workspace.name,
+            "%s-aux" % workspace.name: "%s" % workspace.name,
+        }
+        
+        for key, value in name_swaps.items():
+            i3.command(
+                'rename workspace "%s" to "%s"' % (key, value)
+            )
+        
+        
 
     i3.command('rename workspace "%s" to "%s"' % (workspace.name, new_name))
 
