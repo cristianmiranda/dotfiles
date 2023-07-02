@@ -64,6 +64,7 @@ PACKAGES=(
     git-lfs
     github-copilot-cli
     gitkraken
+    glances
     go
     google-cloud-sdk
     gqlplus
