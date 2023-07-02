@@ -9,7 +9,7 @@ AUR_AND_PACMAN_COLOR="#8BC34A"
     # Wait for lock on /var/lock/.myscript.exclusivelock (fd 200) for 10 seconds
     flock -w 10 200 || exit 1
 
-    ping -q -c1 google.com &>/dev/null || echo "" && exit
+    ping -q -c1 google.com &>/dev/null || (echo "" && exit 1)
 
     packages_to_be_updated=$(checkupdates | awk '{print $1}')
     kernel_packages_to_be_updated_count=$(echo -e "$packages_to_be_updated" | grep -P '^(linux|linux-headers|linux-lts|linux-lts-headers)$' | wc -l)
