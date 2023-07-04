@@ -152,7 +152,6 @@ PACKAGES=(
     rtkit
     ruby-fusuma
     simplescreenrecorder
-    skypeforlinux-stable-bin
     screen
     slack-desktop
     sof-firmware
