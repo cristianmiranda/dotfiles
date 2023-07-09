@@ -16,9 +16,7 @@
     background_color = "#1e2127"
     background_darkness = 0.0
     backspace_binding = automatic
-    cursor_color = "#676c76"
-    cursor_color_fg = False
-    font = Fira Code weight=450 11
+    font = FiraCode Nerd Font Mono weight=450 11
     foreground_color = "#839496"
     show_titlebar = False
     scrollbar_position = hidden
