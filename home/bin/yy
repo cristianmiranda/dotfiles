@@ -4,7 +4,7 @@ delete_orphaned_packages() {
     orphans=$(sudo pacman -Qdtq)
     if [[ -n $orphans ]]; then
         echo -e "\n🗑️  [pacman] Deleting orphaned packages...\n"
-        echo $orphans | sudo pacman --noconfirm -Rns -
+        echo "$orphans" | sudo pacman --noconfirm -Rns -
     else
         echo -e "\n🗑️  [pacman] No orphan packages found.\n"
     fi
