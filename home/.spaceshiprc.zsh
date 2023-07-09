@@ -15,3 +15,5 @@
 #
 
 # See https://spaceship-prompt.sh/config/intro/
+
+SPACESHIP_CHAR_SYMBOL=" "
