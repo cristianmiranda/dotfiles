@@ -65,6 +65,7 @@ PACKAGES=(
     github-copilot-cli
     gitkraken
     glances
+    gnome-keyring
     go
     google-cloud-sdk
     gqlplus
@@ -151,6 +152,7 @@ PACKAGES=(
     rofi-emoji
     rtkit
     ruby-fusuma
+    seahorse
     simplescreenrecorder
     screen
     slack-desktop
