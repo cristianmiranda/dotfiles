@@ -77,5 +77,5 @@ function default_policy.enable()
   load_script("policy-endpoint-device.lua", default_policy.policy)
 
   -- Switch bluetooth profile based on media.role
-  load_script("policy-bluetooth.lua", bluetooth_policy.policy)
+  -- load_script("policy-bluetooth.lua", bluetooth_policy.policy)
 end
