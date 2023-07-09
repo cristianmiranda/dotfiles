@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+
+TIMESTAMP=$(date +%Y-%m-%d_%H-%M-%S)
+HOST=mini
+BACKUP_DIR_PATH=/data/ssd/backups/rsync/$HOSTNAME
+
+EXCLUDED=(
+    "*.log"
+    ".1password"
+    ".cache"
+    ".npm"
+    ".nvm"
+    ".yarn"
+    "Documents/Work/Workspace_LG/orthanc-ohif/orthanc/db"
+    "Downloads/"
+    "logs"
+)
+
+EXCLUDES=()
+for i in "${EXCLUDED[@]}"; do
+    EXCLUDES="$EXCLUDES --exclude '$i'"
+done
+
+DESTINATION=$HOST:$BACKUP_DIR_PATH
+COMMAND="
+    rsync -avz \
+        --human-readable \
+        --stats \
+        --progress \
+        --delete \
+        $EXCLUDES \
+        \"$HOME/\" $DESTINATION \
+"
+
+echo $COMMAND | tee -a $HOME/logs/backup_$TIMESTAMP.log
+eval $COMMAND | tee -a $HOME/logs/backup_$TIMESTAMP.log
