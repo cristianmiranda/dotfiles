@@ -29,6 +29,7 @@ if ! zgen saved; then
   zgen load zsh-users/zsh-syntax-highlighting
   zgen load wfxr/forgit
   zgen load ChrisPenner/copy-pasta
+  zgen load djui/alias-tips
   # zgen load lukechilds/zsh-nvm              # --> Uncomment if using nvm
   # zgen load matthieusb/zsh-sdkman           # --> Uncomment if using sdkman
 
