@@ -27,16 +27,17 @@ PACKAGES=(
     base-devel
     bashtop
     bat
+    bind
+    blueman
     bluez
     bluez-utils
-    blueman
     breeze
     brightnessctl
     cargo
     cawbird-git
     chromium
-    cmatrix
     cloud-sql-proxy-bin
+    cmatrix
     copyq
     cups
     deluge-gtk
@@ -50,19 +51,18 @@ PACKAGES=(
     element-desktop
     emojify
     espeak
-    bind
+    fd
+    ffmpeg
     filezilla
     firefox
     firefox-developer-edition
-    fd
-    ffmpeg
     flameshot
     font-manager
     freerdp
     git-delta
-    git-lfs
     github-copilot-cli
     gitkraken
+    git-lfs
     glances
     gnome-keyring
     go
@@ -71,8 +71,8 @@ PACKAGES=(
     gtkpod
     hplip
     hsetroot
-    i3-wm
     i3lock-color-git
+    i3-wm
     imagemagick
     inetutils
     insync
@@ -95,11 +95,12 @@ PACKAGES=(
     navi
     ncdu
     neofetch
+    neovim
     nerd-fonts-meta
     net-tools
     networkmanager
-    networkmanager-openvpn
     network-manager-applet
+    networkmanager-openvpn
     nitrogen
     nodejs-gitmoji-cli
     nordvpn-bin
@@ -112,7 +113,6 @@ PACKAGES=(
     nvidia-lts
     nvidia-settings
     nvidia-utils
-    neovim
     octopi
     okular
     openresolv
@@ -122,9 +122,9 @@ PACKAGES=(
     oracle-instantclient-sqlplus
     p7zip
     pacman-contrib
-    pasystray
     pamixer
     papirus-icon-theme
+    pasystray
     pavucontrol
     peek
     picom
@@ -152,9 +152,9 @@ PACKAGES=(
     rofi-emoji
     rtkit
     ruby-fusuma
+    screen
     seahorse
     simplescreenrecorder
-    screen
     slack-desktop
     sof-firmware
     sops
@@ -166,17 +166,17 @@ PACKAGES=(
     sysstat
     system-config-printer
     teamviewer
-    terminator
     telegram-desktop
     termdown
-    ticktick
-    timeshift
+    terminator
     thefuck
     thunar
     thunderbird
-    tmux
+    ticktick
+    timeshift
     tlp
     tlpui-git
+    tmux
     tree
     ueberzug
     unrar
@@ -201,8 +201,8 @@ PACKAGES=(
     xorg-xinit
     xsettingsd
     yarn
-    yq
     youtube-dl
+    yq
     yubikey-manager-qt
     zip
     zoom
