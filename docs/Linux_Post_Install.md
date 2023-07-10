@@ -104,7 +104,7 @@ sudo grub-mkconfig -o /boot/grub/grub.cfg
 ## ☢️ GRUB Theme
 
 ```bash
-wget -O - https://github.com/shvchk/fallout-grub-theme/raw/master/install.sh | bash
+bash ~/dotfiles/scripts/install-fallout-grub-theme.sh
 ```
 
 ## 📦 Pacman
