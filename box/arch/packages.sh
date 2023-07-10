@@ -107,6 +107,7 @@ PACKAGES=(
     noto-color-emoji-fontconfig
     noto-fonts
     noto-fonts-emoji
+    numlockx
     nvidia
     nvidia-lts
     nvidia-settings
