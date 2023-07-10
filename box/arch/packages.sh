@@ -32,7 +32,6 @@ PACKAGES=(
     blueman
     breeze
     brightnessctl
-    caffeine-ng
     cargo
     cawbird-git
     chromium
@@ -194,12 +193,12 @@ PACKAGES=(
     xdotool
     xf86-input-libinput
     xfce4-power-manager
+    xidlehook
     xmlstarlet
     xorg-apps
     xorg-server
     xorg-xinit
     xsettingsd
-    xss-lock
     yarn
     yq
     youtube-dl

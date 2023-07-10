@@ -37,7 +37,6 @@ exec_always --no-startup-id brightnessctl --device='tpacpi::kbd_backlight' set 1
 exec_always --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 
 # Apps
-exec_always --no-startup-id caffeine kill || true; sleep 2; caffeine start
 exec_always --no-startup-id /home/cmiranda/bin/exterminate nm-applet; nm-applet
 exec_always --no-startup-id /home/cmiranda/bin/exterminate blueman-applet; blueman-applet
 exec_always --no-startup-id /home/cmiranda/bin/exterminate copyq; copyq
@@ -50,8 +49,7 @@ exec_always --no-startup-id "if [[ ! $(hostname) =~ 'virt' ]]; /home/cmiranda/bi
 exec_always --no-startup-id "if [[ ! $(hostname) =~ 'virt' ]]; then picom -b; fi"
 
 # Lock Screen
-exec_always --no-startup-id xset dpms 0 0 600 &
-exec_always --no-startup-id xss-lock -- $HOME/bin/lock-screen &
+exec_always --no-startup-id killall xidlehook; xidlehook --not-when-audio --timer 600 "$HOME/bin/lock-screen" "" &
 exec_always --no-startup-id killall hot-corner; $HOME/bin/hot-corner &
 
 #
