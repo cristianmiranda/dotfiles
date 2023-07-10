@@ -56,13 +56,12 @@ Feel free to adapt the rest of the guide to `sdb` or any other if you
 want to install Arch on a secondary hard drive.
 
 This guide will use a 250GB hard disk and will have only Arch Linux installed.
-You'll create 5 partitions of the disk (feel free to suit this to your needs).
+You'll create 4 partitions of the disk (feel free to suit this to your needs).
 
 - `/dev/sda1` boot partition (1G).
-- `/dev/sda2` swap partition (4G).
-- `/dev/sda3` root partition (50G).
-- `/dev/sda4` home partition (100G).
-- `/dev/sda5` data partition (remaining disk space).
+- `/dev/sda2` swap partition (128G).
+- `/dev/sda3` home partition (1T).
+- `/dev/sda4` / partition (remaining disk space).
 
 You're going to start by removing all the previous partitions and creating
 the new ones.
@@ -97,23 +96,23 @@ EF00
 Command: n
 ENTER
 ENTER
-+72G
++128G
 8200
 ```
 
 ![](https://i.imgur.com/OYR4nnn.png)
 
-#### Home partition (/)
+#### Home partition (/home)
 
 ```
 Command: n
 ENTER
 ENTER
-+500G
++1T
 8302
 ```
 
-#### Main partition
+#### Main partition (/)
 
 ```
 Command: n
@@ -141,7 +140,7 @@ mkfs.ext4 /dev/sda4
 
 ### Mount partitions
 
-```
+```bash
 swapon /dev/sda2
 mount /dev/sda4 /mnt
 mount --mkdir /dev/sda1 /mnt/boot
@@ -151,12 +150,12 @@ mount --mkdir /dev/sda3 /mnt/home
 If you run the `lsblk` command you should see something like this:
 
 ```
-   NAME   MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT
-   sda      8:0    0  1.27T  0 disk
-   ├─sda1   8:1    0     1G  0 part /mnt/boot
-   ├─sda2   8:2    0    72G  0 part [SWAP]
-   ├─sda3   8:3    0   700G  0 part /mnt
-   ├─sda4   8:4    0   500G  0 part /mnt/home
+NAME        MAJ:MIN RM   SIZE RO TYPE MOUNTPOINTS
+nvme1n1     259:0    0   1.9T  0 disk
+├─nvme1n1p1 259:1    0     1G  0 part /boot
+├─nvme1n1p2 259:2    0   128G  0 part [SWAP]
+├─nvme1n1p3 259:3    0     1T  0 part /home
+└─nvme1n1p4 259:4    0 754.7G  0 part /
 ```
 
 ## 🥳 Installation
@@ -210,15 +209,7 @@ Add this content to the file:
 ```bash
 LANG=en_US.UTF-8
 LANGUAGE=en_US
-LC_ADDRESS=es_AR.UTF-8
-LC_IDENTIFICATION=es_AR.UTF-8
-LC_MEASUREMENT=es_AR.UTF-8
-LC_MONETARY=es_AR.UTF-8
-LC_NAME=es_AR.UTF-8
-LC_NUMERIC=es_AR.UTF-8
-LC_PAPER=es_AR.UTF-8
-LC_TELEPHONE=es_AR.UTF-8
-LC_TIME=es_AR.UTF-8
+LC_ALL=es_AR.UTF-8
 ```
 
 ```bash
@@ -243,7 +234,7 @@ hwclock —-systohc
 These services will be started automatically when the system boots up.
 
 ```bash
-pacman -S openssh dhcpcd networkmanager networkmanager-openvpn network-manager-applet
+pacman -S openssh networkmanager networkmanager-openvpn network-manager-applet
 systemctl enable sshd
 systemctl enable NetworkManager
 ```
@@ -353,9 +344,11 @@ sudo systemctl enable fstrim.timer
 ```bash
 sudo pacman -S screen
 screen
+#
 # Ctrl+a |   Split current region vertically into two regions
 # Ctrl+a tab Switch the input focus to the next region
 # Ctrl+a c   Create a new window (with shell)
+#
 ```
 
 ### Install dotfiles
