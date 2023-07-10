@@ -78,4 +78,10 @@ function default_policy.enable()
 
   -- Switch bluetooth profile based on media.role
   -- load_script("policy-bluetooth.lua", bluetooth_policy.policy)
+  -- -------------------------------------------------------------
+  -- Replaced with .config/wireplumber/bluetooth.lua.d/99-load-hsphfp-virtual-mic.lua
+  --   ... which loads .config/wireplumber/scripts/wp-virtual-hsphfp-mic.lua
+  -- See more @ https://github.com/Kuroneer/wp-virtual-hsphfp-mic
+  -- -------------------------------------------------------------
+
 end
