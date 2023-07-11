@@ -33,15 +33,21 @@ disconnect() {
 }
 
 headset() {
-  pactl set-card-profile $AIRPODS_NAME $HEADSET_PROFILE
-  sleep 1
+  #
+  # Controlled by wireplumber
+  #
+  # pactl set-card-profile $AIRPODS_NAME $HEADSET_PROFILE
+  # sleep 1
   pactl set-default-sink $(pactl list sinks short | grep -i "$AIRPODS_SINK" | awk '{print $2}')
-  pactl set-default-source $(pactl list sinks short | grep -i "$AIRPODS_SOURCE" | awk '{print $2}')
+  pactl set-default-source $(pactl list sources short | grep -i "$AIRPODS_SOURCE" | awk '{print $2}')
 }
 
 speaker() {
-  pactl set-card-profile $AIRPODS_NAME $SPEAKER_PROFILE_AAC
-  sleep 1
+  #
+  # Controlled by wireplumber
+  #
+  # pactl set-card-profile $AIRPODS_NAME $SPEAKER_PROFILE_AAC
+  # sleep 1
   pactl set-default-sink $(pactl list sinks short | grep -i "$AIRPODS_SINK" | awk '{print $2}')
 }
 
