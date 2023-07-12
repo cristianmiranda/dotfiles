@@ -1,16 +1,10 @@
 #!/bin/bash
 
-MUTED="$(pamixer --default-source --get-mute)"
-LED_NOT_FOUND="brightnessctl --device='platform::micmute' | grep 'not found'"
+DEVICE_ICON=$(pulseaudio-control --node-type input --node-nicknames-from "device.description" --node-nickname "*HD_Pro_Webcam*:󰖠" --node-nickname "*CalDigit*:CalDigit" --node-nickname "*HiFi__hw_sof*:" --node-nickname "*bluez*:󰋋" --node-blacklist "*.monitor" --format '${NODE_NICKNAME}' output | sed -E 's/%\{F#[0-9a-fA-F]{6}\}([^%]*)%\{F-\}/\1/g')
+MUTED="$(pactl list short sources | awk '/input.*RUNNING/ {system("pactl get-source-mute " $1)}' | sed 's/Mute: //g' | uniq)"
 
-if [[ $MUTED == "false" ]]; then
-    if [[ ! $LED_NOT_FOUND ]]; then
-        brightnessctl --device='platform::micmute' set 0 >/dev/null
-    fi
-    echo "%{F#20c418}%{F-}"
+if [[ $MUTED == "no" ]]; then
+    echo "%{F#20c418}$DEVICE_ICON%{F-}"
 else
-    if [[ ! $LED_NOT_FOUND ]]; then
-        brightnessctl --device='platform::micmute' set 1 >/dev/null
-    fi
-    echo "%{F#f53636}%{F-}"
+    echo "%{F#f53636}$DEVICE_ICON%{F-}"
 fi
