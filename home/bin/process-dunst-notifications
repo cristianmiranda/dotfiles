@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+# TODO: Parse notifications and perform custom actions accordingly
+
+APPNAME=$(echo $1 | sed 's/ //g')
+SUBJECT=$2
+MESSAGE=$3

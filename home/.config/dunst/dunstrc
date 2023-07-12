@@ -33,7 +33,7 @@
     origin = top-right
 
     # Offset from the origin
-    offset = 32x32
+    offset = 20x50
 
     # Scale factor. It is auto-detected if value is 0.
     scale = 0
@@ -164,14 +164,14 @@
 [urgency_low]
     # This urgency should be used only 
     # for volume/brightness notification
-    background = "#002b36"
-    foreground = "#eee8d5"
+    background = "#222D31"
+    foreground = "#C5C8C6"
     timeout = 10
     # icon = /dev/null
 
 [urgency_normal]
-    background = "#002b36"
-    foreground = "#eee8d5"
+    background = "#222D31"
+    foreground = "#C5C8C6"
     timeout = 10
     # icon = /dev/null
 
@@ -185,6 +185,10 @@
 [update_notifications_count]
     script = /home/cmiranda/bin/update-notifications-count
 
-[element_notifications]
+[element]
    appname = Element
-   script = /home/cmiranda/bin/process-element-notifications
+   script = /home/cmiranda/bin/process-dunst-notifications
+
+[spotify]
+   appname = Spotify
+   script = /home/cmiranda/bin/process-dunst-notifications

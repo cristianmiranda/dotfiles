@@ -65,7 +65,6 @@ home/.config/filezilla/sitemanager.xml
 backup/Linux+Mint+-+MacBook+Pro-duplicati-config.json
 backup/macOS+-+MacBook+Pro+i9-duplicati-config.json
 home/.config/ulauncher/ext_preferences/com.github.safaariman.ulauncher-jira.db
-home/bin/process-element-notifications
 home/.secrets
 home/.switch/prod.keys
 home/.ssh/authorized_keys
