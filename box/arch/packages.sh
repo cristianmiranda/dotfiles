@@ -210,6 +210,7 @@ PACKAGES=(
 )
 
 PYTHON_PACKAGES=(
+    black
     bleak
     i3ipc
     pypdf2
