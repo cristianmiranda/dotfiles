@@ -8,7 +8,7 @@ MAX_VOLUME=100
 MSG_ID="991049"
 
 function volume() {
-  VOLUME="`pamixer --get-volume`"
+  VOLUME="$(pamixer --get-volume)"
   if [[ $? -eq 0 ]]; then
     echo $VOLUME
   else
@@ -29,48 +29,55 @@ if [[ -z "$1" ]]; then
   exit 1
 fi
 
-VOLUME="`volume`"
+VOLUME="$(volume)"
 
 case "$1" in
-  up)
-    $HOME/bin/amixer-vol unmute
-    pamixer -i $INCR
-    if [[ $VOLUME -gt $MAX_VOLUME ]]; then
-      pamixer --set-volume ${MAX_VOLUME}
-    fi
-    soundFeeback
-    ;;
-  down)
-    $HOME/bin/amixer-vol unmute
-    pamixer -d $INCR
-    if [[ $VOLUME -lt $MIN_VOLUME ]]; then
-      pamixer --set-volume ${MIN_VOLUME}
-    fi
-    soundFeeback
-    ;;
-  mute)
-    pamixer -m
+up)
+  $HOME/bin/amixer-vol unmute
+  pamixer -i $INCR
+  if [[ $VOLUME -gt $MAX_VOLUME ]]; then
+    pamixer --set-volume ${MAX_VOLUME}
+  fi
+  soundFeeback
+  ;;
+down)
+  $HOME/bin/amixer-vol unmute
+  pamixer -d $INCR
+  if [[ $VOLUME -lt $MIN_VOLUME ]]; then
+    pamixer --set-volume ${MIN_VOLUME}
+  fi
+  soundFeeback
+  ;;
+mute)
+  pamixer -m
+  brightnessctl --device='platform::mute' set 1
+  ;;
+unmute)
+  pamixer -u
+  brightnessctl --device='platform::mute' set 0
+  ;;
+toggle)
+  pamixer -t
+  MUTED="$(pamixer --get-mute)"
+  if [[ $MUTED == "true" ]]; then
     brightnessctl --device='platform::mute' set 1
-    ;;
-  unmute)
-    pamixer -u
+  else
     brightnessctl --device='platform::mute' set 0
-    ;;
-  toggle)
-    pamixer -t
-    soundFeeback
-    ;;
-  toggle-mic)
-    MUTED="`pamixer --default-source --get-mute`"
-    if [[ $MUTED == "true" ]]; then
-      brightnessctl --device='platform::micmute' set 1
-    else
-      brightnessctl --device='platform::micmute' set 0
-    fi
-    pamixer --default-source -t
-    ;;
-  *)
-    echo "Unknown command: $1"
-    exit 1
-    ;;
+  fi
+  soundFeeback
+  ;;
+toggle-mic)
+  # Mute ALL inputs just in case
+  pactl list short sources | awk '/input.*RUNNING/ {system("pactl set-source-mute " $1 " toggle")}'
+  MUTED="$(pactl list short sources | awk '/input.*RUNNING/ {system("pactl get-source-mute " $1)}' | sed 's/Mute: //g' | uniq)"
+  if [[ $MUTED == "yes" ]]; then
+    brightnessctl --device='platform::micmute' set 1
+  else
+    brightnessctl --device='platform::micmute' set 0
+  fi
+  ;;
+*)
+  echo "Unknown command: $1"
+  exit 1
+  ;;
 esac
