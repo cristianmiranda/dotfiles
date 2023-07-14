@@ -33,9 +33,6 @@ if ! zgen saved; then
   # zgen load lukechilds/zsh-nvm              # --> Uncomment if using nvm
   # zgen load matthieusb/zsh-sdkman           # --> Uncomment if using sdkman
 
-  # theme
-  zgen load spaceship-prompt/spaceship-prompt spaceship
-
   # generate the init script from plugins above
   zgen save
 fi
@@ -68,3 +65,5 @@ source ${HOME}/profiles/common.sh
 
 # thefuck - https://github.com/nvbn/thefuck
 eval $(thefuck --alias)
+
+eval "$(starship init zsh)"

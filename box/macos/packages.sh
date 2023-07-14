@@ -4,10 +4,9 @@
 . ${UTILS_PATH}/packages.sh
 . ${UTILS_PATH}/path.sh
 
-if [[ $INSTALL_PACKAGES =~ n|N ]];
-then
-    warning ">>> Skipping Packages..."
-    exit 0
+if [[ $INSTALL_PACKAGES =~ n|N ]]; then
+	warning ">>> Skipping Packages..."
+	exit 0
 fi
 
 # Ask for the administrator password upfront
@@ -73,6 +72,7 @@ PACKAGES=(
 	node
 	ranger
 	sops
+	starship
 	svn
 	terraform
 	tmux
@@ -149,24 +149,24 @@ QUICKLOOK=(
 brewCleanup
 
 for pkg in ${ESSENTIALS[@]}; do
-    brewInstall $pkg
+	brewInstall $pkg
 done
 
 for pkg in ${PACKAGES[@]}; do
-    brewInstall $pkg
+	brewInstall $pkg
 done
 
 for pkg in ${CASKS[@]}; do
-    brewCaskInstall $pkg
+	brewCaskInstall $pkg
 done
 
 for pkg in ${QUICKLOOK[@]}; do
-    brewCaskInstall $pkg
+	brewCaskInstall $pkg
 done
 
-brew tap homebrew/cask-fonts >> $LOG_FILE 2>&1
+brew tap homebrew/cask-fonts >>$LOG_FILE 2>&1
 for pkg in ${FONTS[@]}; do
-    brewCaskInstall $pkg
+	brewCaskInstall $pkg
 done
 
 pip3InstallForUser pipenv-shebang
