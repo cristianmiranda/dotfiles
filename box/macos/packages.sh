@@ -58,6 +58,7 @@ PACKAGES=(
 	fd
 	ffmpeg
 	flameshot
+	fzf
 	git-delta
 	git-lfs
 	git-secret

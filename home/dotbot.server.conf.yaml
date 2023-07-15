@@ -5,24 +5,24 @@
 
 - clean:
     ~/:
-        force: true
+      force: true
     ~/.config:
-        recursive: true
+      recursive: true
 
 - link:
     # Link to self
-    ~/dotfiles: '../.'
-    
+    ~/dotfiles: "../."
+
     # Hidden directories
     ~/.config/:
-        glob: true
-        path: .config/*
-        force: true
+      glob: true
+      path: .config/*
+      force: true
     ~/.local/share/fonts: .local/share/fonts
     ~/.screenlayout: .screenlayout
-    ~/.ssh/config: 
-        path: .ssh/config
-        force: true
+    ~/.ssh/config:
+      path: .ssh/config
+      force: true
     ~/.themes: .themes
     ~/.tmux.conf: .tmux.conf
     ~/.vim: .vim
@@ -34,22 +34,17 @@
     ~/profiles: profiles
     ~/wallpapers: wallpapers
 
-    # fzf
-    ~/fzf: ../fzf
-    ~/.fzf.bash: .fzf.bash
-    ~/.fzf.zsh: .fzf.zsh
-
     # Hidden Files
     ~/.bash_profile:
-        path: .bash_profile
-        force: true
-    ~/.bashrc: 
-        path: .bashrc
-        force: true
+      path: .bash_profile
+      force: true
+    ~/.bashrc:
+      path: .bashrc
+      force: true
     ~/.gitconfig: .gitconfig
     ~/.gtkrc-xfce:
-        path: .gtkrc-xfce
-        force: true
+      path: .gtkrc-xfce
+      force: true
     ~/.gvimrc: .gvimrc
     ~/.inputrc: .inputrc
     ~/.p10k.zsh: .p10k.zsh
@@ -63,21 +58,11 @@
     ~/.Xresources.asus: .Xresources.asus
     ~/.Xresources.laptop: .Xresources.laptop
     ~/.zshrc:
-        path: .zshrc
-        force: true
-    
+      path: .zshrc
+      force: true
+
 - create:
     - ~/Documents/Work/Workspace
     - ~/Documents/Work/Workspace_LG
     - ~/Pictures/Screenshots
     - ~/logs
-
-- shell:
-    -
-        command: cd $HOME/fzf && bash $HOME/fzf/install --all
-        description:  Upgrading/Installing fzf
-        stdin: true
-        stdout: true
-        stderr: true
-        quiet: false
-    

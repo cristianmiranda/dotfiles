@@ -3,8 +3,7 @@
 . ${UTILS_PATH}/packages.sh
 . ${UTILS_PATH}/ui.sh
 
-if [[ $INSTALL_PACKAGES =~ n|N ]];
-then
+if [[ $INSTALL_PACKAGES =~ n|N ]]; then
     warning ">>> Skipping Packages..."
     exit 0
 fi
@@ -14,6 +13,7 @@ aptUpgrade
 PACKAGES=(
     curl
     figlet
+    fzf
     git
     htop
     jq

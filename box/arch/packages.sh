@@ -59,6 +59,7 @@ PACKAGES=(
     flameshot
     font-manager
     freerdp
+    fzf
     git-delta
     github-copilot-cli
     gitkraken

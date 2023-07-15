@@ -1,17 +1,27 @@
 #!/usr/bin/env bash
 
 #
-# FZF & FD
+# FZF & FD - https://github.com/junegunn/fzf
 #
 
 is_zsh() { [ -n "$ZSH_VERSION" ]; }
 
-# Command-line Fuzzy Finder - https://github.com/junegunn/fzf
 if is_zsh; then
-    [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+    SHELL_FILE_EXTENSION=zsh
 else
-    [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+    SHELL_FILE_EXTENSION=bash
 fi
+
+#
+# Completion & Key Bindings
+#
+if [ -d "/usr/share/doc/fzf/examples" ]; then
+    FZF_SCRIPTS_BASE_DIR="/usr/share/doc/fzf/examples"
+elif [ -d "/usr/share/fzf" ]; then
+    FZF_SCRIPTS_BASE_DIR="/usr/share/fzf"
+fi
+[[ $- == *i* && $FZF_SCRIPTS_BASE_DIR/completion.$SHELL_FILE_EXTENSION ]] && source "$FZF_SCRIPTS_BASE_DIR/completion.$SHELL_FILE_EXTENSION" 2>/dev/null
+[ -f $FZF_SCRIPTS_BASE_DIR/key-bindings.$SHELL_FILE_EXTENSION ] && source "$FZF_SCRIPTS_BASE_DIR/key-bindings.$SHELL_FILE_EXTENSION"
 
 export FZF_DEFAULT_OPTS="
 --layout=reverse

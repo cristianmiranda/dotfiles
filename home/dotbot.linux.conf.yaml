@@ -44,11 +44,6 @@
     ~/sounds: sounds
     ~/wallpapers: wallpapers
 
-    # fzf
-    ~/fzf: ../fzf
-    ~/.fzf.bash: .fzf.bash
-    ~/.fzf.zsh: .fzf.zsh
-
     # QUEMU GPU Passthrough battery mock file
     ~/quemu_battery_mock.dat: quemu_battery_mock.dat
 
@@ -97,12 +92,3 @@
     - ~/Pictures/Screenshots
     - ~/logs
     - ~/Google Drive
-
-- shell:
-    # - [git update-index --assume-unchanged .config/xfce4/xfconf/xfce-perchannel-xml/thunar.xml, Ignoring changes on thunar.xml]
-    - command: cd $HOME/fzf && bash $HOME/fzf/install --all
-      description: Upgrading/Installing fzf
-      stdin: true
-      stdout: true
-      stderr: true
-      quiet: false
