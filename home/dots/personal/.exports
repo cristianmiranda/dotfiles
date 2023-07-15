@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-export TERMINAL=terminator
+export TERMINAL=alacritty
 
 # i3 SCALING properties
 export GDK_SCALE=2
@@ -10,15 +10,15 @@ export QT_AUTO_SCREEN_SCALE_FACTOR=1
 export PATH=~/.local/bin:$PATH
 export PATH=~/bin:$PATH
 
-export EDITOR='vim';
+export EDITOR='vim'
 export BROWSER=/usr/bin/firefox
 
 # Increase Bash history size. Allow 32³ entries; the default is 500.
-export HISTSIZE='32768';
-export HISTFILESIZE="${HISTSIZE}";
+export HISTSIZE='32768'
+export HISTFILESIZE="${HISTSIZE}"
 
 # Omit duplicates and commands that begin with a space from history.
-export HISTCONTROL='ignoreboth';
+export HISTCONTROL='ignoreboth'
 
 # Places
 export DOTFILES_HOME="${HOME}/dotfiles"
@@ -53,4 +53,3 @@ export CHROME_EXECUTABLE=/usr/bin/chromium
 
 # Export path where pub packages live
 export PATH="$PATH":"$HOME/.pub-cache/bin"
-

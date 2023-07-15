@@ -76,7 +76,7 @@ bindsym $super+b exec polybar-msg cmd toggle
 #
 # Terminal
 #
-bindsym $super+Return exec --no-startup-id terminator
+bindsym $super+Return exec --no-startup-id alacritty
 
 #
 # Rofi

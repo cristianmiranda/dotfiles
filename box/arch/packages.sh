@@ -15,6 +15,7 @@ PACKAGES=(
     acpi
     acpi_call
     alacarte
+    alacritty
     alsa-firmware
     alsa-ucm-conf
     alsa-utils
@@ -170,7 +171,6 @@ PACKAGES=(
     teamviewer
     telegram-desktop
     termdown
-    terminator
     thefuck
     thunar
     thunderbird
