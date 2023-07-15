@@ -46,6 +46,7 @@ PACKAGES=(
     docker
     docker-compose
     dunst
+    dust
     easyeffects
     ebtables
     edk2-ovmf
