@@ -1,8 +1,17 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 #
 # FZF & FD
 #
+
+is_zsh() { [ -n "$ZSH_VERSION" ]; }
+
+# Command-line Fuzzy Finder - https://github.com/junegunn/fzf
+if is_zsh; then
+    [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+else
+    [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+fi
 
 export FZF_DEFAULT_OPTS="
 --layout=reverse
@@ -22,32 +31,3 @@ export FZF_DEFAULT_OPTS="
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 # To apply the command to CTRL-T as well
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-
-##########################################################################################
-
-#
-# FORGIT
-#
-
-FORGIT_LOG_FZF_OPTS='
---bind="ctrl-e:execute(echo {} |grep -Eo [a-f0-9]+ |head -1 |xargs git show | vim -)"
-'
-FORGIT_COPY_CMD='xclip -selection clipboard'
-
-FORGIT_FZF_DEFAULT_OPTS="
-$FZF_DEFAULT_OPTS
---ansi
---height=99%
---bind='alt-k:preview-up,alt-p:preview-up'
---bind='alt-j:preview-down,alt-n:preview-down'
---bind='ctrl-r:toggle-all'
---bind='ctrl-s:toggle-sort'
---bind='?:toggle-preview'
---bind='alt-w:toggle-preview-wrap'
---preview-window='right:99%'
---layout=reverse
-$FORGIT_FZF_DEFAULT_OPTS
-"
-
-# EMOJI-CLI
-source ~/bin/emoji-cli/emoji-cli.zsh

@@ -1,0 +1,17 @@
+#!/bin/bash
+
+#
+# https://github.com/wting/autojump
+#
+
+# Arch Linux
+[[ -s /etc/profile.d/autojump.sh ]] && source /etc/profile.d/autojump.sh
+
+# autojump-git
+[[ -s /home/cmiranda/.cache/yay/autojump-git/pkg/autojump-git/etc/profile.d/autojump.sh ]] && source /home/cmiranda/.cache/yay/autojump-git/pkg/autojump-git/etc/profile.d/autojump.sh
+
+# macOS
+[ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
+
+# Ubuntu Server
+[[ -s /home/cmiranda/.autojump/etc/profile.d/autojump.sh ]] && source /home/cmiranda/.autojump/etc/profile.d/autojump.sh

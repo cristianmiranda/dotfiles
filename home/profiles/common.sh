@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Load all .exports
 for export in $(find ${HOME}/dots/ -type f | grep .exports | grep -v .secret); do

@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-
-alias dikter_d="cd ~/Documents/Work/Workspace/dikter-utils/scripts/python && python download_movements.py"
-alias dikter_c="cd ~/Documents/Work/Workspace/dikter-utils/scripts/python && mv ~/Downloads/Listado_Movimientos_Cuenta* ~/Downloads/DIKTER/. && python currencify_exported_csv.py"

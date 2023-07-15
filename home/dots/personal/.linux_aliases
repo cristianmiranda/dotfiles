@@ -3,19 +3,6 @@
 # Load AMD GPU
 alias amdgpuload="gpu-manager | grep 'amdgpu loaded? no' && sudo modprobe amdgpu || echo 'AMD GPU already loaded'"
 
-# sudo systemctl stop NetworkManager
-# sudo systemctl disable NetworkManager
-alias wificonnect="sudo wpa_supplicant -c /etc/wpa_supplicant.conf -i wlan0"
-# sudo service network-manager restart
-
-# AirPods connection
-alias airpodspair="bluetoothctl pair 7C:9A:1D:BA:BD:D6"
-alias airpodstrust="bluetoothctl trust 7C:9A:1D:BA:BD:D6"
-alias airpodsconnect="bluetoothctl connect 7C:9A:1D:BA:BD:D6"
-
-# Spotify
-alias restartspotifyd="systemctl --user restart spotifyd.service"
-
 # Identify keys
 function scankeys() {
     xev | awk -F'[ )]+' '/^KeyPress/ { a[NR+2] } NR in a { printf "%-3s %s\n", $5, $8 }'

@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+# thefuck - https://github.com/nvbn/thefuck
+eval $(thefuck --alias)

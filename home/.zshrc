@@ -37,33 +37,8 @@ if ! zgen saved; then
   zgen save
 fi
 
-if [[ "$OSTYPE" == "darwin"* ]]; then
-  # macOS bash completion
-  [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
-fi
-
 # Common cross-profile stuff
 source ${HOME}/profiles/common.sh
 
-# Command-line Fuzzy Finder - https://github.com/junegunn/fzf
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-#
-# https://github.com/wting/autojump
-#
-# Arch Linux
-[[ -s /etc/profile.d/autojump.sh ]] && source /etc/profile.d/autojump.sh
-# autojump-git
-[[ -s /home/cmiranda/.cache/yay/autojump-git/pkg/autojump-git/etc/profile.d/autojump.sh ]] && source /home/cmiranda/.cache/yay/autojump-git/pkg/autojump-git/etc/profile.d/autojump.sh
-# macOS
-[ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
-# Ubuntu Server
-[[ -s /home/cmiranda/.autojump/etc/profile.d/autojump.sh ]] && source /home/cmiranda/.autojump/etc/profile.d/autojump.sh
-
-# Navi - https://github.com/denisidoro/navi#customization
-# where navi >/dev/null 2>&1 && eval "$(navi widget zsh)"
-
-# thefuck - https://github.com/nvbn/thefuck
-eval $(thefuck --alias)
-
+# Starship - https://starship.rs/
 eval "$(starship init zsh)"

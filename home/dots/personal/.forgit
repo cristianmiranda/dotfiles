@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+#
+# FORGIT
+#
+
+FORGIT_LOG_FZF_OPTS='
+--bind="ctrl-e:execute(echo {} |grep -Eo [a-f0-9]+ |head -1 |xargs git show | vim -)"
+'
+FORGIT_COPY_CMD='xclip -selection clipboard'
+
+FORGIT_FZF_DEFAULT_OPTS="
+$FZF_DEFAULT_OPTS
+--ansi
+--height=99%
+--bind='alt-k:preview-up,alt-p:preview-up'
+--bind='alt-j:preview-down,alt-n:preview-down'
+--bind='ctrl-r:toggle-all'
+--bind='ctrl-s:toggle-sort'
+--bind='?:toggle-preview'
+--bind='alt-w:toggle-preview-wrap'
+--preview-window='right:99%'
+--layout=reverse
+$FORGIT_FZF_DEFAULT_OPTS
+"

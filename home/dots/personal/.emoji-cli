@@ -1,0 +1,8 @@
+#!/bin/bash
+
+is_zsh() { [ -n "$ZSH_VERSION" ]; }
+
+if is_zsh; then
+    # EMOJI-CLI
+    source ~/bin/emoji-cli/emoji-cli.zsh
+fi
