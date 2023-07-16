@@ -57,6 +57,9 @@ home/.config/xfce4/xfconf/xfce-perchannel-xml/thunar.xml
 # Steam games icons
 home/**/steam_icon_*.png
 
+# Distrobox icons
+home/.local/share/icons/distrobox
+
 # dotfiles' secrets
 home/.ssh/config
 home/dots/work/.aliases
