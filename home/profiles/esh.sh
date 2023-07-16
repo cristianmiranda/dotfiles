@@ -17,6 +17,8 @@ export TERM=xterm-256color
 #
 alias sutomcat="sudo /bin/su - tomcat -s /bin/bash"
 alias suescribe="sudo su - escribe"
+alias webapps="cd /srv/tomcat/webapps"
+alias logs="cd /var/log/tomcat/escribe"
 
 #
 # ESH Specific Exports
