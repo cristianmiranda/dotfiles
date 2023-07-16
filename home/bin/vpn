@@ -1,11 +1,11 @@
 #!/bin/bash
 
 function killOpenvpn() {
-    echo -e "\n🔥 Killing openvpn...\n"
+    echo -e "\n🔥 Killing active VPN connections...\n"
     /usr/bin/expect -c "
         spawn sudo killall openvpn
         expect \"*?assword*\"
-        send -- \"$(op read "op://Personal/X1 Extreme/password")\r\"
+        send -- \"$($HOME/bin/1p sudo-password)\r\"
         expect eof
     "
 }

@@ -1,46 +1,45 @@
 #!/usr/bin/expect -f
 
-# Fetch sudo password from vault
-puts "Requesting sudo password..."
-set sudopass [exec /home/cmiranda/bin/1p sudo-password]
-system "clear"
+proc clearAndDisplayTitle {} {
+    system "clear"
+    puts ""
+    system "figlet -d /home/cmiranda/.local/share/figlet -f \"ANSI Shadow\" -c 'VPN' | lolcat"
+}
 
-# Fetch VPN credentials
-puts "Requesting VPN credentials..."
+clearAndDisplayTitle
+puts "🐧 Requesting sudo password..."
+set sudopass [exec /home/cmiranda/bin/1p sudo-password]
+
+clearAndDisplayTitle
+puts "🌎 Requesting VPN credentials..."
 set username [exec /home/cmiranda/bin/1p cca-vpn-username]
 set password [exec /home/cmiranda/bin/1p cca-vpn-password]
-system "clear"
 
-# Write credentials to file
-puts "Writing credentials to file..."
+clearAndDisplayTitle
+puts "🫣 Writing credentials to file..."
 set outputFilename "/tmp/vpn_credentials.txt"
 set outFileId [open $outputFilename "w"]
 puts -nonewline $outFileId "$username\n"
 puts -nonewline $outFileId "$password\n"
 close $outFileId
-system "clear"
 
-# Fetch OTP
-puts "Requesting OTP..."
+clearAndDisplayTitle
+puts "🔑 Requesting OTP..."
 set otp [exec /home/cmiranda/bin/1p cca-vpn-otp]
-system "clear"
 
-# Connect to VPN
 spawn sudo openvpn --daemon --config /home/cmiranda/.config/openvpn/profiles/cca.ovpn --auth-user-pass /tmp/vpn_credentials.txt
 expect "password for cmiranda:"
 send "$sudopass\r"
-system "clear"
-
 expect "Enter Authenticator Code"
 send "$otp\r"
-system "clear"
 
-# Remove credentials file
-puts "Connecting to VPN..."
+clearAndDisplayTitle
+puts "🛜 Connecting to VPN..."
+
 sleep 5
-puts "Removing credentials file..."
+clearAndDisplayTitle
+puts "🗑 Removing credentials file..."
 system "rm $outputFilename"
-system "clear"
 
 # Hand over control to user
 interact

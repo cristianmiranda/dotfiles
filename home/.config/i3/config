@@ -348,7 +348,6 @@ mode "launch" {
         bindsym p exec --no-startup-id $HOME/bin/dpi-open thunar; mode "default"
         bindsym s exec --no-startup-id spotify; mode "default"
         bindsym t exec --no-startup-id telegram-desktop; mode "default"
-        bindsym v exec --no-startup-id $HOME/bin/vpn --connect; mode "default"
         bindsym w exec --no-startup-id whatsapp-nativefier; mode "default"
         
         bindsym Escape mode "default"
@@ -388,10 +387,10 @@ mode "set-url-handler" {
 }
 
 mode "vpn" {
-        bindsym c exec --no-startup-id alacritty -e ~/bin/vpn --connect CCA; mode "default"
-        bindsym h exec --no-startup-id alacritty -e ~/bin/vpn --connect Home; mode "default"
-        bindsym l exec --no-startup-id alacritty -e ~/bin/vpn --connect LG; mode "default"
-        bindsym d exec --no-startup-id alacritty -e ~/bin/vpn --disconnect; mode "default"
+        bindsym c exec --no-startup-id alacritty --class i3FloatingWindow -e ~/bin/vpn --connect CCA; mode "default"
+        bindsym h exec --no-startup-id alacritty --class i3FloatingWindow -e ~/bin/vpn --connect Home; mode "default"
+        bindsym l exec --no-startup-id alacritty --class i3FloatingWindow -e ~/bin/vpn --connect LG; mode "default"
+        bindsym d exec --no-startup-id alacritty --class i3FloatingWindow -e ~/bin/vpn --disconnect; mode "default"
         
         bindsym Escape mode "default"
         bindsym Return mode "default"
@@ -442,7 +441,7 @@ client.background       #2B2C2B
 #
 # Floating / Focus satatus per window
 #
-for_window [class=Xviewer|Pix|Viewnior|feh|Audacious|File-roller|Lxappearance|Lxtask|Qalculate-gtk] floating enable
+for_window [class=i3FloatingWindow|Xviewer|Pix|Viewnior|feh|Audacious|File-roller|Lxappearance|Lxtask|Qalculate-gtk] floating enable
 for_window [class=URxvt|Firefox|Geany|Evince|Soffice|libreoffice*|mpv|Ghb|Xfburn|Gimp*|Inkscape|Vlc|Lxappearance|Audacity] focus
 for_window [class=Xfburn|GParted|System-config-printer.py|Lxtask|Pavucontrol|Exo-helper*|Lxrandr|Arandr] focus
 

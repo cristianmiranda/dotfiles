@@ -1,16 +1,20 @@
 #!/usr/bin/expect -f
 
-# Fetch sudo password from vault
-puts "Requesting sudo password..."
-set sudopass [exec /home/cmiranda/bin/1p sudo-password]
-system "clear"
+proc clearAndDisplayTitle {} {
+    system "clear"
+    puts ""
+    system "figlet -d /home/cmiranda/.local/share/figlet -f \"ANSI Shadow\" -c 'VPN' | lolcat"
+}
 
-# Connect to VPN
-puts "Connecting to VPN..."
+clearAndDisplayTitle
+puts "🐧 Requesting sudo password..."
+set sudopass [exec /home/cmiranda/bin/1p sudo-password]
+
+clearAndDisplayTitle
+puts "🛜 Connecting to VPN..."
 spawn sudo openvpn --daemon --config /home/cmiranda/.config/openvpn/profiles/home.ovpn
 expect "password for cmiranda:"
 send "$sudopass\r"
-system "clear"
 
 # Hand over control to user
 interact
