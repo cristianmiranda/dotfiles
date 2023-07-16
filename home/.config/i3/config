@@ -38,15 +38,15 @@ exec_always --no-startup-id brightnessctl --device='tpacpi::kbd_backlight' set 1
 exec_always --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 
 # Apps
-exec_always --no-startup-id /home/cmiranda/bin/exterminate nm-applet; nm-applet
-exec_always --no-startup-id /home/cmiranda/bin/exterminate blueman-applet; blueman-applet
-exec_always --no-startup-id /home/cmiranda/bin/exterminate copyq; copyq
-exec_always --no-startup-id /home/cmiranda/bin/exterminate pasystray; pasystray
-exec_always --no-startup-id /home/cmiranda/bin/exterminate optimus-manager-qt; optimus-manager-qt
-exec_always --no-startup-id /home/cmiranda/bin/exterminate fusuma; fusuma
-exec_always --no-startup-id /home/cmiranda/bin/exterminate sxhkd; sxhkd
-exec_always --no-startup-id /home/cmiranda/bin/exterminate alttab; alttab -d 1 -w 1 -i 100x100 -t 100x100 -bg "#222D31" -frame "#1793d1" -s 2
-exec_always --no-startup-id "if [[ ! $(hostname) =~ 'virt' ]]; /home/cmiranda/bin/exterminate insync; QT_AUTO_SCREEN_SCALE_FACTOR=1 insync start; fi"
+exec_always --no-startup-id $HOME/bin/exterminate nm-applet; nm-applet
+exec_always --no-startup-id $HOME/bin/exterminate blueman-applet; blueman-applet
+exec_always --no-startup-id $HOME/bin/exterminate copyq; copyq
+exec_always --no-startup-id $HOME/bin/exterminate pasystray; pasystray
+exec_always --no-startup-id $HOME/bin/exterminate optimus-manager-qt; optimus-manager-qt
+exec_always --no-startup-id $HOME/bin/exterminate fusuma; fusuma
+exec_always --no-startup-id $HOME/bin/exterminate sxhkd; sxhkd
+exec_always --no-startup-id $HOME/bin/exterminate alttab; alttab -d 1 -w 1 -i 100x100 -t 100x100 -bg "#222D31" -frame "#1793d1" -s 2
+exec_always --no-startup-id "if [[ ! $(hostname) =~ 'virt' ]]; $HOME/bin/exterminate insync; QT_AUTO_SCREEN_SCALE_FACTOR=1 insync start; fi"
 exec_always --no-startup-id "if [[ ! $(hostname) =~ 'virt' ]]; then picom -b; fi"
 
 # Lock Screen
@@ -278,13 +278,13 @@ mode "i3-layouts" {
 }
 
 mode "set-display" {
-        bindsym a exec --no-startup-id /home/cmiranda/bin/set-display single-inverted; mode "default"
-        bindsym s exec --no-startup-id /home/cmiranda/bin/set-display single; mode "default"
-        bindsym d exec --no-startup-id /home/cmiranda/bin/set-display dual; mode "default"
-        bindsym f exec --no-startup-id /home/cmiranda/bin/set-display dual-inverted; mode "default"
-        bindsym h exec --no-startup-id /home/cmiranda/bin/set-display hdmi; mode "default"
-        bindsym l exec --no-startup-id /home/cmiranda/bin/set-display laptop; mode "default"
-        bindsym v exec --no-startup-id /home/cmiranda/bin/set-display virtual; mode "default"
+        bindsym a exec --no-startup-id $HOME/bin/set-display single-inverted; mode "default"
+        bindsym s exec --no-startup-id $HOME/bin/set-display single; mode "default"
+        bindsym d exec --no-startup-id $HOME/bin/set-display dual; mode "default"
+        bindsym f exec --no-startup-id $HOME/bin/set-display dual-inverted; mode "default"
+        bindsym h exec --no-startup-id $HOME/bin/set-display hdmi; mode "default"
+        bindsym l exec --no-startup-id $HOME/bin/set-display laptop; mode "default"
+        bindsym v exec --no-startup-id $HOME/bin/set-display virtual; mode "default"
         bindsym i exec --no-startup-id xcalib -a -i; mode "default"
 
         bindsym Escape mode "default"
@@ -297,7 +297,7 @@ mode "i3-command" {
         bindsym q exec --no-startup-id "i3-nagbar -t warning -m 'Really, exit?' -b 'Yes' 'i3-msg exit'"; mode "default"
         bindsym d exec --no-startup-id bash ~/dotfiles/scripts/sync.sh && i3-msg restart; mode "default"
         bindsym r restart
-        bindsym l exec --no-startup-id /home/cmiranda/bin/lock-screen; mode "default"
+        bindsym l exec --no-startup-id $HOME/bin/lock-screen --force; mode "default"
 
         bindsym Escape mode "default"
         bindsym Return mode "default"
@@ -313,13 +313,13 @@ mode "i3-command" {
 mode "audio" {
         bindsym e exec --no-startup-id easyeffects --gapplication-service; mode "default"
         bindsym k exec --no-startup-id killall easyeffects; mode "default"
-        bindsym c exec --no-startup-id /home/cmiranda/bin/airpods connect '44:1B:88:07:A8:C8'; mode "default"
-        bindsym d exec --no-startup-id /home/cmiranda/bin/airpods disconnect '44:1B:88:07:A8:C8'; mode "default"
-        bindsym s exec --no-startup-id /home/cmiranda/bin/airpods speaker '44:1B:88:07:A8:C8'; mode "default"
-        bindsym h exec --no-startup-id /home/cmiranda/bin/airpods headset '44:1B:88:07:A8:C8'; mode "default"
+        bindsym c exec --no-startup-id $HOME/bin/airpods connect '44:1B:88:07:A8:C8'; mode "default"
+        bindsym d exec --no-startup-id $HOME/bin/airpods disconnect '44:1B:88:07:A8:C8'; mode "default"
+        bindsym s exec --no-startup-id $HOME/bin/airpods speaker '44:1B:88:07:A8:C8'; mode "default"
+        bindsym h exec --no-startup-id $HOME/bin/airpods headset '44:1B:88:07:A8:C8'; mode "default"
         bindsym a exec --no-startup-id pactl set-default-sink $(pactl list sinks short | grep -i "hdmi" | awk '{print $2}'); mode "default"
         bindsym l exec --no-startup-id pactl set-default-sink $(pactl list sinks short | grep -i "HiFi__hw_sofhdadsp__sink" | awk '{print $2}'); mode "default"
-        bindsym r exec --no-startup-id /home/cmiranda/bin/restart-audio; mode "default"
+        bindsym r exec --no-startup-id $HOME/bin/restart-audio; mode "default"
         
         bindsym Escape  mode "default"
         bindsym Return  mode "default"
