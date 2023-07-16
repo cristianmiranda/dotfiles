@@ -45,7 +45,7 @@ exec_always --no-startup-id /home/cmiranda/bin/exterminate pasystray; pasystray
 exec_always --no-startup-id /home/cmiranda/bin/exterminate optimus-manager-qt; optimus-manager-qt
 exec_always --no-startup-id /home/cmiranda/bin/exterminate fusuma; fusuma
 exec_always --no-startup-id /home/cmiranda/bin/exterminate sxhkd; sxhkd
-exec_always --no-startup-id alttab -d 1 -w 1 -i 100x100 -t 100x100 -bg "#002B36" -frame "#16a085" -s 2
+exec_always --no-startup-id /home/cmiranda/bin/exterminate alttab; alttab -d 1 -w 1 -i 100x100 -t 100x100 -bg "#222D31" -frame "#1793d1" -s 2
 exec_always --no-startup-id "if [[ ! $(hostname) =~ 'virt' ]]; /home/cmiranda/bin/exterminate insync; QT_AUTO_SCREEN_SCALE_FACTOR=1 insync start; fi"
 exec_always --no-startup-id "if [[ ! $(hostname) =~ 'virt' ]]; then picom -b; fi"
 
