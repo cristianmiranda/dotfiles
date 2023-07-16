@@ -11,6 +11,7 @@ fi
 
 PACKAGES=(
     1password
+    1password-cli
     accountsservice
     acpi
     acpi_call
