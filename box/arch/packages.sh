@@ -38,6 +38,7 @@ PACKAGES=(
     cargo
     cawbird-git
     chromium
+    clipboard
     cloud-sql-proxy-bin
     cmatrix
     copyq
