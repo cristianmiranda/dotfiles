@@ -4,6 +4,9 @@
 # This ensures that a custom mimeapps.list file is always used.
 # Sometimes there are apps that replace this file with whatever they want.
 #
-*/5 * * * * ln -fs /home/$USER/dotfiles/home/.config/mimeapps.list /home/$USER/.config/.
+*/5 * * * * ln -fs $HOME/dotfiles/home/.config/mimeapps.list $HOME/.config/.
 
-@weekly bash /home/$USER/bin/backup
+#
+# Backup entire home directory to external drive
+#
+@weekly bash $HOME/bin/backup

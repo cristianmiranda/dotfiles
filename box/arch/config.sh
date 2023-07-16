@@ -50,6 +50,10 @@ sudo systemctl --user start pipewire >>$LOG_FILE 2>&1
 # Input (fusuma mouse gestures)
 sudo usermod -G input -a cmiranda >>$LOG_FILE 2>&1
 
+# Enable/Start cronie
+sudo systemctl enable cronie >>$LOG_FILE 2>&1
+sudo systemctl start cronie >>$LOG_FILE 2>&1
+
 # auto-cpufreq
 # sudo systemctl enable auto-cpufreq
 # sudo systemctl start auto-cpufreq

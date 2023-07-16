@@ -40,6 +40,7 @@ PACKAGES=(
     cloud-sql-proxy-bin
     cmatrix
     copyq
+    cronie
     cups
     deluge-gtk
     discord
