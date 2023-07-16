@@ -1,0 +1,44 @@
+#!/usr/bin/expect -f
+
+puts "Yubikey OTP:"
+expect_user -re "(.*)\n"
+set yubi $expect_out(1,string)
+system "clear"
+
+# Fetch sudo password from vault
+puts "Requesting sudo password..."
+set sudopass [exec /home/cmiranda/bin/1p sudo-password]
+system "clear"
+
+# Fetch VPN credentials
+puts "Requesting VPN credentials..."
+set username [exec /home/cmiranda/bin/1p lg-vpn-username]
+set password [exec /home/cmiranda/bin/1p lg-vpn-password]
+system "clear"
+
+# Write credentials to file
+puts "Writing credentials to file..."
+set outputFilename "/tmp/vpn_credentials.txt"
+set outFileId [open $outputFilename "w"]
+puts -nonewline $outFileId "$username\n"
+puts -nonewline $outFileId "$password"
+puts -nonewline $outFileId "$yubi\n"
+close $outFileId
+system "clear"
+
+# Connect to VPN
+spawn sudo openvpn --daemon --config /home/cmiranda/.config/openvpn/profiles/lg.ovpn --auth-user-pass /tmp/vpn_credentials.txt
+system "clear"
+expect "password for cmiranda:"
+send "$sudopass\r"
+system "clear"
+puts "Connecting to VPN..."
+
+# Remove credentials file
+sleep 5
+puts "Removing credentials file..."
+system "rm $outputFilename"
+system "clear"
+
+# Hand over control to user
+interact

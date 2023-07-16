@@ -387,6 +387,16 @@ mode "set-url-handler" {
         bindsym Return mode "default"
 }
 
+mode "vpn" {
+        bindsym c exec --no-startup-id alacritty -e ~/bin/vpn --connect CCA; mode "default"
+        bindsym h exec --no-startup-id alacritty -e ~/bin/vpn --connect Home; mode "default"
+        bindsym l exec --no-startup-id alacritty -e ~/bin/vpn --connect LG; mode "default"
+        bindsym d exec --no-startup-id alacritty -e ~/bin/vpn --disconnect; mode "default"
+        
+        bindsym Escape mode "default"
+        bindsym Return mode "default"
+}
+
 bindsym $super+c exec --no-startup-id i3-msg '[class="(?i)Code"] focus'
 bindsym $super+d exec --no-startup-id i3-msg '[class="(?i)Discord"] focus'
 bindsym $super+e exec --no-startup-id i3-msg '[class="firefoxdeveloperedition$"] focus'
@@ -413,6 +423,7 @@ bindsym $super+Shift+o mode "owl"
 bindsym $super+Shift+r mode "resize"
 bindsym $super+Shift+s mode "swap-with-workspace"
 bindsym $super+Shift+u mode "set-url-handler"
+bindsym $super+Shift+v mode "vpn"
 bindsym $super+Shift+y mode "radio-station"
 bindsym $super+Shift+x mode "i3-command"
 

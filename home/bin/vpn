@@ -1,38 +1,87 @@
 #!/bin/bash
 
-VPNS=(
-    LG
-    CCA
-    Home
-)
+function killOpenvpn() {
+    echo -e "\n🔥 Killing openvpn...\n"
+    /usr/bin/expect -c "
+        spawn sudo killall openvpn
+        expect \"*?assword*\"
+        send -- \"$(op read "op://Personal/X1 Extreme/password")\r\"
+        expect eof
+    "
+}
 
 COMMAND=$1
 VPN=$2
 
-ACTIVE_VPN=$(nmcli c show --active | grep -i vpn | awk '{print $1}')
+declare -A VPNS
+
+# ["VPN_NAME"]="SCRIPT:PING_TO:VPN_CONF_FILE:LIST_ORDER"
+VPNS=(
+    ["LG"]="$HOME/.config/openvpn/scripts/lg.exp:ehr-01.stage.int.aws.lillegroup.com:lg.ovpn:1"
+    ["CCA"]="$HOME/.config/openvpn/scripts/cca.exp:172.22.20.150:cca.ovpn:2"
+    ["Home"]="$HOME/.config/openvpn/scripts/home.exp:192.168.50.244:home.ovpn:3"
+)
 
 case "$COMMAND" in
 --connect)
     if [[ -z "$VPN" ]]; then
-        VPN=$(printf "%s\n" "${VPNS[@]}" | $HOME/bin/open-rofi menu $HOME/.config/rofi/launchers/misc/column_menu.rasi)
+
+        # Extract keys and orders from VPNS into a separate array
+        KEYS_AND_ORDERS=()
+        for KEY in "${!VPNS[@]}"; do
+            IFS=':' read -ra DATA <<<"${VPNS[$KEY]}"
+            ORDER=${DATA[3]}
+            KEYS_AND_ORDERS+=("$ORDER:$KEY")
+        done
+
+        # Sort the array
+        IFS=$'\n' sorted=($(sort <<<"${KEYS_AND_ORDERS[*]}"))
+
+        # Extract sorted keys from the sorted array
+        sorted_keys=()
+        for i in "${sorted[@]}"; do
+            IFS=':' read -ra DATA <<<"$i"
+            sorted_keys+=("${DATA[1]}")
+        done
+
+        VPN=$(printf "%s\n" "${sorted_keys[@]}" | $HOME/bin/open-rofi menu $HOME/.config/rofi/launchers/misc/column_menu.rasi)
     fi
 
-    if [[ ! " ${VPNS[@]} " =~ " ${VPN} " ]]; then
+    if [[ -z "${VPNS[$VPN]}" ]]; then
         echo -e "\n❌ VPN not in list of valid VPNs"
         exit 1
     fi
 
-    # if any active vpn connections, disconnect first
-    if [[ ! -z "$ACTIVE_VPN" ]]; then
-        nmcli c down $ACTIVE_VPN
-    fi
+    IFS=':' read -ra DATA <<<"${VPNS[$VPN]}"
+    VPN_SCRIPT=${DATA[0]}
 
-    nmcli c up $VPN
+    exec $VPN_SCRIPT
     ;;
 --disconnect)
-    nmcli c down $ACTIVE_VPN
+    killOpenvpn
     ;;
 --active)
-    echo $ACTIVE_VPN
+    ACTIVE_VPNS=()
+    for KEY in "${!VPNS[@]}"; do
+        IFS=':' read -ra DATA <<<"${VPNS[$KEY]}"
+
+        PING_TO=${DATA[1]}
+        VPN_CONF_FILE=${DATA[2]}
+
+        ACTIVE_PROCESSES_COUNT=$(ps -eo args | grep $VPN_CONF_FILE | grep -v grep | head -n 1 | wc -l)
+        if [ $ACTIVE_PROCESSES_COUNT -gt 0 ]; then
+            # Ping the server with timeout of 5 seconds
+            ping -c 1 -W 5 $PING_TO >/dev/null 2>&1
+
+            if [ $? -eq 0 ]; then
+                ACTIVE_VPNS+=("$KEY")
+            fi
+        fi
+    done
+
+    (
+        IFS=","
+        echo "${ACTIVE_VPNS[*]}"
+    )
     ;;
 esac

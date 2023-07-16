@@ -55,6 +55,7 @@ PACKAGES=(
     element-desktop
     emojify
     espeak
+    expect
     fd
     ffmpeg
     filezilla

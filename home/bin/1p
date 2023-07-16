@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+case "$1" in
+sudo-password)
+    echo "$(op item get "X1 Extreme" --vault "Personal" --field "password")"
+    ;;
+lg-vpn-username)
+    echo "$(op item get "VPN (LG)" --vault "Lille Group" --field "username")"
+    ;;
+lg-vpn-password)
+    echo "$(op item get "VPN (LG)" --vault "Lille Group" --field "password")"
+    ;;
+cca-vpn-username)
+    echo "$(op item get "VPN (CCA)" --vault "Lille Group" --field "username")"
+    ;;
+cca-vpn-password)
+    echo "$(op item get "VPN (CCA)" --vault "Lille Group" --field "password")"
+    ;;
+cca-vpn-otp)
+    echo "$(op item get "VPN (CCA)" --vault "Lille Group" --otp)"
+    ;;
+esac
