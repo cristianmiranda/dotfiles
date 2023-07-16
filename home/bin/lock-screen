@@ -8,47 +8,68 @@ WRONG='#cc0000'
 WRONG_FILL='#ffd9cc'
 VERIFYING='#333333'
 
-dunstctl set-paused true
+function lockScreen() {
+    dunstctl set-paused true
 
-xset dpms force off
-/home/cmiranda/bin/amixer-vol mute
-dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Pause
+    xset dpms force off
+    /home/cmiranda/bin/amixer-vol mute
+    # dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Pause
 
-i3lock \
-    --nofork \
-    --insidever-color=$CLEAR \
-    --ringver-color=$BLANK \
-    \
-    --insidewrong-color=$WRONG_FILL \
-    --ringwrong-color=$WRONG \
-    \
-    --inside-color=$BLANK \
-    --ring-color=$BLANK \
-    --line-color=$BLANK \
-    --separator-color=$BLANK \
-    \
-    --verif-color=$TEXT \
-    --wrong-color=$WRONG \
-    --time-color=$TEXT \
-    --date-color=$TEXT \
-    --layout-color=$TEXT \
-    --keyhl-color=$DEFAULT \
-    --bshl-color=$DEFAULT \
-    \
-    --screen 1 \
-    --blur 10 \
-    --radius 360 \
-    --ring-width 20 \
-    --clock \
-    --time-str="%H:%M:%S" \
-    --time-size=100 \
-    --time-font="FiraCode Nerd Font Mono" \
-    --date-str="" \
-    --date-size=20 \
-    --date-font="FiraCode Nerd Font Mono" \
-    --verif-text="Verifying..." \
-    --wrong-text="Wrong!" \
-    --pass-media-keys
+    i3lock \
+        --nofork \
+        --insidever-color=$CLEAR \
+        --ringver-color=$BLANK \
+        \
+        --insidewrong-color=$WRONG_FILL \
+        --ringwrong-color=$WRONG \
+        \
+        --inside-color=$BLANK \
+        --ring-color=$BLANK \
+        --line-color=$BLANK \
+        --separator-color=$BLANK \
+        \
+        --verif-color=$TEXT \
+        --wrong-color=$WRONG \
+        --time-color=$TEXT \
+        --date-color=$TEXT \
+        --layout-color=$TEXT \
+        --keyhl-color=$DEFAULT \
+        --bshl-color=$DEFAULT \
+        \
+        --screen 1 \
+        --blur 10 \
+        --radius 360 \
+        --ring-width 20 \
+        --clock \
+        --time-str="%H:%M:%S" \
+        --time-size=100 \
+        --time-font="FiraCode Nerd Font Mono" \
+        --date-str="" \
+        --date-size=20 \
+        --date-font="FiraCode Nerd Font Mono" \
+        --verif-text="Verifying..." \
+        --wrong-text="Wrong!" \
+        --pass-media-keys
 
-dunstctl set-paused false
-/home/cmiranda/bin/amixer-vol unmute
+    dunstctl set-paused false
+    /home/cmiranda/bin/amixer-vol unmute
+}
+
+ARGS=("$@")
+if [[ " ${ARGS[@]} " =~ " --force " ]]; then
+    echo "Forcing lock screen..."
+    lockScreen
+else
+    echo "Checking running sinks..."
+    #
+    # Abort if there are any kind of sinks running (music audio, meetings, etc.)
+    #
+    RUNNING_SINKS=$(pactl list short sinks | grep -c RUNNING)
+    if [ $RUNNING_SINKS -gt 0 ]; then
+        echo "There are $RUNNING_SINKS running sinks. Aborting lock screen."
+        xidlehook-client --socket /tmp/xidlehook.sock reset-idle
+    else
+        echo "No running sinks. Locking screen..."
+        lockScreen
+    fi
+fi

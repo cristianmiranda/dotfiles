@@ -81,7 +81,7 @@ case $chosen in
         ;;
     $lock)
 		if [[ -f $HOME/bin/lock-screen ]]; then
-			$HOME/bin/lock-screen
+			$HOME/bin/lock-screen --force
 		elif [[ -f /usr/bin/i3lock ]]; then
 			i3lock
 		elif [[ -f /usr/bin/betterlockscreen ]]; then
