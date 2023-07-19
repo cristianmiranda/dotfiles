@@ -24,6 +24,7 @@
     ~/Library/Application Support/navi:
       path: .local/share/navi
       force: true
+    ~/.ssh/scripts: .ssh/scripts
     ~/.ssh/config:
       path: .ssh/config
       force: true

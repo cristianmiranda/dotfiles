@@ -29,6 +29,7 @@
       path: .local/share/applications/*.desktop
     ~/.local/share/navi: .local/share/navi
     ~/.screenlayout: .screenlayout
+    ~/.ssh/scripts: .ssh/scripts
     ~/.ssh/config:
       path: .ssh/config
       force: true
