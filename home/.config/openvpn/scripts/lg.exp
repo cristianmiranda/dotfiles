@@ -1,26 +1,21 @@
 #!/usr/bin/expect -f
 
-proc clearAndDisplayTitle {} {
-    system "clear"
-    puts ""
-    system "figlet -d /home/cmiranda/.local/share/figlet -f \"ANSI Shadow\" -c 'VPN' | lolcat"
-}
+system "figlet -d /home/cmiranda/.local/share/figlet -f \"ANSI Shadow\" -c 'VPN' | lolcat"
+puts ""
 
-clearAndDisplayTitle
-puts "🔑 Yubikey OTP:"
+puts "🔑 YubiKey OTP:"
+stty -echo
 expect_user -re "(.*)\n"
+stty echo
 set yubi $expect_out(1,string)
 
-clearAndDisplayTitle
 puts "🐧 Requesting sudo password..."
 set sudopass [exec /home/cmiranda/bin/1p sudo-password]
 
-clearAndDisplayTitle
 puts "🌎 Requesting VPN credentials..."
 set username [exec /home/cmiranda/bin/1p lg-vpn-username]
 set password [exec /home/cmiranda/bin/1p lg-vpn-password]
 
-clearAndDisplayTitle
 puts "🫣 Writing credentials to file..."
 set outputFilename "/tmp/vpn_credentials.txt"
 set outFileId [open $outputFilename "w"]
@@ -33,11 +28,10 @@ spawn sudo openvpn --daemon --config /home/cmiranda/.config/openvpn/profiles/lg.
 expect "password for cmiranda:"
 send "$sudopass\r"
 
-clearAndDisplayTitle
+puts ""
 puts "🛜 Connecting to VPN..."
 
 sleep 5
-clearAndDisplayTitle
 puts "🗑 Removing credentials file..."
 system "rm $outputFilename"
 
