@@ -1,0 +1,23 @@
+#!/usr/bin/env ruby
+
+require 'optparse'
+
+OptionParser.new do |opts|
+  opts.banner = "Usage: sshx [options] [server]"
+
+  opts.on("-c", "--close-all", "Close all saved connections") do |v|
+    `sshc --close-all`
+    exit
+  end
+
+  opts.on("-?", "-h", "--help", "Prints this help") do
+    puts opts
+    exit
+  end
+end.parse!
+
+server = ARGV.pop
+
+raise "Server required to open an ssh connection" unless server
+
+system "~/.ssh/scripts/lg-server.exp #{server}"
