@@ -27,3 +27,4 @@
 alias gpl='g pl'
 alias gph='g ph'
 alias gphf='g phf'
+alias gc="g cc $1"
