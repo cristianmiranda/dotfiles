@@ -1,58 +1,48 @@
-#!/usr/bin/env bash
+#!/usr/bin/env ruby
 
-# Function to output usage instructions
-function usage {
-	echo "Usage: $(basename $0) <options>" >&2
-	echo
-	echo "Gets the current USD value" >&2
-	echo
-	echo "OPTIONS:" >&2
-	echo "  --blue    | -b : Dólar Blue" >&2
-	echo "  --oficial | -o : Dólar Oficial" >&2
-}
+require 'optparse'
+require 'json'
+require 'net/http'
+require 'uri'
 
-function fetchUSDValue {
-	output=$(curl -s https://mercados.ambito.com/dolar/$1/variacion)
+def usage
+  puts <<~USAGE
+    Usage: #{$0} <options>
 
-	buyPrice=$(echo $output | jq '.compra' | sed 's/"//g')
-	sellPrice=$(echo $output | jq '.venta' | sed 's/"//g')
-	variation=$(echo $output | jq '.variacion' | sed 's/"//g')
-	lastClosingValue=$(echo $output | jq '.valor_cierre_ant' | sed 's/"//g')
+    Gets the current USD value
 
-	if [[ $variation == *-* ]]; then
-		variation="🔴 $variation"
-	else
-		variation="🟢 $variation"
-	fi
+    OPTIONS:
+      --blue    | -b : Dólar Blue
+      --oficial | -o : Dólar Oficial
+  USAGE
+end
 
-	echo "💵 $buyPrice / $sellPrice // $variation ($lastClosingValue)"
-}
+def fetch_usd_value(type)
+  response = Net::HTTP.get(URI("https://mercados.ambito.com/dolar/#{type}/variacion"))
+  output = JSON.parse(response)
 
-# Check arguments
-if [ "$1" == "-h" -o "$1" == "--help" ]; then
-	usage
-	exit 0
-elif [ $# -eq 0 ]; then
-	echo "No file specified; reading from stdin" >&2
-	exec "$0" -
-fi
+  buy_price = output['compra']
+  sell_price = output['venta']
+  variation = output['variacion']
+  last_closing_value = output['valor_cierre_ant']
 
-# Check curl is available
-type curl &>/dev/null || {
-	echo "Couldn't find curl, which is required." >&2
-	exit 17
-}
+  variation = variation.start_with?('-') ? "🔴 #{variation}" : "🟢 #{variation}"
 
-# Loop through arguments
-while [ $# -gt 0 ]; do
-	arg="$1"
-	shift
+  puts "💵 #{buy_price} / #{sell_price} // #{variation} (#{last_closing_value})"
+end
 
-	if [ "$arg" == "-b" -o "$arg" == "--blue" ]; then
-		fetchUSDValue informal
-	fi
+options = {}
+OptionParser.new do |opts|
+  opts.on('-b', '--blue', 'Dólar Blue') do |v|
+    fetch_usd_value('informal')
+  end
 
-	if [ "$arg" == "-o" -o "$arg" == "--oficial" ]; then
-		fetchUSDValue oficial
-	fi
-done
+  opts.on('-o', '--oficial', 'Dólar Oficial') do |v|
+    fetch_usd_value('oficial')
+  end
+
+  opts.on('-h', '--help', 'Displays Help') do
+    usage
+    exit
+  end
+end.parse!
