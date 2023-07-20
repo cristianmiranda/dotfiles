@@ -52,7 +52,6 @@ cursor:
 key_bindings:
   - { key: V, mods: Control, action: Paste }
   - { key: F, mods: Control, action: SearchBackward }
-  - { key: T, mods: Control, action: SpawnNewInstance }
   - { key: Return, mods: Control, action: ToggleFullscreen }
   - { key: Return, mods: Alt, action: ToggleFullscreen }
 #
