@@ -5,7 +5,7 @@
 # ██║ ╚═══██╗╚════╝██║███╗██║██║╚██╔╝██║
 # ██║██████╔╝      ╚███╔███╔╝██║ ╚═╝ ██║
 # ╚═╝╚═════╝        ╚══╝╚══╝ ╚═╝     ╚═╝
-#                                       
+#
 
 # set modifier
 set $super Mod4
@@ -131,7 +131,7 @@ bindsym Control+$alt+Left move workspace to output left
 bindsym Control+$alt+Right move workspace to output right
 
 #
-# Change split layout of current container 
+# Change split layout of current container
 #
 bindsym $super+h split h
 bindsym $super+v split v
@@ -191,7 +191,7 @@ mode "resize" {
         bindsym Down    resize grow height 5 px or 5 ppt
         bindsym Up      resize shrink height 5 px or 5 ppt
         bindsym Right   resize grow width 5 px or 5 ppt
-        
+
         bindsym Escape mode "default"
         bindsym Return mode "default"
 }
@@ -217,7 +217,7 @@ mode "swap-with-workspace" {
         bindsym $alt+8 exec --no-startup-id ~/.config/i3/scripts/renumber_workspace.py 18; mode "default"
         bindsym $alt+9 exec --no-startup-id ~/.config/i3/scripts/renumber_workspace.py 19; mode "default"
         bindsym $alt+0 exec --no-startup-id ~/.config/i3/scripts/renumber_workspace.py 20; mode "default"
-        
+
         bindsym Escape mode "default"
         bindsym Return mode "default"
 }
@@ -243,7 +243,7 @@ mode "move-to-workspace" {
         bindsym $alt+8 move container to workspace number 18; mode "default"
         bindsym $alt+9 move container to workspace number 19; mode "default"
         bindsym $alt+0 move container to workspace number 20; mode "default"
-                
+
         bindsym Escape mode "default"
         bindsym Return mode "default"
 }
@@ -321,7 +321,7 @@ mode "audio" {
         bindsym a exec --no-startup-id pactl set-default-sink $(pactl list sinks short | grep -i "hdmi" | awk '{print $2}'); mode "default"
         bindsym l exec --no-startup-id pactl set-default-sink $(pactl list sinks short | grep -i "HiFi__hw_sofhdadsp__sink" | awk '{print $2}'); mode "default"
         bindsym r exec --no-startup-id $HOME/bin/restart-audio; mode "default"
-        
+
         bindsym Escape  mode "default"
         bindsym Return  mode "default"
 }
@@ -331,7 +331,7 @@ mode "gaps" {
         bindsym Left    gaps outer current plus 5
         bindsym Right   gaps outer current minus 5
         bindsym Up      gaps outer current minus 5
-        
+
         bindsym Escape  mode "default"
         bindsym Return  mode "default"
 }
@@ -350,7 +350,7 @@ mode "launch" {
         bindsym s exec --no-startup-id spotify; mode "default"
         bindsym t exec --no-startup-id telegram-desktop; mode "default"
         bindsym w exec --no-startup-id whatsapp-nativefier; mode "default"
-        
+
         bindsym Escape mode "default"
         bindsym Return mode "default"
 }
@@ -363,7 +363,7 @@ mode "radio-station" {
         bindsym 4 exec --no-startup-id ~/bin/radio 99.9; mode "default"
         bindsym u exec --no-startup-id ~/bin/radio 104.3; mode "default"
         bindsym l exec --no-startup-id ~/bin/radio luzutv; mode "default"
-        
+
         bindsym Escape mode "default"
         bindsym Return mode "default"
 }
@@ -372,7 +372,7 @@ mode "owl" {
         bindsym a exec --no-startup-id ~/bin/owl; mode "default"
         bindsym c exec --no-startup-id ~/bin/coffee; mode "default"
         bindsym d exec --no-startup-id killall owl coffee; mode "default"
-        
+
         bindsym Escape mode "default"
         bindsym Return mode "default"
 }
@@ -382,7 +382,7 @@ mode "set-url-handler" {
         bindsym f exec --no-startup-id ~/bin/set-url-handler firefox; mode "default"
         bindsym d exec --no-startup-id ~/bin/set-url-handler firefox-developer-edition; mode "default"
         bindsym n exec --no-startup-id ~/bin/set-url-handler firefox-nightly; mode "default"
-        
+
         bindsym Escape mode "default"
         bindsym Return mode "default"
 }
@@ -392,7 +392,7 @@ mode "vpn" {
         bindsym h exec --no-startup-id alacritty --class i3FloatingWindow -e ~/bin/vpn --connect Home; mode "default"
         bindsym l exec --no-startup-id alacritty --class i3FloatingWindow -e ~/bin/vpn --connect LG; mode "default"
         bindsym d exec --no-startup-id alacritty --class i3FloatingWindow -e ~/bin/vpn --disconnect; mode "default"
-        
+
         bindsym Escape mode "default"
         bindsym Return mode "default"
 }
@@ -435,7 +435,7 @@ client.focused          #1481B8 #556064 #80FFF9 #FDF6E3 #1793D1
 client.focused_inactive #2F3D44 #2F3D44 #1ABC9C #454948 #556064
 client.unfocused        #2F3D44 #2F3D44 #1ABC9C #454948
 client.urgent           #CB4B16 #FDF6E3 #1ABC9C #268BD2
-client.placeholder      #000000 #0c0c0c #ffffff #000000 
+client.placeholder      #000000 #0c0c0c #ffffff #000000
 
 client.background       #2B2C2B
 
