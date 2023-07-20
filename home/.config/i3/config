@@ -51,7 +51,7 @@ exec_always --no-startup-id "if [[ ! $(hostname) =~ 'virt' ]]; $HOME/bin/extermi
 exec_always --no-startup-id "if [[ ! $(hostname) =~ 'virt' ]]; then picom -b; fi"
 
 # Lock Screen
-exec_always --no-startup-id killall xidlehook; xidlehook --socket /tmp/xidlehook.sock --not-when-audio --timer 600 "$HOME/bin/lock-screen" "" &
+exec_always --no-startup-id killall xidlehook; xidlehook --socket /tmp/xidlehook.sock --not-when-fullscreen --timer 30 "$HOME/bin/lock-screen --recheck-inactivity" "" --timer 600 "$HOME/bin/lock-screen" "" &
 exec_always --no-startup-id killall hot-corner; $HOME/bin/hot-corner &
 
 #

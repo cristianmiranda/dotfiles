@@ -89,6 +89,11 @@ ARGS=("$@")
 if [[ " ${ARGS[@]} " =~ " --force " ]]; then
     echo "Forcing lock screen..."
     lockScreen
+elif [[ " ${ARGS[@]} " =~ " --recheck-inactivity" ]]; then
+    if pgrep -x "i3lock" >/dev/null; then
+        echo "i3lock is still running but user never unlocked. Turning screen off again."
+        turnScreenOff
+    fi
 else
     #
     # Abort if there are any kind of sinks running (music audio, meetings, etc.)
