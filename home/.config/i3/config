@@ -23,6 +23,7 @@ exec --no-startup-id set-display laptop
 exec --no-startup-id bluetoothctl power on
 exec --no-startup-id setxkbmap es
 exec --no-startup-id numlockx
+exec --no-startup-id $HOME/bin/tmu --init
 
 #
 # Autostart (even when restarting i3)
@@ -399,6 +400,15 @@ mode "vpn" {
         bindsym Return mode "default"
 }
 
+mode "tmux" {
+        bindsym i exec --no-startup-id $HOME/bin/tmu --init; mode "default"
+        bindsym k exec --no-startup-id $HOME/bin/tmu --kill; mode "default"
+        bindsym r exec --no-startup-id $HOME/bin/tmu --restart; mode "default"
+
+        bindsym Escape mode "default"
+        bindsym Return mode "default"
+}
+
 bindsym $super+c exec --no-startup-id i3-msg '[class="(?i)Code"] focus'
 bindsym $super+d exec --no-startup-id i3-msg '[class="(?i)Discord"] focus'
 bindsym $super+e exec --no-startup-id i3-msg '[class="firefoxdeveloperedition$"] focus'
@@ -424,6 +434,7 @@ bindsym $super+Shift+m mode "move-to-workspace"
 bindsym $super+Shift+o mode "owl"
 bindsym $super+Shift+r mode "resize"
 bindsym $super+Shift+s mode "swap-with-workspace"
+bindsym $super+Shift+t mode "tmux"
 bindsym $super+Shift+u mode "set-url-handler"
 bindsym $super+Shift+v mode "vpn"
 bindsym $super+Shift+y mode "radio-station"

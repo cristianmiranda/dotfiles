@@ -1,0 +1,127 @@
+#!/usr/bin/env ruby
+
+require 'optparse'
+
+YAY = "yay"
+GENERAL = "general"
+DOTFILES = "dotfiles"
+LG = "lillegroup"
+
+def main()
+  options = {}
+
+  OptionParser.new do |opts|
+    opts.banner = "Usage: tmu [options]"
+
+    opts.on("-i", "--init", "Bootstrap sessions, windows and panes") do
+      options[:init] = true
+    end
+
+    opts.on("-k", "--kill", "Kill tmux") do
+      options[:kill] = true
+    end
+
+    opts.on("-r", "--restart", "Kill tmux and Bootstrap sessions, windows and panes") do
+      options[:restart] = true
+    end
+
+    opts.on("-h", "--help", "Prints this help") do
+      puts opts
+      exit
+    end
+  end.parse!
+
+  if options[:init]
+    init()
+  elsif options[:kill]
+    killTmux()
+  elsif options[:restart]
+    restart()
+  end
+end
+
+def init()
+  newSession(YAY)
+  renameWindow(YAY, 0, "zsh")
+  sendCommand(YAY, 0, 0, "clear; echo ""; neofetch")
+
+  newSession(GENERAL)
+  renameWindow(GENERAL, 0, "zsh")
+  sendCommand(GENERAL, 0, 0, "clear; echo ""; colorscript -e 31")
+
+  newSession(DOTFILES)
+  renameWindow(DOTFILES, 0, "zsh")
+  sendCommand(DOTFILES, 0, 0, "dot")
+  sendCommand(DOTFILES, 0, 0, "clear; echo ""; figlet -d $HOME/.local/share/figlet -f \"ANSI Shadow\" -c -W 'DOTFILES' | lolcat")
+
+  newSession(LG)
+  renameWindow(LG, 0, "escribehost")
+  sendCommand(LG, 0, 0, "cd $LG_BASE_DIR/escribehost")
+  sendCommand(LG, 0, 0, "clear; echo ""; figlet -d $HOME/.local/share/figlet -f \"ANSI Shadow\" -c -W 'ESCRIBE' | lolcat")
+  newWindow(LG, 1, "ehr-01.servers")
+  splitWindow(LG, 1, "|")
+  renamePane(LG, 1, 0, "stage")
+  renamePane(LG, 1, 1, "dev")
+  sendCommand(LG, 1, 0, "clear; echo ""; figlet -d $HOME/.local/share/figlet -f \"ANSI Shadow\" -c -W 'ehr.stage' | lolcat")
+  sendCommand(LG, 1, 1, "clear; echo ""; figlet -d $HOME/.local/share/figlet -f \"ANSI Shadow\" -c -W 'ehr.dev' | lolcat")
+  selectPane(LG, 1, 0)
+  selectWindow(LG, 0)
+end
+
+def killTmux()
+  run("pkill -f tmux")
+end
+
+def restart()
+  killTmux()
+  run("sleep 1")
+  init()
+end
+
+def run(command)
+  system(command)
+end
+
+def newSession(session)
+  run("tmux new-session -d -s #{session}")
+end
+
+def newWindow(session, windowId, windowName)
+  run("tmux new-window -t #{session}")
+  run("tmux rename-window -t #{session}:#{windowId} '#{windowName}'")
+end
+
+def renameWindow(session, windowId, windowName)
+  run("tmux rename-window -t #{session}:#{windowId} '#{windowName}'")
+end
+
+def splitWindow(session, windowId, direction)
+  if direction == "|"
+    direction = "h"
+  elsif direction == "-"
+    direction = "v"
+  end
+  run("tmux splitw -t #{session}:#{windowId} -#{direction}")
+end
+
+def selectWindow(session, windowId)
+  run("tmux select-window -t #{session}:#{windowId}")
+end
+
+def selectPane(session, windowId, paneId)
+  run("tmux select-pane -t #{session}:#{windowId}.#{paneId}")
+end
+
+def renamePane(session, windowId, paneId, name)
+  run("tmux select-pane -t #{session}:#{windowId}.#{paneId} -T '#{name}'")
+end
+
+def sendCommand(session, windowId, paneId, command)
+  run("tmux send-keys -t #{session}:#{windowId}.#{paneId} '#{command}' Enter")
+end
+
+def attach(session)
+  run("tmux attach -t #{session}")
+end
+
+main()
