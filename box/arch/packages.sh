@@ -173,6 +173,7 @@ PACKAGES=(
     sxhkd
     sysstat
     system-config-printer
+    tdrop
     teamviewer
     telegram-desktop
     termdown

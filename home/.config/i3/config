@@ -78,6 +78,8 @@ bindsym $super+b exec polybar-msg cmd toggle
 # Terminal
 #
 bindsym $super+Return exec --no-startup-id alacritty
+# $super + º
+bindcode $super+49 exec --no-startup-id tdrop -ma -w -4 -x 2 -y 34 -h 80% -s general alacritty
 
 #
 # Rofi
