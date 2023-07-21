@@ -161,6 +161,7 @@ PACKAGES=(
     ruby-fusuma
     screen
     seahorse
+    shell-color-scripts
     simplescreenrecorder
     slack-desktop
     sof-firmware
