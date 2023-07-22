@@ -211,8 +211,8 @@ PACKAGES=(
     xorg-xinit
     xsettingsd
     yarn
-    youtube-dl
     yq
+    yt-dlp
     yubikey-manager-qt
     zip
     zoom
