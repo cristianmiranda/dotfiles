@@ -9,13 +9,16 @@
 
 # https://github.com/rajasegar/alacritty-themes/tree/master/themes
 import:
-  - ~/.config/alacritty/themes/vscode.yml
+  - ~/.config/alacritty/themes/One-Dark.yml
+
+env:
+  TERM: xterm-256color
 
 window:
-  opacity: 0.9
+  opacity: 0.97
   padding:
     x: 10
-    y: 10
+    y: 0
   class:
     instance: Alacritty
     general: Alacritty
@@ -28,7 +31,7 @@ font:
   size: 11
   offset:
     x: 0
-    y: 1
+    y: 0
   normal:
     family: Fira Code Nerd Font
     style: Regular
