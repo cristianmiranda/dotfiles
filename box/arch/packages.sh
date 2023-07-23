@@ -154,6 +154,7 @@ PACKAGES=(
     ranger
     rebuild-detector
     redli
+    ripgrep
     rofi
     rofi-calc
     rofi-emoji
