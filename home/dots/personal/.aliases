@@ -18,6 +18,10 @@ alias pc="cd ~/Pictures"
 alias repo="cd ${BASE_WORK_DIR}"
 alias g="git"
 
+# Replacing vi & vim with nvim
+alias vim="nvim"
+alias vi="nvim"
+
 # macOS
 # alias resetdock="osascript -e 'quit application \"Dock\"'"
 # alias resetaudio="sudo killall coreaudiod"

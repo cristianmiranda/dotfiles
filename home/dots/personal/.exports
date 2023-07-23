@@ -10,7 +10,7 @@ export QT_AUTO_SCREEN_SCALE_FACTOR=1
 export PATH=~/.local/bin:$PATH
 export PATH=~/bin:$PATH
 
-export EDITOR='vim'
+export EDITOR=nvim
 export BROWSER=/usr/bin/firefox
 
 # Increase Bash history size. Allow 32³ entries; the default is 500.
