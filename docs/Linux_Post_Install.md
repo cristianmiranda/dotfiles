@@ -1,13 +1,13 @@
 # 🐧 Linux (post-install steps)
 
-### 📝 neovim
+## 📝 neovim
 
 1. Ensure `nvim-packer-git` is installed
 2. Enter nvim
 3. Run `:PackerInstall` to install plugins
 4. Run `:PackerCompile`
 
-# 📝 vim
+## 📝 vim
 
 1. Enter vim
 2. Run `:PlugInstall` to install plugins
