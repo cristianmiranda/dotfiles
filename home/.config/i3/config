@@ -341,7 +341,7 @@ mode "gaps" {
 
 mode "launch" {
         bindsym c exec --no-startup-id firefox --new-window https://chat.openai.com/?model=gpt-4; mode "default"
-        bindsym d exec --no-startup-id cd ~/dotfiles && code .; mode "default"
+        bindsym d exec --no-startup-id cd ~/dotfiles && alacritty -e nvim; mode "default"
         bindsym e exec --no-startup-id /usr/local/firefox_dev/firefox; mode "default"
         bindsym f exec --no-startup-id firefox; mode "default"
         bindsym g exec --no-startup-id gitkraken && i3-msg '[class="(?i)GitKraken"] focus'; mode "default"
