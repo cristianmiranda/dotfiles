@@ -120,7 +120,6 @@ PACKAGES=(
     nvidia-lts
     nvidia-settings
     nvidia-utils
-    nvim-packer-git
     octopi
     okular
     openresolv
