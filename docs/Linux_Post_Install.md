@@ -2,10 +2,8 @@
 
 ## 📝 neovim
 
-1. Ensure `nvim-packer-git` is installed
-2. Enter nvim
-3. Run `:PackerInstall` to install plugins
-4. Run `:PackerCompile`
+1. Enter nvim
+2. Wait for Mason to install all plugins
 
 ## 📝 vim
 
