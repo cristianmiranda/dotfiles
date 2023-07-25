@@ -278,10 +278,10 @@
 [delta]
 
     features = line-numbers decorations
-    syntax-theme = Dracula
+    syntax-theme = OneHalfDark
     plus-style = syntax "#003800"
     minus-style = syntax "#3f0001"
-	side-by-side = true
+    side-by-side = true
 
 [delta "decorations"]
 
