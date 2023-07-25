@@ -1,6 +1,7 @@
 #!/usr/bin/expect -f
 
-system "figlet -d /home/cmiranda/.local/share/figlet -f \"ANSI Shadow\" -c 'VPN' | lolcat"
+puts "\n\n"
+system "figlet -d /home/cmiranda/.local/share/figlet -f \"ANSI Shadow\" -c 'CCA' | lolcat"
 puts ""
 
 puts "🐧 Requesting sudo password..."
