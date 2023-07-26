@@ -6,5 +6,5 @@ MUTED="$(pactl list short sources | awk '/input.*RUNNING/ {system("pactl get-sou
 if [[ $MUTED == "no" ]]; then
     echo "%{F#20c418}$DEVICE_ICON%{F-}"
 else
-    echo "%{F#f53636}$DEVICE_ICON%{F-}"
+    echo "%{F#FF6961}$DEVICE_ICON%{F-}"
 fi
