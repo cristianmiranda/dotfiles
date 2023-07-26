@@ -89,6 +89,7 @@ PACKAGES=(
     kubectl
     kubectx
     lazydocker
+    lazygit
     libinput-gestures
     libreoffice-fresh
     lightdm

@@ -63,6 +63,9 @@ home/.local/share/icons/distrobox
 # NeoVim compiled files
 home/.config/nvim/plugin
 
+# lazygit state file
+home/.config/lazygit/state.yml
+
 # dotfiles' secrets
 home/.ssh/config
 home/dots/work/.aliases
