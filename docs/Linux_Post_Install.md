@@ -124,6 +124,16 @@ Color
 ILoveCandy
 ```
 
+## Lid Close event
+
+xfce4-power-manager handles power management now.
+
+```bash
+sudo vim /etc/systemd/logind.conf
+
+HandleLidSwitch=ignore
+```
+
 ## 🔋 ThinkPad Battery
 
 Factory settings for ThinkPad battery thresholds are as follows: when plugged in the battery starts charging at 96%, and stops at 100%. These settings are optimized for maximum runtime, but having a battery hold a lot of power will decrease its capacity over the years. To alleviate this problem, the start/stop charge thresholds can be adjusted – at the cost of a more or less reduced battery runtime.
