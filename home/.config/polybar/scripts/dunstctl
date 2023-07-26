@@ -1,5 +1,8 @@
 #!/bin/bash
 
+ACTIVE_COLOR="#E0B42F"
+INACTIVE_COLOR="#858585"
+
 case "$1" in
 --toggle)
     muted=$(dunstctl is-paused 2>/dev/null)
@@ -12,9 +15,9 @@ case "$1" in
 *)
     muted=$(dunstctl is-paused 2>/dev/null)
     if [[ $muted == "true" ]]; then
-        echo "%{T3}%{F#858585}󰂛%{F-}%{T-}"
+        echo "%{T3}%{F${INACTIVE_COLOR}}󰂛%{F-}%{T-}"
     else
-        echo "%{T3}%{F#e0b42f}󰂞%{F-}%{T-}"
+        echo "%{T3}%{F${ACTIVE_COLOR}}󰂞%{F-}%{T-}"
     fi
     ;;
 esac
