@@ -32,7 +32,7 @@ ESSENTIALS=(
 	bash
 	coreutils
 	findutils
-	git
+  git
 	gnu-indent
 	gnu-sed
 	gnutls
@@ -58,6 +58,7 @@ PACKAGES=(
 	fd
 	ffmpeg
 	flameshot
+	font-fira-code-nerd-font
 	fzf
 	git-delta
 	git-lfs
@@ -67,15 +68,18 @@ PACKAGES=(
 	htop
 	InstantClientTap/instantclient/instantclient-sqlplus
 	jq
+  lazygit
 	maven
 	navi
 	neofetch
+  neovim
 	node
 	ranger
 	sops
 	starship
 	svn
 	terraform
+  thefuck
 	tmux
 	yarn
 	w3m
