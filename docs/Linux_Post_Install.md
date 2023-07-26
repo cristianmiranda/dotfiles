@@ -4,6 +4,7 @@
 
 1. Enter nvim
 2. Wait for Mason to install all plugins
+3. Run `:Copilot setup` to authenticate with GitHub
 
 ## 📝 vim
 
