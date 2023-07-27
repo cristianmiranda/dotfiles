@@ -26,6 +26,7 @@ PACKAGES=(
     atool
     autoconf
     autojump-git
+    autotiling
     base-devel
     bashtop
     bat

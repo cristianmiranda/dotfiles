@@ -37,6 +37,7 @@ exec_always --no-startup-id crontab ~/.crontab
 exec_always --no-startup-id xfce4-power-manager
 exec_always --no-startup-id brightnessctl --device='tpacpi::kbd_backlight' set 1
 exec_always --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+exec_always --no-startup-id autotiling
 
 # Apps
 exec_always --no-startup-id $HOME/bin/exterminate 1Password; 1password --silent
