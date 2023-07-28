@@ -78,6 +78,7 @@ PACKAGES=(
     gqlplus
     gtkpod
     hplip
+    httpie
     hsetroot
     i3lock-color-git
     i3-wm
