@@ -56,6 +56,7 @@ PACKAGES=(
     element-desktop
     emojify
     espeak
+    exa
     expect
     fd
     ffmpeg
