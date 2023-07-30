@@ -25,7 +25,6 @@ PACKAGES=(
     asciinema
     atool
     autoconf
-    autojump-git
     autotiling
     base-devel
     bashtop
@@ -220,6 +219,7 @@ PACKAGES=(
     yubikey-manager-qt
     zip
     zoom
+    zoxide
     zsh
 )
 
