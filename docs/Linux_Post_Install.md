@@ -136,7 +136,7 @@ Color
 ILoveCandy
 ```
 
-## Lid Close event
+## 💻 Lid Close event
 
 xfce4-power-manager handles power management now.
 
