@@ -95,6 +95,7 @@ PACKAGES=(
     libreoffice-fresh
     lightdm
     lightdm-gtk-greeter
+    lightdm-webkit-theme-aether
     lxappearance
     man-db
     matcha-gtk-theme
