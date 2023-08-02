@@ -126,6 +126,7 @@ PACKAGES=(
     nvidia-lts
     nvidia-settings
     nvidia-utils
+    obs-studio
     octopi
     okular
     openresolv
