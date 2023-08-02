@@ -113,6 +113,7 @@ PACKAGES=(
     networkmanager
     network-manager-applet
     networkmanager-openvpn
+    ngrok
     nitrogen
     nodejs-gitmoji-cli
     nordvpn-bin
