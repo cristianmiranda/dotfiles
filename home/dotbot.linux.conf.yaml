@@ -83,6 +83,7 @@
       force: true
     ~/.Xresources.asus: .Xresources.asus
     ~/.Xresources.laptop: .Xresources.laptop
+    ~/.zsh_plugins.txt: .zsh_plugins.txt
     ~/.zshrc:
       path: .zshrc
       force: true

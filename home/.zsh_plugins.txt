@@ -1,0 +1,25 @@
+#
+# Oh My Zsh - https://github.com/ohmyzsh/ohmyzsh
+#
+
+ohmyzsh/ohmyzsh path:lib
+ohmyzsh/ohmyzsh path:plugins/command-not-found
+ohmyzsh/ohmyzsh path:plugins/sudo
+
+#
+# Zsh Users - https://github.com/zsh-users
+#
+
+zsh-users/zsh-autosuggestions
+zsh-users/zsh-syntax-highlighting
+zsh-users/zsh-completions
+
+#
+# Other plugins
+#
+
+wfxr/forgit           kind:defer
+djui/alias-tips       kind:defer
+lukechilds/zsh-nvm    kind:defer
+matthieusb/zsh-sdkman kind:defer
+

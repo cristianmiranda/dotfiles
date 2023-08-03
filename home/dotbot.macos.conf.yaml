@@ -51,6 +51,7 @@
     ~/.ssh/authorized_keys: .ssh/authorized_keys
     ~/.tmux.conf: .tmux.conf
     ~/.vimrc: .vimrc
+    ~/.zsh_plugins.txt: .zsh_plugins.txt
     ~/.zshrc:
       path: .zshrc
       force: true
