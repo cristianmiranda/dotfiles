@@ -186,7 +186,6 @@ PACKAGES=(
     teamviewer
     telegram-desktop
     termdown
-    thefuck
     the_silver_searcher
     thunar
     thunderbird
