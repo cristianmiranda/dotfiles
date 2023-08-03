@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+is_zsh() { [ -n "$ZSH_VERSION" ]; }
+
+if is_zsh; then
+  bindkey "^[[1;3C" end-of-line       # Key Alt + Right
+  bindkey "^[[1;3D" beginning-of-line # Key Alt + Left
+fi
+
