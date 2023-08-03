@@ -15,7 +15,7 @@ autoload -Uz compinit && compinit
 antidote load
 
 # Common cross-profile stuff
-zsh-defer source ${HOME}/profiles/common.sh
+source ${HOME}/profiles/common.sh
 
 # Starship - https://starship.rs/
 eval "$(starship init zsh)"
