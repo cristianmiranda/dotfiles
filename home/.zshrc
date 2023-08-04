@@ -17,6 +17,3 @@ antidote load
 # Common cross-profile stuff
 source ${HOME}/profiles/common.sh
 
-# Starship - https://starship.rs/
-eval "$(starship init zsh)"
-

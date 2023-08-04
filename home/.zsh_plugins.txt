@@ -15,6 +15,12 @@ zsh-users/zsh-syntax-highlighting
 zsh-users/zsh-completions
 
 #
+# Prompt theme
+#
+
+spaceship-prompt/spaceship-prompt
+
+#
 # Other plugins
 #
 

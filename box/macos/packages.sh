@@ -75,7 +75,6 @@ PACKAGES=(
 	node
 	ranger
 	sops
-	starship
 	svn
 	terraform
   thefuck
