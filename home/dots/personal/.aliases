@@ -9,7 +9,10 @@ alias .....="cd ../../../.."
 alias ~="cd ~" # `cd` is probably faster to type though
 alias -- -="cd -"
 
-alias le="EXA_ICON_SPACING=2 exa --long --header --icons --git -a -g"
+export EXA_ICON_SPACING=2
+alias l="exa --long --header --icons --git -a -g"
+alias ll="exa --header --icons --git -g"
+alias la="exa --header --icons --git -a -g"
 
 # Shortcuts
 alias dw="cd ~/Downloads"
