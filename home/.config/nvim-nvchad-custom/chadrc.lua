@@ -1,8 +1,8 @@
 local M = {}
 
 M.ui = {
-	theme_toggle = { "onedark", "onedark_latte" },
-	theme = "onedark",
+	theme_toggle = { "everblush", "everblush_latte" },
+	theme = "everblush",
 	transparency = true,
 }
 
