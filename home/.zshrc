@@ -17,3 +17,9 @@ antidote load
 # Common cross-profile stuff
 source ${HOME}/profiles/common.sh
 
+#
+# Starship prompt
+# (use _evalcache_clear to clear cached init script)
+#
+_evalcache starship init zsh
+

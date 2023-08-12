@@ -177,6 +177,7 @@ PACKAGES=(
     sops
     sox
     spotify
+    starship
     steam
     streamlink
     sxhkd

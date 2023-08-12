@@ -18,7 +18,7 @@ zsh-users/zsh-completions
 # Prompt theme
 #
 
-spaceship-prompt/spaceship-prompt
+# spaceship-prompt/spaceship-prompt
 
 #
 # Other plugins
@@ -28,4 +28,5 @@ wfxr/forgit           kind:defer
 djui/alias-tips       kind:defer
 lukechilds/zsh-nvm    kind:defer
 matthieusb/zsh-sdkman kind:defer
+mroth/evalcache 
 
