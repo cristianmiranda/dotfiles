@@ -3,6 +3,9 @@
 is_zsh() { [ -n "$ZSH_VERSION" ]; }
 
 if is_zsh; then
+  # Disable globbing so that the literal value of a path is used
+  unsetopt NOMATCH
+
   bindkey "^[[1;3C" end-of-line       # Key Alt + Right
   bindkey "^[[1;3D" beginning-of-line # Key Alt + Left
 fi
