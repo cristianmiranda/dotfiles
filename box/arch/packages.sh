@@ -24,6 +24,7 @@ PACKAGES=(
     arandr
     asciinema
     atool
+    auto-cpufreq
     autoconf
     autotiling
     base-devel
