@@ -18,62 +18,15 @@ floating_modifier $super
 #
 # Autostart
 #
-exec --no-startup-id eval `ssh-agent -s`
-exec --no-startup-id set-display laptop
-exec --no-startup-id bluetoothctl power on
-exec --no-startup-id setxkbmap es
-exec --no-startup-id numlockx
-exec --no-startup-id $HOME/bin/tmu --init
+exec --no-startup-id $HOME/.config/startup/startup-once.sh
+exec_always --no-startup-id $HOME/.config/startup/startup-always.sh
 
 #
-# Autostart (even when restarting i3)
 #
-
-# System
-exec_always --no-startup-id docker
-exec_always --no-startup-id xset -b
-exec_always --no-startup-id xsettingsd
-exec_always --no-startup-id crontab ~/.crontab
-exec_always --no-startup-id xfce4-power-manager
-exec_always --no-startup-id brightnessctl --device='tpacpi::kbd_backlight' set 1
-exec_always --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
-
-# Apps
-exec_always --no-startup-id $HOME/bin/exterminate 1Password; 1password --silent
-exec_always --no-startup-id $HOME/bin/exterminate nm-applet; nm-applet
-exec_always --no-startup-id $HOME/bin/exterminate blueman-applet; blueman-applet
-exec_always --no-startup-id $HOME/bin/exterminate copyq; copyq
-exec_always --no-startup-id $HOME/bin/exterminate pasystray; pasystray
-exec_always --no-startup-id $HOME/bin/exterminate optimus-manager-qt; optimus-manager-qt
-exec_always --no-startup-id $HOME/bin/exterminate fusuma; fusuma
-exec_always --no-startup-id $HOME/bin/exterminate sxhkd; sxhkd
-exec_always --no-startup-id $HOME/bin/exterminate alttab; alttab -d 1 -w 1 -i 100x100 -t 100x100 -bg "#222D31" -frame "#1793d1" -s 2
-exec_always --no-startup-id "if [[ ! $(hostname) =~ 'virt' ]]; $HOME/bin/exterminate insync; QT_AUTO_SCREEN_SCALE_FACTOR=1 insync start; fi"
-exec_always --no-startup-id "if [[ ! $(hostname) =~ 'virt' ]]; then picom -b; fi"
-
-# Lock Screen
-exec_always --no-startup-id killall xidlehook; xidlehook --socket /tmp/xidlehook.sock --not-when-fullscreen --timer 30 "$HOME/bin/lock-screen --recheck-inactivity" "" --timer 600 "$HOME/bin/lock-screen" "" &
-exec_always --no-startup-id killall hot-corner; $HOME/bin/hot-corner &
-
-#
-# Wallpaper
-#
-# exec_always --no-startup-id ps aux | grep "variety" | grep -v "grep" || variety
-# exec_always --no-startup-id ~/bin/set-wallpaper --use-config
-# exec_always --no-startup-id ~/bin/set-random-wallpaper ~/wallpapers/single/artistic2
-exec_always --no-startup-id nitrogen --restore &
-
-#
-# i3 custom stuff
-#
-# exec_always --no-startup-id ~/.config/i3/scripts/autoname_workspaces.py --norenumber_workspaces --icon_list_format mathematician &
-exec_always --no-startup-id ~/.config/i3/scripts/alternating_layouts.py &
-# exec_always --no-startup-id autotiling
 
 #
 # Polybar
 #
-exec_always --no-startup-id ~/.config/polybar/launch.sh
 bindsym $super+b exec polybar-msg cmd toggle
 
 #
