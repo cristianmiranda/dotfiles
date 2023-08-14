@@ -27,4 +27,5 @@ fi
 
 $HOME/bin/dpi-open $url_handler $@
 
-i3-msg '[class="'$wm_class'"] focus'
+$HOME/bin/wm --go-to-by-class $wm_class
+
