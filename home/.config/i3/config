@@ -25,39 +25,11 @@ exec_always --no-startup-id $HOME/.config/startup/startup-always.sh
 #
 
 #
-# Polybar
 #
-bindsym $super+b exec polybar-msg cmd toggle
+
+
 
 #
-# Terminal
-#
-bindsym $super+Return exec --no-startup-id alacritty
-# $super + º
-bindcode $super+49 exec --no-startup-id tdrop -ma -w -4 -x 2 -y 34 -h 80% -s general alacritty
-
-#
-# Rofi
-#
-bindsym $super+space exec --no-startup-id $HOME/bin/open-rofi drun $HOME/.config/rofi/launchers/misc/row_dock.rasi
-bindsym $super+Shift+e exec --no-startup-id $HOME/bin/open-rofi emoji $HOME/.config/rofi/launchers/text/emoji.rasi
-bindsym $super+Shift+c exec --no-startup-id $HOME/bin/open-rofi calc $HOME/.config/rofi/launchers/text/calc.rasi
-bindsym $super+Shift+p exec --no-startup-id $HOME/.config/rofi/powermenu/powermenu.sh
-
-#
-# Screenshots
-#
-bindsym $super+Shift+2 exec --no-startup-id "flameshot gui -r > /tmp/clipboard.png && ~/bin/imgur /tmp/clipboard.png && dunstify 'Screenshot uploaded to imgur'"
-bindsym $super+Shift+3 exec --no-startup-id flameshot full
-bindsym $super+Shift+4 exec --no-startup-id flameshot gui
-bindsym $super+Shift+5 exec --no-startup-id peek
-
-#
-# Music control - See ~/.config/sxhkd/sxhkdrc for more keybindings
-#
-bindsym Shift+F10 exec --no-startup-id $HOME/bin/sp prev
-bindsym Shift+F11 exec --no-startup-id $HOME/bin/sp next
-bindsym Shift+F12 exec --no-startup-id $HOME/bin/sp play
 
 #
 # Kill focused window
@@ -362,22 +334,6 @@ mode "tmux" {
         bindsym Escape mode "default"
         bindsym Return mode "default"
 }
-
-bindsym $super+c exec --no-startup-id i3-msg '[class="(?i)Code"] focus'
-bindsym $super+d exec --no-startup-id i3-msg '[class="(?i)Discord"] focus'
-bindsym $super+e exec --no-startup-id i3-msg '[class="firefoxdeveloperedition$"] focus'
-bindsym $super+f exec --no-startup-id i3-msg '[class="firefox$"] focus'
-bindsym $super+g exec --no-startup-id i3-msg '[class="(?i)GitKraken"] focus'
-bindsym $super+i exec --no-startup-id i3-msg '[class="(?i)idea"] focus'
-bindsym $super+j exec --no-startup-id i3-msg '[class="(?i)jitsi"] focus'
-bindsym $super+m exec --no-startup-id i3-msg '[class="(?i)thunderbird"] focus'
-bindsym $super+n exec --no-startup-id i3-msg '[class="(?i)notion-app"] focus'
-bindsym $super+p exec --no-startup-id i3-msg '[class="(?i)pycharm"] focus'
-bindsym $super+o exec --no-startup-id i3-msg '[class="(?i)webstorm"] focus'
-bindsym $super+r exec --no-startup-id i3-msg '[class="(?i)element"] focus'
-bindsym $super+s exec --no-startup-id i3-msg '[class="(?i)spotify"] focus'
-bindsym $super+t exec --no-startup-id i3-msg '[class="(?i)telegram"] focus'
-bindsym $super+w exec --no-startup-id i3-msg '[class="(?i)whatsapp"] focus'
 
 bindsym $super+Shift+a mode "audio"
 bindsym $super+Shift+d mode "set-display"

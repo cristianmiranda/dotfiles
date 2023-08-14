@@ -1,0 +1,33 @@
+#!/usr/bin/env ruby
+
+require 'optparse'
+
+def usage
+  puts <<~USAGE
+    Usage: #{$0} <options>
+
+    Controls the window manager.
+
+    OPTIONS:
+      --go-to-by-class | -c : Class
+  USAGE
+end
+
+def go_to_by_class(class_name)
+  if ENV['XDG_CURRENT_DESKTOP'] == 'i3'
+    system("i3-msg '[class=\"(?i)#{class_name}\"] focus'")
+  end
+end
+
+options = {}
+OptionParser.new do |opts|
+  opts.on('-c', '--go-to-by-class CLASS', String, 'Class') do |v|
+    options[:class] = v
+    go_to_by_class(v)
+  end
+
+  opts.on('-h', '--help', 'Displays Help') do
+    usage
+    exit
+  end
+end.parse!

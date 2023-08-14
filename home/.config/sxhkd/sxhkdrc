@@ -1,31 +1,100 @@
+#
+# Multimedia
+#
 # Rewind
-XF86AudioPrev
+{XF86AudioPrev, shift + F10}
     dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
-
 # Play/Pause
-XF86AudioPlay
+{XF86AudioPlay, shift + F12}
     dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
-
 # Forward
-XF86AudioNext
+{XF86AudioNext, shift + F11}
     dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
-
 # Volume Up
 XF86AudioRaiseVolume
     /home/cmiranda/bin/amixer-vol up
-
 # Volume Down
 XF86AudioLowerVolume
     /home/cmiranda/bin/amixer-vol down
-
 # Toggle volume
 XF86AudioMute
     /home/cmiranda/bin/amixer-vol toggle
-
 # Toggle microphone
 XF86AudioMicMute
     /home/cmiranda/bin/amixer-vol toggle-mic
-
 # Toggle microphone
 XF86Eject
     /home/cmiranda/bin/amixer-vol toggle-mic
+
+#
+# Terminal
+#
+super + Return
+	alacritty
+super + F13
+    tdrop -ma -w -4 -x 2 -y 34 -h 80% -s general alacritty
+
+#
+# Launchers
+#
+super + space
+    $HOME/bin/open-rofi drun $HOME/.config/rofi/launchers/misc/row_dock.rasi
+super + shift + e
+    $HOME/bin/open-rofi emoji $HOME/.config/rofi/launchers/text/emoji.rasi
+super + shift + c
+    $HOME/bin/open-rofi calc $HOME/.config/rofi/launchers/text/calc.rasi
+super + shift + p
+    $HOME/.config/rofi/powermenu/powermenu.sh
+
+#
+# Polybar
+#
+super + b
+    polybar-msg cmd toggle
+
+#
+# Screenshots & Screen Recording
+#
+super + shift + 2
+    flameshot gui -r > /tmp/clipboard.png && ~/bin/imgur /tmp/clipboard.png && dunstify 'Screenshot uploaded to imgur'
+super + shift + 3
+    flameshot full
+super + shift + 4
+    flameshot gui
+super + shift + 5
+    peek
+
+
+#
+# WM - Go to window by class
+#
+super + c
+    $HOME/bin/wm --go-to-by-class Code
+super + d
+    $HOME/bin/wm --go-to-by-class Discord
+super + e
+    $HOME/bin/wm --go-to-by-class FirefoxDeveloperEdition$
+super + f
+    $HOME/bin/wm --go-to-by-class Firefox$
+super + g
+    $HOME/bin/wm --go-to-by-class GitKraken
+super + i
+    $HOME/bin/wm --go-to-by-class idea
+super + j
+    $HOME/bin/wm --go-to-by-class jitsi
+super + m
+    $HOME/bin/wm --go-to-by-class thunderbird
+super + n
+    $HOME/bin/wm --go-to-by-class notion-app
+super + p
+    $HOME/bin/wm --go-to-by-class pycharm
+super + o
+    $HOME/bin/wm --go-to-by-class webstorm
+super + r
+    $HOME/bin/wm --go-to-by-class element
+super + s
+    $HOME/bin/wm --go-to-by-class spotify
+super + t
+    $HOME/bin/wm --go-to-by-class telegram
+super + w
+    $HOME/bin/wm --go-to-by-class whatsapp
