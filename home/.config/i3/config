@@ -7,7 +7,6 @@
 # ╚═╝╚═════╝        ╚══╝╚══╝ ╚═╝     ╚═╝
 #
 
-# set modifier
 set $super Mod4
 set $alt Mod1
 set $mod Mod4
@@ -22,14 +21,36 @@ exec --no-startup-id $HOME/.config/startup/startup-once.sh
 exec_always --no-startup-id $HOME/.config/startup/startup-always.sh
 
 #
+# Theme colors
 #
+# class                 border  backgr. text    indic.  child_border
+client.focused          #1481B8 #556064 #80FFF9 #FDF6E3 #1793D1
+client.focused_inactive #2F3D44 #2F3D44 #1ABC9C #454948 #556064
+client.unfocused        #2F3D44 #2F3D44 #1ABC9C #454948
+client.urgent           #CB4B16 #FDF6E3 #1ABC9C #268BD2
+client.placeholder      #000000 #0c0c0c #ffffff #000000
+client.background       #2B2C2B
 
 #
+# Floating / Focus satatus per window
 #
+for_window [class=i3FloatingWindow|Xviewer|Pix|Viewnior|feh|Audacious|File-roller|Lxappearance|Lxtask|Qalculate-gtk] floating enable
+for_window [class=URxvt|Firefox|Geany|Evince|Soffice|libreoffice*|mpv|Ghb|Xfburn|Gimp*|Inkscape|Vlc|Lxappearance|Audacity] focus
+for_window [class=Xfburn|GParted|System-config-printer.py|Lxtask|Pavucontrol|Exo-helper*|Lxrandr|Arandr] focus
 
+for_window [class="^.*"] border pixel 2
 
+gaps inner 3
+gaps outer 3
 
+###############################################################
 #
+# ██╗  ██╗███████╗██╗   ██╗███████╗
+# ██║ ██╔╝██╔════╝╚██╗ ██╔╝██╔════╝
+# █████╔╝ █████╗   ╚████╔╝ ███████╗
+# ██╔═██╗ ██╔══╝    ╚██╔╝  ╚════██║
+# ██║  ██╗███████╗   ██║   ███████║
+# ╚═╝  ╚═╝╚══════╝   ╚═╝   ╚══════╝
 
 #
 # Kill focused window
@@ -111,9 +132,14 @@ bindsym $super+$alt+0 workspace number 20
 #
 bindsym $mod+Tab workspace back_and_forth
 
-###########
-## MODES ##
-###########
+###############################################################
+#
+# ███╗   ███╗ ██████╗ ██████╗ ███████╗███████╗
+# ████╗ ████║██╔═══██╗██╔══██╗██╔════╝██╔════╝
+# ██╔████╔██║██║   ██║██║  ██║█████╗  ███████╗
+# ██║╚██╔╝██║██║   ██║██║  ██║██╔══╝  ╚════██║
+# ██║ ╚═╝ ██║╚██████╔╝██████╔╝███████╗███████║
+# ╚═╝     ╚═╝ ╚═════╝ ╚═════╝ ╚══════╝╚══════╝
 
 mode "resize" {
         bindsym Left    resize shrink width 5 px or 5 ppt
@@ -349,32 +375,3 @@ bindsym $super+Shift+u mode "set-url-handler"
 bindsym $super+Shift+v mode "vpn"
 bindsym $super+Shift+y mode "radio-station"
 bindsym $super+Shift+x mode "i3-command"
-
-#
-# Theme colors
-#
-# class                 border  backgr. text    indic.  child_border
-client.focused          #1481B8 #556064 #80FFF9 #FDF6E3 #1793D1
-client.focused_inactive #2F3D44 #2F3D44 #1ABC9C #454948 #556064
-client.unfocused        #2F3D44 #2F3D44 #1ABC9C #454948
-client.urgent           #CB4B16 #FDF6E3 #1ABC9C #268BD2
-client.placeholder      #000000 #0c0c0c #ffffff #000000
-
-client.background       #2B2C2B
-
-#
-# Floating / Focus satatus per window
-#
-for_window [class=i3FloatingWindow|Xviewer|Pix|Viewnior|feh|Audacious|File-roller|Lxappearance|Lxtask|Qalculate-gtk] floating enable
-for_window [class=URxvt|Firefox|Geany|Evince|Soffice|libreoffice*|mpv|Ghb|Xfburn|Gimp*|Inkscape|Vlc|Lxappearance|Audacity] focus
-for_window [class=Xfburn|GParted|System-config-printer.py|Lxtask|Pavucontrol|Exo-helper*|Lxrandr|Arandr] focus
-
-                                           ###########
-########################################## # i3-gaps # ##########################################
-                                           ###########
-for_window [class="^.*"] border pixel 2
-
-gaps inner 3
-gaps outer 3
-
-#################################################################################################
