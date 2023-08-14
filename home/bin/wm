@@ -10,6 +10,8 @@ def usage
 
     OPTIONS:
       --go-to-by-class | -c : Class
+      --quit           | -q : Quit
+      --restart        | -r : Restart
   USAGE
 end
 
@@ -19,11 +21,33 @@ def go_to_by_class(class_name)
   end
 end
 
+def quit
+  if ENV['XDG_CURRENT_DESKTOP'] == 'i3'
+    system('i3-msg exit')
+  end
+end
+
+def restart
+  if ENV['XDG_CURRENT_DESKTOP'] == 'i3'
+    system('i3-msg restart')
+  end
+end
+
 options = {}
 OptionParser.new do |opts|
   opts.on('-c', '--go-to-by-class CLASS', String, 'Class') do |v|
     options[:class] = v
     go_to_by_class(v)
+  end
+
+  opts.on('-q', '--quit', 'Exits the window manager') do
+    quit
+    exit
+  end
+
+  opts.on('-r', '--restart', 'Restarts the window manager') do
+    restart
+    exit
   end
 
   opts.on('-h', '--help', 'Displays Help') do
