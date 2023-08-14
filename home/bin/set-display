@@ -82,6 +82,6 @@ fi
 
 # Kill xsettingsd to be restarted by i3. Used to scale GTK apps when going 2K <=> 4K
 killall -HUP xsettingsd
+# Restart the window manager
+$HOME/bin/wm -r
 
-# Restart i3wm
-i3-msg restart
