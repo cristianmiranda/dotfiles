@@ -3,7 +3,7 @@
 # System
 ( docker & )
 ( xset -b & )
-( xsettingsd & )
+( killall -HUP xsettingsd; xsettingsd & ) # Kill xsettingsd to be restarted by i3. Used to scale GTK apps when going 2K <=> 4K
 ( crontab ~/.crontab & )
 ( xfce4-power-manager & )
 ( brightnessctl --device='tpacpi::kbd_backlight' set 1 & )

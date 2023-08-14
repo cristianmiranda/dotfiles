@@ -80,8 +80,6 @@ if [[ "$XRANDR_DISPLAY_PROFILE" == "$PROFILE_HDMI" ]]; then
     bash ~/.screenlayout/asus_hdmi.sh
 fi
 
-# Kill xsettingsd to be restarted by i3. Used to scale GTK apps when going 2K <=> 4K
-killall -HUP xsettingsd
 # Restart the window manager
 $HOME/bin/wm -r
 
