@@ -1,6 +1,6 @@
-#
+###########################################################################
 # Multimedia
-#
+###########################################################################
 # Rewind
 {XF86AudioPrev, shift + F10}
     dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
@@ -26,35 +26,35 @@ XF86AudioMicMute
 XF86Eject
     /home/cmiranda/bin/amixer-vol toggle-mic
 
-#
+###########################################################################
 # Terminal
-#
+###########################################################################
 super + Return
 	alacritty
 super + Escape
     tdrop -ma -w -4 -x 2 -y 34 -h 80% -s general alacritty
 
-#
+###########################################################################
 # Launchers
-#
+###########################################################################
 super + space
-    $HOME/bin/open-rofi drun $HOME/.config/rofi/launchers/misc/row_dock.rasi
+    ~/bin/open-rofi drun ~/.config/rofi/launchers/misc/row_dock.rasi
 super + shift + e
-    $HOME/bin/open-rofi emoji $HOME/.config/rofi/launchers/text/emoji.rasi
+    ~/bin/open-rofi emoji ~/.config/rofi/launchers/text/emoji.rasi
 super + shift + c
-    $HOME/bin/open-rofi calc $HOME/.config/rofi/launchers/text/calc.rasi
+    ~/bin/open-rofi calc ~/.config/rofi/launchers/text/calc.rasi
 super + shift + p
-    $HOME/.config/rofi/powermenu/powermenu.sh
+    ~/.config/rofi/powermenu/powermenu.sh
 
-#
+###########################################################################
 # Polybar
-#
+###########################################################################
 super + b
     polybar-msg cmd toggle
 
-#
+###########################################################################
 # Screenshots & Screen Recording
-#
+###########################################################################
 super + shift + 2
     flameshot gui -r > /tmp/clipboard.png && ~/bin/imgur /tmp/clipboard.png && dunstify 'Screenshot uploaded to imgur'
 super + shift + 3
@@ -64,37 +64,163 @@ super + shift + 4
 super + shift + 5
     peek
 
-
-#
+###########################################################################
 # WM - Go to window by class
-#
+###########################################################################
 super + c
-    $HOME/bin/wm --go-to-by-class Code
+    ~/bin/wm --go-to-by-class Code
 super + d
-    $HOME/bin/wm --go-to-by-class Discord
+    ~/bin/wm --go-to-by-class Discord
 super + e
-    $HOME/bin/wm --go-to-by-class FirefoxDeveloperEdition$
+    ~/bin/wm --go-to-by-class FirefoxDeveloperEdition$
 super + f
-    $HOME/bin/wm --go-to-by-class Firefox$
+    ~/bin/wm --go-to-by-class Firefox$
 super + g
-    $HOME/bin/wm --go-to-by-class GitKraken
+    ~/bin/wm --go-to-by-class GitKraken
 super + i
-    $HOME/bin/wm --go-to-by-class idea
+    ~/bin/wm --go-to-by-class idea
 super + j
-    $HOME/bin/wm --go-to-by-class jitsi
+    ~/bin/wm --go-to-by-class jitsi
 super + m
-    $HOME/bin/wm --go-to-by-class thunderbird
+    ~/bin/wm --go-to-by-class thunderbird
 super + n
-    $HOME/bin/wm --go-to-by-class notion-app
+    ~/bin/wm --go-to-by-class notion-app
 super + p
-    $HOME/bin/wm --go-to-by-class pycharm
+    ~/bin/wm --go-to-by-class pycharm
 super + o
-    $HOME/bin/wm --go-to-by-class webstorm
+    ~/bin/wm --go-to-by-class webstorm
 super + r
-    $HOME/bin/wm --go-to-by-class element
+    ~/bin/wm --go-to-by-class element
 super + s
-    $HOME/bin/wm --go-to-by-class spotify
+    ~/bin/wm --go-to-by-class spotify
 super + t
-    $HOME/bin/wm --go-to-by-class telegram
+    ~/bin/wm --go-to-by-class telegram
 super + w
-    $HOME/bin/wm --go-to-by-class whatsapp
+    ~/bin/wm --go-to-by-class whatsapp
+
+###########################################################################
+# KeyChords
+###########################################################################
+
+############################################
+# - 7C:9A:1D:BA:BD:D6   # Cris'  AirPods 2 #
+# - C4:14:11:1B:0D:07   # Anto's AirPods 1 #
+# - 44:1B:88:07:A8:C8   # Cris'  AirPods   #
+############################################
+#
+# Audio
+super + shift + a; e
+		easyeffects --gapplication-service
+super + shift + a; k
+		killall easyeffects
+super + shift + a; c
+		~/bin/airpods connect '44:1B:88:07:A8:C8'
+super + shift + a; d
+		~/bin/airpods disconnect '44:1B:88:07:A8:C8'
+super + shift + a; s
+		~/bin/airpods speaker '44:1B:88:07:A8:C8'
+super + shift + a; h
+		~/bin/airpods headset '44:1B:88:07:A8:C8'
+super + shift + a; a
+		pactl set-default-sink $(pactl list sinks short | grep -i "hdmi" | awk '\{print $2\}')
+super + shift + a; l
+		pactl set-default-sink $(pactl list sinks short | grep -i "HiFi__hw_sofhdadsp__sink" | awk '\{print $2\}')
+super + shift + a; r
+		~/bin/restart-audio
+
+# Launch
+super + shift + l; c
+		firefox --new-window "https://chat.openai.com/?model=gpt-4"
+super + shift + l; d
+		cd ~/dotfiles && alacritty -e nvim
+super + shift + l; e
+		firefox-developer-edition
+super + shift + l; f
+		firefox
+super + shift + l; i
+		intellij-idea-ultimate
+super + shift + l; j
+		jitsi-meet-desktop
+super + shift + l; m
+		thunderbird
+super + shift + l; n
+		notion-app
+super + shift + l; p
+		~/bin/dpi-open thunar
+super + shift + l; s
+		spotify
+super + shift + l; t
+		telegram-desktop
+super + shift + l; w
+		whatsapp-nativefier
+
+# Radio
+super + shift + y; 0
+		~/bin/radio off
+super + shift + y; 1
+		~/bin/radio 100.7
+super + shift + y; 2
+		~/bin/radio 102.3
+super + shift + y; 3
+		~/bin/radio 105.5
+super + shift + y; 4
+		~/bin/radio 99.9
+super + shift + y; u
+		~/bin/radio 104.3
+super + shift + y; l
+		~/bin/radio luzutv
+
+# Owl
+super + shift + o; a
+		~/bin/owl
+super + shift + o; c
+		~/bin/coffee
+super + shift + o; d
+		killall owl coffee
+
+# Set URL handler
+super + shift + u; a
+		~/bin/set-url-handler adaptative
+super + shift + u; f
+		~/bin/set-url-handler firefox
+super + shift + u; d
+		~/bin/set-url-handler firefox-developer-edition
+super + shift + u; n
+		~/bin/set-url-handler firefox-nightly
+
+# VPN
+super + shift + v; c
+		alacritty --class i3FloatingWindow -e ~/bin/vpn --connect CCA
+super + shift + v; h
+		alacritty --class i3FloatingWindow -e ~/bin/vpn --connect Home
+super + shift + v; l
+		alacritty --class i3FloatingWindow -e ~/bin/vpn --connect LG
+super + shift + v; d
+		alacritty --class i3FloatingWindow -e ~/bin/vpn --disconnect
+
+# TMUX
+super + shift + t; i
+		~/bin/tmu --init
+super + shift + t; k
+		~/bin/tmu --kill
+super + shift + t; r
+		~/bin/tmu --restart
+
+# Set Display
+super + shift + d; a
+		~/bin/set-display single-inverted
+super + shift + d; s
+		~/bin/set-display single
+super + shift + d; d
+		~/bin/set-display dual
+super + shift + d; f
+		~/bin/set-display dual-inverted
+super + shift + d; h
+		~/bin/set-display hdmi
+super + shift + d; l
+		~/bin/set-display laptop
+super + shift + d; v
+		~/bin/set-display virtual
+super + shift + d; i
+		xcalib -a -i
+

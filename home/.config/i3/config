@@ -209,22 +209,6 @@ mode "move-to-workspace" {
         bindsym Return mode "default"
 }
 
-mode "init-workspace" {
-        bindsym 1 exec --no-startup-id init-workspace 1
-        bindsym 2 exec --no-startup-id init-workspace 2
-        bindsym 3 exec --no-startup-id init-workspace 3
-        bindsym 4 exec --no-startup-id init-workspace 4
-        bindsym 5 exec --no-startup-id init-workspace 5
-        bindsym 6 exec --no-startup-id init-workspace 6
-        bindsym 7 exec --no-startup-id init-workspace 7
-        bindsym 8 exec --no-startup-id init-workspace 8
-        bindsym 9 exec --no-startup-id init-workspace 9
-        bindsym 0 exec --no-startup-id init-workspace 10
-
-        bindsym Escape mode "default"
-        bindsym Return mode "default"
-}
-
 mode "i3-layouts" {
         bindsym v exec --no-startup-id i3l vstack; mode "default"
         bindsym h exec --no-startup-id i3l hstack; mode "default"
@@ -234,20 +218,6 @@ mode "i3-layouts" {
         bindsym c exec --no-startup-id i3l companion; mode "default"
         bindsym a exec --no-startup-id i3l autosplit; mode "default"
         bindsym n exec --no-startup-id i3l none; mode "default"
-
-        bindsym Escape mode "default"
-        bindsym Return mode "default"
-}
-
-mode "set-display" {
-        bindsym a exec --no-startup-id $HOME/bin/set-display single-inverted; mode "default"
-        bindsym s exec --no-startup-id $HOME/bin/set-display single; mode "default"
-        bindsym d exec --no-startup-id $HOME/bin/set-display dual; mode "default"
-        bindsym f exec --no-startup-id $HOME/bin/set-display dual-inverted; mode "default"
-        bindsym h exec --no-startup-id $HOME/bin/set-display hdmi; mode "default"
-        bindsym l exec --no-startup-id $HOME/bin/set-display laptop; mode "default"
-        bindsym v exec --no-startup-id $HOME/bin/set-display virtual; mode "default"
-        bindsym i exec --no-startup-id xcalib -a -i; mode "default"
 
         bindsym Escape mode "default"
         bindsym Return mode "default"
@@ -265,28 +235,6 @@ mode "i3-command" {
         bindsym Return mode "default"
 }
 
-#################
-# APPLE AIRPODS #
-############################################
-# - 7C:9A:1D:BA:BD:D6   # Cris'  AirPods 2 #
-# - C4:14:11:1B:0D:07   # Anto's AirPods 1 #
-# - 44:1B:88:07:A8:C8   # Cris'  AirPods   #
-############################################
-mode "audio" {
-        bindsym e exec --no-startup-id easyeffects --gapplication-service; mode "default"
-        bindsym k exec --no-startup-id killall easyeffects; mode "default"
-        bindsym c exec --no-startup-id $HOME/bin/airpods connect '44:1B:88:07:A8:C8'; mode "default"
-        bindsym d exec --no-startup-id $HOME/bin/airpods disconnect '44:1B:88:07:A8:C8'; mode "default"
-        bindsym s exec --no-startup-id $HOME/bin/airpods speaker '44:1B:88:07:A8:C8'; mode "default"
-        bindsym h exec --no-startup-id $HOME/bin/airpods headset '44:1B:88:07:A8:C8'; mode "default"
-        bindsym a exec --no-startup-id pactl set-default-sink $(pactl list sinks short | grep -i "hdmi" | awk '{print $2}'); mode "default"
-        bindsym l exec --no-startup-id pactl set-default-sink $(pactl list sinks short | grep -i "HiFi__hw_sofhdadsp__sink" | awk '{print $2}'); mode "default"
-        bindsym r exec --no-startup-id $HOME/bin/restart-audio; mode "default"
-
-        bindsym Escape  mode "default"
-        bindsym Return  mode "default"
-}
-
 mode "gaps" {
         bindsym Down	gaps outer current plus 5
         bindsym Left    gaps outer current plus 5
@@ -297,87 +245,9 @@ mode "gaps" {
         bindsym Return  mode "default"
 }
 
-mode "launch" {
-        bindsym c exec --no-startup-id firefox --new-window https://chat.openai.com/?model=gpt-4; mode "default"
-        bindsym d exec --no-startup-id cd ~/dotfiles && alacritty -e nvim; mode "default"
-        bindsym e exec --no-startup-id /usr/local/firefox_dev/firefox; mode "default"
-        bindsym f exec --no-startup-id firefox; mode "default"
-        bindsym g exec --no-startup-id gitkraken && i3-msg '[class="(?i)GitKraken"] focus'; mode "default"
-        bindsym i exec --no-startup-id intellij-idea-ultimate; mode "default"
-        bindsym j exec --no-startup-id jitsi-meet-desktop; mode "default"
-        bindsym m exec --no-startup-id thunderbird; mode "default"
-        bindsym n exec --no-startup-id notion-app; mode "default"
-        bindsym p exec --no-startup-id $HOME/bin/dpi-open thunar; mode "default"
-        bindsym s exec --no-startup-id spotify; mode "default"
-        bindsym t exec --no-startup-id telegram-desktop; mode "default"
-        bindsym w exec --no-startup-id whatsapp-nativefier; mode "default"
-
-        bindsym Escape mode "default"
-        bindsym Return mode "default"
-}
-
-mode "radio-station" {
-        bindsym 0 exec --no-startup-id ~/bin/radio off; mode "default"
-        bindsym 1 exec --no-startup-id ~/bin/radio 100.7; mode "default"
-        bindsym 2 exec --no-startup-id ~/bin/radio 102.3; mode "default"
-        bindsym 3 exec --no-startup-id ~/bin/radio 105.5; mode "default"
-        bindsym 4 exec --no-startup-id ~/bin/radio 99.9; mode "default"
-        bindsym u exec --no-startup-id ~/bin/radio 104.3; mode "default"
-        bindsym l exec --no-startup-id ~/bin/radio luzutv; mode "default"
-
-        bindsym Escape mode "default"
-        bindsym Return mode "default"
-}
-
-mode "owl" {
-        bindsym a exec --no-startup-id ~/bin/owl; mode "default"
-        bindsym c exec --no-startup-id ~/bin/coffee; mode "default"
-        bindsym d exec --no-startup-id killall owl coffee; mode "default"
-
-        bindsym Escape mode "default"
-        bindsym Return mode "default"
-}
-
-mode "set-url-handler" {
-        bindsym a exec --no-startup-id ~/bin/set-url-handler adaptative; mode "default"
-        bindsym f exec --no-startup-id ~/bin/set-url-handler firefox; mode "default"
-        bindsym d exec --no-startup-id ~/bin/set-url-handler firefox-developer-edition; mode "default"
-        bindsym n exec --no-startup-id ~/bin/set-url-handler firefox-nightly; mode "default"
-
-        bindsym Escape mode "default"
-        bindsym Return mode "default"
-}
-
-mode "vpn" {
-        bindsym c exec --no-startup-id alacritty --class i3FloatingWindow -e ~/bin/vpn --connect CCA; mode "default"
-        bindsym h exec --no-startup-id alacritty --class i3FloatingWindow -e ~/bin/vpn --connect Home; mode "default"
-        bindsym l exec --no-startup-id alacritty --class i3FloatingWindow -e ~/bin/vpn --connect LG; mode "default"
-        bindsym d exec --no-startup-id alacritty --class i3FloatingWindow -e ~/bin/vpn --disconnect; mode "default"
-
-        bindsym Escape mode "default"
-        bindsym Return mode "default"
-}
-
-mode "tmux" {
-        bindsym i exec --no-startup-id $HOME/bin/tmu --init; mode "default"
-        bindsym k exec --no-startup-id $HOME/bin/tmu --kill; mode "default"
-        bindsym r exec --no-startup-id $HOME/bin/tmu --restart; mode "default"
-
-        bindsym Escape mode "default"
-        bindsym Return mode "default"
-}
-
-bindsym $super+Shift+a mode "audio"
-bindsym $super+Shift+d mode "set-display"
 bindsym $super+Shift+g mode "gaps"
 bindsym $super+Shift+i mode "i3-layouts"
-bindsym $super+Shift+l mode "launch"
 bindsym $super+Shift+m mode "move-to-workspace"
-bindsym $super+Shift+o mode "owl"
 bindsym $super+Shift+r mode "resize"
 bindsym $super+Shift+s mode "swap-with-workspace"
-bindsym $super+Shift+t mode "tmux"
-bindsym $super+Shift+u mode "set-url-handler"
-bindsym $super+Shift+v mode "vpn"
-bindsym $super+Shift+y mode "radio-station"
 bindsym $super+Shift+x mode "i3-command"
