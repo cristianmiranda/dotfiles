@@ -4,10 +4,10 @@
 sleep 5
 
 # Terminate already running bar instances
-killall -q polybar
+ps aux | grep -i polybar | grep -v ".config" | awk '{print $2}' | xargs -I {} kill -9 {}
 
 # Wait until the processes have been shut down
-while pgrep -x polybar >/dev/null; do sleep 2; done
+# while pgrep -x polybar >/dev/null; do sleep 2; done
 
 if [[ $(hostname) =~ "virt" ]]; then
     polybar --reload virtual 2>&1 | tee -a /tmp/polybar-virtual.log & disown
