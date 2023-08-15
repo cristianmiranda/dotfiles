@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Polybar
+( ~/.config/polybar/launch.sh & )
+
 # System
 ( docker & )
 ( xset -b & )
@@ -39,5 +42,3 @@
 ( ~/.config/i3/scripts/alternating_layouts.py & )
 # ( autotiling & )
 
-# Polybar
-( ~/.config/polybar/launch.sh & )
