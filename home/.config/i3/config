@@ -102,6 +102,12 @@ bindsym $super+minus scratchpad show
 # bindsym $super+Shift+v exec --no-startup-id i3-msg '[class="(?i)thunderbird"] scratchpad show'
 
 #
+# Terminal
+#
+# $super + º
+# bindcode $super+49 exec --no-startup-id tdrop -ma -w -4 -x 2 -y 34 -h 80% -s general alacritty
+
+#
 # Switch to workspace
 #
 bindsym $super+$alt+Right workspace next

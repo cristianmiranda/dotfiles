@@ -8,7 +8,7 @@
 ( xfce4-power-manager & )
 ( brightnessctl --device='tpacpi::kbd_backlight' set 1 & )
 ( /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 & )
-( xmodmap -e "keycode 49 = F13 ordmasculine ordfeminine ordmasculine ordfeminine backslash backslash backslash" & )
+# ( xmodmap -e "keycode 49 = F13 ordmasculine ordfeminine ordmasculine ordfeminine backslash backslash backslash" & )
 
 # Apps
 ( $HOME/bin/exterminate 1Password; 1password --silent & )

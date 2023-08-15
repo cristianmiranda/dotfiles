@@ -31,7 +31,7 @@ XF86Eject
 #
 super + Return
 	alacritty
-super + F13
+super + Escape
     tdrop -ma -w -4 -x 2 -y 34 -h 80% -s general alacritty
 
 #
