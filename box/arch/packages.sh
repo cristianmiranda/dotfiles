@@ -216,6 +216,7 @@ PACKAGES=(
     xmlstarlet
     xorg-apps
     xorg-server
+    xorg-server-xephyr
     xorg-xinit
     xsettingsd
     yarn

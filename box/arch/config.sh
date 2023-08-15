@@ -40,6 +40,7 @@ sudo systemctl start pcscd.service >>$LOG_FILE 2>&1
 
 # LightDM
 sudo systemctl enable lightdm.service >>$LOG_FILE 2>&1
+sudo usermod -a -G lightdm cmiranda
 
 # Audio
 sudo systemctl enable rtkit-daemon.service >>$LOG_FILE 2>&1
