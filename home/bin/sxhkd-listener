@@ -1,0 +1,25 @@
+#!/bin/bash
+
+SXHKD_FIFO="/tmp/sxhkd.fifo"
+CMD="/tmp/sxhkd-cmd.txt"
+KEY_CHORD="/tmp/sxhkd-keychord.txt"
+
+while read line <$SXHKD_FIFO
+do
+    echo $line
+    if [[ "$line" == 'EEnd chain' ]]; then
+        polybar-msg action "#sxhkd-ipc.hook.1" >/dev/null 2>&1
+        polybar-msg action "#hotkeys-ipc.hook.0" >/dev/null 2>&1
+        polybar-msg action "#command-ipc.hook.1" >/dev/null 2>&1
+    elif [[ "$line" == 'BBegin chain' ]]; then
+        polybar-msg action "#sxhkd-ipc.hook.0" >/dev/null 2>&1
+        polybar-msg action "#hotkeys-ipc.hook.1" >/dev/null 2>&1
+    elif [[ "$line" =~ 'H' ]]; then
+        # echo "$line" > "$KEY_CHORD"
+        key_chord=$(echo "$line" | sed 's/H//')
+        grep -B 1 "$key_chord" ~/.config/sxhkd/sxhkdrc | head -n 1 | sed 's/#//g; s/^ *//g' | xargs -I {} echo {} > "$KEY_CHORD"
+    elif [[ "$line" =~ 'C' ]]; then
+        echo "$line" > "$CMD"
+        polybar-msg action "#command-ipc.hook.1" >/dev/null 2>&1
+    fi
+done
