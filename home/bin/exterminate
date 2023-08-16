@@ -10,4 +10,4 @@ fi
 echo "Killing $program..."
 
 killall $program || true
-sleep 1
+##  sleep 1
