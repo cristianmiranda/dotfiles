@@ -105,7 +105,7 @@ bindsym $super+minus scratchpad show
 # Terminal
 #
 # $super + º
-# bindcode $super+49 exec --no-startup-id tdrop -ma -w -4 -x 2 -y 34 -h 80% -s general alacritty
+bindcode $super+49 exec --no-startup-id tdrop -ma -w -4 -x 2 -y 34 -h 80% -s general alacritty
 
 #
 # Switch to workspace
