@@ -192,3 +192,4 @@
 [spotify]
    appname = Spotify
    script = /home/cmiranda/bin/process-dunst-notifications
+   skip_display = true
