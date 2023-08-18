@@ -11,6 +11,8 @@ sysmodmap=/etc/X11/xinit/.Xmodmap
 
 DEFAULT_SESSION='i3 --shmlog-size 0'
 
+systemctl --user restart xsettingsd.service
+
 # merge in defaults and keymaps
 
 if [ -f $sysresources ]; then

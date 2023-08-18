@@ -56,8 +56,12 @@ sudo systemctl enable cronie >>$LOG_FILE 2>&1
 sudo systemctl start cronie >>$LOG_FILE 2>&1
 
 # auto-cpufreq
-sudo systemctl enable auto-cpufreq
-sudo systemctl start auto-cpufreq
+sudo systemctl enable auto-cpufreq >>$LOG_FILE 2>&1
+sudo systemctl start auto-cpufreq >>$LOG_FILE 2>&1
+
+# xsettingsd daemon
+sudo systemctl --user enable xsettingsd.service >>$LOG_FILE 2>&1
+sudo systemctl --user start xsettingsd.service >>$LOG_FILE 2>&1
 
 # tmux plugin manager
 # Run prefix + I to install plugins
