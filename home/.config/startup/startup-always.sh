@@ -14,7 +14,7 @@ brightnessctl --device='tpacpi::kbd_backlight' set 1 &
 # ( xmodmap -e "keycode 49 = F13 ordmasculine ordfeminine ordmasculine ordfeminine backslash backslash backslash" &
 
 # Apps
-$HOME/bin/exterminate 1Password; 1password --silent &
+$HOME/bin/exterminate 1password; 1password --silent &
 $HOME/bin/exterminate nm-applet; nm-applet &
 $HOME/bin/exterminate blueman-applet; blueman-applet &
 $HOME/bin/exterminate copyq; copyq &
