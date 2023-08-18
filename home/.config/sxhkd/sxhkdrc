@@ -85,8 +85,6 @@ super + m
     ~/bin/wm --go-to-by-class thunderbird
 super + n
     ~/bin/wm --go-to-by-class notion-app
-super + p
-    ~/bin/wm --go-to-by-class pycharm
 super + o
     ~/bin/wm --go-to-by-class webstorm
 super + r
