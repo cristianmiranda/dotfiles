@@ -32,7 +32,7 @@ XF86Eject
 super + Return
 	alacritty
 super + Escape
-    tdrop -ma -w -4 -x 2 -y 34 -h 80% -s general alacritty
+    tdrop --name tdrop -ma -w -8 -x 2 -y 34 -h 80% -s general alacritty
 
 ###########################################################################
 # Launchers
