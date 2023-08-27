@@ -24,12 +24,16 @@ end
 def quit
   if ENV['XDG_CURRENT_DESKTOP'] == 'i3'
     system('i3-msg exit')
+  elsif ENV['DESKTOP_SESSION'] == 'xmonad'
+    system('pkill -u $USER')
   end
 end
 
 def restart
   if ENV['XDG_CURRENT_DESKTOP'] == 'i3'
     system('i3-msg restart')
+  elsif ENV['DESKTOP_SESSION'] == 'xmonad'
+    system('xmonad --recompile && xmonad --restart')
   end
 end
 

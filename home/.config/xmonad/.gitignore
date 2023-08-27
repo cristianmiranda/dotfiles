@@ -1,0 +1,4 @@
+# Haskell compiled files
+*.hi
+*.o
+
