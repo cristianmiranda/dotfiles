@@ -8,6 +8,7 @@ image/gif=viewnior.desktop
 image/jpeg=viewnior.desktop
 image/png=viewnior.desktop
 application/pdf=okularApplication_pdf.desktop
+x-scheme-handler/notion=notion-app.desktop
 
 [Added Associations]
 text/plain=visual-studio-code.desktop;org.xfce.mousepad.desktop;
