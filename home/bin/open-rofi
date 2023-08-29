@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-MONITOR_RESOLUTION=$(~/bin/get-resolution)
+MONITOR_RESOLUTION=$(cat /tmp/screen-resolution)
 
 DPI=96
 

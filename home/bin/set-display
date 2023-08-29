@@ -84,6 +84,9 @@ if [[ "$XRANDR_DISPLAY_PROFILE" == "$PROFILE_HDMI" ]]; then
     bash ~/.screenlayout/asus_hdmi.sh
 fi
 
+SCREEN_RESOLUTION=$(~/bin/get-resolution)
+echo $SCREEN_RESOLUTION > /tmp/screen-resolution
+
 # killall -HUP xsettingsd # Kill xsettingsd to be restarted by the WM. Used to scale GTK apps when going 2K <=> 4K
 systemctl --user restart xsettingsd.service
 
