@@ -99,6 +99,7 @@ PACKAGES=(
     man-db
     matcha-gtk-theme
     meld
+    mesa
     mousepad
     mpv
     mugshot
@@ -207,6 +208,7 @@ PACKAGES=(
     xclip
     xdotool
     xf86-input-libinput
+    xf86-video-amdgpu
     xfce4-power-manager
     xidlehook
     xmlstarlet
