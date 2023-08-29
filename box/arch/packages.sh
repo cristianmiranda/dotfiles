@@ -40,13 +40,11 @@ PACKAGES=(
     cawbird-git
     chromium
     clipboard
-    cloud-sql-proxy-bin
     cmatrix
     copyq
     cronie
     cups
     deluge-gtk
-    discord
     docker
     docker-compose
     dunst
@@ -75,7 +73,6 @@ PACKAGES=(
     glances
     gnome-keyring
     go
-    google-cloud-sdk
     gqlplus
     gtkpod
     hplip
@@ -184,7 +181,6 @@ PACKAGES=(
     sysstat
     system-config-printer
     tdrop
-    teamviewer
     telegram-desktop
     termdown
     the_silver_searcher

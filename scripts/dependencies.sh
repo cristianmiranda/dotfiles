@@ -35,6 +35,3 @@ elif [[ $DISTRO == "ARCH" ]]; then
 
 fi
 
-pip list --format=columns | grep setuptools || pip install setuptools
-pip list --format=columns | grep click || pip install click
-pip list --format=columns | grep PyYAML || pip install PyYAML
