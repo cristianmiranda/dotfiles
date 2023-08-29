@@ -32,6 +32,19 @@ Section "InputClass"
 EndSection
 ```
 
+If using an Apple Keyboard that has the `fn` key to the left of `ctrl` and it's also not considered an ISO keyboard (e.g `<` and `>` are not working as expected and are swapped with `º`), add the following as root:
+
+```bash
+vim /etc/modprobe.d/hid_apple.conf
+```
+
+```conf
+options hid_apple swap_fn_leftctrl=1
+options hid_apple iso_layout=1
+```
+
+Read more @ https://wiki.archlinux.org/title/Apple_Keyboard
+
 ## 🖱️ Touchpad
 
 Enable "tap to click" & change mouse acceleration
