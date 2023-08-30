@@ -24,6 +24,7 @@ PACKAGES=(
     arandr
     asciinema
     atool
+    authy
     auto-cpufreq
     autoconf
     autotiling
