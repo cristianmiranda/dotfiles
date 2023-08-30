@@ -18,6 +18,7 @@ brightnessctl --device='tpacpi::kbd_backlight' set 1 &
 $HOME/bin/exterminate nm-applet; nm-applet &
 $HOME/bin/exterminate blueman-applet; blueman-applet &
 $HOME/bin/exterminate copyq; copyq &
+$HOME/bin/exterminate dunst
 $HOME/bin/exterminate pasystray; pasystray &
 $HOME/bin/exterminate optimus-manager-qt; optimus-manager-qt &
 $HOME/bin/exterminate fusuma; fusuma &
