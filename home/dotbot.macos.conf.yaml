@@ -67,7 +67,4 @@
         git update-index --assume-unchanged .config/flameshot/flameshot.ini,
         Ignoring changes on Flameshot config,
     ]
-    - [
-        ln -sfn ~/.config/nvim-nvchad-custom ~/.config/nvim/lua/custom,
-        Create link to custom NvChad configuration.
-    ]
+

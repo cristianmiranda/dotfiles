@@ -93,10 +93,4 @@
     - ~/Documents/Work/Workspace_LG
     - ~/Pictures/Screenshots
     - ~/logs
-    - ~/Google drive
 
-- shell:
-    - [
-        ln -sfn ~/.config/nvim-nvchad-custom ~/.config/nvim/lua/custom,
-        Create link to custom NvChad configuration.
-      ]
