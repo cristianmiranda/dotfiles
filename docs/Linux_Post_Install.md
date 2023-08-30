@@ -31,20 +31,6 @@ Section "InputClass"
     Option "XkbLayout" "es"
 EndSection
 ```
-
-If using an Apple Keyboard that has the `fn` key to the left of `ctrl` and it's also not considered an ISO keyboard (e.g `<` and `>` are not working as expected and are swapped with `º`), add the following as root:
-
-```bash
-vim /etc/modprobe.d/hid_apple.conf
-```
-
-```conf
-options hid_apple swap_fn_leftctrl=1
-options hid_apple iso_layout=1
-```
-
-Read more @ https://wiki.archlinux.org/title/Apple_Keyboard
-
 ## 🖱️ Touchpad
 
 Enable "tap to click" & change mouse acceleration
@@ -157,6 +143,42 @@ xfce4-power-manager handles power management now.
 sudo vim /etc/systemd/logind.conf
 
 HandleLidSwitch=ignore
+```
+
+## 🍏 iMac
+
+### ⌨️ Keyboard
+
+If using an Apple Keyboard that has the `fn` key to the left of `ctrl` and it's also not considered an ISO keyboard (e.g `<` and `>` are not working as expected and are swapped with `º`), add the following as root:
+
+```bash
+vim /etc/modprobe.d/hid_apple.conf
+```
+
+```conf
+options hid_apple swap_fn_leftctrl=1
+options hid_apple iso_layout=1
+```
+
+Read more @ https://wiki.archlinux.org/title/Apple_Keyboard
+
+### 🔆 Brightness
+
+For brightness control to work we need to pass a kernel param.
+
+```bash
+sudo vim /etc/default/grub
+```
+```conf
+GRUB_CMDLINE_LINUX_DEFAULT="quiet acpi_backlight=native"
+```
+```bash
+sudo grub-mkconfig -o /boot/grub/grub.cfg
+```
+
+Restart and test using the following:
+```bash
+echo "90" | sudo tee /sys/class/backlight/radeon_bl0/brightness
 ```
 
 ## 🔋 TLP, auto-cpufreq & Power Management
