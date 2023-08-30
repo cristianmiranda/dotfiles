@@ -3,8 +3,3 @@
 	url = https://github.com/anishathalye/dotbot
 	ignore = dirty
 	
-[submodule "home/.config/nvim"]
-	path = home/.config/nvim
-	url = https://github.com/NvChad/NvChad
-	ignore = dirty
-
