@@ -1,22 +1,53 @@
 # 🐧 Linux (post-install steps)
 
-## 📝 neovim
+- [🐧 Linux (post-install steps)](#-linux-post-install-steps)
+  - [🐧 LTS Kernel](#-lts-kernel)
+  - [🔊 Peripherals](#-peripherals)
+    - [⌨️ Keyboard](#️-keyboard)
+    - [🖱️ Touchpad](#️-touchpad)
+    - [🛜 Bluetooth](#-bluetooth)
+  - [💅 Cosmetics](#-cosmetics)
+    - [💄 Qt5](#-qt5)
+    - [👋 LightDM greeter](#-lightdm-greeter)
+    - [☢️ GRUB Theme](#️-grub-theme)
+    - [📦 Pacman](#-pacman)
+  - [🫙 Apps](#-apps)
+    - [📝 neovim](#-neovim)
+    - [📝 vim](#-vim)
+    - [🪟 tmux](#-tmux)
+  - [🍏 iMac](#-imac)
+    - [🐧 Kernel](#-kernel)
+    - [⌨️ Keyboard](#️-keyboard-1)
+    - [🔆 Brightness](#-brightness)
+  - [💻 Laptop](#-laptop)
+    - [💻 Lid Close event](#-lid-close-event)
+    - [🔌 USB autosuspend](#-usb-autosuspend)
+    - [🧠 auto-cpufreq](#-auto-cpufreq)
+    - [🔋 TLP](#-tlp)
+      - [🔋 TLP Configuration file](#-tlp-configuration-file)
 
-1. Enter nvim
-2. Wait for Mason to install all plugins
-3. Run `:Copilot setup` to authenticate with GitHub
+## 🐧 LTS Kernel
 
-## 📝 vim
+```bash
+sudo pacman -S linux-lts linux-lts-headers
+```
 
-1. Enter vim
-2. Run `:PlugInstall` to install plugins
+```bash
+sudo vim /etc/default/grub
+```
 
-## 🪟 tmux
+```conf
+GRUB_DEFAULT=saved
+GRUB_SAVEDEFAULT=true
+```
 
-1. Run tmux
-2. Press `prefix + I` to install plugins
+```bash
+sudo grub-mkconfig -o /boot/grub/grub.cfg
+```
 
-## ⌨️ Keyboard
+## 🔊 Peripherals
+
+### ⌨️ Keyboard
 
 Set default language layout for all keyboards
 
@@ -31,7 +62,8 @@ Section "InputClass"
     Option "XkbLayout" "es"
 EndSection
 ```
-## 🖱️ Touchpad
+
+### 🖱️ Touchpad
 
 Enable "tap to click" & change mouse acceleration
 
@@ -51,7 +83,7 @@ EndSection
 
 See more @ https://wiki.archlinux.org/title/Mouse_acceleration
 
-## 🛜 Bluetooth
+### 🛜 Bluetooth
 
 Enable experimental features (Apple Magic Keyboard has issues with default settings)
 
@@ -75,7 +107,9 @@ Experimental = true
 KernelExperimental = true
 ```
 
-## 💄 Qt5
+## 💅 Cosmetics
+
+### 💄 Qt5
 
 ```bash
 sudo vim /etc/environment
@@ -85,26 +119,7 @@ sudo vim /etc/environment
 QT_QPA_PLATFORMTHEME=qt5ct
 ```
 
-## 🐧 Linux LTS
-
-```bash
-sudo pacman -S linux-lts linux-lts-headers
-```
-
-```bash
-sudo vim /etc/default/grub
-```
-
-```conf
-GRUB_DEFAULT=saved
-GRUB_SAVEDEFAULT=true
-```
-
-```bash
-sudo grub-mkconfig -o /boot/grub/grub.cfg
-```
-
-## 👋 LightDM greeter
+### 👋 LightDM greeter
 
 See more @ https://github.com/manilarome/lightdm-webkit2-theme-glorious
 
@@ -112,46 +127,69 @@ See more @ https://github.com/manilarome/lightdm-webkit2-theme-glorious
 # Set default lightdm greeter to lightdm-webkit2-greeter
 sudo vim /etc/lightdm/lightdm.conf
 ```
+
 ```conf
 [Seat:*]
 
 greeter-session=lightdm-webkit2-greeter
 ```
+
 ```bash
 # Set default lightdm-webkit2-greeter theme to Glorious
 sudo sed -i 's/^webkit_theme\s*=\s*\(.*\)/webkit_theme = glorious #\1/g' /etc/lightdm/lightdm-webkit2-greeter.conf
 sudo sed -i 's/^debug_mode\s*=\s*\(.*\)/debug_mode = true #\1/g' /etc/lightdm/lightdm-webkit2-greeter.conf
 ```
 
-## ☢️ GRUB Theme
+### ☢️ GRUB Theme
 
 ```bash
 bash ~/dotfiles/scripts/install-fallout-grub-theme.sh
 ```
 
-## 📦 Pacman
+### 📦 Pacman
 
 ```bash
 sudo vim /etc/pacman.conf
 ```
 
-```
+```conf
 # Misc options
 Color
 ILoveCandy
 ```
 
-## 💻 Lid Close event
+## 🫙 Apps
 
-xfce4-power-manager handles power management now.
+### 📝 neovim
 
-```bash
-sudo vim /etc/systemd/logind.conf
+1. Enter nvim
+2. Wait for Mason to install all plugins
+3. Run `:Copilot setup` to authenticate with GitHub
 
-HandleLidSwitch=ignore
-```
+### 📝 vim
+
+1. Enter vim
+2. Run `:PlugInstall` to install plugins
+
+### 🪟 tmux
+
+1. Run tmux
+2. Press `prefix + I` to install plugins
 
 ## 🍏 iMac
+
+Useful Arch wiki pages:
+
+- https://wiki.archlinux.org/title/Mac
+- https://wiki.archlinux.org/title/IMac_Unibody
+- https://wiki.archlinux.org/title/IMac_Aluminum
+
+### 🐧 Kernel
+
+After installing Arch Linux, if grub config gets regenerated (after configuring brightness kernel param for example), the default kernel changes to linux-lts (not sure why). A quick solution is to install that kernel so the operating system boots up again.
+Another solution would be changing the default kernel back to linux instead of linux-lts.
+
+Read more @ https://bbs.archlinux.org/viewtopic.php?id=281748
 
 ### ⌨️ Keyboard
 
@@ -175,19 +213,44 @@ For brightness control to work we need to pass a kernel param.
 ```bash
 sudo vim /etc/default/grub
 ```
+
 ```conf
 GRUB_CMDLINE_LINUX_DEFAULT="quiet acpi_backlight=native"
 ```
+
 ```bash
 sudo grub-mkconfig -o /boot/grub/grub.cfg
 ```
 
 Restart and test using the following:
+
 ```bash
 echo "90" | sudo tee /sys/class/backlight/radeon_bl0/brightness
 ```
 
-## 🔋 TLP, auto-cpufreq & Power Management
+## 💻 Laptop
+
+### 💻 Lid Close event
+
+xfce4-power-manager handles power management now.
+
+```bash
+sudo vim /etc/systemd/logind.conf
+
+HandleLidSwitch=ignore
+```
+
+### 🔌 USB autosuspend
+
+This has been disabled using TLP (can't make them active on wake up).
+
+### 🧠 auto-cpufreq
+
+See more @ https://github.com/AdnanHodzic/auto-cpufreq
+
+CPU freq params are managed by auto-cpufreq which takes advantage of turbo boost. TLP CPU settings have been commented out so that it doesn't conflict with auto-cpufreq.
+
+### 🔋 TLP
 
 Factory settings for ThinkPad battery thresholds are as follows: when plugged in the battery starts charging at 96%, and stops at 100%. These settings are optimized for maximum runtime, but having a battery hold a lot of power will decrease its capacity over the years. To alleviate this problem, the start/stop charge thresholds can be adjusted – at the cost of a more or less reduced battery runtime.
 
@@ -203,23 +266,11 @@ See more @ https://linrunner.de/tlp/faq/battery.html
 sudo tlp-stat -b
 ```
 
-### USB autosuspend
-
-This has been disabled using TLP (can't make them active on wake up). 
-
-### auto-cpufreq
-
-See more @ https://github.com/AdnanHodzic/auto-cpufreq
-
-CPU freq params are managed by auto-cpufreq which takes advantage of turbo boost. TLP CPU settings have been commented out so that it doesn't conflict with auto-cpufreq.
-
-### TLP UI
-
 ![](https://i.imgur.com/TKA52gL.png)
 
-### TLP Configuration file
+#### 🔋 TLP Configuration file
 
-```
+```conf
 #Slimbook ENERGY SAVING MODE ##
 # ------------------------------------------------------------------------------
 # /etc/tlp.conf - TLP user configuration
