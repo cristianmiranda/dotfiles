@@ -19,7 +19,6 @@
       path: .config/*
       force: true
     ~/.local/share/figlet: .local/share/figlet
-    ~/.local/share/fonts: .local/share/fonts
     ~/.local/share/icons:
       path: .local/share/icons
       force: true
