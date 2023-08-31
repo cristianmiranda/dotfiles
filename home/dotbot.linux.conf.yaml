@@ -43,7 +43,6 @@
     ~/dots: dots
     ~/profiles: profiles
     ~/sounds: sounds
-    ~/wallpapers: wallpapers
 
     # QUEMU GPU Passthrough battery mock file
     ~/quemu_battery_mock.dat: quemu_battery_mock.dat

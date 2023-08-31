@@ -33,7 +33,6 @@
     ~/docker: docker
     ~/dots: dots
     ~/profiles: profiles
-    ~/wallpapers: wallpapers
 
     # Hidden Files
     ~/.bash_profile:
