@@ -31,6 +31,9 @@ logs/*.log
 .vagrant
 *.log
 
+# Dotbot
+dotbot
+
 # VIM
 home/.vim/swaps
 home/.vim/.netrwhist

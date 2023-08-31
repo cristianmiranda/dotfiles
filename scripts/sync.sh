@@ -8,6 +8,15 @@ CONFIG_HOME="../home"
 DOTBOT_DIR="../dotbot"
 DOTBOT_BIN="bin/dotbot"
 
+# Clone dotbot if $DOBTOB_DIR does not exist
+if ! [ -d "${BASEDIR}/${DOTBOT_DIR}" ]; then
+  echo -e "\n>> 📦 Cloning dotbot...\n"
+  git clone git@github.com:anishathalye/dotbot.git || wget -O dotbot.zip https://github.com/anishathalye/dotbot/archive/refs/heads/master.zip && unzip dotbot.zip && mv dotbot-master dotbot && rm dotbot.zip
+else
+  echo -e "\n>> 📦 Updating dotbot...\n"
+  git -C "${BASEDIR}/${DOTBOT_DIR}" pull || echo "Couldn't update dotbot repo"
+fi
+
 #
 # Getting config file for host
 #
@@ -29,14 +38,6 @@ fi
 
 cd "${BASEDIR}"
 echo -e "\n>> 🔧 Using ${MACHINE_TYPE}'s config file => $CONFIG_FILE \n"
-
-echo -e ">> ♻️  Submodules sync..."
-git -C "${DOTBOT_DIR}" submodule sync --quiet --recursive || echo "Could not sync dotbot submodule"
-echo -e ">> ♻️  Submodules update..."
-git submodule update --init --recursive "${DOTBOT_DIR}" || echo "Could not update dotbot submodule"
-echo -e ">> ♻️  Submodules pull...\n"
-git pull --recurse-submodules && git submodule update
-
 cd "${CONFIG_HOME}"
 "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -q -c "${CONFIG_FILE}" "${@}"
 
