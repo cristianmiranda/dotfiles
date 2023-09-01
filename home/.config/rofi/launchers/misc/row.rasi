@@ -59,7 +59,7 @@ prompt {
 	padding: 						0.25% 0.75% 0% -0.25%;
 	background-color: 				@background-alt;
 	text-color: 					@foreground;
-	font:							"FantasqueSansMono Nerd Font 12";
+	font:							"FiraCode Nerd Font 12";
 }
 
 entry {

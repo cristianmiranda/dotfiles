@@ -9,7 +9,7 @@
 
 configuration {
     show-icons:                     false;
-	font:                      		"Comfortaa 12";
+	font:                      		"FiraCode Nerd Font 12";
     disable-history:                false;
 	sidebar-mode: 					false;
 }

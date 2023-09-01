@@ -5,7 +5,7 @@
 * {
     background-color:       @background;
     text-color:             @foreground;
-	font:				 	"FantasqueSansMono Nerd Font 12";
+	font:				 	"FiraCode Nerd Font 12";
 }
 
 window {
