@@ -20,8 +20,3 @@ br
 bash $CURRENT_DIR/config.sh
 
 br
-banner "         >>> linux/work <<<           "
-br
-bash $CURRENT_DIR/work.sh
-
-br
