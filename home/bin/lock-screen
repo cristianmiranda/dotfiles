@@ -12,6 +12,8 @@ FONT='FiraCode Nerd Font Mono'
 
 XIDLEHOOK_LOCK_SOCKET=/tmp/xidlehook.sock
 
+NO_FORK="--nofork"
+
 function pauseNotifications() {
     dunstctl set-paused true
 }
@@ -38,7 +40,7 @@ function unmuteVolume() {
 
 function runLocker() {
     i3lock \
-        --nofork \
+        $NO_FORK \
         --insidever-color=$CLEAR \
         --ringver-color=$BLANK \
         \
@@ -94,6 +96,10 @@ elif [[ " ${ARGS[@]} " =~ " --recheck-inactivity" ]]; then
         echo "i3lock is still running but user never unlocked. Turning screen off again."
         turnScreenOff
     fi
+elif [[ " ${ARGS[@]} " =~ " --suspend" ]]; then
+    echo "Forking lock screen..."
+    NO_FORK=""
+    lockScreen
 else
     #
     # Abort if there are any kind of sinks running (music audio, meetings, etc.)
