@@ -78,7 +78,6 @@ home/.config/ulauncher/ext_preferences/com.github.safaariman.ulauncher-jira.db
 home/.secrets
 home/.switch/prod.keys
 home/.ssh/authorized_keys
-box/ubuntu-cloud/work.sh
 home/bin/get-word-context
 home/.config/openvpn/profiles/lg.ovpn
 home/.config/openvpn/profiles/cca.ovpn
