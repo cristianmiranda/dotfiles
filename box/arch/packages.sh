@@ -122,10 +122,10 @@ PACKAGES=(
     noto-fonts
     noto-fonts-emoji
     numlockx
-    nvidia
-    nvidia-lts
-    nvidia-settings
-    nvidia-utils
+    # nvidia
+    # nvidia-lts
+    # nvidia-settings
+    # nvidia-utils
     obs-studio
     octopi
     okular
