@@ -210,7 +210,7 @@ PACKAGES=(
     vlc
     whatsapp-nativefier
     wireplumber
-    xarchiverx
+    xarchiver
     xcalib
     xclip
     xdotool
