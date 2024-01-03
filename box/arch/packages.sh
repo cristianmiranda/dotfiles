@@ -219,9 +219,6 @@ PACKAGES=(
     xfce4-power-manager
     xidlehook
     xmlstarlet
-    xmonad
-    xmonad-contrib
-    xmonad-extras
     xorg-apps
     xorg-server
     xorg-server-xephyr
