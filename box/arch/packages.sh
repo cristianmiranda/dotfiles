@@ -76,6 +76,7 @@ PACKAGES=(
     go
     gqlplus
     gtkpod
+    gvfs                    # thunar dependency
     hplip
     httpie
     hsetroot
@@ -187,6 +188,9 @@ PACKAGES=(
     termdown
     the_silver_searcher
     thunar
+    thunar-archive-plugin
+    thunar-custom-actions
+    thunar-volman
     thunderbird
     ticktick
     timeshift
