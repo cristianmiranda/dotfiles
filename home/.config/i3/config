@@ -11,6 +11,8 @@ set $super Mod4
 set $alt Mod1
 set $mod Mod4
 
+default_orientation horizontal
+
 # Use Mouse+$super to drag floating windows to their wanted position
 floating_modifier $super
 
