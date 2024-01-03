@@ -3,7 +3,7 @@
 MUTED_COLOR="#FF6961"
 UNMUTED_COLOR="#8BC34A"
 
-DEVICE_ICON=$(pulseaudio-control --node-type input --node-nicknames-from "device.description" --node-nickname "*HD_Pro_Webcam*:󰖠" --node-nickname "*CalDigit*:CalDigit" --node-nickname "*HiFi__hw_sof*:" --node-nickname "*bluez*:󰋋" --node-nickname "*analog*:" --node-blacklist "*.monitor" --format '${NODE_NICKNAME}' output | sed -E 's/%\{F#[0-9a-fA-F]{6}\}([^%]*)%\{F-\}/\1/g')
+DEVICE_ICON=$(pulseaudio-control --node-type input --node-nicknames-from "device.description" --node-nickname "*HD_Pro_Webcam*:󰖠" --node-nickname "*CalDigit*:CalDigit" --node-nickname "*HiFi__hw_sof*:" --node-nickname "*bluez*:󰋋" --node-nickname "*analog*:" --node-nickname "*USB*Audio*:󰓃" --node-blacklist "*.monitor" --format '${NODE_NICKNAME}' output | sed -E 's/%\{F#[0-9a-fA-F]{6}\}([^%]*)%\{F-\}/\1/g')
 MUTED="$(pactl list short sources | awk '/input.*RUNNING/ {system("pactl get-source-mute " $1)}' | sed 's/Mute: //g' | uniq)"
 
 if [[ $MUTED == "no" ]]; then
