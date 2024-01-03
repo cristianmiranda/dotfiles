@@ -129,8 +129,8 @@ PACKAGES=(
     openresolv
     openrgb
     openssh
-    optimus-manager-git
-    optimus-manager-qt
+    # optimus-manager-git
+    # optimus-manager-qt
     oracle-instantclient-sqlplus
     p7zip
     pacman-contrib
