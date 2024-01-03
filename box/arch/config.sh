@@ -38,9 +38,8 @@ sudo usermod -G libvirt -a cmiranda >>$LOG_FILE 2>&1
 sudo systemctl enable pcscd.service >>$LOG_FILE 2>&1
 sudo systemctl start pcscd.service >>$LOG_FILE 2>&1
 
-# LightDM
-sudo systemctl enable lightdm.service >>$LOG_FILE 2>&1
-sudo usermod -a -G lightdm cmiranda
+# SDDM
+sudo systemctl enable sddm >>$LOG_FILE 2>&1
 
 # Audio
 sudo systemctl enable rtkit-daemon.service >>$LOG_FILE 2>&1

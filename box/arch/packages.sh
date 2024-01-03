@@ -93,9 +93,6 @@ PACKAGES=(
     lazygit
     libinput-gestures
     libreoffice-fresh
-    lightdm
-    lightdm-gtk-greeter
-    lightdm-webkit2-theme-glorious
     lxappearance
     man-db
     matcha-gtk-theme
@@ -168,6 +165,8 @@ PACKAGES=(
     rtkit
     ruby-fusuma
     screen
+    sddm
+    sddm-theme-aerial-git
     seahorse
     shell-color-scripts
     simplescreenrecorder

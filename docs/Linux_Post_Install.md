@@ -8,7 +8,7 @@
     - [🛜 Bluetooth](#-bluetooth)
   - [💅 Cosmetics](#-cosmetics)
     - [💄 Qt5](#-qt5)
-    - [👋 LightDM greeter](#-lightdm-greeter)
+    - [👋 SDDM greeter](#-sddm-greeter)
     - [☢️ GRUB Theme](#️-grub-theme)
     - [📦 Pacman](#-pacman)
   - [🫙 Apps](#-apps)
@@ -119,25 +119,25 @@ sudo vim /etc/environment
 QT_QPA_PLATFORMTHEME=qt5ct
 ```
 
-### 👋 LightDM greeter
+### 👋 SDDM greeter
 
-See more @ https://github.com/manilarome/lightdm-webkit2-theme-glorious
+See more @ https://github.com/3ximus/aerial-sddm-theme
 
 ```bash
-# Set default lightdm greeter to lightdm-webkit2-greeter
-sudo vim /etc/lightdm/lightdm.conf
+# Set default theme
+sudo vim /usr/lib/sddm/sddm.conf.d/default.conf
 ```
 
 ```conf
-[Seat:*]
-
-greeter-session=lightdm-webkit2-greeter
+[Theme]
+# Current theme name
+Current=aerial
 ```
 
 ```bash
-# Set default lightdm-webkit2-greeter theme to Glorious
-sudo sed -i 's/^webkit_theme\s*=\s*\(.*\)/webkit_theme = glorious #\1/g' /etc/lightdm/lightdm-webkit2-greeter.conf
-sudo sed -i 's/^debug_mode\s*=\s*\(.*\)/debug_mode = true #\1/g' /etc/lightdm/lightdm-webkit2-greeter.conf
+# Copy .face (after setting with mugshot) to /usr/share/sddm/faces
+sudo cp ~/.face /usr/share/sddm/faces/cmiranda.face.icon
+sudo chmod 755 /usr/share/sddm/faces/cmiranda.face.icon
 ```
 
 ### ☢️ GRUB Theme
