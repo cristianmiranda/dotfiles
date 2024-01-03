@@ -125,17 +125,18 @@ QT_QPA_PLATFORMTHEME=qt5ct
 
 ### 👋 SDDM greeter
 
-See more @ https://github.com/3ximus/aerial-sddm-theme
+See more @ https://www.xfce-look.org/p/1312658/
 
 ```bash
 # Set default theme
 sudo vim /usr/lib/sddm/sddm.conf.d/default.conf
+sudo cp /usr/share/sddm/themes/sugar-candy/theme.conf /usr/share/sddm/themes/sugar-candy/theme.conf.user
 ```
 
 ```conf
 [Theme]
 # Current theme name
-Current=aerial
+Current=sugar-candy
 ```
 
 ```bash

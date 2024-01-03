@@ -169,7 +169,7 @@ PACKAGES=(
     ruby-fusuma
     screen
     sddm
-    sddm-theme-aerial-git
+    sddm-sugar-candy-git
     seahorse
     shell-color-scripts
     simplescreenrecorder
