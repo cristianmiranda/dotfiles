@@ -1,0 +1,16 @@
+#!/bin/bash
+
+alias lg="cd ${LG_BASE_DIR}"
+alias escribe="cd ${LG_BASE_DIR}/escribehost"
+alias eshlogs="tail -f /private/var/log/tomcat/escribe/esh-devmode/escribe.log"
+
+alias prod.tunnel.start="ssh -M -S /tmp/prodtunnelssh.ctl -f cmiranda@ehr-01.prod.int.aws.lillegroup.com -L 2483:ehr-db.prod:2483 -N"
+alias prod.tunnel.stop="ssh -S /tmp/prodtunnelssh.ctl -O exit localhost"
+
+alias lgvpn.start="sudo openvpn --config ~/.config/openvpn/profiles/lg.ovpn --user cmiranda --script-security 2 --daemon --auth-retry interact --log /var/log/openvpn.log"
+alias lgvpn.stop="sudo killall openvpn"
+alias lgvpn.logs="sudo tail -f /var/log/openvpn.log"
+
+alias mvnci='mvnd clean install -DskipTests -Dcheckstyle.skip=true -Dmvnd.rollingWindowSize=32 -Dgwt.localWorkers=32 -Dgwt.draftCompile=true -Dgwt.optimize=0 -P sdm && notify-send "BUILD FINISHED" "$(git rev-parse --abbrev-ref HEAD)"'
+alias mvni='mvnd install -DskipTests -Dcheckstyle.skip=true -Dmvnd.rollingWindowSize=32 -Dgwt.localWorkers=32 -Dgwt.draftCompile=true -Dgwt.optimize=0 -P sdm && notify-send "BUILD FINISHED" "$(git rev-parse --abbrev-ref HEAD)"'
+alias mvncs='mvnd checkstyle:checkstyle -DskipTests -Dmvnd.rollingWindowSize=32 -Dgwt.localWorkers=32 -Dgwt.draftCompile=true -Dgwt.optimize=0 && notify-send "CHECKSTYLE FINISHED" "$(git rev-parse --abbrev-ref HEAD)"'
