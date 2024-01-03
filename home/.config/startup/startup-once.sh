@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ( eval `ssh-agent -s` & )
-( set-display laptop & )
+( $HOME/bin/set-display dual & )
 ( bluetoothctl power on & )
 ( setxkbmap es & )
 ( numlockx & )
