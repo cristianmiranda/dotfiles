@@ -1,7 +1,7 @@
 # 🐧 Linux (post-install steps)
 
 - [🐧 Linux (post-install steps)](#-linux-post-install-steps)
-  - [🐧 LTS Kernel](#-lts-kernel)
+  - [🐧 LTS & ZEN Kernels](#-lts--zen-kernels)
   - [🔊 Peripherals](#-peripherals)
     - [⌨️ Keyboard](#️-keyboard)
     - [🖱️ Touchpad](#️-touchpad)
@@ -26,10 +26,12 @@
     - [🔋 TLP](#-tlp)
       - [🔋 TLP Configuration file](#-tlp-configuration-file)
 
-## 🐧 LTS Kernel
+## 🐧 LTS & ZEN Kernels
 
 ```bash
-sudo pacman -S linux-lts linux-lts-headers
+sudo pacman -S linux-lts linux-lts-headers linux-zen linux-zen-headers
+
+sudo grub-mkconfig -o /boot/grub/grub.cfg
 ```
 
 ```bash
