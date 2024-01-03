@@ -20,7 +20,6 @@ $HOME/bin/exterminate blueman-applet; blueman-applet &
 $HOME/bin/exterminate copyq; copyq &
 $HOME/bin/exterminate dunst
 $HOME/bin/exterminate pasystray; pasystray &
-$HOME/bin/exterminate optimus-manager-qt; optimus-manager-qt &
 $HOME/bin/exterminate fusuma; fusuma &
 $HOME/bin/exterminate sxhkd; mkfifo /tmp/sxhkd.fifo || true; sxhkd -t 10 -s /tmp/sxhkd.fifo &
 $HOME/bin/exterminate sxhkd-listener; $HOME/bin/sxhkd-listener &
