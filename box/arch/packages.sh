@@ -208,7 +208,7 @@ PACKAGES=(
     virt-manager
     visual-studio-code-bin
     vlc
-    whatsapp-nativefier
+    whatsapp-for-linux
     wireplumber
     xarchiver
     xcalib
