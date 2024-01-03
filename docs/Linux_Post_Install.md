@@ -160,6 +160,7 @@ sudo vim /etc/pacman.conf
 # Misc options
 Color
 ILoveCandy
+ParallelDownloads = 5
 ```
 
 ## 🫙 Apps
