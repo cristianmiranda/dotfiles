@@ -67,6 +67,17 @@ sudo systemctl --user start xsettingsd.service >>$LOG_FILE 2>&1
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 #
+# OpenRGB (for RGB control)
+# https://gitlab.com/CalcProgrammer1/OpenRGB#smbus-access-1
+#
+sudo modprobe i2c-dev >>$LOG_FILE 2>&1
+sudo groupadd --system i2c >>$LOG_FILE 2>&1
+sudo usermod $USER -aG i2c >>$LOG_FILE 2>&1
+sudo touch /etc/modules-load.d/i2c.conf >>$LOG_FILE 2>&1
+sudo sh -c 'echo "i2c-dev" >> /etc/modules-load.d/i2c.conf'
+sudo modprobe i2c-i801
+
+#
 # If Spotify or Virt-Manager cannot connect to the internet
 # replace the contents of /usr/lib/NetworkManager/conf.d/20-connectivity.conf
 # with the following (create the file if doesn't exist):

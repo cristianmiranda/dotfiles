@@ -89,6 +89,7 @@ PACKAGES=(
     jq
     kubectl
     kubectx
+    i2c-tools                       # openrgb dependency
     lazydocker
     lazygit
     libinput-gestures
@@ -127,6 +128,7 @@ PACKAGES=(
     octopi
     okular
     openresolv
+    openrgb
     openssh
     optimus-manager-git
     optimus-manager-qt
