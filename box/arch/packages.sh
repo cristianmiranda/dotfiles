@@ -158,6 +158,7 @@ PACKAGES=(
     qalculate-gtk
     qemu
     qt5ct
+    radeontop
     ranger
     rebuild-detector
     redli
