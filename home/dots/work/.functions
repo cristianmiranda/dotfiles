@@ -7,7 +7,7 @@ RED_BG='\e[101m'
 CYAN='\033[0;36m'
 NC='\033[0m' # No Color
 
-function esh() {
+function use-esh-db() {
   echo "ESH - Using ${1} db.properties";
   sudo cp /opt/escribe/conf/db.properties.${1} /opt/escribe/conf/db.properties;
 }
