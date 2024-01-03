@@ -46,6 +46,7 @@ PACKAGES=(
     cronie
     cups
     deluge-gtk
+    dnsmasq
     docker
     docker-compose
     dunst
