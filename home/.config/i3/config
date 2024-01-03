@@ -85,8 +85,8 @@ bindsym Control+$alt+Right move workspace to output right
 #
 # Change split layout of current container
 #
-bindsym $super+h split h
-bindsym $super+v split v
+# bindsym $super+h split h
+# bindsym $super+v split v
 
 #
 # Toggle tiling / floating

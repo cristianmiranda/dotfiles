@@ -24,10 +24,22 @@ XF86AudioMute
     /home/cmiranda/bin/amixer-vol toggle-mic
 
 ###########################################################################
+# Window Management
+###########################################################################
+super + h
+	i3-msg split h
+super + v
+	i3-msg split v
+
+###########################################################################
 # Terminal
 ###########################################################################
 super + Return
 	alacritty
+super + h + Return
+	i3-msg split h; alacritty
+super + v + Return
+	i3-msg split v; alacritty
 super + Escape
     tdrop --name tdrop -ma -w -8 -x 2 -y 34 -h 80% -s general alacritty
 
