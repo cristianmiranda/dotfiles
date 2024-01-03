@@ -216,7 +216,7 @@ PACKAGES=(
     xdotool
     xf86-input-libinput
     xf86-video-amdgpu
-    xfce4-power-manager
+    # xfce4-power-manager
     xidlehook
     xmlstarlet
     xorg-apps
