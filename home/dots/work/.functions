@@ -13,5 +13,5 @@ function esh() {
 }
 
 function devs() {
-  echo "bart" "bogdan" "dawid" "ewolk" "jan" "luciano"
+  echo "bart" "bogdan" "dawid" "ewolk" "jan"
 }
