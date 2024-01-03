@@ -19,6 +19,8 @@
     - [🐧 Kernel](#-kernel)
     - [⌨️ Keyboard](#️-keyboard-1)
     - [🔆 Brightness](#-brightness)
+  - [🖥️ Desktop](#-desktop)
+    - [⏰ Disable USB wake up](#-disable-usb-wake-up)
   - [💻 Laptop](#-laptop)
     - [💻 Lid Close event](#-lid-close-event)
     - [🔌 USB autosuspend](#-usb-autosuspend)
@@ -228,6 +230,33 @@ Restart and test using the following:
 
 ```bash
 echo "90" | sudo tee /sys/class/backlight/radeon_bl0/brightness
+```
+
+## 🖥️ Desktop
+
+### ⏰ Disable USB wake up
+
+See more @ https://wiki.archlinux.org/title/Power_management/Wakeup_triggers#Instantaneous_wakeups_from_suspend
+
+```bash
+sudo vim /etc/systemd/system/disable-usb-wakeup.service
+
+sudo systemctl enable disable-usb-wakeup.service
+sudo systemctl start disable-usb-wakeup.service
+```
+
+```conf
+[Unit]
+Description=Disable USB wakeup triggers in /proc/acpi/wakeup
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sh -c "echo XHCI > /proc/acpi/wakeup"
+ExecStop=/bin/sh -c "echo XHCI > /proc/acpi/wakeup"
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
 ```
 
 ## 💻 Laptop
