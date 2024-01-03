@@ -194,8 +194,8 @@ PACKAGES=(
     thunderbird
     ticktick
     timeshift
-    tlp
-    tlpui-git
+    # tlp
+    # tlpui-git
     tmux
     tree
     ttf-firacode-nerd
