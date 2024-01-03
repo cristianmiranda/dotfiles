@@ -106,7 +106,6 @@ PACKAGES=(
     ncdu
     neofetch
     neovim
-    nerd-fonts-meta
     net-tools
     networkmanager
     network-manager-applet
@@ -195,6 +194,8 @@ PACKAGES=(
     tlpui-git
     tmux
     tree
+    ttf-firacode-nerd
+    ttf-noto-nerd
     ueberzug
     unrar
     unzip
