@@ -178,11 +178,11 @@ super + shift + y; l
 		~/bin/radio luzutv
 
 # Owl
-super + shift + o; a
+super + shift + w; a
 		~/bin/owl
-super + shift + o; c
+super + shift + w; c
 		~/bin/coffee
-super + shift + o; d
+super + shift + w; d
 		killall owl coffee
 
 # Set URL handler
@@ -231,3 +231,20 @@ super + shift + d; v
 super + shift + d; i
 		xcalib -a -i
 
+# OpenRGB
+super + shift + o; k
+		~/bin/exterminate openrgb; ( openrgb --server & ); sleep 10; openrgb --mode static --color 0313fc
+super + shift + o; b
+		openrgb --mode static --color 0313fc													# BLUE
+super + shift + o; r
+		openrgb --mode static --color ff0000													# RED
+super + shift + o; g
+		openrgb --mode static --color 00ff00													# GREEN
+super + shift + o; w
+		openrgb --mode rainbow																	# RAINBOW
+super + shift + o; 0
+		openrgb --mode static --color 000000													# OFF
+super + shift + o; 1
+		openrgb --profile "ARG"																	# ARGENTINA
+super + shift + o; 2
+		openrgb --profile "BOCA"																# BOCA
