@@ -164,6 +164,21 @@ ILoveCandy
 ParallelDownloads = 5
 ```
 
+```bash
+sudo vim /etc/xdg/reflector/reflector.conf
+```
+
+```conf
+--save /etc/pacman.d/mirrorlist
+--protocol https
+--latest 70
+--sort rate
+```
+
+```bash
+sudo systemctl enable reflector.timer
+```
+
 ## 🫙 Apps
 
 ### 📝 neovim

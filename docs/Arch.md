@@ -40,7 +40,7 @@ them from the best connection mirror.
 ```bash
 pacman -Sy
 pacman -S reflector
-reflector --latest 5 --sort rate --save /etc/pacman.d/mirrorlist
+reflector --latest 70 --sort rate --save /etc/pacman.d/mirrorlist
 ```
 
 ### Partition disk
