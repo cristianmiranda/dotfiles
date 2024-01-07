@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 # Wait a bit until displays are on and xrandr is ready
-sleep 5
+# sleep 5
 
 # Terminate already running bar instances
 ps aux | grep -i polybar | grep -v ".config" | awk '{print $2}' | xargs -I {} kill -9 {}
