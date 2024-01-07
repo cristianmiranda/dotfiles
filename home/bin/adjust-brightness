@@ -3,11 +3,21 @@
 # Get current brightness
 BRIGHTNESS=$(xrandr --verbose | awk '{if ($1 ~ /Brightness/) {print $NF; exit}}');
 
-# Add 0.05
-BRIGHTNESS=`echo "$BRIGHTNESS $1 0.05" | bc`;
+# Adjust brightness
+ADJUSTMENT=0.1
+if [ "$1" == "+" ]; then
+    BRIGHTNESS=$(echo "scale=2; $BRIGHTNESS + $ADJUSTMENT" | bc);
+elif [ "$1" == "-" ]; then
+    echo $BRIGHTNESS
+    BRIGHTNESS=$(echo "scale=2; $BRIGHTNESS - $ADJUSTMENT" | bc);
+    echo $BRIGHTNESS
+else
+    echo "Invalid argument. Use '+' or '-'."
+    exit 1
+fi
 
 # Apply value
-xrandr --output eDP-1 --brightness $BRIGHTNESS
+xrandr --listmonitors | awk '{ print $ 4 }' | sed 's/\s*//g' | xargs -I {} xrandr --output {} --brightness $BRIGHTNESS
 
 # Notify
 #MSG_ID="991050"

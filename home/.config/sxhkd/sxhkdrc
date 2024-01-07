@@ -1,6 +1,12 @@
 ###########################################################################
 # Multimedia
 ###########################################################################
+# Brightness Up
+XF86MonBrightnessUp
+	~/bin/adjust-brightness +
+# Brightness Down
+XF86MonBrightnessDown
+	~/bin/adjust-brightness -
 # Rewind
 {XF86AudioPrev, shift + F10}
     dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
