@@ -94,8 +94,6 @@ super + m
     ~/bin/wm --go-to-by-class thunderbird
 super + n
     ~/bin/wm --go-to-by-class notion
-super + o
-    ~/bin/wm --go-to-by-class webstorm
 super + r
     ~/bin/wm --go-to-by-class element
 super + s
