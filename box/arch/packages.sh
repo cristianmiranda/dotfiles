@@ -15,6 +15,7 @@ PACKAGES=(
     accountsservice
     acpi
     acpi_call
+    apcupsd
     alacarte
     alacritty
     alsa-firmware

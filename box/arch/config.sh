@@ -62,6 +62,10 @@ sudo systemctl start cronie >>$LOG_FILE 2>&1
 sudo systemctl --user enable xsettingsd.service >>$LOG_FILE 2>&1
 sudo systemctl --user start xsettingsd.service >>$LOG_FILE 2>&1
 
+# apcupsd daemon
+sudo systemctl enable apcupsd.service >>$LOG_FILE 2>&1
+sudo systemctl start apcupsd.service >>$LOG_FILE 2>&1
+
 # tmux plugin manager
 # Run prefix + I to install plugins
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
