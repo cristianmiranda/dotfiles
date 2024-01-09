@@ -162,7 +162,6 @@ PACKAGES=(
     radeontop
     ranger
     rebuild-detector
-    redli
     ripgrep
     rofi
     rofi-calc
