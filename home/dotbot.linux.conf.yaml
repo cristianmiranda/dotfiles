@@ -86,6 +86,7 @@
 - create:
     - ~/Documents/Work/Workspace
     - ~/Documents/Work/Workspace_LG
+    - ~/Games
     - ~/Pictures/Screenshots
     - ~/logs
 
