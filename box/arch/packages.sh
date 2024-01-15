@@ -40,7 +40,6 @@ PACKAGES=(
     brightnessctl
     cargo
     cawbird-git
-    chromium
     clipboard
     cmatrix
     copyq
@@ -76,6 +75,7 @@ PACKAGES=(
     glances
     gnome-keyring
     go
+    google-chrome
     gqlplus
     gtkpod
     gvfs                    # thunar dependency
