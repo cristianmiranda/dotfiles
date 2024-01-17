@@ -1,11 +1,6 @@
 #!/bin/bash
 
 #
-# Polybar
-#
-~/.config/polybar/launch.sh &
-
-#
 # System
 #
 crontab ~/.crontab &
@@ -15,7 +10,6 @@ $HOME/bin/exterminate sxhkd-listener; $HOME/bin/sxhkd-listener &
 #
 # Apps
 #
-( $HOME/bin/exterminate copyq; copyq & )
 ( $HOME/bin/exterminate fusuma; fusuma & )
 if [[ ! $(hostname) =~ 'virt' ]]; then picom -b; fi &
 if [[ ! $(hostname) =~ 'virt' ]]; then $HOME/bin/exterminate insync; QT_AUTO_SCREEN_SCALE_FACTOR=1 insync start; fi &
@@ -48,3 +42,8 @@ nitrogen --restore &
 # brightnessctl --device='tpacpi::kbd_backlight' set 1 &
 # /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 # xmodmap -e "keycode 49 = F13 ordmasculine ordfeminine ordmasculine ordfeminine backslash backslash backslash" &
+
+#
+# Polybar
+#
+~/.config/polybar/launch.sh &

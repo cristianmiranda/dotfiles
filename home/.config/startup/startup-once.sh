@@ -26,4 +26,4 @@
 ( pasystray & )
 ( alttab -d 1 -w 1 -i 100x100 -t 100x100 -bg "#222D31" -frame "#1793d1" -s 2 & )
 ( openrgb --server & ); sleep 10; openrgb --mode static --color 0313fc
-
+( copyq --start-server & )
