@@ -39,41 +39,43 @@ function unmuteVolume() {
 }
 
 function runLocker() {
-    i3lock \
-        $NO_FORK \
-        --insidever-color=$CLEAR \
-        --ringver-color=$BLANK \
-        \
-        --insidewrong-color=$WRONG_FILL \
-        --ringwrong-color=$WRONG \
-        \
-        --inside-color=$BLANK \
-        --ring-color=$BLANK \
-        --line-color=$BLANK \
-        --separator-color=$BLANK \
-        \
-        --verif-color=$TEXT \
-        --wrong-color=$WRONG \
-        --time-color=$TEXT \
-        --date-color=$TEXT \
-        --layout-color=$TEXT \
-        --keyhl-color=$DEFAULT \
-        --bshl-color=$DEFAULT \
-        \
-        --screen 1 \
-        --blur 10 \
-        --radius 360 \
-        --ring-width 20 \
-        --clock \
-        --time-str="%H:%M:%S" \
-        --time-size=100 \
-        --time-font=$FONT \
-        --date-str="" \
-        --date-size=20 \
-        --date-font=$FONT \
-        --verif-text="Verifying..." \
-        --wrong-text="Wrong!" \
-        --pass-media-keys
+    betterlockscreen -l
+
+    # i3lock \
+    #     $NO_FORK \
+    #     --insidever-color=$CLEAR \
+    #     --ringver-color=$BLANK \
+    #     \
+    #     --insidewrong-color=$WRONG_FILL \
+    #     --ringwrong-color=$WRONG \
+    #     \
+    #     --inside-color=$BLANK \
+    #     --ring-color=$BLANK \
+    #     --line-color=$BLANK \
+    #     --separator-color=$BLANK \
+    #     \
+    #     --verif-color=$TEXT \
+    #     --wrong-color=$WRONG \
+    #     --time-color=$TEXT \
+    #     --date-color=$TEXT \
+    #     --layout-color=$TEXT \
+    #     --keyhl-color=$DEFAULT \
+    #     --bshl-color=$DEFAULT \
+    #     \
+    #     --screen 1 \
+    #     --blur 10 \
+    #     --radius 360 \
+    #     --ring-width 20 \
+    #     --clock \
+    #     --time-str="%H:%M:%S" \
+    #     --time-size=100 \
+    #     --time-font=$FONT \
+    #     --date-str="" \
+    #     --date-size=20 \
+    #     --date-font=$FONT \
+    #     --verif-text="Verifying..." \
+    #     --wrong-text="Wrong!" \
+    #     --pass-media-keys
 }
 
 function lockScreen() {
@@ -81,7 +83,9 @@ function lockScreen() {
     muteVolume
     turnScreenOff
 
+    openrgb --mode static --color 000000
     runLocker
+    openrgb --mode static --color 0313fc
 
     resumeNotifications
     unmuteVolume

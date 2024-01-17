@@ -7,6 +7,7 @@
     - [🖱️ Touchpad](#️-touchpad)
     - [🛜 Bluetooth](#-bluetooth)
   - [💅 Cosmetics](#-cosmetics)
+    - [🖼 Lock Screen](#-lock-screen)
     - [💄 Qt5](#-qt5)
     - [👋 SDDM greeter](#-sddm-greeter)
     - [☢️ GRUB Theme](#️-grub-theme)
@@ -113,6 +114,12 @@ KernelExperimental = true
 ```
 
 ## 💅 Cosmetics
+
+### 🖼 Lock Screen
+
+```bash
+betterlockscreen -u ~/wallpapers/dual/pacman.jpg --display 1 --span
+```
 
 ### 💄 Qt5
 

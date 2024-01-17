@@ -32,6 +32,7 @@ PACKAGES=(
     base-devel
     bashtop
     bat
+    betterlockscreen
     bind
     blueman
     bluez
