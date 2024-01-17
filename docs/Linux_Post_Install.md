@@ -19,7 +19,8 @@
     - [🐧 Kernel](#-kernel)
     - [⌨️ Keyboard](#️-keyboard-1)
     - [🔆 Brightness](#-brightness)
-  - [🖥️ Desktop](#-desktop)
+  - [🖥️ Desktop](#️-desktop)
+    - [💿 Mounting disks](#-mounting-disks)
     - [⏰ Disable USB wake up](#-disable-usb-wake-up)
   - [💻 Laptop](#-laptop)
     - [💻 Lid Close event](#-lid-close-event)
@@ -249,6 +250,18 @@ echo "90" | sudo tee /sys/class/backlight/radeon_bl0/brightness
 ```
 
 ## 🖥️ Desktop
+
+### 💿 Mounting disks
+
+```bash
+sudo blkid
+sudo vim /etc/fstab
+```
+
+```conf
+# /dev/nvme1n1p1 LABEL=DATA
+UUID=f26c153f-350d-4cbc-8286-bc89f672b2d0	/data		ext4		rw,relatime	0 2
+```
 
 ### ⏰ Disable USB wake up
 
