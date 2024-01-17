@@ -79,16 +79,20 @@ function runLocker() {
 }
 
 function lockScreen() {
-    pauseNotifications
-    muteVolume
-    turnScreenOff
+    if pgrep -x "i3lock" >/dev/null; then
+        echo "Computer already locked. Aborting..."
+    else
+        pauseNotifications
+        muteVolume
+        turnScreenOff
 
-    openrgb --mode static --color 000000
-    runLocker
-    openrgb --mode static --color 0313fc
+        openrgb --mode static --color 000000
+        runLocker
+        openrgb --mode static --color 0313fc
 
-    resumeNotifications
-    unmuteVolume
+        resumeNotifications
+        unmuteVolume
+    fi
 }
 
 ARGS=("$@")
