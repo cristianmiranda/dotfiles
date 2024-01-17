@@ -1,7 +1,7 @@
 # 🐧 Linux (post-install steps)
 
 - [🐧 Linux (post-install steps)](#-linux-post-install-steps)
-  - [🐧 LTS & ZEN Kernels](#-lts--zen-kernels)
+  - [🐧 LTS \& ZEN Kernels](#-lts--zen-kernels)
   - [🔊 Peripherals](#-peripherals)
     - [⌨️ Keyboard](#️-keyboard)
     - [🖱️ Touchpad](#️-touchpad)
