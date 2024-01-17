@@ -40,6 +40,7 @@ PACKAGES=(
     brightnessctl
     cargo
     cawbird-git
+    chili-sddm-theme
     clipboard
     cmatrix
     copyq
@@ -170,7 +171,6 @@ PACKAGES=(
     ruby-fusuma
     screen
     sddm
-    sddm-sugar-candy-git
     seahorse
     shell-color-scripts
     simplescreenrecorder

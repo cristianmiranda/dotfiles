@@ -130,13 +130,12 @@ See more @ https://www.xfce-look.org/p/1312658/
 ```bash
 # Set default theme
 sudo vim /usr/lib/sddm/sddm.conf.d/default.conf
-sudo cp /usr/share/sddm/themes/sugar-candy/theme.conf /usr/share/sddm/themes/sugar-candy/theme.conf.user
 ```
 
 ```conf
 [Theme]
 # Current theme name
-Current=sugar-candy
+Current=chili
 ```
 
 ```bash
