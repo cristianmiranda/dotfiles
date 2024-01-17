@@ -9,11 +9,22 @@ if [[ "$MONITOR_RESOLUTION" == "4K" ]]; then
     DPI=192
 fi
 
+function jira-cli() {
+    action=$(rofi -dmenu -theme $2 -dpi $DPI -p "JIRA #")
+    if [[ "$action" == "" ]]; then
+        exit 0
+    else
+        $HOME/bin/jira $action
+    fi
+}
+
 # Run rofi based on given arguments.
 if [[ "$1" == "calc" ]]; then
-    LC_NUMERIC=en_US.UTF-8 LC_MONETARY=en_US.UTF-8 rofi -show calc -modi calc -no-lazy-grab -no-persist-history -no-history -theme $2 -dpi $DPI -calc-command "copyq copy {result}"
+    LC_NUMERIC=en_US.UTF-8 LC_MONETARY=en_US.UTF-8 rofi -show calc -modi calc -no-lazy-grab -no-persist-history -no-history -theme $2 -dpi $DPI -calc-command "copyq add {result}"
 elif [[ "$1" == "menu" ]]; then
     rofi -dmenu -no-persist-history -no-history -theme $2 -dpi $DPI -calc-command "echo {result}"
+elif [[ "$1" == "jira" ]]; then
+    jira-cli $1 $2
 else
     rofi -no-lazy-grab -show $1 -modi $1 -theme $2 -dpi $DPI
 fi

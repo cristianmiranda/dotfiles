@@ -2,6 +2,12 @@
 #
 # See README.md for details
 
+export JIRA_URL=https://lillegroup.atlassian.net
+export JIRA_NAME=cristian.miranda@lillegroup.com
+export JIRA_PREFIX=ESH-
+export JIRA_RAPID_BOARD=true
+export JIRA_DEFAULT_ACTION=new
+
 function jira() {
   local action jira_url jira_prefix
   if [[ -n "$1" ]]; then
@@ -37,28 +43,27 @@ function jira() {
     jira_prefix=""
   fi
 
-
   if [[ $action == "new" ]]; then
     echo "Opening new issue"
-    url-handler "${jira_url}/secure/CreateIssue!default.jspa"
+    $HOME/bin/url-handler "${jira_url}/secure/CreateIssue!default.jspa"
   elif [[ "$action" == "assigned" || "$action" == "reported" ]]; then
     _jira_query ${@:-$action}
   elif [[ "$action" == "mine" ]]; then
     echo "Opening my issues"
-    url-handler "${jira_url}/issues/?filter=-1"
+    $HOME/bin/url-handler "${jira_url}/issues/?filter=-1"
   elif [[ "$action" == "dashboard" ]]; then
     echo "Opening dashboard"
     if [[ "$JIRA_RAPID_BOARD" == "true" ]]; then
       _jira_rapid_board ${@}
     else
-      url-handler "${jira_url}/secure/Dashboard.jspa"
+      $HOME/bin/url-handler "${jira_url}/secure/Dashboard.jspa"
     fi
   elif [[ "$action" == "tempo" ]]; then
     echo "Opening tempo"
     if [[ -n "$JIRA_TEMPO_PATH" ]]; then
-      url-handler "${jira_url}${JIRA_TEMPO_PATH}"
+      $HOME/bin/url-handler "${jira_url}${JIRA_TEMPO_PATH}"
     else
-      url-handler "${jira_url}/secure/Tempo.jspa"
+      $HOME/bin/url-handler "${jira_url}/secure/Tempo.jspa"
     fi
   elif [[ "$action" == "dumpconfig" ]]; then
     echo "JIRA_URL=$jira_url"
@@ -103,7 +108,7 @@ function jira() {
     else
       echo "Opening issue #$issue"
     fi
-    url-handler "${jira_url}/browse/${issue}${url_fragment}"
+    $HOME/bin/url-handler "${jira_url}/browse/${issue}${url_fragment}"
   fi
 }
 
@@ -122,9 +127,9 @@ function _jira_rapid_board() {
   rapid_view=${2:=$JIRA_RAPID_VIEW}
 
   if [[ -z $rapid_view ]]; then
-    url-handler "${jira_url}/secure/RapidBoard.jspa"
+    $HOME/bin/url-handler "${jira_url}/secure/RapidBoard.jspa"
   else
-    url-handler "${jira_url}/secure/RapidBoard.jspa?rapidView=$rapid_view"
+    $HOME/bin/url-handler "${jira_url}/secure/RapidBoard.jspa?rapidView=$rapid_view"
   fi
 }
 
@@ -149,7 +154,7 @@ function _jira_query() {
 
   echo "Browsing issues ${verb} ${preposition} ${jira_name}"
   query="${lookup}+%3D+%22${jira_name}%22+AND+resolution+%3D+unresolved+ORDER+BY+priority+DESC%2C+created+ASC"
-  url-handler "${jira_url}/secure/IssueNavigator.jspa?reset=true&jqlQuery=${query}"
+  $HOME/bin/url-handler "${jira_url}/secure/IssueNavigator.jspa?reset=true&jqlQuery=${query}"
 }
 
 jira "$@"

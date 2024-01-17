@@ -58,6 +58,8 @@ super + shift + e
     ~/bin/open-rofi emoji ~/.config/rofi/launchers/text/emoji.rasi
 super + shift + c
     ~/bin/open-rofi calc ~/.config/rofi/launchers/text/calc.rasi
+super + shift + j
+	~/bin/open-rofi jira ~/.config/rofi/launchers/text/text.rasi
 super + shift + p
     ~/.config/rofi/powermenu/powermenu.sh
 
