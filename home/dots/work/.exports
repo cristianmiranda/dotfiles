@@ -15,3 +15,12 @@ export LG_BASE_DIR="${BASE_WORK_DIR}/Workspace_LG"
 export PATH="$PATH:/opt/oracle/instantclient"
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/opt/oracle/instantclient"
 export USE_GKE_GCLOUD_AUTH_PLUGIN=True
+
+#
+# JIRA
+#
+export JIRA_URL=https://lillegroup.atlassian.net
+export JIRA_NAME=cristian.miranda@lillegroup.com
+export JIRA_PREFIX=ESH-
+export JIRA_RAPID_BOARD=true
+export JIRA_DEFAULT_ACTION=new
