@@ -256,3 +256,5 @@ super + shift + o; 1
 		openrgb --profile "ARG"																	# ARGENTINA
 super + shift + o; 2
 		openrgb --profile "BOCA"																# BOCA
+super + shift + o; 3
+		openrgb --profile "GOLDEN"																# GOLDEN
