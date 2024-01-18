@@ -14,12 +14,12 @@ XIDLEHOOK_LOCK_SOCKET=/tmp/xidlehook.sock
 
 NO_FORK="--nofork"
 
-function pauseNotifications() {
-    dunstctl set-paused true
+function doNotDisturbOn() {
+    $HOME/bin/do-not-disturb on
 }
 
-function resumeNotifications() {
-    dunstctl set-paused false
+function doNotDisturbOff() {
+    $HOME/bin/do-not-disturb off
 }
 
 function turnScreenOff() {
@@ -82,7 +82,7 @@ function lockScreen() {
     if pgrep -x "i3lock" >/dev/null; then
         echo "Computer already locked. Aborting..."
     else
-        pauseNotifications
+        doNotDisturbOn
         muteVolume
         turnScreenOff
 
@@ -90,7 +90,7 @@ function lockScreen() {
         runLocker
         openrgb --mode static --color 0313fc
 
-        resumeNotifications
+        doNotDisturbOff
         unmuteVolume
     fi
 }

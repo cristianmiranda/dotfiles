@@ -1,0 +1,20 @@
+#!/bin/bash
+
+MODE=$1 # on/off
+
+APPS=(
+    "telegram-desktop"
+    "whatsapp-for-linux"
+)
+
+if [ "$MODE" == "on" ]; then
+    MODE="mute"
+    dunstctl set-paused true 2>/dev/null
+else
+    MODE="unmute"
+    dunstctl set-paused false 2>/dev/null
+fi
+
+for APP in "${APPS[@]}"; do
+    $HOME/bin/toggle-app-audio $APP $MODE
+done

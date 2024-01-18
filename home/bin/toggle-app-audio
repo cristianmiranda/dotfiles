@@ -1,0 +1,14 @@
+#!/bin/bash
+
+APP_NAME=$1
+ACTION=$2
+SINK_INPUTS=$(pactl list sink-inputs | grep -i -E -B 20 "(application.name = \"$APP_NAME\"|device.description = \"$APP_NAME\")" | grep "Sink Input #" | awk '{print $3}' | sed 's/#//g')
+
+for SINK in $SINK_INPUTS; do
+  MUTE_STATUS=0
+  if [ "$ACTION" == "mute" ]; then
+    MUTE_STATUS=1
+  fi
+
+  pactl set-sink-input-mute $SINK $MUTE_STATUS
+done

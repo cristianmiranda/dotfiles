@@ -7,9 +7,9 @@ case "$1" in
 --toggle)
     muted=$(dunstctl is-paused 2>/dev/null)
     if [[ $muted == "true" ]]; then
-        dunstctl set-paused false 2>/dev/null
+        $HOME/bin/do-not-disturb off
     else
-        dunstctl set-paused true 2>/dev/null
+        $HOME/bin/do-not-disturb on
     fi
     ;;
 *)
