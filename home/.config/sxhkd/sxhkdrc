@@ -86,8 +86,6 @@ super + shift + 5
 ###########################################################################
 super + c
     ~/bin/wm --go-to-by-class Code
-super + d
-    ~/bin/wm --go-to-by-class Discord
 super + e
     ~/bin/wm --go-to-by-class FirefoxDeveloperEdition$
 super + f
