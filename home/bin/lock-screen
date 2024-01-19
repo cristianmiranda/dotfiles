@@ -86,9 +86,9 @@ function lockScreen() {
         muteVolume
         turnScreenOff
 
-        openrgb --mode static --color 000000
+        # openrgb --mode static --color 000000
         runLocker
-        openrgb --mode static --color 0313fc
+        # openrgb --mode static --color 0313fc
 
         doNotDisturbOff
         unmuteVolume
