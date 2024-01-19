@@ -180,6 +180,7 @@ PACKAGES=(
     solaar
     sops
     sox
+    speedtest-cli
     spotify
     starship
     steam
