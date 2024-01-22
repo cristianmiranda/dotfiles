@@ -12,7 +12,6 @@ $HOME/bin/exterminate sxhkd-listener; $HOME/bin/sxhkd-listener &
 #
 ( $HOME/bin/exterminate fusuma; fusuma & )
 if [[ ! $(hostname) =~ 'virt' ]]; then picom -b; fi &
-if [[ ! $(hostname) =~ 'virt' ]]; then $HOME/bin/exterminate insync; QT_AUTO_SCREEN_SCALE_FACTOR=1 insync start; fi &
 
 #
 # Lock Screen
