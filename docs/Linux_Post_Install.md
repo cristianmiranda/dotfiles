@@ -23,6 +23,7 @@
   - [🖥️ Desktop](#️-desktop)
     - [💿 Mounting disks](#-mounting-disks)
     - [⏰ Disable USB wake up](#-disable-usb-wake-up)
+    - [⚡ UPS](#-ups)
   - [💻 Laptop](#-laptop)
     - [💻 Lid Close event](#-lid-close-event)
     - [🔌 USB autosuspend](#-usb-autosuspend)
@@ -293,6 +294,43 @@ RemainAfterExit=yes
 
 [Install]
 WantedBy=multi-user.target
+```
+
+### ⚡ UPS
+
+```bash
+sudo vim /etc/apcupsd/apcupsd.conf
+```
+
+```conf
+#
+# Note: BATTERYLEVEL, MINUTES, and TIMEOUT work in conjunction, so
+# the first that occurs will cause the initation of a shutdown.
+#
+
+# If during a power failure, the remaining battery percentage
+# (as reported by the UPS) is below or equal to BATTERYLEVEL,
+# apcupsd will initiate a system shutdown.
+BATTERYLEVEL 15
+
+# If during a power failure, the remaining runtime in minutes
+# (as calculated internally by the UPS) is below or equal to MINUTES,
+# apcupsd, will initiate a system shutdown.
+MINUTES 10
+
+# If during a power failure, the UPS has run on batteries for TIMEOUT
+# many seconds or longer, apcupsd will initiate a system shutdown.
+# A value of 0 disables this timer.
+#
+#  Note, if you have a Smart UPS, you will most likely want to disable
+#    this timer by setting it to zero. That way, you UPS will continue
+#    on batteries until either the % charge remaing drops to or below BATTERYLEVEL,
+#    or the remaining battery runtime drops to or below MINUTES.  Of course,
+#    if you are testing, setting this to 60 causes a quick system shutdown
+#    if you pull the power plug.
+#  If you have an older dumb UPS, you will want to set this to less than
+#    the time you know you can run on batteries.
+TIMEOUT 60
 ```
 
 ## 💻 Laptop
