@@ -216,6 +216,17 @@ mode "move-to-workspace" {
         bindsym Return mode "default"
 }
 
+mode "init-workspace" {
+        bindsym 1 exec --no-startup-id $HOME/bin/init-workspace 1; mode "default"
+        bindsym 2 exec --no-startup-id $HOME/bin/init-workspace 2; mode "default"
+        bindsym 3 exec --no-startup-id $HOME/bin/init-workspace 3; mode "default"
+        bindsym 4 exec --no-startup-id $HOME/bin/init-workspace 4; mode "default"
+        bindsym 0 exec --no-startup-id $HOME/bin/init-workspace 0; mode "default"
+
+        bindsym Escape mode "default"
+        bindsym Return mode "default"
+}
+
 mode "i3-layouts" {
         bindsym v exec --no-startup-id i3l vstack; mode "default"
         bindsym h exec --no-startup-id i3l hstack; mode "default"
@@ -253,7 +264,7 @@ mode "gaps" {
 }
 
 bindsym $super+Shift+g mode "gaps"
-bindsym $super+Shift+i mode "i3-layouts"
+bindsym $super+Shift+i mode "init-workspace"
 bindsym $super+Shift+m mode "move-to-workspace"
 bindsym $super+Shift+r mode "resize"
 bindsym $super+Shift+s mode "swap-with-workspace"

@@ -8,41 +8,34 @@
 
 MONITORS=`xrandr --listmonitors | grep "+" | wc -l`
 
-# Move to workspace
-i3-msg "workspace number $1"
-
-if [[ $1 -eq 1 ]]; then
-    thunderbird &
+WORKSPACE=$1
+if [[ $WORKSPACE -eq 0 ]]; then
+    WORKSPACE=10
 fi
 
-if [[ $1 -eq 2 ]]; then
+# Move to workspace
+i3-msg "workspace number $WORKSPACE"
+
+if [[ $WORKSPACE -eq 1 ]]; then
+    thunderbird &
+    sleep 0.5
+    ticktick &
+fi
+
+if [[ $WORKSPACE -eq 2 ]]; then
+    telegram-desktop &
+    sleep 0.5
+    whatsapp-for-linux &
+fi
+
+if [[ $WORKSPACE -eq 3 ]]; then
     firefox &
 fi
 
-if [[ $1 -eq 3 ]]; then
-    /usr/local/firefox_dev/firefox &
+if [[ $WORKSPACE -eq 4 ]]; then
+    firefox-developer-edition &
 fi
 
-# if [[ $1 -eq 4 ]]; then
-#     intellij-idea-ultimate &
-# fi
-
-if [[ $1 -eq 5 ]]; then
-    if [[ "$MONITORS" == "2" ]]; then
-        i3-msg 'append_layout ~/.config/i3/layouts/telegram-whatsapp.json'
-        telegram-desktop &
-        walc &
-    else
-        i3-msg 'append_layout ~/.config/i3/layouts/telegram-whatsapp.json'
-        telegram-desktop &
-        walc &
-    fi
-fi 
-
-if [[ $1 -eq 6 ]]; then
-    element-desktop &
-fi
-
-if [[ $1 -eq 7 ]]; then
-    spotify --force-device-scale-factor=1.75 &
+if [[ $WORKSPACE -eq 10 ]]; then
+    spotify &
 fi
