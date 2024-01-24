@@ -2,7 +2,16 @@
 
 MODE=$1 # on/off
 
+#
+# $ pactl list sink-inputs
+#
+#   ... application.name   =
+#   ... device.description =
+#   ... media.name         =
+#
+
 APPS=(
+    "element"
     "telegram-desktop"
     "whatsapp-for-linux"
 )
