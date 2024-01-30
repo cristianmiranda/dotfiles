@@ -53,3 +53,5 @@ export CHROME_EXECUTABLE=/usr/bin/chromium
 
 # Export path where pub packages live
 export PATH="$PATH":"$HOME/.pub-cache/bin"
+
+export LOGS_DIR="${HOME}/logs"
