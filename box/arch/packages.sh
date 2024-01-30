@@ -209,6 +209,7 @@ PACKAGES=(
     ueberzug
     unrar
     unzip
+    uswsusp-git            # s2ram (suspend)
     variety
     viewnior
     virt-manager
