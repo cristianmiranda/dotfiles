@@ -33,5 +33,5 @@ COMMAND="
         \"$HOME/\" $BACKUP_DIR_PATH \
 "
 
-echo $COMMAND | tee -a $HOME/logs/backup_$TIMESTAMP.log
-eval $COMMAND | tee -a $HOME/logs/backup_$TIMESTAMP.log
+echo $COMMAND | tee -a $LOGS_DIR/backup_$TIMESTAMP.log
+eval $COMMAND | tee -a $LOGS_DIR/backup_$TIMESTAMP.log
