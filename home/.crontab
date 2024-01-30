@@ -10,3 +10,8 @@
 # Backup entire home directory to external drive
 #
 @weekly bash $HOME/bin/backup
+
+#
+# Creates a dump of the local ESH Oracle database
+#
+@weekly docker exec -it esh-db bash -c "source /home/oracle/.bashrc; bash /media/esh-db-dumps/extract-dump.sh > /media/esh-db-dumps/extract-dump.log 2>&1"
