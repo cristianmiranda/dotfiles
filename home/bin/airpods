@@ -46,7 +46,7 @@ speaker() {
   #
   # Controlled by wireplumber
   #
-  pactl set-card-profile $AIRPODS_NAME $SPEAKER_PROFILE_AAC
+  pactl set-card-profile $AIRPODS_NAME $SPEAKER_PROFILE_SBC
   sleep 1
   pactl set-default-sink $(pactl list sinks short | grep -i "$AIRPODS_SINK" | awk '{print $2}')
 }
