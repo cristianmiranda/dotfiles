@@ -92,6 +92,7 @@ PACKAGES=(
     jetbrains-toolbox
     jitsi-meet-desktop-bin
     jq
+    kde-cli-tools
     kubectl
     kubectx
     i2c-tools                       # openrgb dependency
