@@ -133,11 +133,11 @@ super + shift + a; s
 super + shift + a; h
 		~/bin/airpods headset '44:1B:88:07:A8:C8'
 super + shift + a; a
-		pactl set-default-sink $(pactl list sinks short | grep -i "hdmi" | awk '\{print $2\}')
+		pactl set-default-sink $(pactl list sinks short | grep -i "hdmi" | awk '{print $2}')
 super + shift + a; l
-		pactl set-default-sink $(pactl list sinks short | grep -i "HiFi__hw_sofhdadsp__sink" | awk '\{print $2\}')
+		pactl set-default-sink $(pactl list sinks short | grep -i "HiFi__hw_sofhdadsp__sink" | awk '{print $2}')
 super + shift + a; g
-		pactl set-default-sink $(pactl list sinks short | grep -i "alsa_output.usb-Generic_USB_Audio-00.HiFi__hw_Audio_1__sink" | awk '\{print $2\}')
+		pactl set-default-sink $(pactl list sinks short | grep -i "alsa_output.usb-Generic_USB_Audio-00.HiFi__hw_Audio__sink" | awk '{print $2}')
 super + shift + a; r
 		~/bin/restart-audio
 
