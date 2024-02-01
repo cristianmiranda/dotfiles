@@ -55,3 +55,6 @@ export CHROME_EXECUTABLE=/usr/bin/chromium
 export PATH="$PATH":"$HOME/.pub-cache/bin"
 
 export LOGS_DIR="${HOME}/logs"
+
+export GOOGLE_DRIVE=$HOME/Google\ Drive
+export GOOGLE_DRIVE_LG=$HOME/Google\ Drive\ \(LG\)
