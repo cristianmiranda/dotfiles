@@ -14,4 +14,4 @@
 #
 # Creates a dump of the local ESH Oracle database
 #
-@weekly docker exec -it esh-db bash -c "source /home/oracle/.bashrc; bash /media/esh-db-dumps/extract-dump.sh > /media/esh-db-dumps/extract-dump.log 2>&1" && bash $LG_BASE_DIR/esh-db-dumps/post-extract-dump.sh > $LG_BASE_DIR/esh-db-dumps/post-extract-dump.log 2>&1
+@monthly docker exec -it esh-db bash -c "source /home/oracle/.bashrc; bash /media/esh-db-dumps/extract-dump.sh > /media/esh-db-dumps/extract-dump.log 2>&1" && bash $LG_BASE_DIR/esh-db-dumps/post-extract-dump.sh > $LG_BASE_DIR/esh-db-dumps/post-extract-dump.log 2>&1
