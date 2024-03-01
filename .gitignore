@@ -57,10 +57,9 @@ home/.config/xfce4/xfconf/xfce-perchannel-xml/thunar.xml
 .gitsecret/keys/random_seed
 !*.secret
 
-# Steam games icons
-home/**/steam_icon_*.png
-
-# Distrobox icons
+# Icons
+home/.local/share/icons/**/steam_icon_*.png
+home/.local/share/icons/**/chrome*.png
 home/.local/share/icons/distrobox
 
 # NeoVim compiled files
