@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Firefox 26
+GenericName=Web Browser
+Comment=Browse the World Wide Web
+Exec=/home/cmiranda/bin/dpi-open /data/work/lillegroup/gwt-dev-mode/ff26/firefox %u
+Icon=firefox
+Terminal=false
+StartupNotify=false
+Type=Application
