@@ -62,7 +62,7 @@
   	ph = "!f() { git push origin $(git symbolic-ref --short HEAD); }; f"
 	# Push force
   	phf = "!f() { git push --force-with-lease origin $(git symbolic-ref --short HEAD); }; f"
-	
+
 	#
 	# git diff
 	#
@@ -85,7 +85,7 @@
 	#
 	cp = cherry-pick
 	# Interactive rebase with the given number of latest commits
-	r = "!r() { git rebase -i --autosquash HEAD~$1; }; r"
+	r = "!r() { git rebase -i --autosquash --committer-date-is-author-date HEAD~$1; }; r"
 	# ~/bin/git-fixup
 	f = fixup
 
@@ -120,7 +120,7 @@
 	# Show the user email for the current repository.
 	whoami = config user.email
 
-	# Creates a branch for ESH development with the given JIRA ticket as suffix and description 
+	# Creates a branch for ESH development with the given JIRA ticket as suffix and description
 	esh = !"f() { desc=`echo \"$2\" | sed 's/ /_/g'`; git checkout -b ESH-\"$1\"_$desc; }; f"
 
 [apply]
@@ -233,7 +233,7 @@
 [url "git://gist.github.com/"]
 
 	insteadOf = "gist:"
-	
+
 [filter "lfs"]
 
 	clean = git-lfs clean -- %f
@@ -244,7 +244,7 @@
 [gpg]
 
 	program = gpg
-	
+
 [tag]
 
 	forceSignAnnotated = false
