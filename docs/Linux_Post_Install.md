@@ -145,6 +145,12 @@ sudo vim /usr/lib/sddm/sddm.conf.d/default.conf
 [Theme]
 # Current theme name
 Current=chili
+
+# Cursor size used in the greeter
+CursorSize=24
+
+# Cursor theme used in the greeter
+CursorTheme=Breeze_Light
 ```
 
 ```bash
