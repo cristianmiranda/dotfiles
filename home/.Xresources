@@ -5,3 +5,5 @@ Xft.rgba:      rgb
 Xft.autohint:  false
 Xft.hintstyle: hintfull
 Xft.lcdfilter: lcddefault
+
+Xcursor.theme: Breeze_Light
