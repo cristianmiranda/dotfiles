@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+set -o kshglob      # Enable extended pattern matching operators | ls *.@(txt|pdf)
+set -o GLOB_DOTS    # Include hidden files in globbing           | ls *
+
 # Load AMD GPU
 alias amdgpuload="gpu-manager | grep 'amdgpu loaded? no' && sudo modprobe amdgpu || echo 'AMD GPU already loaded'"
 
