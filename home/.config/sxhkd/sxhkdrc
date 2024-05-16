@@ -143,7 +143,7 @@ super + shift + a; r
 
 # Launch
 super + shift + l; c
-		firefox --new-window "https://chat.openai.com/?model=gpt-4"
+		firefox --new-window "https://chatgpt.com?model=gpt-4o"
 super + shift + l; d
 		cd ~/dotfiles && alacritty -e nvim
 super + shift + l; e
