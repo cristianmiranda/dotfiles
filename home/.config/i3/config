@@ -139,7 +139,7 @@ bindsym $super+$alt+0 workspace number 20
 # Go to first free workspace
 #
 bindsym $super+o exec --no-startup-id i3-msg workspace `echo {1..20} | tr ' ' '\n' | grep -vxFf <(i3-msg -t get_workspaces | jq '.[].num' | tr ' ' '\n') | head -n 1`
-bindsym $super+d exec --no-startup-id ~/.config/i3/scripts/show-desktop.sh
+# bindsym $super+d exec --no-startup-id ~/.config/i3/scripts/show-desktop.sh
 #
 # Alt + Tab
 #
