@@ -1,10 +1,10 @@
 #!/bin/bash
 
+RANDOM_NUMBER=$(shuf -i 1-999999 -n 1);
+WEATHER=$(curl -s "wttr.in/?format=1&random=$RANDOM_NUMBER");
 
-WEATHER=$(curl -s "wttr.in/?format=1"); 
-
-if [[ "$WEATHER" =~ "Unknown" || "$WEATHER" =~ "Sorry" ]]; then 
+if [[ "$WEATHER" =~ "Unknown" || "$WEATHER" =~ "Sorry" ]]; then
     echo "🌪️"
-else 
-    echo $WEATHER; 
+else
+    echo $WEATHER;
 fi
