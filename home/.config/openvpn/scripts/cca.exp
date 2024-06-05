@@ -19,14 +19,14 @@ puts -nonewline $outFileId "$password\n"
 close $outFileId
 
 puts "🔑 Requesting OTP..."
-# set otp [exec /home/cmiranda/bin/1p cca-vpn-otp]
-expect_user -re "(.*)\n"
-set otp $expect_out(1,string)
+set otp [exec /home/cmiranda/bin/1p cca-vpn-otp]
+# expect_user -re "(.*)\n"
+# set otp $expect_out(1,string)
 
 spawn sudo openvpn --daemon --config /home/cmiranda/.config/openvpn/profiles/cca.ovpn --auth-user-pass /tmp/vpn_credentials.txt
 expect "password for cmiranda:"
 send "$sudopass\r"
-expect "Enter Authenticator Code"
+expect "CHALLENGE: Enter Authenticator Code"
 send "$otp\r"
 
 puts "\n🛜 Connecting to VPN..."
