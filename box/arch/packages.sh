@@ -165,6 +165,8 @@ PACKAGES=(
     ranger
     rebuild-detector
     ripgrep
+    rocm-hip-runtime    # AMD GPU ROCm
+    rocm-opencl-runtime # AMD GPU ROCm
     rofi
     rofi-calc
     rofi-emoji
