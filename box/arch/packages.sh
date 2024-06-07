@@ -159,7 +159,6 @@ PACKAGES=(
     pulseaudio-control
     pyenv
     pyenv-virtualenv
-    python-spotdl
     qalculate-gtk
     qemu
     qt5ct
@@ -246,6 +245,7 @@ PYTHON_PACKAGES=(
     bleak
     i3ipc
     pypdf2
+    spotdl
 )
 
 # Reinstall pambase
