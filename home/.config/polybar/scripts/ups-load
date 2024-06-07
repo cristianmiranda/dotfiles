@@ -1,0 +1,16 @@
+#!/bin/bash
+
+(
+    # Wait for lock on /var/lock/.myscript.exclusivelock (fd 200) for 5 seconds
+    flock -w 5 200 || exit 1
+
+    UPS_STATUS=$(apcaccess status)
+
+    LOAD=$(echo "$UPS_STATUS" | grep LOADPCT | awk '{print $3}' | xargs printf "%.0f")
+
+    if [ $LOAD -gt 80 ]; then
+        LOAD=%{F#FF6961} $LOAD% %{F-}
+    fi
+
+    echo "$LOAD%"
+) 200>/tmp/.polybar-ups.exclusivelock
