@@ -9,7 +9,7 @@
 #
 # Backup entire home directory to external drive
 #
-@weekly bash $HOME/bin/backup
+# @weekly bash $HOME/bin/backup
 
 #
 # Creates a dump of the local ESH Oracle database
