@@ -15,6 +15,7 @@ PACKAGES=(
     accountsservice
     acpi
     acpi_call
+    amdgpu_top-bin
     apcupsd
     alacarte
     alacritty
@@ -162,7 +163,6 @@ PACKAGES=(
     qalculate-gtk
     qemu
     qt5ct
-    radeontop
     ranger
     rebuild-detector
     ripgrep
