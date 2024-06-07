@@ -22,10 +22,10 @@ def fetch_usd_value(type)
     response = Net::HTTP.get(URI("https://mercados.ambito.com/dolar/#{type}/variacion"))
     output = JSON.parse(response)
 
-    buy_price = output['compra']
-    sell_price = output['venta']
+    buy_price = output['compra'].to_f.to_i
+    sell_price = output['venta'].to_f.to_i
     variation = output['variacion']
-    last_closing_value = output['valor_cierre_ant']
+    last_closing_value = output['valor_cierre_ant'].to_f.to_i
 
     variation = variation.start_with?('-') ? "🔴 #{variation}" : "🟢 #{variation}"
 
