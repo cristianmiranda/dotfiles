@@ -1,0 +1,26 @@
+#!/usr/bin/env python3
+
+import json
+import tinytuya
+
+d = tinytuya.OutletDevice('eb9545a932ce1beac40asy', '192.168.50.198', 'b45884877dde61df')
+d.set_version(3.3)
+# data = d.status()
+
+off = "1bSOkETICMwIyAjMCUAIzAjICMwJRAhQCUAIzAlICEgJTAjICMwKVBjMClgYzApYGMwKXBjICEgJSApcGUgJ5BjAClwZSAvQBUQKXBjMCEwJwAhQCcgLzAVECEgJzAhICcQL0AVECmAZQAvQBcQJ4BlECeAZRAncGUgJ4BlECWQZyAlYGUgKVoIMjqghRAjB1"
+on = "1eyOEEXECEwJxAvQBcQL0AZAC8wFxAvQBUgITAnACEwJxAvQBcQJ3BlICeAZRAlkGUQJ4BlICEwJRAngGUQJ4BlICdwYyApcGMgKXBjMCEwJRAjMCUQITAlICEwJRAjMCUQITAlICEwJxAhMCUQJ4BlICdwZSAncGMwKWBjMClgYzApcGMgK1oGQjyQgyAjB1"
+
+# The IR Commands JSON has the following format:
+command = {
+    "control": "send_ir",
+    "head": "",
+    "key1": on,
+    "type": 0,
+    "delay": 300,
+}
+# Sending the IR command:
+payload = d.generate_payload(tinytuya.CONTROL, {"201": json.dumps(command)})
+print(payload)
+d.send(payload)
+
+# print('Device status: %r' % data)

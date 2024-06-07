@@ -246,6 +246,7 @@ PYTHON_PACKAGES=(
     bleak
     i3ipc
     pypdf2
+    tinytuya
     spotdl
 )
 
