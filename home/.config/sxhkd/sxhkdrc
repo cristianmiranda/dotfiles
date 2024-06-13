@@ -98,6 +98,8 @@ super + i
     ~/bin/wm --go-to-by-class idea
 super + j
     ~/bin/wm --go-to-by-class jitsi
+super + k
+    ~/bin/wm --go-to-by-class Slack
 super + m
     ~/bin/wm --go-to-by-class thunderbird
 super + n
