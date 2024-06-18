@@ -27,7 +27,6 @@ PACKAGES=(
     asciinema
     atool
     authy
-    auto-cpufreq
     autoconf
     autotiling
     base-devel
@@ -121,7 +120,7 @@ PACKAGES=(
     nitrogen
     nodejs-gitmoji-cli
     nordvpn-bin
-    notion-app
+    notion-app-electron
     noto-color-emoji-fontconfig
     noto-fonts
     noto-fonts-emoji
