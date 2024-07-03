@@ -8,7 +8,7 @@
     - [🛜 Bluetooth](#-bluetooth)
   - [💅 Cosmetics](#-cosmetics)
     - [🖼 Lock Screen](#-lock-screen)
-    - [💄 Qt5](#-qt5)
+    - [💄 Qt5 \& GTK](#-qt5--gtk)
     - [👋 SDDM greeter](#-sddm-greeter)
     - [☢️ GRUB Theme](#️-grub-theme)
     - [📦 Pacman](#-pacman)
@@ -122,7 +122,7 @@ KernelExperimental = true
 betterlockscreen -u ~/wallpapers/dual/pacman.jpg --display 1 --span
 ```
 
-### 💄 Qt5
+### 💄 Qt5 & GTK
 
 ```bash
 sudo vim /etc/environment
@@ -130,6 +130,7 @@ sudo vim /etc/environment
 
 ```bash
 QT_QPA_PLATFORMTHEME=qt5ct
+GTK_THEME=Matcha-dark-azul # Change if GTK theme is different
 ```
 
 ### 👋 SDDM greeter

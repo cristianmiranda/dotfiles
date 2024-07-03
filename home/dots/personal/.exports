@@ -7,6 +7,9 @@ export TERMINAL=alacritty
 # export GDK_DPI_SCALE=0.5
 export QT_AUTO_SCREEN_SCALE_FACTOR=1
 
+# Set GTK Theme env variable from settings
+export GTK_THEME=$(grep "gtk-theme-name" ~/.config/gtk-3.0/settings.ini | awk -F "=" '{print $2}')
+
 export PATH=~/.local/bin:$PATH
 export PATH=~/bin:$PATH
 
