@@ -1,0 +1,67 @@
+#!/bin/bash
+
+SINK=$(pactl info | grep 'Default Sink' | awk '{print $3}')
+
+get_volume() {
+    pactl get-sink-volume "$SINK" | awk '{print $5}' | head -n 1
+}
+
+get_mute_status() {
+    pactl get-sink-mute "$SINK" | awk '{print $2}'
+}
+
+display_audio_info() {
+    VOL=$(get_volume)
+    MUTE=$(get_mute_status)
+
+    RUNNING_DEVICE=$(pactl list short sources | awk '/RUNNING/ {print $2}')
+
+    if [[ $RUNNING_DEVICE =~ "HD_Pro_Webcam" ]]; then
+        DEVICE_ICON="󰖠"
+    elif [[ $RUNNING_DEVICE =~ "CalDigit" ]]; then
+        DEVICE_ICON="󱂩"
+    elif [[ $RUNNING_DEVICE =~ "HiFi__hw_sof" ]]; then
+        DEVICE_ICON=""
+    elif [[ $RUNNING_DEVICE =~ "bluez" ]]; then
+        DEVICE_ICON="󰋋"
+    elif [[ $RUNNING_DEVICE =~ "analog" ]]; then
+        DEVICE_ICON=""
+    elif [[ $RUNNING_DEVICE =~ "USB_Audio" ]]; then
+        DEVICE_ICON="󰓃"
+    fi
+
+    if [[ $MUTE == "yes" ]]; then
+        COLOR="%{F#878787}"
+    else
+        COLOR=""
+    fi
+
+    echo "$COLOR$DEVICE_ICON $VOL%{F-}"
+}
+
+toggle_mute() {
+    pactl set-sink-mute "$SINK" toggle
+}
+
+increase_volume() {
+    pactl set-sink-volume "$SINK" +5%
+}
+
+decrease_volume() {
+    pactl set-sink-volume "$SINK" -5%
+}
+
+case "$1" in
+    toggle-mute)
+        toggle_mute
+        ;;
+    increase)
+        increase_volume
+        ;;
+    decrease)
+        decrease_volume
+        ;;
+    *)
+        display_audio_info
+        ;;
+esac

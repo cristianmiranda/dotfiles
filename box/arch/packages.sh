@@ -154,7 +154,6 @@ PACKAGES=(
     polybar
     postman-bin
     powertop
-    pulseaudio-control
     pyenv
     pyenv-virtualenv
     qalculate-gtk
