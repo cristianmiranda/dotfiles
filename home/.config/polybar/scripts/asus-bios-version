@@ -1,0 +1,20 @@
+#!/bin/bash
+
+url="https://rog.asus.com/support/webapi/product/GetPDBIOS?website=global&model=rog-maximus-z790-hero&pdid=0&m1id=21116&cpu=&LevelTagId=205902&systemCode=rog"
+
+response=$(curl -s "$url")
+
+clean_response=$(echo "$response" | tr -d '\n' | tr -d '\r' | tr -d '\t' | sed 's/[[:cntrl:]]//g')
+
+latest_bios_version=$(echo "$clean_response" | jq -r '.Result.Obj[].Files[0].Version' | head -n 1)
+
+current_bios_version=$(cat /sys/class/dmi/id/bios_version)
+
+if [ "$latest_bios_version" != "$current_bios_version" ]; then
+  icon=""
+  color="#FF6961"
+  version="$latest_bios_version"
+  echo "%{F$color}$icon v$version%{F-}"
+else
+  echo ""
+fi
