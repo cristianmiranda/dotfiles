@@ -14,7 +14,7 @@ display_audio_info() {
     VOL=$(get_volume)
     MUTE=$(get_mute_status)
 
-    RUNNING_DEVICE=$(pactl list short sources | awk '/RUNNING/ {print $2}')
+    RUNNING_DEVICE=$(pactl list short sinks | awk '/RUNNING/ {print $2}')
 
     if [[ $RUNNING_DEVICE =~ "HD_Pro_Webcam" ]]; then
         DEVICE_ICON="󰖠"
