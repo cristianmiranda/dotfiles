@@ -2,25 +2,25 @@
 
 case "$1" in
 sudo-password)
-    echo "$(op item get "X1 Extreme" --vault "Personal" --field "password")"
+    echo "$(op item get "beast" --vault "Personal" --field "password" --reveal)"
     ;;
 lg-ldap-username)
     echo "$(op item get "LDAP" --vault "Lille Group" --field "username")"
     ;;
 lg-ldap-password)
-    echo "$(op item get "LDAP" --vault "Lille Group" --field "password")"
+    echo "$(op item get "LDAP" --vault "Lille Group" --field "password" --reveal)"
     ;;
 lg-vpn-username)
     echo "$(op item get "VPN (LG)" --vault "Lille Group" --field "username")"
     ;;
 lg-vpn-password)
-    echo "$(op item get "VPN (LG)" --vault "Lille Group" --field "password")"
+    echo "$(op item get "VPN (LG)" --vault "Lille Group" --field "password" --reveal)"
     ;;
 cca-vpn-username)
     echo "$(op item get "VPN (CCA)" --vault "Lille Group" --field "username")"
     ;;
 cca-vpn-password)
-    echo "$(op item get "VPN (CCA)" --vault "Lille Group" --field "password")"
+    echo "$(op item get "VPN (CCA)" --vault "Lille Group" --field "password" --reveal)"
     ;;
 cca-vpn-otp)
     echo "$(op item get "VPN (CCA)" --vault "Lille Group" --otp)"
