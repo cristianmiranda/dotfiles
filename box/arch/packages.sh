@@ -84,7 +84,7 @@ PACKAGES=(
     hplip
     httpie
     hsetroot
-    i3lock-color-git
+    i3lock-color
     i3-wm
     imagemagick
     inetutils
