@@ -98,6 +98,16 @@ xsetroot -xcf /usr/share/icons/breeze_cursors/cursors/left_ptr $CURSOR_SIZE
 xrandr --output HDMI-A-0 --set "Colorspace" "Default"
 xrandr --output HDMI-A-0 --set "content type" "No Data"
 
+if [[ "$XRANDR_DISPLAY_PROFILE" == "$PROFILE_DUAL" || "$XRANDR_DISPLAY_PROFILE" == "$PROFILE_DUAL_INVERTED" ]]; then
+    for i in 1 2 3 4 10; do
+        i3-msg "workspace $i, move workspace to output HDMI-A-0"
+    done
+
+    for i in 5 6 7 8 9; do
+        i3-msg "workspace $i, move workspace to output DisplayPort-0"
+    done
+fi
+
 # Restart the window manager
 $HOME/bin/wm -r
 
