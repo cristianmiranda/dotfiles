@@ -92,6 +92,12 @@ systemctl --user restart xsettingsd.service
 
 xsetroot -xcf /usr/share/icons/breeze_cursors/cursors/left_ptr $CURSOR_SIZE
 
+#
+# Prevents color scheme changes after switching between PC and console
+#
+xrandr --output HDMI-A-0 --set "Colorspace" "Default"
+xrandr --output HDMI-A-0 --set "content type" "No Data"
+
 # Restart the window manager
 $HOME/bin/wm -r
 
