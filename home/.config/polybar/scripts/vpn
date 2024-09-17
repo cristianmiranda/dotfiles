@@ -5,5 +5,10 @@ ACTIVE_VPNS=$($HOME/bin/vpn --active)
 if [[ "${ACTIVE_VPNS}" != "" ]]; then
     echo "%{T3}%{F#20c418}󱇱%{T-} $ACTIVE_VPNS%{F-}"
 else
-    echo "%{T3}󰅟%{T-}"
+    ACTIVE_VPNS=$(nordvpn status | grep Connected)
+    if [[ "${ACTIVE_VPNS}" != "" ]]; then
+        echo "%{T3}%{F#20c418}󱇱%{T-} NordVPN%{F-}"
+    else
+        echo "%{T3}󰅟%{T-}"
+    fi
 fi
