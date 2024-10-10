@@ -1,3 +1,19 @@
 #!/bin/bash
 
-echo " %{T4}%{F#1793d1}%{F-}%{T-}"
+ARCH_BLUE_COLOR="#1793d1"
+ARCH_RED_COLOR="#d1495b"
+
+# Check if the Broadlink LED Strip is on or off
+if [ -f /tmp/broadlink-led-strip.status ]; then
+    STATUS=$(cat /tmp/broadlink-led-strip.status)
+else
+    STATUS="off"
+fi
+
+if [ "$STATUS" = "off" ]; then
+        COLOR=$ARCH_BLUE_COLOR
+    else
+        COLOR=$ARCH_RED_COLOR
+    fi
+
+echo " %{T4}%{F$COLOR}%{F-}%{T-}"

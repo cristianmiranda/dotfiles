@@ -2,25 +2,44 @@
 
 import json
 import tinytuya
+import sys
 
 d = tinytuya.OutletDevice('eb9545a932ce1beac40asy', '192.168.50.198', 'b45884877dde61df')
 d.set_version(3.3)
-# data = d.status()
+
+if len(sys.argv) < 2:
+    print("Usage: %s <on|off|toggle>" % sys.argv[0])
+    sys.exit(1)
+
+command = sys.argv[1]
 
 off = "1bSOkETICMwIyAjMCUAIzAjICMwJRAhQCUAIzAlICEgJTAjICMwKVBjMClgYzApYGMwKXBjICEgJSApcGUgJ5BjAClwZSAvQBUQKXBjMCEwJwAhQCcgLzAVECEgJzAhICcQL0AVECmAZQAvQBcQJ4BlECeAZRAncGUgJ4BlECWQZyAlYGUgKVoIMjqghRAjB1"
 on = "1eyOEEXECEwJxAvQBcQL0AZAC8wFxAvQBUgITAnACEwJxAvQBcQJ3BlICeAZRAlkGUQJ4BlICEwJRAngGUQJ4BlICdwYyApcGMgKXBjMCEwJRAjMCUQITAlICEwJRAjMCUQITAlICEwJxAhMCUQJ4BlICdwZSAncGMwKWBjMClgYzApcGMgK1oGQjyQgyAjB1"
+
+try:
+    with open("/tmp/broadlink-led-strip.status", "r") as f:
+        status = f.read().strip()
+except FileNotFoundError:
+    status = "off"
+
+if command == "toggle" and status == "on":
+    command = "off"
+elif command == "toggle" and status == "off":
+    command = "on"
+
+with open("/tmp/broadlink-led-strip.status", "w") as f:
+    f.write("on" if command == "on" else "off")
 
 # The IR Commands JSON has the following format:
 command = {
     "control": "send_ir",
     "head": "",
-    "key1": on,
+    "key1": command == "on" and on or off,
     "type": 0,
     "delay": 300,
 }
+
 # Sending the IR command:
 payload = d.generate_payload(tinytuya.CONTROL, {"201": json.dumps(command)})
 print(payload)
 d.send(payload)
-
-# print('Device status: %r' % data)
