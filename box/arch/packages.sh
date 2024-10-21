@@ -213,7 +213,7 @@ PACKAGES=(
     virt-manager
     visual-studio-code-bin
     vlc
-    whatsapp-for-linux
+    wasistlos
     wireplumber
     xarchiver
     xcalib

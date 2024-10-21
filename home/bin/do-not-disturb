@@ -13,7 +13,7 @@ MODE=$1 # on/off
 APPS=(
     "element"
     "telegram-desktop"
-    "whatsapp-for-linux"
+    "wasistlos"
 )
 
 if [ "$MODE" == "on" ]; then

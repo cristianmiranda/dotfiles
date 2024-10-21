@@ -111,7 +111,7 @@ super + s
 super + t
     ~/bin/wm --go-to-by-class telegram
 super + w
-    ~/bin/wm --go-to-by-class whatsapp
+    ~/bin/wm --go-to-by-class WasIstLos
 
 ###########################################################################
 # KeyChords
@@ -169,7 +169,7 @@ super + shift + l; s
 super + shift + l; t
 		telegram-desktop
 super + shift + l; w
-		whatsapp-for-linux
+		wasistlos
 
 # Radio
 super + shift + y; 0

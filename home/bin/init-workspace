@@ -25,7 +25,7 @@ fi
 if [[ $WORKSPACE -eq 2 ]]; then
     telegram-desktop &
     sleep 0.5
-    whatsapp-for-linux &
+    wasistlos &
 fi
 
 if [[ $WORKSPACE -eq 3 ]]; then
