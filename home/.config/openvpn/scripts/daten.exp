@@ -1,0 +1,41 @@
+#!/usr/bin/expect -f
+
+puts "\n\n"
+system "figlet -d /home/cmiranda/.local/share/figlet -f \"ANSI Shadow\" -c 'Daten' | lolcat"
+puts ""
+
+puts "🐧 Requesting sudo password..."
+set sudopass [exec /home/cmiranda/bin/1p sudo-password]
+
+puts "🌎 Requesting VPN credentials..."
+set username [exec /home/cmiranda/bin/1p daten-vpn-username]
+set password [exec /home/cmiranda/bin/1p daten-vpn-password]
+
+puts "🫣 Writing credentials to file..."
+set credentialsFilename "/tmp/vpn_credentials.txt"
+set outFileId [open $credentialsFilename "w"]
+puts -nonewline $outFileId "$username\n"
+puts -nonewline $outFileId "$password\n"
+close $outFileId
+
+puts "🔑 Requesting OTP..."
+set otp [exec /home/cmiranda/bin/1p daten-vpn-otp]
+set privateKeyFilename "/tmp/vpn_key.txt"
+set outFileId [open $privateKeyFilename "w"]
+puts -nonewline $outFileId "$otp\n"
+close $outFileId
+
+spawn sed -i {s/^"//; s/"$//; s/""/"/g} /tmp/vpn_credentials.txt
+spawn sudo openvpn --daemon --config /home/cmiranda/.config/openvpn/profiles/daten.ovpn --auth-user-pass /tmp/vpn_credentials.txt --askpass /tmp/vpn_key.txt
+expect "password for cmiranda:"
+send "$sudopass\r"
+
+puts "\n🛜 Connecting to VPN..."
+
+sleep 5
+puts "🗑 Removing credentials & key file..."
+system "rm $credentialsFilename"
+system "rm $privateKeyFilename"
+
+# Hand over control to user
+interact
