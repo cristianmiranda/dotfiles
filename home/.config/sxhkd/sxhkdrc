@@ -104,6 +104,8 @@ super + m
     ~/bin/wm --go-to-by-class thunderbird
 super + n
     ~/bin/wm --go-to-by-class notion
+super + p
+    ~/bin/wm --go-to-by-class pycharm
 super + r
     ~/bin/wm --go-to-by-class element
 super + s
@@ -208,11 +210,13 @@ super + shift + u; n
 # VPN
 super + shift + v; c
 		alacritty --class i3FloatingWindow -e ~/bin/vpn --connect CCA
+super + shift + v; d
+		alacritty --class i3FloatingWindow -e ~/bin/vpn --connect Daten
 super + shift + v; h
 		alacritty --class i3FloatingWindow -e ~/bin/vpn --connect Home
 super + shift + v; l
 		alacritty --class i3FloatingWindow -e ~/bin/vpn --connect LG
-super + shift + v; d
+super + shift + v; k
 		alacritty --class i3FloatingWindow -e ~/bin/vpn --disconnect
 
 # TMUX
