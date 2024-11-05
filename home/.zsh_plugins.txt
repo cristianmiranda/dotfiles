@@ -3,6 +3,7 @@
 #
 
 ohmyzsh/ohmyzsh path:lib
+ohmyzsh/ohmyzsh path:lib/async_prompt.zsh
 ohmyzsh/ohmyzsh path:plugins/command-not-found
 ohmyzsh/ohmyzsh path:plugins/sudo
 
@@ -28,5 +29,5 @@ wfxr/forgit           kind:defer
 djui/alias-tips       kind:defer
 lukechilds/zsh-nvm    kind:defer
 matthieusb/zsh-sdkman kind:defer
-mroth/evalcache 
+mroth/evalcache
 

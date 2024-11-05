@@ -10,6 +10,7 @@ alias ~="cd ~" # `cd` is probably faster to type though
 alias -- -="cd -"
 
 export EXA_ICON_SPACING=2
+alias exa=eza
 alias l="exa --long --header --icons --git -a -g"
 alias ll="exa --header --icons --git -g"
 alias la="exa --header --icons --git -a -g"
