@@ -7,6 +7,8 @@ PROFILE_DUAL="dual";
 PROFILE_DUAL_INVERTED="dual-inverted";
 PROFILE_VIRTUAL="virtual";
 PROFILE_HDMI="hdmi"
+PROFILE_THREE_MONITORS="three-monitors"
+PROFILE_FOUR_MONITORS="four-monitors"
 
 XRANDR_DISPLAY_PROFILE=$1
 
@@ -26,7 +28,7 @@ if [[ "$XRANDR_DISPLAY_PROFILE" == "$PROFILE_LAPTOP" ]]; then
 
     # Xresources.DPI * 1024
     echo "Xft/DPI 196608" > ~/.xsettingsd
-    
+
     bash ~/.screenlayout/laptop.sh
 fi
 
@@ -35,7 +37,7 @@ if [[ "$XRANDR_DISPLAY_PROFILE" == "$PROFILE_SINGLE" ]]; then
 
     # Xresources.DPI * 1024
     echo "Xft/DPI 98304" > ~/.xsettingsd
-    
+
     bash ~/.screenlayout/asus_single.sh
 fi
 
@@ -71,7 +73,7 @@ if [[ "$XRANDR_DISPLAY_PROFILE" == "$PROFILE_VIRTUAL" ]]; then
 
     # Xresources.DPI * 1024
     echo "Xft/DPI 98304" > ~/.xsettingsd
-    
+
     bash ~/.screenlayout/virtual.sh
 fi
 
@@ -80,8 +82,26 @@ if [[ "$XRANDR_DISPLAY_PROFILE" == "$PROFILE_HDMI" ]]; then
 
     # Xresources.DPI * 1024
     echo "Xft/DPI 98304" > ~/.xsettingsd
-    
+
     bash ~/.screenlayout/asus_hdmi.sh
+fi
+
+if [[ "$XRANDR_DISPLAY_PROFILE" == "$PROFILE_THREE_MONITORS" ]]; then
+    xrdb -merge ~/.Xresources.asus
+
+    # Xresources.DPI * 1024
+    echo "Xft/DPI 98304" > ~/.xsettingsd
+
+    bash ~/.screenlayout/three_asus.sh
+fi
+
+if [[ "$XRANDR_DISPLAY_PROFILE" == "$PROFILE_FOUR_MONITORS" ]]; then
+    xrdb -merge ~/.Xresources.asus
+
+    # Xresources.DPI * 1024
+    echo "Xft/DPI 98304" > ~/.xsettingsd
+
+    bash ~/.screenlayout/four_asus.sh
 fi
 
 SCREEN_RESOLUTION=$(~/bin/get-resolution)
