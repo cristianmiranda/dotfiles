@@ -228,12 +228,16 @@ super + shift + t; r
 		~/bin/tmu --restart
 
 # Set Display
+super + shift + d; 1
+		~/bin/set-display single
+super + shift + d; 2
+		~/bin/set-display dual
+super + shift + d; 3
+		~/bin/set-display three-monitors
+super + shift + d; 4
+		~/bin/set-display four-monitors
 super + shift + d; a
 		~/bin/set-display single-inverted
-super + shift + d; s
-		~/bin/set-display single
-super + shift + d; d
-		~/bin/set-display dual
 super + shift + d; f
 		~/bin/set-display dual-inverted
 super + shift + d; h
