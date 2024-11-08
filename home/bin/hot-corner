@@ -1,7 +1,10 @@
 #!/bin/bash
 
 SCREEN_WIDTH=$(xwininfo -root | awk '$1=="Width:" {print $2}')
-SCREEN_HEIGHT=$(xwininfo -root | awk '$1=="Height:" {print $2}')
+#
+# After adding a third monitor in vertical mode, the height of the screen changed
+#
+SCREEN_HEIGHT=2260 # $(xwininfo -root | awk '$1=="Height:" {print $2}')
 TIME_IN_CORNER=0
 
 while true; do
