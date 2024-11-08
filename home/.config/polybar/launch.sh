@@ -21,13 +21,20 @@ else
         xrandr --query | grep " connected" | while read entry; do
             mon=$(cut -d" " -f1 <<< "$entry")
             status=$(cut -d" " -f3 <<< "$entry")
+            orientation=$(cut -d" " -f4 <<< "$entry")
 
             tray_pos=""
             if [ "$status" == "primary" ]; then
                 tray_pos="right"
             fi
 
-            MONITOR=$mon TRAY_POS=$tray_pos polybar --reload asus 2>&1 | tee -a /tmp/polybar-monitor-"$mon".log & disown
+            if [ "$orientation" == "left" ]; then
+                bar="vertical-1440p"
+            else
+                bar="horizontal-1440p"
+            fi
+
+            MONITOR=$mon TRAY_POS=$tray_pos polybar --reload $bar 2>&1 | tee -a /tmp/polybar-monitor-"$mon".log & disown
         done
 
     else
