@@ -229,19 +229,13 @@ super + shift + t; r
 
 # Set Display
 super + shift + d; 1
-		~/bin/set-display single
+		~/bin/set-display asus_single
 super + shift + d; 2
-		~/bin/set-display dual
+		~/bin/set-display asus_double
 super + shift + d; 3
-		~/bin/set-display three-monitors
+		~/bin/set-display asus_triple
 super + shift + d; 4
-		~/bin/set-display four-monitors
-super + shift + d; a
-		~/bin/set-display single-inverted
-super + shift + d; f
-		~/bin/set-display dual-inverted
-super + shift + d; h
-		~/bin/set-display hdmi
+		~/bin/set-display asus_quadruple
 super + shift + d; l
 		~/bin/set-display laptop
 super + shift + d; v

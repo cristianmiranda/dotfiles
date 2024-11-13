@@ -1,17 +1,18 @@
 #!/bin/bash
 
-PROFILE_LAPTOP="laptop";
-PROFILE_SINGLE="single";
-PROFILE_SINGLE_INVERTED="single-inverted";
-PROFILE_DUAL="dual";
-PROFILE_DUAL_INVERTED="dual-inverted";
-PROFILE_VIRTUAL="virtual";
-PROFILE_HDMI="hdmi"
-PROFILE_THREE_MONITORS="three-monitors"
-PROFILE_FOUR_MONITORS="four-monitors"
+# Define display profiles
+PROFILE_LAPTOP="laptop"
+PROFILE_VIRTUAL="virtual"
+
+# ASUS display profiles
+PROFILE_ONE_MONITOR="asus_single"
+PROFILE_TWO_MONITORS="asus_double"
+PROFILE_THREE_MONITORS="asus_triple"
+PROFILE_FOUR_MONITORS="asus_quadruple"
 
 XRANDR_DISPLAY_PROFILE=$1
 
+# Kill polybar
 killall -q polybar
 
 echo "Applying display profile: $XRANDR_DISPLAY_PROFILE"
@@ -19,110 +20,60 @@ echo "Applying display profile: $XRANDR_DISPLAY_PROFILE"
 # Reload Xresources
 xrdb ~/.Xresources
 
+# Set default cursor size
 CURSOR_SIZE=8
 
 if [[ "$XRANDR_DISPLAY_PROFILE" == "$PROFILE_LAPTOP" ]]; then
     xrdb -merge ~/.Xresources.laptop
-
     CURSOR_SIZE=48
-
-    # Xresources.DPI * 1024
     echo "Xft/DPI 196608" > ~/.xsettingsd
-
     bash ~/.screenlayout/laptop.sh
-fi
-
-if [[ "$XRANDR_DISPLAY_PROFILE" == "$PROFILE_SINGLE" ]]; then
+else
     xrdb -merge ~/.Xresources.asus
-
-    # Xresources.DPI * 1024
     echo "Xft/DPI 98304" > ~/.xsettingsd
 
-    bash ~/.screenlayout/asus_single.sh
+    case "$XRANDR_DISPLAY_PROFILE" in
+        "$PROFILE_VIRTUAL")
+            bash ~/.screenlayout/virtual.sh
+            ;;
+        "$PROFILE_ONE_MONITOR")
+            bash ~/.screenlayout/asus_single.sh
+            ;;
+        "$PROFILE_TWO_MONITORS")
+            bash ~/.screenlayout/asus_double.sh
+            ;;
+        "$PROFILE_THREE_MONITORS")
+            bash ~/.screenlayout/asus_triple.sh
+            ;;
+        "$PROFILE_FOUR_MONITORS")
+            bash ~/.screenlayout/asus_quadruple.sh
+            ;;
+        *)
+            echo "Unknown display profile: $XRANDR_DISPLAY_PROFILE"
+            exit 1
+            ;;
+    esac
 fi
 
-if [[ "$XRANDR_DISPLAY_PROFILE" == "$PROFILE_SINGLE_INVERTED" ]]; then
-    xrdb -merge ~/.Xresources.asus
-
-    # Xresources.DPI * 1024
-    echo "Xft/DPI 98304" > ~/.xsettingsd
-
-    bash ~/.screenlayout/asus_single_inverted.sh
-fi
-
-if [[ "$XRANDR_DISPLAY_PROFILE" == "$PROFILE_DUAL" ]]; then
-    xrdb -merge ~/.Xresources.asus
-
-    # Xresources.DPI * 1024
-    echo "Xft/DPI 98304" > ~/.xsettingsd
-
-    bash ~/.screenlayout/asus_dual.sh
-fi
-
-if [[ "$XRANDR_DISPLAY_PROFILE" == "$PROFILE_DUAL_INVERTED" ]]; then
-    xrdb -merge ~/.Xresources.asus
-
-    # Xresources.DPI * 1024
-    echo "Xft/DPI 98304" > ~/.xsettingsd
-
-    bash ~/.screenlayout/asus_dual_inverted.sh
-fi
-
-if [[ "$XRANDR_DISPLAY_PROFILE" == "$PROFILE_VIRTUAL" ]]; then
-    xrdb -merge ~/.Xresources.asus
-
-    # Xresources.DPI * 1024
-    echo "Xft/DPI 98304" > ~/.xsettingsd
-
-    bash ~/.screenlayout/virtual.sh
-fi
-
-if [[ "$XRANDR_DISPLAY_PROFILE" == "$PROFILE_HDMI" ]]; then
-    xrdb -merge ~/.Xresources.asus
-
-    # Xresources.DPI * 1024
-    echo "Xft/DPI 98304" > ~/.xsettingsd
-
-    bash ~/.screenlayout/asus_hdmi.sh
-fi
-
-if [[ "$XRANDR_DISPLAY_PROFILE" == "$PROFILE_THREE_MONITORS" ]]; then
-    xrdb -merge ~/.Xresources.asus
-
-    # Xresources.DPI * 1024
-    echo "Xft/DPI 98304" > ~/.xsettingsd
-
-    bash ~/.screenlayout/three_asus.sh
-fi
-
-if [[ "$XRANDR_DISPLAY_PROFILE" == "$PROFILE_FOUR_MONITORS" ]]; then
-    xrdb -merge ~/.Xresources.asus
-
-    # Xresources.DPI * 1024
-    echo "Xft/DPI 98304" > ~/.xsettingsd
-
-    bash ~/.screenlayout/four_asus.sh
-fi
-
+# Get screen resolution
 SCREEN_RESOLUTION=$(~/bin/get-resolution)
 echo $SCREEN_RESOLUTION > /tmp/screen-resolution
 
-# killall -HUP xsettingsd # Kill xsettingsd to be restarted by the WM. Used to scale GTK apps when going 2K <=> 4K
+# Restart xsettingsd
 systemctl --user restart xsettingsd.service
 
+# Set cursor size
 xsetroot -xcf /usr/share/icons/breeze_cursors/cursors/left_ptr $CURSOR_SIZE
 
-#
-# Prevents color scheme changes after switching between PC and console
-#
+# Prevent color scheme changes after switching between PC and console
 xrandr --output HDMI-A-0 --set "Colorspace" "Default"
 xrandr --output HDMI-A-0 --set "content type" "No Data"
 
-if [[ "$XRANDR_DISPLAY_PROFILE" == "$PROFILE_DUAL" || "$XRANDR_DISPLAY_PROFILE" == "$PROFILE_DUAL_INVERTED" ]]; then
+# Move workspaces for dual monitor setups
+if [[ "$XRANDR_DISPLAY_PROFILE" == "$PROFILE_TWO_MONITORS" ]]; then
     for i in 1 2 3 4 10; do
-        i3-msg "workspace $i, move workspace to output HDMI-A-0"
+        i3-msg "workspace $i, move workspace to output DisplayPort-2"
     done
-
     for i in 5 6 7 8 9; do
         i3-msg "workspace $i, move workspace to output DisplayPort-0"
     done
@@ -130,4 +81,3 @@ fi
 
 # Restart the window manager
 $HOME/bin/wm -r
-
