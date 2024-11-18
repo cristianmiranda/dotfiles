@@ -5,7 +5,7 @@ CURRENT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 . ${CURRENT_DIR}/utils/path.sh
 . ${CURRENT_DIR}/utils/ui.sh
 
-echo `date` > $LOG_FILE 
+echo `date` > $LOG_FILE
 sudo -v
 
 br
@@ -51,13 +51,13 @@ if [[ $SYNC_BOX =~ y|Y ]]; then
 fi
 br
 
-declare -A install_box=()
-for box in $(ls ${DOTFILES_PATH}/box); do
-	ask "Setup ${box}?" install_box[$box]
-    if [[ ${install_box[$box]} =~ y|Y ]]; then
-        break
-    fi
-done;
+install_box=()
+for box in $(ls "${DOTFILES_PATH}/box"); do
+	ask "Setup ${box}?" response
+	if [[ $response =~ y|Y ]]; then
+		install_box+=("$box")
+	fi
+done
 export install_box
 
 br
@@ -74,24 +74,16 @@ if [[ $CONTINUE =~ y|Y ]]; then
     banner "           >>> Continue <<<           "
     br
 
-    for box in $(ls ${DOTFILES_PATH}/box); do
-        if [[ ${install_box[$box]} =~ y|Y ]]; then
-            separator 57
-            br
-            figlet "> ${box} <" | lolcat
-            br
-            bash ${DOTFILES_PATH}/box/$box/setup.sh
-            separator 57
-        else
-            separator 57
-            br
-            warning ">>> Skipping box: ${box}..."
-            br
-            separator 57
-        fi
+    for box in "${install_box[@]}"; do
+        separator 57
+        br
+        figlet "> ${box} <" | lolcat
+        br
+        bash ${DOTFILES_PATH}/box/$box/setup.sh
+        separator 57
     done;
 
-    # This is now handled by Duplicati 
+    # This is now handled by Duplicati
 
     # separator 57
     # br
@@ -117,7 +109,7 @@ if [[ $CONTINUE =~ y|Y ]]; then
         chsh -s $(which zsh)
         zsh
     fi
-    
+
 else
 
     banner "            >>> Aborted <<<           "

@@ -15,8 +15,3 @@ br
 bash $CURRENT_DIR/packages.sh
 
 br
-banner "         >>> macOS/work <<<           "
-br
-bash $CURRENT_DIR/work.sh
-
-br

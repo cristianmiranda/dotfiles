@@ -32,7 +32,7 @@ ESSENTIALS=(
 	bash
 	coreutils
 	findutils
-  git
+    git
 	gnu-indent
 	gnu-sed
 	gnutls
@@ -53,6 +53,7 @@ PACKAGES=(
 	bat
 	bash-completion
 	cliclick
+	eza
 	jakehilborn/jakehilborn/displayplacer
 	fd
 	ffmpeg
@@ -67,17 +68,18 @@ PACKAGES=(
 	htop
 	InstantClientTap/instantclient/instantclient-sqlplus
 	jq
-  lazygit
+	lazydocker
+    lazygit
 	maven
 	navi
 	neofetch
-  neovim
+    neovim
 	node
 	ranger
 	sops
 	svn
 	terraform
-  thefuck
+    thefuck
 	tmux
 	yarn
 	w3m
@@ -86,18 +88,12 @@ PACKAGES=(
 CASKS=(
 	1password
 	authy
-	balenaetcher
-	dbeaver-community
 	discord
 	docker
 	dozer
-	duplicati
 	element
-	evernote
 	firefox
-	homebrew/cask-versions/firefox-developer-edition
-	gitify
-	gitkraken
+	firefox@developer-edition
 	google-chrome
 	google-drive
 	gpg-suite
@@ -111,8 +107,8 @@ CASKS=(
 	openvpn-connect
 	paragon-extfs
 	paragon-ntfs
-	pgadmin4
 	postman
+	readdle-spark
 	slack
 	spotify
 	steam
@@ -120,9 +116,11 @@ CASKS=(
 	tiles
 	the-unarchiver
 	transmission
+	tunnelblick
 	visual-studio-code
 	whatsapp
 	zoomus
+	zoxide
 )
 
 FONTS=(
@@ -185,4 +183,7 @@ npm i -g libgen-downloader
 # SDKMAN
 curl -s "https://get.sdkman.io" | bash
 source "$HOME/.sdkman/bin/sdkman-init.sh"
-sdk install java 11.0.8-amzn
+sdk install java 21.0.2-graal
+sdk install ant
+sdk install maven 3.8.8
+sdk install mvnd 0.7.1
