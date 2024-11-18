@@ -212,7 +212,7 @@
 
 	email = crism60@gmail.com
 	name = "Cristian Miranda"
-  	signingkey = "E78F28F43BE4B38B"
+	signingkey = ~/.ssh/id_rsa.pub
 
 [url "git@github.com:"]
 
@@ -244,6 +244,7 @@
 [gpg]
 
 	program = gpg
+	format = ssh
 
 [tag]
 
