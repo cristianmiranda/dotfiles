@@ -87,33 +87,26 @@ PACKAGES=(
 
 CASKS=(
 	1password
-	authy
-	discord
 	docker
 	dozer
 	element
 	firefox
 	firefox@developer-edition
+	firefox@nightly
 	google-chrome
 	google-drive
 	gpg-suite
 	iterm2
 	jetbrains-toolbox
 	jitsi-meet
-	kindle
 	maccy
-	microsoft-office
 	nordvpn
 	openvpn-connect
-	paragon-extfs
-	paragon-ntfs
 	postman
 	readdle-spark
 	slack
 	spotify
-	steam
 	telegram
-	tiles
 	the-unarchiver
 	transmission
 	tunnelblick
