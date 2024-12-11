@@ -122,7 +122,7 @@
 
 	# Creates a branch for ESH development with the given JIRA ticket as suffix and description
 	esh = !"f() { desc=`echo \"$2\" | sed 's/ /_/g'`; git checkout -b ESH-\"$1\"_$desc; }; f"
-
+	bc = !"f() { desc=`echo \"$2\" | sed 's/ /_/g'`; git checkout -b BC-\"$1\"_$desc; }; f"
 [apply]
 
 	# Detect whitespace errors when applying a patch
