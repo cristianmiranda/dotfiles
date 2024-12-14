@@ -6,6 +6,7 @@ YAY = "yay"
 GENERAL = "general"
 DOTFILES = "dotfiles"
 LG = "lillegroup"
+BC = "britecore"
 CH = "cheyenne"
 
 def main()
@@ -67,6 +68,10 @@ def init()
   sendCommand(LG, 1, 1, "clear; echo ""; figlet -d $HOME/.local/share/figlet -f \"ANSI Shadow\" -c -W 'ehr.dev' | lolcat")
   selectPane(LG, 1, 0)
   selectWindow(LG, 0)
+
+  newSession(BC)
+  renameWindow(BC, 0, "britecore")
+  sendCommand(BC, 0, 0, "clear; echo ""; cd $WORKSPACE_DIR/../Workspace_BC/BriteCore; figlet -d $HOME/.local/share/figlet -f \"ANSI Shadow\" -c -W 'BRITECORE' | lolcat")
 
   newSession(CH)
   renameWindow(CH, 0, "cheyenne")
