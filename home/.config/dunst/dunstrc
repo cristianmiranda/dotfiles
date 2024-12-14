@@ -27,7 +27,7 @@
     width = 600
 
     # The maximum height of a single notification, excluding the frame.
-    height = 150
+    height = 100
 
     # Position the notification in the top right corner
     origin = top-right
@@ -52,7 +52,7 @@
 
     # The transparency of the window.  Range: [0; 100].
     transparency = 0
-    
+
     # The height of the entire notification.  If the height is smaller
     # than the font height and padding combined, it will be raised
     # to the font height and padding.
@@ -119,7 +119,7 @@
     stack_duplicates = true
 
     # Hide the count of stacked notifications with the same content
-    hide_duplicate_count = true 
+    hide_duplicate_count = true
 
     # Display indicators for URLs (U) and actions (A).
     show_indicators = no
@@ -162,7 +162,7 @@
     context = ctrl+shift+period
 
 [urgency_low]
-    # This urgency should be used only 
+    # This urgency should be used only
     # for volume/brightness notification
     background = "#222D31"
     foreground = "#C5C8C6"
