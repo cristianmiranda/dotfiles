@@ -1,6 +1,6 @@
 #!/bin/sh
 
-RUNNING=$(ps aux | grep "owl" | grep -v "polybar" | grep -v "grep" | wc -l)
+RUNNING=$(ps aux | grep "bin/owl" | grep -v "polybar" | grep -v "grep" | wc -l)
 
 if [[ "$RUNNING" == "0" ]]; then
 	echo ""
