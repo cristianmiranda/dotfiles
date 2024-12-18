@@ -15,6 +15,10 @@ if [ ! -f "$CURRENT_URL_HANDLER_FILENAME" ]; then
         url_handler="firefox-developer-edition"
         wm_class="firefoxdeveloperedition$"
         ;;
+    bc)
+        url_handler="firefox-nightly"
+        wm_class="firefox-nightly$"
+        ;;
     *)
         echo "Unkown context"
         url_handler="firefox"
