@@ -11,28 +11,51 @@ case "${unameOut}" in
     *)          machine="UNKNOWN:${unameOut}" && exit 1
 esac
 
-if [[ $machine == "Mac" ]]; then
-    echo ">> macOS machine detected"
+detect_machine() {
+    if [[ $machine == "Mac" ]]; then
+        echo ">> macOS machine detected"
+        mac_actions
+    elif [[ $machine == "Linux" ]]; then
+        echo ">> Linux machine detected"
+        linux_actions
+    else
+        echo ">> Unsupported machine detected"
+        exit 1
+    fi
+}
+
+mac_actions() {
+    MAX_X=3024
+    MAX_Y=1964
+
     while true; do
-        cliclick m:0,0
-        sleep 1
-        cliclick m:224,65
-        sleep 1
-        cliclick m:844,286
-        sleep 1
-        cliclick m:133,804
-        sleep 1
+        X=$((RANDOM % $MAX_X))
+        Y=$((RANDOM % $MAX_Y))
+        SLEEP_TIME_IN_SECONDS=$((1 + RANDOM % 10))
+
+        echo "Moving mouse to $X, $Y"
+        cliclick m:$X,$Y
+
+        echo "Sleeping for $SLEEP_TIME_IN_SECONDS seconds"
+        sleep $SLEEP_TIME_IN_SECONDS
     done
-elif [[ $machine == "Linux" ]]; then
-    echo ">> Linux machine detected"
+}
+
+linux_actions() {
+    MAX_X=$(xrandr | grep '*' | awk '{print $1}' | cut -d 'x' -f1 | head -n1)
+    MAX_Y=$(xrandr | grep '*' | awk '{print $1}' | cut -d 'x' -f2 | head -n1)
+
     while true; do
-        xdotool mousemove 100 200
-        sleep 1
-        xdotool mousemove 2400 200
-        sleep 1
-        xdotool mousemove 100 1200
-        sleep 1
-        xdotool mousemove 2400 1200
-        sleep 1
+        X=$((RANDOM % $MAX_X))
+        Y=$((RANDOM % $MAX_Y))
+        SLEEP_TIME_IN_SECONDS=$((1 + RANDOM % 10))
+
+        echo "Moving mouse to $X, $Y"
+        xdotool mousemove $X $Y
+
+        echo "Sleeping for $SLEEP_TIME_IN_SECONDS seconds"
+        sleep $SLEEP_TIME_IN_SECONDS
     done
-fi
+}
+
+detect_machine
