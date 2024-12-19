@@ -6,6 +6,7 @@ ohmyzsh/ohmyzsh path:lib
 ohmyzsh/ohmyzsh path:lib/async_prompt.zsh
 ohmyzsh/ohmyzsh path:plugins/command-not-found
 ohmyzsh/ohmyzsh path:plugins/sudo
+ohmyzsh/ohmyzsh path:plugins/docker-compose
 
 #
 # Zsh Users - https://github.com/zsh-users
