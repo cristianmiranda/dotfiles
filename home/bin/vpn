@@ -20,7 +20,7 @@ VPNS=(
     ["LG"]="$HOME/.config/openvpn/scripts/lg.exp:ehr-01.stage.int.aws.lillegroup.com:lg.ovpn:1"
     ["CCA"]="$HOME/.config/openvpn/scripts/cca.exp:172.22.20.150:cca.ovpn:2"
     ["Home"]="$HOME/.config/openvpn/scripts/home.exp:192.168.50.244:home.ovpn:3"
-    ["Daten"]="$HOME/.config/openvpn/scripts/daten.exp:10.196.33.180:daten.ovpn:4"
+    ["Daten"]="$HOME/.config/openvpn/scripts/daten.exp:10.196.33.178:daten.ovpn:4"
 )
 
 case "$COMMAND" in
