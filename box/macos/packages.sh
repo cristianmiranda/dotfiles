@@ -87,6 +87,7 @@ PACKAGES=(
 
 CASKS=(
 	1password
+	1password-cli
 	docker
 	dozer
 	element
