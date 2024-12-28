@@ -71,11 +71,24 @@ xrandr --output HDMI-A-0 --set "content type" "No Data"
 
 # Move workspaces for dual monitor setups
 if [[ "$XRANDR_DISPLAY_PROFILE" == "$PROFILE_TWO_MONITORS" ]]; then
-    for i in 1 2 3 4 10; do
+    for i in 1 2 3 4 6 10; do
         i3-msg "workspace $i, move workspace to output DisplayPort-2"
     done
-    for i in 5 6 7 8 9; do
+    for i in 5 7 8 9; do
         i3-msg "workspace $i, move workspace to output DisplayPort-0"
+    done
+fi
+
+# Move workspaces for triple monitor setups
+if [[ "$XRANDR_DISPLAY_PROFILE" == "$PROFILE_THREE_MONITORS" ]]; then
+    for i in 1 2 3 4 6; do
+        i3-msg "workspace $i, move workspace to output DisplayPort-2"
+    done
+    for i in 3 5 8 9; do
+        i3-msg "workspace $i, move workspace to output DisplayPort-0"
+    done
+    for i in 7 10; do
+        i3-msg "workspace $i, move workspace to output DisplayPort-1"
     done
 fi
 
