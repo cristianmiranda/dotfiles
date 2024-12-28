@@ -221,6 +221,11 @@ mode "init-workspace" {
         bindsym 2 exec --no-startup-id $HOME/bin/init-workspace 2; mode "default"
         bindsym 3 exec --no-startup-id $HOME/bin/init-workspace 3; mode "default"
         bindsym 4 exec --no-startup-id $HOME/bin/init-workspace 4; mode "default"
+        bindsym 5 exec --no-startup-id $HOME/bin/init-workspace 5; mode "default"
+        bindsym 6 exec --no-startup-id $HOME/bin/init-workspace 6; mode "default"
+        bindsym 7 exec --no-startup-id $HOME/bin/init-workspace 7; mode "default"
+        bindsym 8 exec --no-startup-id $HOME/bin/init-workspace 8; mode "default"
+        bindsym 9 exec --no-startup-id $HOME/bin/init-workspace 9; mode "default"
         bindsym 0 exec --no-startup-id $HOME/bin/init-workspace 0; mode "default"
 
         bindsym Escape mode "default"
