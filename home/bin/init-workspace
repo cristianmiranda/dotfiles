@@ -36,6 +36,12 @@ if [[ $WORKSPACE -eq 4 ]]; then
     firefox-developer-edition &
 fi
 
+if [[ $WORKSPACE -eq 6 ]]; then
+    slack &
+    sleep 0.5
+    firefox-nightly &
+fi
+
 if [[ $WORKSPACE -eq 10 ]]; then
     spotify &
 fi
