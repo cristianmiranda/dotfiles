@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # get lines, reverse to keep first instances of each account
-lines=$(find /home/$USER/.thunderbird -name 'INBOX.msf' -exec grep -REo 'A1=[0-9]' {} + | tac)
+lines=$(find /home/$USER/.thunderbird -name 'INBOX.msf' -exec grep --text -REo 'A1=[0-9]' {} + | tac)
 
 # store account names
 accounts=()
