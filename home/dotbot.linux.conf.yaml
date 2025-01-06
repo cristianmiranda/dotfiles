@@ -29,6 +29,7 @@
     ~/.local/share/navi: .local/share/navi
     ~/.screenlayout: .screenlayout
     ~/.ssh/scripts: .ssh/scripts
+    ~/.ssh/pems: .ssh/pems
     ~/.ssh/config:
       path: .ssh/config
       force: true
@@ -89,4 +90,3 @@
     - ~/Games
     - ~/Pictures/Screenshots
     - ~/logs
-

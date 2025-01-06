@@ -25,6 +25,7 @@
       path: .local/share/navi
       force: true
     ~/.ssh/scripts: .ssh/scripts
+    ~/.ssh/pems: .ssh/pems
     ~/.ssh/config:
       path: .ssh/config
       force: true
@@ -63,5 +64,4 @@
     - [
         git update-index --assume-unchanged .config/flameshot/flameshot.ini,
         Ignoring changes on Flameshot config,
-    ]
-
+      ]

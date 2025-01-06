@@ -21,6 +21,7 @@
     ~/.local/share/figlet: .local/share/figlet
     ~/.screenlayout: .screenlayout
     ~/.ssh/scripts: .ssh/scripts
+    ~/.ssh/pems: .ssh/pems
     ~/.ssh/config:
       path: .ssh/config
       force: true
@@ -63,4 +64,3 @@
     - ~/Documents/Work/Workspace_LG
     - ~/Pictures/Screenshots
     - ~/logs
-
