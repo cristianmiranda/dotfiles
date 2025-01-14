@@ -10,7 +10,7 @@
 #
 ( eval `ssh-agent -s` & )
 ( bluetoothctl power on & )
-( setxkbmap es & )
+( setxkbmap us & )
 ( numlockx & )
 ( $HOME/bin/tmu --init & )
 ( docker & )
