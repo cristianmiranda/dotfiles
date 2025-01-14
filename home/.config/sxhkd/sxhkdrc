@@ -2,19 +2,19 @@
 # Multimedia
 ###########################################################################
 # Brightness Up
-XF86MonBrightnessUp
+{XF86MonBrightnessUp, shift + F5}
 	~/bin/adjust-brightness +
 # Brightness Down
-XF86MonBrightnessDown
+{XF86MonBrightnessDown, shift + F4}
 	~/bin/adjust-brightness -
 # Rewind
-{XF86AudioPrev, shift + F10}
+{XF86AudioPrev, shift + F11}
     dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
 # Play/Pause
-{XF86AudioPlay, shift + F12}
+XF86AudioPlay
     dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
 # Forward
-{XF86AudioNext, shift + F11}
+{XF86AudioNext, shift + F12}
     dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
 # Volume Up
 XF86AudioRaiseVolume
