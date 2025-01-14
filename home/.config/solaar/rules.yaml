@@ -1,0 +1,7 @@
+%YAML 1.3
+---
+- Key: [Mute Microphone, pressed]
+- KeyPress:
+  - XF86_AudioMicMute
+  - click
+...
