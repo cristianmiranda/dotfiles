@@ -29,7 +29,7 @@
     gesture2-params, sidetone, equalizer, adc_power_management]
   _battery: 4100
   _modelId: B36900000000
-  _sensitive: {backlight: false, change-host: false, divert-keys: true, multiplatform: false}
+  _sensitive: {backlight: false, change-host: false, divert-keys: false, multiplatform: false}
   _serial: 99E45B06
   _unitId: 99E45B06
   _wpid: B369
