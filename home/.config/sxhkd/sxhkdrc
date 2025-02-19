@@ -89,7 +89,7 @@ super + c
 super + d
     ~/bin/wm --go-to-by-class Discord
 super + e
-    ~/bin/wm --go-to-by-class FirefoxDeveloperEdition$
+    ~/bin/wm --go-to-by-class firefox-developer-edition
 super + f
     ~/bin/wm --go-to-by-class Firefox$
 super + g
