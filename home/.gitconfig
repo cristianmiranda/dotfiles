@@ -300,3 +300,9 @@
 [safe]
 
 	directory = /opt/flutter
+[rerere]
+	enabled = true
+[column]
+	ui = auto
+[branch]
+	sort = -committerdate
