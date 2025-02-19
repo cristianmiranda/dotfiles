@@ -23,3 +23,5 @@ source ${HOME}/profiles/common.sh
 #
 _evalcache starship init zsh
 
+# Load SDKMAN
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
