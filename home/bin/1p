@@ -26,12 +26,12 @@ cca-vpn-otp)
     echo "$(op item get "VPN (CCA)" --vault "Lille Group" --otp)"
     ;;
 daten-vpn-username)
-    echo "$(op item get "VPN (Daten)" --vault "Cheyenne" --field "username")"
+    echo "$(op item get "VPN (Daten)" --vault "Laramie" --field "username")"
     ;;
 daten-vpn-password)
-    echo "$(op item get "VPN (Daten)" --vault "Cheyenne" --field "password" --reveal)"
+    echo "$(op item get "VPN (Daten)" --vault "Laramie" --field "password" --reveal)"
     ;;
 daten-vpn-otp)
-    echo "$(op item get "VPN (Daten)" --vault "Cheyenne" --field "cert password" --reveal)"
+    echo "$(op item get "VPN (Daten)" --vault "Laramie" --field "cert password" --reveal)"
     ;;
 esac
