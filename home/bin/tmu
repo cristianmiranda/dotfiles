@@ -7,7 +7,7 @@ GENERAL = "general"
 DOTFILES = "dotfiles"
 LG = "lillegroup"
 BC = "britecore"
-CH = "cheyenne"
+CH = "laramie"
 
 def main()
   options = {}
@@ -74,8 +74,8 @@ def init()
   sendCommand(BC, 0, 0, "clear; echo ""; cd $WORKSPACE_DIR/../Workspace_BC/BriteCore; figlet -d $HOME/.local/share/figlet -f \"ANSI Shadow\" -c -W 'BRITECORE' | lolcat")
 
   newSession(CH)
-  renameWindow(CH, 0, "cheyenne")
-  sendCommand(CH, 0, 0, "clear; echo ""; cd $WORKSPACE_DIR/../Workspace_CH; figlet -d $HOME/.local/share/figlet -f \"ANSI Shadow\" -c -W 'CHEYENNE' | lolcat")
+  renameWindow(CH, 0, "laramie")
+  sendCommand(CH, 0, 0, "clear; echo ""; cd $WORKSPACE_DIR/../Workspace_CH; figlet -d $HOME/.local/share/figlet -f \"ANSI Shadow\" -c -W 'Laramie' | lolcat")
 end
 
 def killTmux()
