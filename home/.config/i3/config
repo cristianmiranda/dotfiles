@@ -39,6 +39,7 @@ client.background       #2B2C2B
 for_window [class=i3FloatingWindow|Xviewer|Pix|Viewnior|feh|Audacious|File-roller|Lxappearance|Lxtask|Qalculate-gtk] floating enable
 for_window [class=URxvt|Firefox|Geany|Evince|Soffice|libreoffice*|mpv|Ghb|Xfburn|Gimp*|Inkscape|Vlc|Lxappearance|Audacity] focus
 for_window [class=Xfburn|GParted|System-config-printer.py|Lxtask|Pavucontrol|Exo-helper*|Lxrandr|Arandr] focus
+for_window [title=zoom_clips_panel] floating enable
 
 for_window [class="^.*"] border pixel 2
 
