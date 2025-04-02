@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# Path to the main Python script
+PYTHON_SCRIPT="$HOME/bin/openrouter-credits"
+
+# Execute the Python script to get the status and credits
+OUTPUT=$("$PYTHON_SCRIPT" --pretty)
+
+# Extract the status prefix (OK, LOW, ERR) and the numbers
+STATUS=$(echo "$OUTPUT" | awk '{print $1}')
+NUMBERS=$(echo "$OUTPUT" | cut -d' ' -f2-)
+
+# Define colors (using One Dark Red)
+COLOR_NORMAL="" # Use Polybar's default foreground
+COLOR_LOW="%{F#e06c75}" # Red for low credits
+COLOR_ERROR="%{F#FFCC00}" # Yellow for error, adjust if needed
+COLOR_RESET="%{F-}"
+
+# Format the output based on the status
+case "$STATUS" in
+    OK)
+        echo "🤖 ${COLOR_NORMAL}${NUMBERS}${COLOR_RESET}"
+        ;;
+    LOW)
+        echo "🤖 ${COLOR_LOW}${NUMBERS}${COLOR_RESET}"
+        ;;
+    ERR|*) # Handle ERR or any unexpected output
+        echo "🤖 ${COLOR_ERROR}${NUMBERS}${COLOR_RESET}" # Display numbers even on error, but colored
+        ;;
+esac

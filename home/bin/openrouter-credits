@@ -6,12 +6,13 @@ import json
 import subprocess
 import sys
 import requests
+import argparse
 
 def get_api_key():
     """Get OpenRouter API key from secrets"""
     try:
         result = subprocess.run(
-            ["reveal-secret", "OPENROUTER_API_KEY"],
+            ["/home/cmiranda/bin/reveal-secret", "OPENROUTER_API_KEY"],
             capture_output=True,
             text=True,
             check=True
@@ -44,9 +45,9 @@ def check_credits(api_key):
 
         # Parse and return the response
         return response.json()
-    except requests.exceptions.RequestException as e:
-        print(f"Error making request to OpenRouter API: {e}")
-        sys.exit(1)
+    except requests.exceptions.RequestException:
+        # Return None to indicate API request failure
+        return None
 
 def format_credits(credits_data):
     """Format credits data for display"""
@@ -70,12 +71,56 @@ def format_credits(credits_data):
     except Exception as e:
         print(f"Error formatting credit information: {e}")
 
+def format_credits_pretty(credits_data):
+    """Format credits data for pretty display (used by polybar)"""
+    try:
+        if "data" in credits_data:
+            data = credits_data["data"]
+            total_credits = data.get("total_credits", 0)
+            total_usage = data.get("total_usage", 0)
+            remaining = total_credits - total_usage
+
+            # Format numbers
+            numbers_string = f"{remaining:.2f} / {total_usage:.2f}"
+
+            # Prepend status based on total_credits
+            if remaining < 5:
+                print(f"LOW {numbers_string}")
+            else:
+                print(f"OK {numbers_string}")
+        else:
+            print("-- / --") # Indicate error state or missing data
+    except Exception as e:
+        print("-- / --") # Indicate formatting error or missing data
+
 def main():
     """Main function"""
-    print("Checking OpenRouter credits...")
+    # Add argument parsing
+    parser = argparse.ArgumentParser(description='Check OpenRouter credit balance')
+    parser.add_argument('--pretty', action='store_true', help='Output in pretty format for polybar')
+    args = parser.parse_args()
+
+    if not args.pretty:
+        print("Checking OpenRouter credits...")
+
     api_key = get_api_key()
     credits_data = check_credits(api_key)
-    format_credits(credits_data)
+
+    # Handle API request failure
+    if credits_data is None:
+        if args.pretty:
+            print("-- / --")
+        else:
+            # Print error to stderr
+            print("Error: Could not retrieve credits from OpenRouter API.", file=sys.stderr)
+        sys.exit(1) # Exit with error status if API failed
+
+    # Proceed if API request was successful
+    if args.pretty:
+        format_credits_pretty(credits_data)
+    else:
+        format_credits(credits_data)
 
 if __name__ == "__main__":
     main()
+

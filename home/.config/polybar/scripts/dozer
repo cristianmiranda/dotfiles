@@ -2,6 +2,7 @@
 
 modules=(
     dolarblue
+    openrouter
 )
 
 COMMAND=$1
