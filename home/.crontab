@@ -14,4 +14,4 @@
 #
 # Creates a dump of the local ESH Oracle database
 #
-@monthly bash $HOME/Documents/Work/Workspace_LG/esh-db-dumps/run-backup.sh
+@monthly $HOME/bin/esh-db-backup

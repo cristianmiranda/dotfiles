@@ -1,0 +1,222 @@
+#!/bin/bash
+
+# Set up environment variables that would normally be missing in cron
+export BASE_WORK_DIR="${HOME}/Documents/Work"
+export LG_BASE_DIR="${BASE_WORK_DIR}/Workspace_LG"
+export GOOGLE_DRIVE_LG="${HOME}/Google Drive (LG)"
+
+# Log file
+LOG_FILE="/tmp/esh-db-backup.log"
+
+# Log start time
+echo "Starting ESH DB backup at $(date)" > $LOG_FILE
+
+# Function to check if a Docker container is running
+check_docker_container() {
+    local container_name="$1"
+    if ! docker ps | grep -q "$container_name"; then
+        echo "ERROR: Docker container '$container_name' is not running!" | tee -a $LOG_FILE
+        echo "Please start the container with: docker start $container_name" | tee -a $LOG_FILE
+        return 1
+    fi
+    return 0
+}
+
+# Function to extract dump from database (previously in extract-dump.sh)
+extract_dump() {
+    echo "Starting database extraction process..." | tee -a $LOG_FILE
+
+    # Check if Docker container is running
+    if ! check_docker_container "esh-db"; then
+        echo "ERROR: Cannot proceed with database extraction without the Docker container." | tee -a $LOG_FILE
+        return 1
+    fi
+
+    # Create a temporary script file to run inside the container
+    TEMP_SCRIPT="/tmp/extract_dump_$$.sh"
+    cat > $TEMP_SCRIPT << 'EOF'
+#!/bin/bash
+
+# Source Oracle environment
+if [ -f /home/oracle/.bashrc ]; then
+    echo "Sourcing Oracle environment..."
+    source /home/oracle/.bashrc
+else
+    echo "WARNING: Oracle environment file not found at /home/oracle/.bashrc"
+fi
+
+# Define variables
+DATA_DIR_PUMP=/u01/app/oracle/admin/ORCL/dpdump
+MEDIA_DIR=/media/esh-db-dumps
+
+echo "Running extraction script inside Docker container..."
+
+# Clean up old files
+echo "Cleaning up old files..."
+rm -f $DATA_DIR_PUMP/**/*.dmp 2>/dev/null || true
+rm -f $DATA_DIR_PUMP/**/*.log 2>/dev/null || true
+
+# Check if expdp is available
+if ! command -v expdp &> /dev/null; then
+    echo "ERROR: expdp command not found in container. Oracle tools may not be installed or in PATH."
+    echo "PATH: $PATH"
+    echo "Current user: $(whoami)"
+    echo "Oracle environment may not be properly set up."
+    exit 1
+fi
+
+echo "Extracting data from database..."
+expdp system/Oradoc_db1@ORCLPDB1 directory=DATA_PUMP_DIR logfile=stage_full.log dumpfile=stage_full.dmp full=yes
+
+echo "Extracting metadata from database..."
+expdp system/Oradoc_db1@ORCLPDB1 directory=DATA_PUMP_DIR logfile=stage_meta.log dumpfile=stage_meta.dmp schemas=ESCRIBE content=metadata_only
+
+echo "Listing dump files..."
+ls -lh $DATA_DIR_PUMP/**/*.dmp || echo "No dump files found"
+ls -lh $DATA_DIR_PUMP/**/*.log || echo "No log files found"
+
+echo "Changing permissions..."
+chmod 777 $DATA_DIR_PUMP/**/*.dmp 2>/dev/null || true
+chmod 777 $DATA_DIR_PUMP/**/*.log 2>/dev/null || true
+
+echo "Moving dump files to shared directory..."
+mv -f $DATA_DIR_PUMP/**/*.dmp $MEDIA_DIR/. 2>/dev/null || true
+mv -f $DATA_DIR_PUMP/**/*.log $MEDIA_DIR/. 2>/dev/null || true
+
+# Verify files were moved successfully
+if ls $MEDIA_DIR/stage_full.dmp $MEDIA_DIR/stage_meta.dmp &>/dev/null; then
+    echo "Dump files successfully created and moved to shared directory."
+    exit 0
+else
+    echo "ERROR: Dump files not found in shared directory after extraction."
+    exit 1
+fi
+EOF
+
+    # Make the script executable
+    chmod +x $TEMP_SCRIPT
+
+    # Copy the script to the container
+    echo "Copying extraction script to Docker container..." | tee -a $LOG_FILE
+    docker cp $TEMP_SCRIPT esh-db:/tmp/extract_dump.sh
+
+    # Execute the script in the container
+    echo "Executing extraction script in Docker container..." | tee -a $LOG_FILE
+    docker exec esh-db bash /tmp/extract_dump.sh | tee -a $LOG_FILE
+    EXTRACT_STATUS=$?
+
+    # Clean up the temporary script
+    rm -f $TEMP_SCRIPT
+
+    # Check if the extraction was successful
+    if [ $EXTRACT_STATUS -ne 0 ]; then
+        echo "ERROR: Database extraction failed with status $EXTRACT_STATUS!" | tee -a $LOG_FILE
+        return 1
+    fi
+
+    echo "Database extraction completed at $(date)" | tee -a $LOG_FILE
+    return 0
+}
+
+# Function to process extracted dumps (previously in post-extract-dump.sh)
+post_extract() {
+    echo "Starting post-extraction process at $(date)" | tee -a $LOG_FILE
+
+    TIMESTAMP=$(date +%Y%m%d_%H%M%S)
+    LOCAL_DUMPS_DIR="${LG_BASE_DIR}/esh-db-dumps"
+    SHARED_DUMPS_DIR="${GOOGLE_DRIVE_LG}/ESH - Local Development/esh-db-dumps/"
+
+    # Check if directories exist
+    if [ ! -d "$LOCAL_DUMPS_DIR" ]; then
+        echo "ERROR: Local dumps directory does not exist: $LOCAL_DUMPS_DIR" | tee -a $LOG_FILE
+        return 1
+    fi
+
+    if [ ! -d "$SHARED_DUMPS_DIR" ]; then
+        echo "ERROR: Shared dumps directory does not exist: $SHARED_DUMPS_DIR" | tee -a $LOG_FILE
+        return 1
+    fi
+
+    # Check if dump files exist
+    cd $LOCAL_DUMPS_DIR
+    if ! ls stage_full.* stage_meta.* &>/dev/null; then
+        echo "ERROR: Dump files not found in $LOCAL_DUMPS_DIR" | tee -a $LOG_FILE
+        echo "This could be because the database extraction failed or the files were moved." | tee -a $LOG_FILE
+        return 1
+    fi
+
+    echo "Compressing dump files..." | tee -a $LOG_FILE
+    zip $TIMESTAMP.zip stage_full.* stage_meta.* >> $LOG_FILE 2>&1
+
+    if [ ! -f "$TIMESTAMP.zip" ]; then
+        echo "ERROR: Failed to create zip file" | tee -a $LOG_FILE
+        return 1
+    fi
+
+    echo "Removing old dumps before sharing..." | tee -a $LOG_FILE
+    cd "$SHARED_DUMPS_DIR"
+    rm -Rf *.zip 2>/dev/null
+
+    echo "Moving dump files to shared directory..." | tee -a $LOG_FILE
+    mv -f "${LOCAL_DUMPS_DIR}"/*.zip "$SHARED_DUMPS_DIR" 2>/dev/null
+
+    if [ $? -ne 0 ]; then
+        echo "WARNING: Failed to move zip file to shared directory" | tee -a $LOG_FILE
+        echo "The backup is still available at: ${LOCAL_DUMPS_DIR}/$TIMESTAMP.zip" | tee -a $LOG_FILE
+    fi
+
+    echo "Removing local dump files..." | tee -a $LOG_FILE
+    cd $LOCAL_DUMPS_DIR
+    rm stage_full.* stage_meta.* 2>/dev/null
+
+    echo "Post-extraction process completed at $(date)" | tee -a $LOG_FILE
+    return 0
+}
+
+# Function to display usage information
+usage() {
+    echo "ESH Database Backup Script"
+    echo ""
+    echo "This script creates a backup of the ESH Oracle database."
+    echo "It requires the esh-db Docker container to be running."
+    echo ""
+    echo "Usage:"
+    echo "  $0 [--help]"
+    echo ""
+    echo "Options:"
+    echo "  --help    Display this help message"
+    echo ""
+    echo "Note: This script is primarily intended to be run by cron."
+    echo "      It requires the esh-db Docker container to be running."
+    echo ""
+}
+
+# Parse command line arguments
+if [ "$1" = "--help" ]; then
+    usage
+    exit 0
+fi
+
+# Main execution
+echo "=== ESH Database Backup ===" | tee -a $LOG_FILE
+echo "Starting backup at $(date)" | tee -a $LOG_FILE
+
+# Run extraction
+extract_dump
+extraction_status=$?
+
+# Only run post-extraction if extraction was successful
+if [ $extraction_status -eq 0 ]; then
+    post_extract
+    post_extraction_status=$?
+
+    if [ $post_extraction_status -eq 0 ]; then
+        echo "ESH DB backup completed successfully at $(date)" | tee -a $LOG_FILE
+    else
+        echo "ESH DB backup completed with errors in post-extraction at $(date)" | tee -a $LOG_FILE
+    fi
+else
+    echo "ESH DB backup failed at extraction stage at $(date)" | tee -a $LOG_FILE
+fi
+
+echo "Backup log available at: $LOG_FILE" | tee -a $LOG_FILE
