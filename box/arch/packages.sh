@@ -212,6 +212,7 @@ PACKAGES=(
     viewnior
     virt-manager
     visual-studio-code-bin
+    visual-studio-code-insiders-bin
     vlc
     wasistlos
     wireplumber
