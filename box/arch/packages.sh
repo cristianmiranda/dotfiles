@@ -125,17 +125,11 @@ PACKAGES=(
     noto-fonts
     noto-fonts-emoji
     numlockx
-    # nvidia
-    # nvidia-lts
-    # nvidia-settings
-    # nvidia-utils
     obs-studio
     okular
     openresolv
     openrgb
     openssh
-    # optimus-manager-git
-    # optimus-manager-qt
     oracle-instantclient-sqlplus
     p7zip
     pacman-contrib
@@ -198,8 +192,6 @@ PACKAGES=(
     thunderbird
     ticktick
     timeshift
-    # tlp
-    # tlpui-git
     tmux
     tree
     ttf-firacode-nerd
@@ -222,7 +214,6 @@ PACKAGES=(
     xdotool
     xf86-input-libinput
     xf86-video-amdgpu
-    # xfce4-power-manager
     xidlehook
     xmlstarlet
     xorg-apps
