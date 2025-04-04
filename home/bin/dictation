@@ -1,0 +1,87 @@
+#!/usr/bin/env python3
+
+import argparse
+import subprocess
+import sys
+import os
+
+def check_status():
+    """Check if nerd-dictation is running."""
+    try:
+        # Use ps aux and grep to check if nerd-dictation is running
+        ps_result = subprocess.run(
+            ["ps", "aux"],
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True
+        )
+
+        # Look for nerd-dictation processes in the output
+        processes = []
+        for line in ps_result.stdout.splitlines():
+            if "nerd-dictation" in line and "grep" not in line:
+                processes.append(line)
+
+        # If we found any nerd-dictation processes (excluding grep itself)
+        if processes:
+            return "active"
+        else:
+            return "inactive"
+    except Exception as e:
+        # Exit gracefully if the status check fails
+        sys.stderr.write(f"Error checking status: {str(e)}\n")
+        return "inactive"
+
+def start_dictation():
+    """Start nerd-dictation."""
+    try:
+        subprocess.Popen(
+            ["nerd-dictation", "begin"],
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL
+        )
+    except Exception as e:
+        sys.stderr.write(f"Error starting nerd-dictation: {str(e)}\n")
+        sys.exit(1)
+
+def stop_dictation():
+    """Stop nerd-dictation."""
+    try:
+        subprocess.run(
+            ["nerd-dictation", "end"],
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL
+        )
+    except Exception as e:
+        sys.stderr.write(f"Error stopping nerd-dictation: {str(e)}\n")
+        sys.exit(1)
+
+def toggle_dictation():
+    """Toggle nerd-dictation on/off."""
+    status = check_status()
+    if status == "active":
+        stop_dictation()
+    else:
+        start_dictation()
+
+def main():
+    parser = argparse.ArgumentParser(description="Control nerd-dictation")
+    group = parser.add_mutually_exclusive_group(required=True)
+    group.add_argument("--start", action="store_true", help="Start nerd-dictation")
+    group.add_argument("--stop", action="store_true", help="Stop nerd-dictation")
+    group.add_argument("--status", action="store_true", help="Check if nerd-dictation is active")
+    group.add_argument("--toggle", action="store_true", help="Toggle nerd-dictation on/off")
+
+    args = parser.parse_args()
+
+    if args.start:
+        start_dictation()
+    elif args.stop:
+        stop_dictation()
+    elif args.status:
+        print(check_status())
+    elif args.toggle:
+        toggle_dictation()
+
+if __name__ == "__main__":
+    main()
