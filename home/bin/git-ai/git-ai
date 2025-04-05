@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+# Dispatch script based on first argument
+cmd="$1"
+shift
+
+case "$cmd" in
+  commit)
+    ~/bin/git-ai/generate-commit-message "$@"
+    ;;
+  *)
+    echo "Unknown git-ai command: $cmd"
+    exit 1
+    ;;
+esac

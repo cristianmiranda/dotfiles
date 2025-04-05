@@ -9,6 +9,10 @@
 	s = status -s
 
 	#
+	# Executes AI powered commands localted in `~/bin/git` directory
+	ai = "!~/bin/git-ai/git-ai"
+
+	#
 	# git commit
 	#
 	# Regular commit

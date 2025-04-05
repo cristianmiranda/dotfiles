@@ -1,0 +1,32 @@
+#!/bin/bash
+
+# Get the branch prefix
+branch_prefix=$(git branch | awk '{if ($1 == "*"){print $2}}' | awk -F '_' '{print $1}')
+echo "Branch prefix: $branch_prefix"
+
+# Get the staged changes
+staged_changes=$(git diff --staged)
+
+# Check if there are any staged changes
+if [ -z "$staged_changes" ]; then
+  echo "No staged changes found. Please stage your changes using 'git add' first."
+  exit 1
+fi
+
+# Use aichat to generate the commit message
+aichat << EOF
+You are a Git commit message expert. Generate a concise and descriptive commit message for the following changes.
+
+The commit message should have:
+1. A subject line (max 72 chars including prefix and context)
+2. A blank line
+3. An optional body with more details
+
+The subject line should start with the prefix '${branch_prefix}<BLANK_SPACE>CONTEXT:' (where CONTEXT is something relevant that describes in a word what this is about).
+Focus on WHAT and WHY, not HOW.
+
+DO NOT include any explanations or instructions - ONLY output the commit message directly.
+
+Staged changes:
+${staged_changes}
+EOF
