@@ -19,12 +19,12 @@ COLOR_RESET="%{F-}"
 # Format the output based on the status
 case "$STATUS" in
     OK)
-        echo "✨ ${COLOR_NORMAL}${NUMBERS}${COLOR_RESET}"
+        echo "${COLOR_NORMAL}${NUMBERS}${COLOR_RESET}"
         ;;
     LOW)
-        echo "✨ ${COLOR_LOW}${NUMBERS}${COLOR_RESET}"
+        echo "${COLOR_LOW}${NUMBERS}${COLOR_RESET}"
         ;;
     ERR|*) # Handle ERR or any unexpected output
-        echo "✨ ${COLOR_ERROR}${NUMBERS}${COLOR_RESET}" # Display numbers even on error, but colored
+        echo "${COLOR_ERROR}${NUMBERS}${COLOR_RESET}" # Display numbers even on error, but colored
         ;;
 esac
