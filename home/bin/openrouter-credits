@@ -81,7 +81,7 @@ def format_credits_pretty(credits_data):
             remaining = total_credits - total_usage
 
             # Format numbers
-            numbers_string = f"{remaining:.2f} / {total_usage:.2f}"
+            numbers_string = f"{remaining:.4f}"
 
             # Prepend status based on total_credits
             if remaining < 5:
@@ -89,9 +89,9 @@ def format_credits_pretty(credits_data):
             else:
                 print(f"OK {numbers_string}")
         else:
-            print("-- / --") # Indicate error state or missing data
+            print("--") # Indicate error state or missing data
     except Exception as e:
-        print("-- / --") # Indicate formatting error or missing data
+        print("--") # Indicate formatting error or missing data
 
 def main():
     """Main function"""
@@ -109,7 +109,7 @@ def main():
     # Handle API request failure
     if credits_data is None:
         if args.pretty:
-            print("-- / --")
+            print("--")
         else:
             # Print error to stderr
             print("Error: Could not retrieve credits from OpenRouter API.", file=sys.stderr)
