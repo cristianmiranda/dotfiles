@@ -15,6 +15,7 @@ PACKAGES=(
     accountsservice
     acpi
     acpi_call
+    aichat
     amdgpu_top-bin
     apcupsd
     alacarte
