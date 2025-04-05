@@ -1,4 +1,14 @@
 #!/bin/bash
 
-$HOME/bin/dolar -b | awk -F " //" '{print $1}'
+# Get the JSON output from dolar program
+json_output=$($HOME/bin/dolar -b -j)
 
+# Extract buy_price and sell_price using jq
+buy_price=$(echo "$json_output" | jq -r '.buy_price')
+sell_price=$(echo "$json_output" | jq -r '.sell_price')
+
+# Calculate the difference
+difference=$((sell_price - buy_price))
+
+# Output the buy price and the difference
+echo "$buy_price +$difference"

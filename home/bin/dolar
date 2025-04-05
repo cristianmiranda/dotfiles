@@ -14,10 +14,11 @@ def usage
     OPTIONS:
       --blue    | -b : Dólar Blue
       --oficial | -o : Dólar Oficial
+      --json    | -j : Output as JSON
   USAGE
 end
 
-def fetch_usd_value(type)
+def fetch_usd_value(type, format_json = false)
   begin
     response = Net::HTTP.get(URI("https://mercados.ambito.com/dolar/#{type}/variacion"))
     output = JSON.parse(response)
@@ -27,22 +28,42 @@ def fetch_usd_value(type)
     variation = output['variacion']
     last_closing_value = output['valor_cierre_ant'].to_f.to_i
 
-    variation = variation.start_with?('-') ? "🔴 #{variation}" : "🟢 #{variation}"
-
-    puts "💵 #{buy_price} / #{sell_price} // #{variation} (#{last_closing_value})"
+    if format_json
+      result = {
+        buy_price: buy_price,
+        sell_price: sell_price,
+        variation: variation,
+        last_closing_value: last_closing_value,
+        type: type
+      }
+      puts JSON.pretty_generate(result)
+    else
+      variation_formatted = variation.start_with?('-') ? "🔴 #{variation}" : "🟢 #{variation}"
+      puts "💵 #{buy_price} / #{sell_price} // #{variation_formatted} (#{last_closing_value})"
+    end
   rescue SocketError, Errno::ENETUNREACH
-    puts "💸 - / -"
+    if format_json
+      puts JSON.pretty_generate({ error: "Network error" })
+    else
+      puts "💸 - / -"
+    end
   end
 end
 
 options = {}
+format_json = false
+
 OptionParser.new do |opts|
   opts.on('-b', '--blue', 'Dólar Blue') do |v|
-    fetch_usd_value('informal')
+    options[:type] = 'informal'
   end
 
   opts.on('-o', '--oficial', 'Dólar Oficial') do |v|
-    fetch_usd_value('oficial')
+    options[:type] = 'oficial'
+  end
+
+  opts.on('-j', '--json', 'Output as JSON') do |v|
+    format_json = true
   end
 
   opts.on('-h', '--help', 'Displays Help') do
@@ -50,3 +71,10 @@ OptionParser.new do |opts|
     exit
   end
 end.parse!
+
+if options[:type]
+  fetch_usd_value(options[:type], format_json)
+else
+  # Default to blue dollar if no option specified
+  fetch_usd_value('informal', format_json)
+end
