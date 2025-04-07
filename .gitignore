@@ -85,3 +85,4 @@ home/dots/work/.bc-functions
 home/.ssh/pems/cheyenne.pem
 home/.ssh/pems/laramie.pem
 home/.config/aichat/config.yaml
+home/.config/rclone/rclone.conf

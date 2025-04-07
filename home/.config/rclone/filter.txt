@@ -1,0 +1,49 @@
+#
+# System stuff
+#
+- /dev/**
+- /proc/**
+- /sys/**
+- /tmp/**
+- /run/**
+- /mnt/**
+- /media/**
+- /lost+found/**
+- /var/cache/**
+- /var/tmp/**
+- /var/lib/flatpak/**
+- /swapfile
+- /windows/**
+#
+# Home stuff
+#
+- /home/**/.cache/**
+- /home/**/.local/share/bottles/**
+- /home/**/.local/share/Steam/**
+- /home/**/.npm/**
+- /home/**/.nvm/**
+- /home/**/.ollama/**
+- /home/**/.steam/**
+- /home/**/.yarn/**
+- /home/**/.wine/**
+- /home/**/node_modules/**
+- /home/**/Games/**
+#
+# Data
+#
+- /data/backups/**
+- /home/**/data/backups/**
+- /data/games/**
+- /home/**/data/games/**
+- /data/mediabox/downloads/**
+- /home/**/data/mediabox/downloads/**
+- /data/mediabox/media/movies/**
+- /home/**/data/mediabox/media/movies/**
+- /data/mediabox/media/series/**
+- /home/**/data/mediabox/media/series/**
+- /data/work/lillegroup/esh-db-data/**
+- /home/**/data/work/lillegroup/esh-db-data/**
+#
+# Exclude rclone cache (if used)
+#
+- **.rclone_temp/**

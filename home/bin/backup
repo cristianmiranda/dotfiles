@@ -1,37 +1,440 @@
 #!/usr/bin/env bash
+#
+# Backup Management Script
+# A comprehensive utility for managing backups to AWS S3 using rclone
+#
 
-TIMESTAMP=$(date +%Y-%m-%d_%H-%M-%S)
-BACKUP_DIR_PATH=/data/backups/rsync/$HOSTNAME
+# Exit on error
+set -e
 
-EXCLUDED=(
-    "*.log"
-    ".1password"
-    ".cache"
-    ".npm"
-    ".nvm"
-    ".yarn"
-    ".local/share/Steam"
-    ".local/share/bottles"
-    "Documents/Work/Workspace_LG/orthanc-ohif/orthanc/db"
-    "Downloads/"
-    "logs"
-)
+# =============================================================================
+# Constants and Configuration
+# =============================================================================
 
-EXCLUDES=()
-for i in "${EXCLUDED[@]}"; do
-    EXCLUDES="$EXCLUDES --exclude '$i'"
-done
+# S3 bucket configuration
+S3_BUCKET_NAME="cmiranda-backup-beast"
+S3_CURRENT_DIR="current"
+S3_ARCHIVE_DIR="archive"
 
-COMMAND="
-    rsync -avz \
-        --human-readable \
-        --stats \
-        --progress \
-        --delete \
-        --delete-excluded \
-        $EXCLUDES \
-        \"$HOME/\" $BACKUP_DIR_PATH \
-"
+# Rclone configuration
+RCLONE_CONFIG_PATH="$HOME/.config/rclone/rclone.conf"
+RCLONE_FILTER_PATH="$HOME/.config/rclone/filter.txt"
+RCLONE_REMOTE="aws-s3"
 
-echo $COMMAND | tee -a $LOGS_DIR/backup_$TIMESTAMP.log
-eval $COMMAND | tee -a $LOGS_DIR/backup_$TIMESTAMP.log
+# Backup settings
+DEFAULT_RETENTION=10
+LOG_DIR="$HOME/logs"
+LOG_PREFIX="rclone-backup"
+
+# Rclone performance settings
+TRANSFERS=64
+CHECKERS=64
+CHUNK_SIZE="512M"
+BUFFER_SIZE="512M"
+MULTI_THREAD_STREAMS=16
+RETRIES=2
+STATS_INTERVAL="2s"
+LOG_LEVEL="DEBUG"
+LOG_FORMAT="date,time"
+
+# =============================================================================
+# Global Variables
+# =============================================================================
+
+TIMESTAMP=$(date +%Y%m%d_%H%M%S)
+LOG_FILE="$LOG_DIR/${LOG_PREFIX}_$TIMESTAMP.log"
+COMMAND=""
+RETENTION=$DEFAULT_RETENTION
+VERBOSE=false
+QUIET=false
+DRY_RUN=false
+
+# =============================================================================
+# Helper Functions
+# =============================================================================
+
+# Print error message and exit
+function error() {
+    echo -e "\e[31mERROR: $1\e[0m" >&2
+    exit 1
+}
+
+# Print warning message
+function warning() {
+    echo -e "\e[33mWARNING: $1\e[0m" >&2
+}
+
+# Print info message
+function info() {
+    if [[ "$QUIET" == false ]]; then
+        echo -e "\e[32mINFO: $1\e[0m"
+    fi
+}
+
+# Print verbose message
+function verbose() {
+    if [[ "$VERBOSE" == true ]] && [[ "$QUIET" == false ]]; then
+        echo -e "\e[36mDEBUG: $1\e[0m"
+    fi
+}
+
+# Check if required tools are installed
+function check_requirements() {
+    if ! command -v rclone &> /dev/null; then
+        error "rclone is not installed. Please install it first."
+    fi
+
+    if [[ ! -f "$RCLONE_CONFIG_PATH" ]]; then
+        error "rclone config file not found at $RCLONE_CONFIG_PATH"
+    fi
+
+    if [[ ! -f "$RCLONE_FILTER_PATH" ]]; then
+        error "rclone filter file not found at $RCLONE_FILTER_PATH"
+    fi
+
+    # Create log directory if it doesn't exist
+    if [[ ! -d "$LOG_DIR" ]]; then
+        verbose "Creating log directory: $LOG_DIR"
+        mkdir -p "$LOG_DIR"
+    fi
+}
+
+# =============================================================================
+# Core Functions
+# =============================================================================
+
+# Execute a full backup
+function execute_backup() {
+    info "Starting backup operation..."
+    verbose "Timestamp: $TIMESTAMP"
+    verbose "Log file: $LOG_FILE"
+
+    # Prepare rclone command
+    local cmd="rclone sync / ${RCLONE_REMOTE}:${S3_BUCKET_NAME}/${S3_CURRENT_DIR} \
+  --backup-dir ${RCLONE_REMOTE}:${S3_BUCKET_NAME}/${S3_ARCHIVE_DIR}/$TIMESTAMP \
+  --filter-from $RCLONE_FILTER_PATH \
+  --copy-links \
+  --transfers $TRANSFERS \
+  --checkers $CHECKERS \
+  --s3-chunk-size $CHUNK_SIZE \
+  --buffer-size $BUFFER_SIZE \
+  --multi-thread-streams $MULTI_THREAD_STREAMS \
+  --stats $STATS_INTERVAL \
+  --log-level $LOG_LEVEL \
+  --log-format \"$LOG_FORMAT\" \
+  --log-file \"$LOG_FILE\" \
+  --fast-list \
+  --retries $RETRIES"
+
+    # Add progress flag if not in quiet mode
+    if [[ "$QUIET" == false ]]; then
+        cmd="$cmd --progress"
+    fi
+
+    # Add dry-run flag if specified
+    if [[ "$DRY_RUN" == true ]]; then
+        cmd="$cmd --dry-run"
+        info "DRY RUN MODE: No actual changes will be made"
+    fi
+
+    # Execute the command
+    verbose "Executing command: $cmd"
+    eval "$cmd"
+
+    local status=$?
+    if [[ $status -eq 0 ]]; then
+        info "Backup completed successfully"
+
+        # Prune old backups if retention is set
+        if [[ $RETENTION -gt 0 ]]; then
+            prune_backups
+        fi
+    else
+        error "Backup failed with status $status"
+    fi
+}
+
+# List existing backups
+function list_backups() {
+    info "Listing existing backups..."
+
+    # Get list of archive backups
+    local cmd="rclone lsf ${RCLONE_REMOTE}:${S3_BUCKET_NAME}/${S3_ARCHIVE_DIR}/ --dirs-only"
+    verbose "Executing command: $cmd"
+
+    local backups=$(eval "$cmd")
+    if [[ -z "$backups" ]]; then
+        info "No backups found"
+        return
+    fi
+
+    # Sort backups by date (newest first)
+    local sorted_backups=($(echo "$backups" | sort -r))
+
+    # Display backups with size information
+    echo "Existing backups (newest first):"
+    echo "--------------------------------"
+    echo "| Timestamp            | Size       |"
+    echo "--------------------------------"
+
+    for backup in "${sorted_backups[@]}"; do
+        # Remove trailing slash if present
+        backup=${backup%/}
+
+        # Get size information
+        local size_cmd="rclone size ${RCLONE_REMOTE}:${S3_BUCKET_NAME}/${S3_ARCHIVE_DIR}/$backup"
+        verbose "Executing command: $size_cmd"
+
+        local size_info=$(eval "$size_cmd" | grep "Total size:" | awk '{print $3, $4}')
+        if [[ -z "$size_info" ]]; then
+            size_info="Unknown"
+        fi
+
+        # Format timestamp for display (YYYYMMDD_HHMMSS -> YYYY-MM-DD HH:MM:SS)
+        local formatted_date=$(echo "$backup" | sed 's/\([0-9]\{4\}\)\([0-9]\{2\}\)\([0-9]\{2\}\)_\([0-9]\{2\}\)\([0-9]\{2\}\)\([0-9]\{2\}\)/\1-\2-\3 \4:\5:\6/')
+
+        echo "| $formatted_date | $size_info |"
+    done
+
+    echo "--------------------------------"
+    echo "Total backups: ${#sorted_backups[@]}"
+    echo "Current retention policy: $RETENTION backups"
+}
+
+# Prune old backups based on retention policy
+function prune_backups() {
+    info "Pruning old backups based on retention policy (keeping $RETENTION)..."
+
+    # Get list of archive backups
+    local cmd="rclone lsf ${RCLONE_REMOTE}:${S3_BUCKET_NAME}/${S3_ARCHIVE_DIR}/ --dirs-only"
+    verbose "Executing command: $cmd"
+
+    local backups=$(eval "$cmd")
+    if [[ -z "$backups" ]]; then
+        info "No backups found to prune"
+        return
+    fi
+
+    # Sort backups by date (oldest first)
+    local sorted_backups=($(echo "$backups" | sort))
+    local total_backups=${#sorted_backups[@]}
+
+    # Calculate how many backups to remove
+    local to_remove=$((total_backups - RETENTION))
+
+    if [[ $to_remove -le 0 ]]; then
+        info "No backups need to be pruned (have $total_backups, keeping $RETENTION)"
+        return
+    fi
+
+    info "Found $total_backups backups, keeping $RETENTION, removing $to_remove"
+
+    # Remove oldest backups
+    for ((i=0; i<to_remove; i++)); do
+        local backup=${sorted_backups[$i]%/}  # Remove trailing slash if present
+        local prune_cmd="rclone purge ${RCLONE_REMOTE}:${S3_BUCKET_NAME}/${S3_ARCHIVE_DIR}/$backup"
+
+        if [[ "$DRY_RUN" == true ]]; then
+            info "DRY RUN: Would remove backup: $backup"
+        else
+            verbose "Executing command: $prune_cmd"
+            info "Removing backup: $backup"
+            eval "$prune_cmd"
+        fi
+    done
+
+    info "Pruning completed"
+}
+
+# Display help message
+function show_help() {
+    local command=$1
+
+    case "$command" in
+        "backup")
+            echo "Usage: backup backup [OPTIONS]"
+            echo
+            echo "Execute a full backup to AWS S3"
+            echo
+            echo "Options:"
+            echo "  -r, --retention N    Keep the last N archive backups (default: $DEFAULT_RETENTION)"
+            echo "  -v, --verbose        Enable verbose output"
+            echo "  -q, --quiet          Suppress all output except errors"
+            echo "  -d, --dry-run        Preview actions without executing them"
+            echo "  -h, --help           Display this help message"
+            echo
+            echo "Example:"
+            echo "  backup backup --retention 10 --verbose"
+            ;;
+        "list")
+            echo "Usage: backup list [OPTIONS]"
+            echo
+            echo "List existing backups in AWS S3"
+            echo
+            echo "Options:"
+            echo "  -v, --verbose        Enable verbose output"
+            echo "  -q, --quiet          Suppress all output except errors"
+            echo "  -h, --help           Display this help message"
+            echo
+            echo "Example:"
+            echo "  backup list"
+            ;;
+        "prune")
+            echo "Usage: backup prune [OPTIONS]"
+            echo
+            echo "Remove old backups based on retention policy"
+            echo
+            echo "Options:"
+            echo "  -r, --retention N    Keep the last N archive backups (default: $DEFAULT_RETENTION)"
+            echo "  -v, --verbose        Enable verbose output"
+            echo "  -q, --quiet          Suppress all output except errors"
+            echo "  -d, --dry-run        Preview actions without executing them"
+            echo "  -h, --help           Display this help message"
+            echo
+            echo "Example:"
+            echo "  backup prune --retention 3 --dry-run"
+            ;;
+        *)
+            echo "Backup Management Script"
+            echo "A comprehensive utility for managing backups to AWS S3 using rclone"
+            echo
+            echo "Usage: backup [OPTIONS] COMMAND"
+            echo
+            echo "Commands:"
+            echo "  backup    Execute a full backup"
+            echo "  list      List existing backups"
+            echo "  prune     Remove old backups based on retention policy"
+            echo "  help      Display this help message"
+            echo
+            echo "Options:"
+            echo "  -r, --retention N    Keep the last N archive backups (default: $DEFAULT_RETENTION)"
+            echo "  -v, --verbose        Enable verbose output"
+            echo "  -q, --quiet          Suppress all output except errors"
+            echo "  -d, --dry-run        Preview actions without executing them"
+            echo "  -h, --help           Display help for the specified command"
+            echo
+            echo "Examples:"
+            echo "  backup backup                  # Execute a full backup with default settings"
+            echo "  backup list                    # List all existing backups"
+            echo "  backup prune --retention 3     # Keep only the 3 most recent backups"
+            echo "  backup help backup             # Show help for the backup command"
+            ;;
+    esac
+}
+
+# =============================================================================
+# Command-line Argument Parsing
+# =============================================================================
+
+# Parse command-line arguments
+function parse_args() {
+    local positional=()
+
+    # First, check if the first argument is "help"
+    if [[ "$1" == "help" ]]; then
+        if [[ -n "$2" ]]; then
+            show_help "$2"
+        else
+            show_help
+        fi
+        exit 0
+    fi
+
+    while [[ $# -gt 0 ]]; do
+        case "$1" in
+            backup|list|prune|help)
+                COMMAND="$1"
+                shift
+                ;;
+            -r|--retention)
+                RETENTION="$2"
+                if ! [[ "$RETENTION" =~ ^[0-9]+$ ]]; then
+                    error "Retention value must be a positive integer"
+                fi
+                shift 2
+                ;;
+            -v|--verbose)
+                VERBOSE=true
+                shift
+                ;;
+            -q|--quiet)
+                QUIET=true
+                shift
+                ;;
+            -d|--dry-run)
+                DRY_RUN=true
+                shift
+                ;;
+            -h|--help)
+                if [[ -z "$COMMAND" ]]; then
+                    show_help
+                else
+                    show_help "$COMMAND"
+                fi
+                exit 0
+                ;;
+            *)
+                positional+=("$1")
+                shift
+                ;;
+        esac
+    done
+
+    # If no command was specified but there are positional arguments
+    if [[ -z "$COMMAND" ]] && [[ ${#positional[@]} -gt 0 ]]; then
+        COMMAND="${positional[0]}"
+        positional=("${positional[@]:1}")
+    fi
+
+    # Check for valid command
+    if [[ -z "$COMMAND" ]]; then
+        show_help
+        exit 0
+    elif [[ "$COMMAND" != "backup" ]] && [[ "$COMMAND" != "list" ]] && [[ "$COMMAND" != "prune" ]] && [[ "$COMMAND" != "help" ]]; then
+        error "Unknown command: $COMMAND"
+    fi
+
+    # Handle help command (this should be redundant now, but keeping for safety)
+    if [[ "$COMMAND" == "help" ]]; then
+        if [[ ${#positional[@]} -gt 0 ]]; then
+            show_help "${positional[0]}"
+        else
+            show_help
+        fi
+        exit 0
+    fi
+
+    # Check for incompatible options
+    if [[ "$VERBOSE" == true ]] && [[ "$QUIET" == true ]]; then
+        warning "Both --verbose and --quiet specified, --quiet takes precedence"
+    fi
+}
+
+# =============================================================================
+# Main Script
+# =============================================================================
+
+# Parse command-line arguments
+parse_args "$@"
+
+# Check requirements
+check_requirements
+
+# Execute the requested command
+case "$COMMAND" in
+    "backup")
+        execute_backup
+        ;;
+    "list")
+        list_backups
+        ;;
+    "prune")
+        prune_backups
+        ;;
+    "help")
+        # This should be handled in parse_args, but just in case
+        show_help
+        ;;
+esac
+
+exit 0
