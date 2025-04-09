@@ -91,29 +91,27 @@ super + d
 super + e
     ~/bin/wm --go-to-by-class firefox-developer-edition
 super + f
-    ~/bin/wm --go-to-by-class Firefox$
-super + g
-    ~/bin/wm --go-to-by-class GitKraken
+    ~/bin/wm --go-to-by-class firefox
 super + i
-    ~/bin/wm --go-to-by-class idea
+    ~/bin/wm --go-to-by-class jetbrains-idea
 super + j
-    ~/bin/wm --go-to-by-class jitsi
+    ~/bin/wm --go-to-by-class "Jitsi Meet"
 super + k
     ~/bin/wm --go-to-by-class Slack
 super + m
     ~/bin/wm --go-to-by-class thunderbird
 super + n
-    ~/bin/wm --go-to-by-class notion
+    ~/bin/wm --go-to-by-class firefox-nightly
 super + p
-    ~/bin/wm --go-to-by-class pycharm
+    ~/bin/wm --go-to-by-class jetbrains-pycharm
 super + r
-    ~/bin/wm --go-to-by-class element
+    ~/bin/wm --go-to-by-class Cursor
 super + s
     ~/bin/wm --go-to-by-class spotify
 super + t
-    ~/bin/wm --go-to-by-class telegram
+    ~/bin/wm --go-to-by-class telegram-desktop
 super + w
-    ~/bin/wm --go-to-by-class WasIstLos
+    ~/bin/wm --go-to-by-name WhatsApp
 
 ###########################################################################
 # KeyChords

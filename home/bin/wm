@@ -1,6 +1,8 @@
 #!/usr/bin/env ruby
 
 require 'optparse'
+require 'json'
+require 'fileutils'
 
 def usage
   puts <<~USAGE
@@ -9,16 +11,139 @@ def usage
     Controls the window manager.
 
     OPTIONS:
-      --go-to-by-class | -c : Class
+      --go-to-by-class | -c : Class     - Cycle through windows with matching class
+      --go-to-by-name  | -n : Name      - Cycle through windows with matching title
       --quit           | -q : Quit
       --restart        | -r : Restart
   USAGE
 end
 
-def go_to_by_class(class_name)
+# Common function to find and cycle through windows based on a search criteria
+def cycle_windows(state_key, match_type, match_value, exact_match = true)
   if ENV['XDG_CURRENT_DESKTOP'] == 'i3'
-    system("i3-msg '[class=\"(?i)#{class_name}\"] focus'")
+    # Get the i3 tree
+    i3_tree = JSON.parse(`i3-msg -t get_tree`)
+
+    # State file to track the last focused window
+    state_dir = File.join(ENV['HOME'], '.cache', 'wm')
+    FileUtils.mkdir_p(state_dir) unless Dir.exist?(state_dir)
+    state_file = File.join(state_dir, "last_#{state_key.downcase.gsub(/[^a-z0-9]/, '_')}")
+
+    # Find all windows matching the criteria
+    matching_windows = []
+    current_focused = nil
+
+    current_focused = find_matching_windows(i3_tree, match_type, match_value, exact_match, matching_windows, nil)
+
+    if matching_windows.empty?
+      puts "No windows found with #{match_type} '#{match_value}'"
+      return
+    end
+
+    puts "Found #{matching_windows.size} windows with #{match_type} '#{match_value}'"
+
+    # If we have a window that is already focused
+    if current_focused
+      # Get the current index
+      current_index = matching_windows.index(current_focused)
+
+      # Move to the next window
+      next_index = (current_index + 1) % matching_windows.size
+      next_window = matching_windows[next_index]
+
+      # Focus the next window - using proper escaping for i3-msg
+      system("i3-msg '[id=\"#{next_window}\"] focus'")
+
+      # Save for next time
+      File.write(state_file, next_window.to_s)
+    else
+      # Focus the first window with this criteria
+      if match_type == 'class'
+        # For class, we need to try both class and instance
+        # First try with class property
+        result = system("i3-msg '[class=\".*#{match_value}.*\"] focus'")
+
+        # If that didn't work, try with instance property
+        if !result || $?.exitstatus != 0
+          system("i3-msg '[instance=\".*#{match_value}.*\"] focus'")
+        end
+      elsif match_type == 'title'
+        # For title, include partial match without anchors
+        system("i3-msg '[title=\"#{match_value}\"] focus'")
+      end
+
+      # Save for next time if available
+      File.write(state_file, matching_windows.first.to_s) if !matching_windows.empty?
+    end
   end
+end
+
+# Function to recursively find windows in the i3 tree that match criteria
+def find_matching_windows(node, match_type, match_value, exact_match, windows, current_focused)
+  # Check if this is a window that matches our criteria
+  if node['window'] && node['window_properties']
+    if match_type == 'class' && node['window_properties']['class']
+      # For class matching, check both class and instance
+      window_class = node['window_properties']['class']
+      window_instance = node['window_properties']['instance'] || ""
+
+      # Convert to lowercase for case-insensitive matching
+      window_class_lc = window_class.downcase
+      window_instance_lc = window_instance.downcase
+      match_value_lc = match_value.downcase
+
+      if exact_match
+        # Check if either class or instance matches exactly
+        is_match = (window_class_lc == match_value_lc) || (window_instance_lc == match_value_lc)
+      else
+        # Check if either class or instance contains the search term
+        is_match = window_class_lc.include?(match_value_lc) || window_instance_lc.include?(match_value_lc)
+      end
+
+      if is_match
+        windows << node['window']
+        if node['focused']
+          current_focused = node['window']
+        end
+      end
+    elsif match_type == 'title' && node['window_properties']['title']
+      window_title = node['window_properties']['title']
+      is_match = window_title.downcase.include?(match_value.downcase)
+
+      if is_match
+        windows << node['window']
+        if node['focused']
+          current_focused = node['window']
+        end
+      end
+    end
+  end
+
+  # Search through child nodes
+  if node['nodes']
+    node['nodes'].each do |child|
+      found = find_matching_windows(child, match_type, match_value, exact_match, windows, current_focused)
+      current_focused = found if found
+    end
+  end
+
+  # Search through floating nodes
+  if node['floating_nodes']
+    node['floating_nodes'].each do |child|
+      found = find_matching_windows(child, match_type, match_value, exact_match, windows, current_focused)
+      current_focused = found if found
+    end
+  end
+
+  return current_focused
+end
+
+def go_to_by_class(class_name)
+  cycle_windows(class_name, 'class', class_name, true)
+end
+
+def go_to_by_name(window_name)
+  cycle_windows(window_name, 'title', window_name, false)
 end
 
 def quit
@@ -39,9 +164,14 @@ end
 
 options = {}
 OptionParser.new do |opts|
-  opts.on('-c', '--go-to-by-class CLASS', String, 'Class') do |v|
+  opts.on('-c', '--go-to-by-class CLASS', String, 'Cycle through windows with matching class') do |v|
     options[:class] = v
     go_to_by_class(v)
+  end
+
+  opts.on('-n', '--go-to-by-name NAME', String, 'Cycle through windows with matching title') do |v|
+    options[:name] = v
+    go_to_by_name(v)
   end
 
   opts.on('-q', '--quit', 'Exits the window manager') do
