@@ -61,5 +61,3 @@ export LOGS_DIR="${HOME}/logs"
 
 export GOOGLE_DRIVE=$HOME/Google\ Drive
 export GOOGLE_DRIVE_LG=$HOME/Google\ Drive\ \(LG\)
-
-[[ $(uname) == "Darwin" ]] && export PATH=/opt/homebrew/bin/:$PATH
