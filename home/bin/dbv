@@ -1,0 +1,192 @@
+#!/bin/bash
+
+# Color codes
+COLOR_RESET='\033[0m'
+COLOR_RED='\033[0;31m'
+COLOR_GREEN='\033[0;32m'
+COLOR_YELLOW='\033[0;33m'
+COLOR_BLUE='\033[0;34m'
+COLOR_CYAN='\033[0;36m'
+
+# --- Configuration ---
+DETAILS_FILE="/tmp/dbeaver_db_connection.kv"
+DEFAULT_CON_NAME="DBeaver Connection"
+DEFAULT_HOST="127.0.0.1"
+
+# --- Script Flags & Variables ---
+LOAD_FROM_FILE_FLAG=false
+DB_HOST=""
+DB_PORT=""
+DB_USER=""
+DB_PASS=""
+DB_NAME=""
+CON_NAME=""
+DB_HOST_ARG=""
+DB_PORT_ARG=""
+DB_USER_ARG=""
+DB_PASS_ARG=""
+DB_NAME_ARG=""
+CON_NAME_ARG=""
+
+# --- Function Definitions ---
+show_help() {
+    echo -e "${COLOR_CYAN}Usage:${COLOR_RESET} dbv [options]"
+    echo ""
+    echo -e "${COLOR_CYAN}Description:${COLOR_RESET}"
+    echo "  Launches DBeaver with specified connection details."
+    echo "  Use the -l flag to load base details from '${DETAILS_FILE}' (created by 'bc-tunnel')."
+    echo "  Command-line arguments always override loaded or default values."
+    echo ""
+    echo -e "${COLOR_YELLOW}Note on File Loading:${COLOR_RESET}"
+    echo "  The file (${DETAILS_FILE}) stores only the *last* connection from 'bc-tunnel' and is temporary."
+    echo ""
+    echo -e "${COLOR_CYAN}Options:${COLOR_RESET}"
+    echo "  -l, --load-from-file Load base details from ${DETAILS_FILE}. Command-line args still override."
+    echo "  -o, --host <hostname>  Database host (default: ${DEFAULT_HOST} unless loaded)."
+    echo "  -p, --port <port>      Database port (Required unless loaded)."
+    echo "  -u, --user <username>  Database user (Required unless loaded)."
+    echo "  -P, --password <pass>  Database password (Optional)."
+    echo "  -d, --db <database>    Database name (Optional)."
+    echo "  -n, --name <con_name>  DBeaver connection name (Defaults based on host/port/db)."
+    echo "  -h, --help             Display this help message."
+    echo ""
+    echo -e "${COLOR_CYAN}Examples:${COLOR_RESET}"
+    echo "  dbv -l                   # Launch DBeaver with details loaded from ${DETAILS_FILE}"
+    echo "  dbv -l -p 3307         # Load from file, but override port to 3307"
+    echo "  dbv -o myhost -p 3306 -u user -P pass -d dbname # Launch DBeaver with explicit details"
+    exit 0
+}
+
+# --- Argument Parsing ---
+while [[ $# -gt 0 ]]; do
+    key="$1"
+    case $key in
+        -l|--load-from-file)
+            LOAD_FROM_FILE_FLAG=true
+            shift # past argument
+            ;;
+        -o|--host)
+            DB_HOST_ARG="$2"
+            shift; shift # past argument and value
+            ;;
+        -p|--port)
+            DB_PORT_ARG="$2"
+            shift; shift
+            ;;
+        -u|--user)
+            DB_USER_ARG="$2"
+            shift; shift
+            ;;
+        -P|--password)
+            DB_PASS_ARG="$2"
+            shift; shift
+            ;;
+        -d|--db)
+            DB_NAME_ARG="$2"
+            shift; shift
+            ;;
+        -n|--name)
+            CON_NAME_ARG="$2"
+            shift; shift
+            ;;
+        -h|--help)
+            show_help
+            ;;
+        *)    # unknown option
+            echo -e "${COLOR_RED}Error: Unknown option '$1'${COLOR_RESET}"
+            echo "Run 'dbv --help' for usage."
+            exit 1
+            ;;
+    esac
+done
+
+# --- Check Dependencies ---
+if ! command -v dbeaver &> /dev/null; then
+    echo -e "${COLOR_RED}Error: 'dbeaver' command not found in PATH.${COLOR_RESET}"
+    exit 1
+fi
+if ! command -v nc &> /dev/null; then
+     echo -e "${COLOR_YELLOW}Warning: 'nc' command not found. Cannot check if tunnel port is active.${COLOR_RESET}"
+fi
+
+# --- Load Details from File if Flag is Set ---
+DB_HOST_FILE=""
+DB_PORT_FILE=""
+DB_USER_FILE=""
+DB_PASS_FILE=""
+DB_NAME_FILE=""
+CON_NAME_FILE=""
+
+if [[ "$LOAD_FROM_FILE_FLAG" == "true" ]]; then
+    if [[ -f "$DETAILS_FILE" ]]; then
+        echo -e "${COLOR_GREEN}Loading connection details from '$DETAILS_FILE'...${COLOR_RESET}"
+        while IFS='=' read -r key value; do
+            value=$(echo "$value" | sed -e 's/^[[:space:]\"]*//' -e 's/[[:space:]\"]*$//')
+            case "$key" in
+                host)     DB_HOST_FILE="$value" ;;
+                port)     DB_PORT_FILE="$value" ;;
+                user)     DB_USER_FILE="$value" ;;
+                password) DB_PASS_FILE="$value" ;;
+                database) DB_NAME_FILE="$value" ;;
+                name)     CON_NAME_FILE="$value" ;;
+            esac
+        done < "$DETAILS_FILE"
+    else
+        echo -e "${COLOR_RED}Error: -l flag used, but details file '$DETAILS_FILE' not found.${COLOR_RESET}"
+        echo "Run 'bc-tunnel' first to create the file."
+        exit 1
+    fi
+fi
+
+# --- Determine Final Values (Args override File override Defaults) ---
+DB_HOST="${DB_HOST_ARG:-${DB_HOST_FILE:-$DEFAULT_HOST}}"
+DB_PORT="${DB_PORT_ARG:-$DB_PORT_FILE}"
+DB_USER="${DB_USER_ARG:-$DB_USER_FILE}"
+DB_PASS="${DB_PASS_ARG:-$DB_PASS_FILE}" # Pass can be empty, so no file default needed if arg missing
+DB_NAME="${DB_NAME_ARG:-$DB_NAME_FILE}"
+CON_NAME_DEFAULT="${CON_NAME_FILE:-$DEFAULT_CON_NAME}" # Use file name or default
+CON_NAME="${CON_NAME_ARG:-$CON_NAME_DEFAULT}" # Arg overrides all
+
+# --- Validation ---
+if [[ -z "$DB_PORT" ]]; then
+    echo -e "${COLOR_RED}Error: Database port (-p) is required.${COLOR_RESET}"
+    echo "(Provide it directly or use -l if it exists in '$DETAILS_FILE')"
+    exit 1
+fi
+if ! [[ "$DB_PORT" =~ ^[0-9]+$ ]]; then
+    echo -e "${COLOR_RED}Error: Invalid port '$DB_PORT'. Port must be a number.${COLOR_RESET}"
+    exit 1
+fi
+if [[ -z "$DB_USER" ]]; then
+    echo -e "${COLOR_RED}Error: Database user (-u) is required.${COLOR_RESET}"
+    echo "(Provide it directly or use -l if it exists in '$DETAILS_FILE')"
+    exit 1
+fi
+
+# --- Check Tunnel Port (Optional but helpful) ---
+if command -v nc &> /dev/null; then
+    echo -n "Checking connection to $DB_HOST:$DB_PORT... "
+    if ! nc -z -w 2 "$DB_HOST" "$DB_PORT" > /dev/null 2>&1; then
+         echo -e "${COLOR_YELLOW}Warning: Cannot connect. Is the SSH tunnel active?${COLOR_RESET}"
+    else
+         echo -e "${COLOR_GREEN}Success (Tunnel likely active).${COLOR_RESET}"
+    fi
+fi
+
+# --- Construct DBeaver Command ---
+# Note: save=false prevents DBeaver from permanently saving this ad-hoc connection
+DBEAVER_CON_STRING="driver=mysql|host=$DB_HOST|port=$DB_PORT|user=$DB_USER|password=$DB_PASS|name=$CON_NAME|savePassword=true|openConsole=true|create=true|save=false"
+# Add database if provided
+if [[ -n "$DB_NAME" ]]; then
+    DBEAVER_CON_STRING="${DBEAVER_CON_STRING}|database=$DB_NAME"
+fi
+
+DBEAVER_CMD="dbeaver -con \"$DBEAVER_CON_STRING\""
+
+# --- Execute ---
+echo -e "${COLOR_BLUE}Launching DBeaver in background...${COLOR_RESET}"
+# Redirect stdout/stderr to /dev/null and run in background
+eval "$DBEAVER_CMD" > /dev/null 2>&1 &
+
+echo "DBeaver should open shortly."
+exit 0
