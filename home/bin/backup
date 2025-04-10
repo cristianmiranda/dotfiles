@@ -113,7 +113,7 @@ function execute_backup() {
     local cmd="rclone sync / ${RCLONE_REMOTE}:${S3_BUCKET_NAME}/${S3_CURRENT_DIR} \
   --backup-dir ${RCLONE_REMOTE}:${S3_BUCKET_NAME}/${S3_ARCHIVE_DIR}/$TIMESTAMP \
   --filter-from $RCLONE_FILTER_PATH \
-  --copy-links \
+  --links \
   --transfers $TRANSFERS \
   --checkers $CHECKERS \
   --s3-chunk-size $CHUNK_SIZE \

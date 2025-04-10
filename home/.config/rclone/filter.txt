@@ -18,6 +18,7 @@
 # Home stuff
 #
 - /home/**/.cache/**
+- /home/**/.cargo/**
 - /home/**/.local/share/bottles/**
 - /home/**/.local/share/Steam/**
 - /home/**/.npm/**
@@ -28,6 +29,7 @@
 - /home/**/.wine/**
 - /home/**/node_modules/**
 - /home/**/Games/**
+- /home/cmiranda/.local/share/umu/**
 #
 # Data
 #
