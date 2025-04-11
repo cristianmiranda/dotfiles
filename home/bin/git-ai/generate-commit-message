@@ -18,14 +18,15 @@ aichat << EOF
 You are a Git commit message expert. Generate a concise and descriptive commit message for the following changes.
 
 The commit message should have:
-1. A subject line (max 72 chars including prefix and context)
+1. A subject line (max 72 chars including prefix and context. Don't start with capital letter)
 2. A blank line
-3. An optional body with more details
+3. An optional body with more details (output the whole body in one line)
 
-The subject line should start with the prefix '${branch_prefix}<BLANK_SPACE>CONTEXT:' (where CONTEXT is something relevant that describes in a word what this is about).
+The subject line should start with the prefix '${branch_prefix}<BLANK_SPACE>context:' (where CONTEXT is usually the name of the module or program being changed).
 Focus on WHAT and WHY, not HOW.
 
 DO NOT include any explanations or instructions - ONLY output the commit message directly.
+Also, after "----" output the commit command to be executed.
 
 Staged changes:
 ${staged_changes}
