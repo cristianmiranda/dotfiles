@@ -155,7 +155,7 @@ super + shift + l; e
 super + shift + l; f
 		firefox
 super + shift + l; i
-		intellij-idea-ultimate
+		$HOME/.local/share/JetBrains/Toolbox/apps/intellij-idea-ultimate/bin/idea
 super + shift + l; j
 		jitsi-meet-desktop
 super + shift + l; m
