@@ -100,15 +100,6 @@ while [[ $# -gt 0 ]]; do
     esac
 done
 
-# --- Check Dependencies ---
-if ! command -v dbeaver &> /dev/null; then
-    echo -e "${COLOR_RED}Error: 'dbeaver' command not found in PATH.${COLOR_RESET}"
-    exit 1
-fi
-if ! command -v nc &> /dev/null; then
-     echo -e "${COLOR_YELLOW}Warning: 'nc' command not found. Cannot check if tunnel port is active.${COLOR_RESET}"
-fi
-
 # --- Load Details from File if Flag is Set ---
 DB_HOST_FILE=""
 DB_PORT_FILE=""
@@ -181,7 +172,14 @@ if [[ -n "$DB_NAME" ]]; then
     DBEAVER_CON_STRING="${DBEAVER_CON_STRING}|database=$DB_NAME"
 fi
 
-DBEAVER_CMD="dbeaver -con \"$DBEAVER_CON_STRING\""
+# Detect operating system and use appropriate command
+if [[ $(uname) == "Darwin" ]]; then
+    # macOS specific command
+    DBEAVER_CMD="open -a \"DBeaver\" --args -con \"$DBEAVER_CON_STRING\""
+else
+    # Linux and other systems
+    DBEAVER_CMD="dbeaver -con \"$DBEAVER_CON_STRING\""
+fi
 
 # --- Execute ---
 echo -e "${COLOR_BLUE}Launching DBeaver in background...${COLOR_RESET}"
