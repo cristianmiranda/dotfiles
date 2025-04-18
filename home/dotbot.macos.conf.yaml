@@ -45,6 +45,7 @@
       force: true
     ~/.gitconfig: .gitconfig
     ~/.gvimrc: .gvimrc
+    ~/.hushlogin: .hushlogin
     ~/.inputrc: .inputrc
     ~/.spaceshiprc.zsh: .spaceshiprc.zsh
     ~/.ssh/authorized_keys: .ssh/authorized_keys

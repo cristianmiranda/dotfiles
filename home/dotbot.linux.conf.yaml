@@ -67,6 +67,7 @@
     ~/.secrets: .secrets
     ~/.spaceshiprc.zsh: .spaceshiprc.zsh
     ~/.ssh/authorized_keys: .ssh/authorized_keys
+    ~/.hushlogin: .hushlogin
     ~/.xinitrc: .xinitrc
     ~/.xsession:
       path: .xsession
