@@ -18,6 +18,11 @@ antidote load
 source ${HOME}/profiles/common.sh
 
 #
+# Zoxide
+#
+eval "$(zoxide init --cmd cd zsh)"
+
+#
 # Starship prompt
 # (use _evalcache_clear to clear cached init script)
 #
