@@ -1,0 +1,17 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Window Manager Configuration Standards
+
+When modifying window manager configurations:
+
+- Use descriptive names for workspaces and keybindings
+- Document all custom keybindings in comments
+- Separate application startup from window manager configuration
+- Use variables for colors and repeated values
+- Maintain consistent styling across all UI elements
+
+@home/.config/i3/config
+@home/.config/polybar/config.ini

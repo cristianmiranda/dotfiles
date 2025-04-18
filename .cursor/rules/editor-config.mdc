@@ -1,0 +1,17 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Text Editor Configuration Standards
+
+When modifying text editor configurations:
+
+- Maintain compatibility with different versions when possible
+- Use plugins consistently across environments
+- Document custom keybindings with comments
+- Separate UI settings from functionality settings
+- Consider performance impacts of plugins and settings
+
+@home/.vimrc
+@home/.gvimrc
