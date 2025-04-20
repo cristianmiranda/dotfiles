@@ -29,7 +29,9 @@ else
     url_handler=$(cat $CURRENT_URL_HANDLER_FILENAME)
 fi
 
-$HOME/bin/dpi-open $url_handler $@
+# $HOME/bin/dpi-open $url_handler $@
+
+`$url_handler $@`
 
 $HOME/bin/wm --go-to-by-class $wm_class
 
