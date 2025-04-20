@@ -170,6 +170,8 @@ super + shift + l; t
 		telegram-desktop
 super + shift + l; w
 		wasistlos
+super + shift + l; x
+		firefox --new-window "https://www.perplexity.ai/"
 
 # Radio
 super + shift + y; 0
