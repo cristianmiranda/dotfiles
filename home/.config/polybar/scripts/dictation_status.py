@@ -7,10 +7,6 @@ import os
 # Font Awesome microphone icon
 MICROPHONE_ICON = ""
 
-# One Dark color palette (as specified in requirements)
-INACTIVE_COLOR = "#FF6961"  # Red
-ACTIVE_COLOR = "#98C379"    # Green
-
 def get_dictation_status():
     """Get the status of nerd-dictation from the control script."""
     try:
@@ -36,10 +32,15 @@ def get_dictation_status():
 
 def format_output(status):
     """Format the output for Polybar based on the status."""
+    INACTIVE_COLOR = get_theme_color("red")
+    ACTIVE_COLOR = get_theme_color("green")
     if status == "active":
         return f"%{{F{ACTIVE_COLOR}}}{MICROPHONE_ICON}%{{F-}}"
     else:
         return f"%{{F{INACTIVE_COLOR}}}{MICROPHONE_ICON}%{{F-}}"
+
+def get_theme_color(key: str) -> str:
+    return subprocess.check_output(["/home/cmiranda/bin/theme", "-k", key], text=True).strip()
 
 def main():
     status = get_dictation_status()

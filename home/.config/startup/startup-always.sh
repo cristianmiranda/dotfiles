@@ -12,6 +12,7 @@ $HOME/bin/exterminate sxhkd-listener; $HOME/bin/sxhkd-listener &
 #
 ( $HOME/bin/exterminate fusuma; fusuma & )
 if [[ ! $(hostname) =~ 'virt' ]]; then picom -b; fi &
+killall dunst; dunst -print | tee $HOME/logs/dunst.log &
 
 #
 # Lock Screen

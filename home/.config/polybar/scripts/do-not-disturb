@@ -1,7 +1,7 @@
 #!/bin/bash
 
-ACTIVE_COLOR="#E0B42F"
-INACTIVE_COLOR="#858585"
+ACTIVE_COLOR=`$HOME/bin/theme -k yellow`
+INACTIVE_COLOR=`$HOME/bin/theme -k lavender`
 
 case "$1" in
 --toggle)

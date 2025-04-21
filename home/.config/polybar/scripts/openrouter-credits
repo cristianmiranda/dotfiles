@@ -10,21 +10,27 @@ OUTPUT=$("$PYTHON_SCRIPT" --pretty)
 STATUS=$(echo "$OUTPUT" | awk '{print $1}')
 NUMBERS=$(echo "$OUTPUT" | cut -d' ' -f2-)
 
+ICON=""
+THEME_COLOR=`$HOME/bin/theme -k yellow`
+ICON_COLOR="%{F$THEME_COLOR}"
+
 # Define colors (using One Dark Red)
 COLOR_NORMAL="" # Use Polybar's default foreground
-COLOR_LOW="%{F#e06c75}" # Red for low credits
-COLOR_ERROR="%{F#FFCC00}" # Yellow for error, adjust if needed
+COLOR_LOW="%{F`$HOME/bin/theme -k red`}" # Red for low credits
+COLOR_ERROR="%{F$`$HOME/bin/theme -k yellow`}" # Yellow for error, adjust if needed
 COLOR_RESET="%{F-}"
 
 # Format the output based on the status
 case "$STATUS" in
     OK)
-        echo "${COLOR_NORMAL}${NUMBERS}${COLOR_RESET}"
+        OUTPUT="${NUMBERS}"
         ;;
     LOW)
-        echo "${COLOR_LOW}${NUMBERS}${COLOR_RESET}"
+        OUTPUT="${COLOR_LOW}${NUMBERS}${COLOR_RESET}"
         ;;
     ERR|*) # Handle ERR or any unexpected output
-        echo "${COLOR_ERROR}${NUMBERS}${COLOR_RESET}" # Display numbers even on error, but colored
+        OUTPUT="${COLOR_ERROR}${NUMBERS}${COLOR_RESET}" # Display numbers even on error, but colored
         ;;
 esac
+
+echo "$ICON_COLOR$ICON$COLOR_RESET  $OUTPUT"

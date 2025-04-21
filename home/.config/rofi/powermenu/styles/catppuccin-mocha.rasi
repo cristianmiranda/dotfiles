@@ -1,0 +1,9 @@
+* {
+    background:                    #1e1e2eff;  /* base */
+    background-alt:              	#00000000;  /* transparent */
+    background-bar:                #11111bff;  /* crust */
+    foreground:                    #cdd6f4ff;  /* text */
+    accent:			            #cdd6f44d;  /* text with transparency */
+    border:		               	#89b4faff;  /* blue */
+    selected:               		#313244ff;  /* surface0 */
+}

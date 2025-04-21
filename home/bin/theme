@@ -1,0 +1,106 @@
+#!/usr/bin/env bash
+
+# theme - A script to extract values from theme configuration
+# Usage: theme --theme THEME_NAME --key KEY_NAME
+#        theme -t THEME_NAME -k KEY_NAME
+
+set -e
+
+# Default values
+CONFIG_FILE="$HOME/.config/themes/config.yml"
+THEMES_DIR="$HOME/.config/themes"
+THEME=""
+KEY=""
+
+# Display help
+function show_help {
+  echo "Usage: $(basename "$0") [OPTIONS]"
+  echo
+  echo "Extract color values from theme configuration"
+  echo
+  echo "Options:"
+  echo "  -t, --theme THEME    Specify theme name (defaults to 'current' if not specified)"
+  echo "  -k, --key KEY        Specify key to extract (e.g., pink, red, blue)"
+  echo "  -h, --help           Display this help message"
+  echo
+  echo "Examples:"
+  echo "  $(basename "$0") --theme catppuccin-mocha --key pink"
+  echo "  $(basename "$0") -t current -k blue"
+  echo "  $(basename "$0") --key lavender         # Uses current theme"
+}
+
+# Parse arguments
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    -t|--theme)
+      THEME="$2"
+      shift 2
+      ;;
+    -k|--key)
+      KEY="$2"
+      shift 2
+      ;;
+    -h|--help)
+      show_help
+      exit 0
+      ;;
+    *)
+      echo "Error: Unknown option $1"
+      show_help
+      exit 1
+      ;;
+  esac
+done
+
+# Check if config file exists
+if [[ ! -f "$CONFIG_FILE" ]]; then
+  echo "Error: Config file not found: $CONFIG_FILE"
+  exit 1
+fi
+
+# Set default theme to 'current' if not specified
+if [[ -z "$THEME" ]]; then
+  THEME="current"
+fi
+
+if [[ -z "$KEY" ]]; then
+  echo "Error: Key not specified"
+  show_help
+  exit 1
+fi
+
+# If theme is 'current', get the current theme from config
+if [[ "$THEME" == "current" ]]; then
+  THEME=$(grep "^current:" "$CONFIG_FILE" | sed 's/current: *//g')
+  if [[ -z "$THEME" ]]; then
+    echo "Error: Could not determine current theme"
+    exit 1
+  fi
+fi
+
+# Construct the path to the theme file
+THEME_FILE="$THEMES_DIR/$THEME.yml"
+
+# Check if theme file exists
+if [[ ! -f "$THEME_FILE" ]]; then
+  echo "Error: Theme file not found: $THEME_FILE"
+  exit 1
+fi
+
+# Extract the value for the specified key from the theme file
+# First try the old format (directly indented under theme name)
+VALUE=$(sed -n "/^  $KEY: /p" "$THEME_FILE" | sed "s/^  $KEY: *//g" | sed 's/"//g')
+
+# If not found, try with colors: prefix (new format)
+if [[ -z "$VALUE" ]]; then
+  VALUE=$(grep -A 50 "^colors:" "$THEME_FILE" | grep "^  $KEY: " | head -1 | sed "s/^  $KEY: *//g" | sed 's/"//g')
+fi
+
+# Check if value was found
+if [[ -z "$VALUE" ]]; then
+  echo "Error: Could not find value for key '$KEY' in theme '$THEME'"
+  exit 1
+fi
+
+# Output the value
+echo "$VALUE"

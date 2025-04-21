@@ -56,9 +56,6 @@ mods = "Alt"
 history = 10000
 multiplier = 3
 
-[window]
-opacity = 0.90
-
 [window.class]
 general = "Alacritty"
 instance = "Alacritty"
@@ -68,4 +65,4 @@ x = 10
 y = 0
 
 [general]
-import = ["/home/cmiranda/.config/alacritty/themes/One-Dark.toml"]
+import = ["/home/cmiranda/.config/alacritty/themes/catppuccin-mocha.toml"]

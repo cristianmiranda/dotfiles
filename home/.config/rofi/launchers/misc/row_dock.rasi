@@ -17,28 +17,7 @@ configuration {
 	sidebar-mode: 					false;
 }
 
-/* -- Light -- */
-/*
-* {
-    background:                     #e5e5e5ff;
-    background-alt:              	#00000000;
-    background-bar:                 #FFFFFFFF;
-    foreground:                     #000000A6;
-    accent:			            	#80808066;
-    border:		               		#1A73E9FF;
-    selected:               		#D7D7D7FF;
-}
-*/
-/* -- Dark -- */
-* {
-    background:                     #212121ff;
-    background-alt:              	#00000000;
-    background-bar:                 #151515FF;
-    foreground:                     #EDEDEDFF;
-    accent:			            	#EDEDED4d;
-    border:		               		#1A73E9FF;
-    selected:               		#151515ff;
-}
+@import "../../powermenu/styles/colors.rasi"
 
 window {
     transparency:                   "real";

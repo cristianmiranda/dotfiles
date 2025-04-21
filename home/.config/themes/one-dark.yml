@@ -1,0 +1,33 @@
+# Theme configuration file
+colors:
+  # Base colors
+  rosewater: "#e55561"
+  flamingo: "#cc9057"
+  pink: "#bf68d9"
+  mauve: "#bf68d9"
+  red: "#e55561"
+  maroon: "#8b3434"
+  peach: "#cc9057"
+  yellow: "#e2b86b"
+  green: "#8ebd6b"
+  teal: "#48b0bd"
+  sky: "#48b0bd"
+  sapphire: "#4fa6ed"
+  blue: "#4fa6ed"
+  lavender: "#7e3992"
+
+  # Text and UI elements
+  text: "#a0a8b7"
+  subtext1: "#7a818e"
+  subtext0: "#535965"
+  overlay2: "#535965"
+  overlay1: "#535965"
+  overlay0: "#323641"
+  surface2: "#30363f"
+  surface1: "#282c34"
+  surface0: "#1f2329"
+
+  # Background elements
+  base: "#1f2329"
+  mantle: "#181b20"
+  crust: "#0e1013"

@@ -1,7 +1,7 @@
 #!/bin/bash
 
-ARCH_BLUE_COLOR="#1793d1"
-ARCH_RED_COLOR="#d1495b"
+ARCH_BLUE_COLOR=`$HOME/bin/theme -k blue`
+ARCH_RED_COLOR=`$HOME/bin/theme -k red`
 
 # Check if the Broadlink LED Strip is on or off
 if [ -f /tmp/broadlink-led-strip.status ]; then

@@ -3,11 +3,11 @@
 ACTIVE_VPNS=$($HOME/bin/vpn --active)
 
 if [[ "${ACTIVE_VPNS}" != "" ]]; then
-    echo "%{T3}%{F#20c418}󱇱%{T-} $ACTIVE_VPNS%{F-}"
+    echo "%{T3}%{F`$HOME/bin/theme -k green`}󱇱%{T-} $ACTIVE_VPNS%{F-}"
 else
     ACTIVE_VPNS=$(nordvpn status | grep Connected)
     if [[ "${ACTIVE_VPNS}" != "" ]]; then
-        echo "%{T3}%{F#20c418}󱇱%{T-} NordVPN%{F-}"
+        echo "%{T3}%{F`$HOME/bin/theme -k blue`}󱇱%{T-} NordVPN%{F-}"
     else
         echo "%{T3}󰅟%{T-}"
     fi

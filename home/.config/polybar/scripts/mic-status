@@ -1,7 +1,7 @@
 #!/bin/bash
 
-MUTED_COLOR="#FF6961"
-UNMUTED_COLOR="#8BC34A"
+MUTED_COLOR=`$HOME/bin/theme -k red`
+UNMUTED_COLOR=`$HOME/bin/theme -k green`
 
 RUNNING_DEVICE=$(pactl list short sources | awk '/RUNNING/ {print $2}')
 MUTED="$(pactl list short sources | awk '/input.*RUNNING/ {system("pactl get-source-mute " $1)}' | sed 's/Mute: //g' | uniq)"

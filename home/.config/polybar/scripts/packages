@@ -1,9 +1,9 @@
 #!/bin/bash
 
-AUR_COLOR="#03A9F4"
-PACMAN_COLOR="#E0B42F"
-KERNEL_COLOR="#FF6961"
-AUR_AND_PACMAN_COLOR="#8BC34A"
+AUR_COLOR=`$HOME/bin/theme -k blue`
+PACMAN_COLOR=`$HOME/bin/theme -k yellow`
+KERNEL_COLOR=`$HOME/bin/theme -k red`
+AUR_AND_PACMAN_COLOR=`$HOME/bin/theme -k green`
 
 (
     # Wait for lock on /var/lock/.myscript.exclusivelock (fd 200) for 10 seconds

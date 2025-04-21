@@ -3,7 +3,7 @@
 status=$(playerctl -p spotify status 2>/dev/null)
 
 if [ "$status" == "Playing" ]; then
-	echo "%{T3}%{F#1db954}%{T-}%{F-}"
+	echo "%{T3}%{F`$HOME/bin/theme -k green`}%{T-}%{F-}"
 	polybar-msg action "#spotify.module_show" 2>/dev/null
 	polybar-msg action "#spotify-now-playing.module_show" 2>/dev/null
 else

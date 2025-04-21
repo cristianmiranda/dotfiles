@@ -1,9 +1,11 @@
 #!/bin/sh
 
+OWL_COLOR=`$HOME/bin/theme -k yellow`
+
 RUNNING=$(ps aux | grep "bin/owl" | grep -v "polybar" | grep -v "grep" | wc -l)
 
 if [[ "$RUNNING" == "0" ]]; then
 	echo ""
 else
-	echo "%{T3}%{F#DA9101}󰏒%{T-}%{F-}"
+	echo "%{T3}%{F$OWL_COLOR}󰏒%{T-}%{F-}"
 fi

@@ -23,5 +23,5 @@ done <<<"$lines"
 if [[ -z "$unread_count" || "$unread_count" -eq 0 ]]; then
   echo ""
 else
-  echo "%{T3}%{F#FFFFFF}󰇮%{T-}%{F-}"
+  echo "%{T3}%{F`$HOME/bin/theme -k text`}󰇮%{T-}%{F-}"
 fi

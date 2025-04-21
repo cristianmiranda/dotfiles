@@ -1,5 +1,10 @@
 #!/bin/bash
 
+ICON=""
+THEME_COLOR=`$HOME/bin/theme -k green`
+COLOR="%{F$THEME_COLOR}"
+RESET="%{F-}"
+
 # Get the JSON output from dolar program
 json_output=$($HOME/bin/dolar -b -j)
 
@@ -11,4 +16,6 @@ sell_price=$(echo "$json_output" | jq -r '.sell_price')
 difference=$((sell_price - buy_price))
 
 # Output the buy price and the difference
-echo "$buy_price +$difference"
+OUTPUT="$buy_price +$difference"
+
+echo "$COLOR$ICON$RESET $OUTPUT"

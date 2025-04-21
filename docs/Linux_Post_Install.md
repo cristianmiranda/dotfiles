@@ -13,7 +13,6 @@
     - [☢️ GRUB Theme](#️-grub-theme)
     - [📦 Pacman](#-pacman)
   - [🫙 Apps](#-apps)
-    - [📝 neovim](#-neovim)
     - [📝 vim](#-vim)
     - [🪟 tmux](#-tmux)
   - [🍏 iMac](#-imac)
@@ -195,12 +194,6 @@ sudo systemctl enable reflector.timer
 ```
 
 ## 🫙 Apps
-
-### 📝 neovim
-
-1. Enter nvim
-2. Wait for Mason to install all plugins
-3. Run `:Copilot setup` to authenticate with GitHub
 
 ### 📝 vim
 

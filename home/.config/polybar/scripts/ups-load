@@ -1,5 +1,10 @@
 #!/bin/bash
 
+ICON="󰄌"
+YELLOW=`$HOME/bin/theme -k yellow`
+COLOR="%{F$YELLOW}"
+RESET="%{F-}"
+
 (
     # Wait for lock on /var/lock/.myscript.exclusivelock (fd 200) for 5 seconds
     flock -w 5 200 || exit 1
@@ -12,5 +17,5 @@
         LOAD=%{F#FF6961} $LOAD% %{F-}
     fi
 
-    echo "$LOAD%"
+    echo "$COLOR$ICON $LOAD%$RESET"
 ) 200>/tmp/.polybar-ups.exclusivelock

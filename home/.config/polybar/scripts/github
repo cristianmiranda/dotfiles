@@ -1,5 +1,7 @@
 #!/bin/bash
 
+TEXT_COLOR=`$HOME/bin/theme -k text`
+
 GITHUB_TOKEN=$($HOME/bin/reveal-secret github.notifications.token)
 
 notifications_count=$(curl -s -H "Authorization: Bearer ${GITHUB_TOKEN}" https://api.github.com/notifications | grep '"unread": true' | wc -l)
@@ -7,5 +9,5 @@ notifications_count=$(curl -s -H "Authorization: Bearer ${GITHUB_TOKEN}" https:/
 if [[ "$notifications_count" -eq "0" ]]; then
     echo ""
 else
-    echo "%{T3}%{F#FFFFFF}%{F-}%{T-}"
+    echo "%{T3}%{F$TEXT_COLOR}%{F-}%{T-}"
 fi

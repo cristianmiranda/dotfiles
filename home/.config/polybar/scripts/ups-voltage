@@ -1,5 +1,10 @@
 #!/bin/bash
 
+ICON=""
+YELLOW=`$HOME/bin/theme -k yellow`
+COLOR="%{F$YELLOW}"
+RESET="%{F-}"
+
 (
     # Wait for lock on /var/lock/.myscript.exclusivelock (fd 200) for 5 seconds
     flock -w 5 200 || exit 1
@@ -8,5 +13,5 @@
 
     VOLTAGE_IN=$(echo "$UPS_STATUS" | grep LINEV | awk '{print $3}' | xargs printf "%.0fV")
 
-    echo $VOLTAGE_IN
+    echo "${COLOR}${ICON}${RESET} ${VOLTAGE_IN}"
 ) 200>/tmp/.polybar-ups.exclusivelock
