@@ -44,7 +44,6 @@
       path: .bashrc
       force: true
     ~/.gitconfig: .gitconfig
-    ~/.gvimrc: .gvimrc
     ~/.hushlogin: .hushlogin
     ~/.inputrc: .inputrc
     ~/.spaceshiprc.zsh: .spaceshiprc.zsh

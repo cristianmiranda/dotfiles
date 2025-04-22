@@ -61,7 +61,6 @@
     ~/.gtkrc-xfce:
       path: .gtkrc-xfce
       force: true
-    ~/.gvimrc: .gvimrc
     ~/.inputrc: .inputrc
     ~/.p10k.zsh: .p10k.zsh
     ~/.secrets: .secrets
