@@ -46,6 +46,8 @@ for_window [title=zoom_clips_panel] floating enable
 
 for_window [class="^.*"] border pixel 2
 
+focus_on_window_activation focus
+
 gaps inner 3
 gaps outer 3
 
