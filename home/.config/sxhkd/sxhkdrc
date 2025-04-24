@@ -231,19 +231,21 @@ super + shift + t; r
 
 # Set Display
 super + shift + d; 1
-		~/bin/set-display asus_single
+		~/bin/set-display --layout asus_single
 super + shift + d; 2
-		~/bin/set-display asus_double
+		~/bin/set-display --layout asus_double
 super + shift + d; 3
-		~/bin/set-display asus_triple
+		~/bin/set-display --layout asus_triple
 super + shift + d; 4
-		~/bin/set-display asus_quadruple
+		~/bin/set-display --layout asus_quadruple
 super + shift + d; l
-		~/bin/set-display laptop
+		~/bin/set-display --layout laptop
 super + shift + d; v
-		~/bin/set-display virtual
+		~/bin/set-display --layout virtual
 super + shift + d; i
 		xcalib -a -i
+super + shift + d; o
+		~/bin/set-display --off
 
 # OpenRGB
 super + shift + o; k

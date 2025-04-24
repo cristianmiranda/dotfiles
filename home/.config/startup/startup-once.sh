@@ -3,7 +3,7 @@
 #
 # Set display
 #
-( $HOME/bin/set-display asus_triple & )
+( $HOME/bin/set-display --layout asus_triple & )
 
 #
 # System

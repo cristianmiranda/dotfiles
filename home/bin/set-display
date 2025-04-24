@@ -1,5 +1,28 @@
 #!/bin/bash
 
+# set-display - Configure display layouts and monitor settings
+#
+# Usage: set-display [OPTIONS]
+#
+# Options:
+#   -h, --help              Show this help message
+#   -l, --layout LAYOUT     Set display layout (see available layouts below)
+#   --off                   Turn off all displays
+#
+# Available layouts:
+#   laptop                  Single laptop display
+#   virtual                 Virtual display setup
+#   asus_single             Single monitor setup
+#   asus_double             Dual monitor setup
+#   asus_triple             Triple monitor setup
+#   asus_quadruple          Quadruple monitor setup
+#
+# Examples:
+#   set-display --layout laptop       # Switch to laptop display
+#   set-display -l asus_double        # Switch to dual monitor setup
+#   set-display --off                 # Turn off all displays
+# ---End of Help---
+
 # Define display profiles
 PROFILE_LAPTOP="laptop"
 PROFILE_VIRTUAL="virtual"
@@ -10,87 +33,174 @@ PROFILE_TWO_MONITORS="asus_double"
 PROFILE_THREE_MONITORS="asus_triple"
 PROFILE_FOUR_MONITORS="asus_quadruple"
 
-XRANDR_DISPLAY_PROFILE=$1
+# Show help
+show_help() {
+    # Display only the help section of the script
+    sed -n '2,/^# ---End of Help---$/s/^# \?//p' "$0"
+    exit 0
+}
+
+# Check for help flag first before setting up logging
+if [[ "$1" == "-h" || "$1" == "--help" ]]; then
+    show_help
+fi
+
+# Setup logging
+LOG_FILE="/tmp/set-display.log"
+log() {
+    local level="$1"
+    local message="$2"
+    echo "[$(date '+%Y-%m-%d %H:%M:%S')] [$level] $message" | tee -a "$LOG_FILE"
+}
+
+# Turn off all monitors
+turn_off_displays() {
+    log "INFO" "Turning off all displays"
+    MAP="$(xrandr --listmonitors | awk 'NR>1{print $4,$0}')"
+    echo "$MAP" | while read name _; do
+        log "INFO" "Turning off display: $name"
+        xrandr --output "$name" --off
+    done
+}
+
+# Parse arguments
+XRANDR_DISPLAY_PROFILE=""
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        -h|--help)
+            # This should never be reached as we check for help earlier
+            show_help
+            ;;
+        -l|--layout)
+            XRANDR_DISPLAY_PROFILE="$2"
+            shift 2
+            ;;
+        --off)
+            turn_off_displays
+            exit 0
+            ;;
+        *)
+            # For backward compatibility
+            if [[ -z "$XRANDR_DISPLAY_PROFILE" ]]; then
+                XRANDR_DISPLAY_PROFILE="$1"
+                shift
+            else
+                log "ERROR" "Unknown argument: $1"
+                show_help
+            fi
+            ;;
+    esac
+done
+
+# Ensure a profile is provided
+if [[ -z "$XRANDR_DISPLAY_PROFILE" ]]; then
+    log "ERROR" "No layout specified"
+    show_help
+fi
 
 # Kill polybar
+log "INFO" "Killing polybar"
 killall -q polybar
 
-echo "Applying display profile: $XRANDR_DISPLAY_PROFILE"
+log "INFO" "Applying display profile: $XRANDR_DISPLAY_PROFILE"
 
 # Reload Xresources
+log "INFO" "Reloading Xresources"
 xrdb ~/.Xresources
 
 # Set default cursor size
 CURSOR_SIZE=8
 
 if [[ "$XRANDR_DISPLAY_PROFILE" == "$PROFILE_LAPTOP" ]]; then
+    log "INFO" "Applying laptop profile settings"
     xrdb -merge ~/.Xresources.laptop
     CURSOR_SIZE=48
     echo "Xft/DPI 196608" > ~/.xsettingsd
     bash ~/.screenlayout/laptop.sh
 else
+    log "INFO" "Applying asus profile settings"
     xrdb -merge ~/.Xresources.asus
     echo "Xft/DPI 98304" > ~/.xsettingsd
 
     case "$XRANDR_DISPLAY_PROFILE" in
         "$PROFILE_VIRTUAL")
+            log "INFO" "Using virtual display layout"
             bash ~/.screenlayout/virtual.sh
             ;;
         "$PROFILE_ONE_MONITOR")
+            log "INFO" "Using single monitor layout"
             bash ~/.screenlayout/asus_single.sh
             ;;
         "$PROFILE_TWO_MONITORS")
+            log "INFO" "Using dual monitor layout"
             bash ~/.screenlayout/asus_double.sh
             ;;
         "$PROFILE_THREE_MONITORS")
+            log "INFO" "Using triple monitor layout"
             bash ~/.screenlayout/asus_triple.sh
             ;;
         "$PROFILE_FOUR_MONITORS")
+            log "INFO" "Using quadruple monitor layout"
             bash ~/.screenlayout/asus_quadruple.sh
             ;;
         *)
-            echo "Unknown display profile: $XRANDR_DISPLAY_PROFILE"
+            log "ERROR" "Unknown display profile: $XRANDR_DISPLAY_PROFILE"
             exit 1
             ;;
     esac
 fi
 
 # Get screen resolution
+log "INFO" "Getting screen resolution"
 SCREEN_RESOLUTION=$(~/bin/get-resolution)
 echo $SCREEN_RESOLUTION > /tmp/screen-resolution
+log "INFO" "Screen resolution: $SCREEN_RESOLUTION"
 
 # Restart xsettingsd
+log "INFO" "Restarting xsettingsd service"
 systemctl --user restart xsettingsd.service
 
 # Set cursor size
+log "INFO" "Setting cursor size to $CURSOR_SIZE"
 xsetroot -xcf /usr/share/icons/breeze_cursors/cursors/left_ptr $CURSOR_SIZE
 
 # Prevent color scheme changes after switching between PC and console
+log "INFO" "Setting colorspace and content type for HDMI-A-0"
 xrandr --output HDMI-A-0 --set "Colorspace" "Default"
 xrandr --output HDMI-A-0 --set "content type" "No Data"
 
 # Move workspaces for dual monitor setups
 if [[ "$XRANDR_DISPLAY_PROFILE" == "$PROFILE_TWO_MONITORS" ]]; then
+    log "INFO" "Moving workspaces for dual monitor setup"
     for i in 1 2 3 4 6 10; do
+        log "DEBUG" "Moving workspace $i to DisplayPort-2"
         i3-msg "workspace $i, move workspace to output DisplayPort-2"
     done
     for i in 5 7 8 9; do
+        log "DEBUG" "Moving workspace $i to DisplayPort-0"
         i3-msg "workspace $i, move workspace to output DisplayPort-0"
     done
 fi
 
 # Move workspaces for triple monitor setups
 if [[ "$XRANDR_DISPLAY_PROFILE" == "$PROFILE_THREE_MONITORS" ]]; then
+    log "INFO" "Moving workspaces for triple monitor setup"
     for i in 1 2 3 4 6; do
+        log "DEBUG" "Moving workspace $i to DisplayPort-2"
         i3-msg "workspace $i, move workspace to output DisplayPort-2"
     done
     for i in 3 5 8 9; do
+        log "DEBUG" "Moving workspace $i to DisplayPort-0"
         i3-msg "workspace $i, move workspace to output DisplayPort-0"
     done
     for i in 7 10; do
+        log "DEBUG" "Moving workspace $i to DisplayPort-1"
         i3-msg "workspace $i, move workspace to output DisplayPort-1"
     done
 fi
 
 # Restart the window manager
+log "INFO" "Restarting window manager"
 $HOME/bin/wm -r
+
+log "INFO" "Display configuration complete"
