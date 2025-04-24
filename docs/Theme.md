@@ -1,5 +1,31 @@
 # 🎨 Themes
 
+- [🎨 Themes](#-themes)
+  - [🔄 How the Theme System Works](#-how-the-theme-system-works)
+  - [🖌️ Available Themes](#️-available-themes)
+  - [🔧 Changing Themes](#-changing-themes)
+    - [Files That Need Modification](#files-that-need-modification)
+    - [Manual Configuration Process](#manual-configuration-process)
+    - [Updating Individual Applications](#updating-individual-applications)
+      - [1. Alacritty Terminal](#1-alacritty-terminal)
+      - [2. Neovim (NvChad)](#2-neovim-nvchad)
+      - [3. Polybar](#3-polybar)
+      - [4. Rofi Powermenu](#4-rofi-powermenu)
+      - [5. i3 Window Manager](#5-i3-window-manager)
+      - [6. Dunst Notifications](#6-dunst-notifications)
+      - [7. Tmux](#7-tmux)
+      - [8. Wallpaper (Nitrogen)](#8-wallpaper-nitrogen)
+      - [9. Dark Reader (Firefox Extension)](#9-dark-reader-firefox-extension)
+      - [10. Spotify (using Spicetify)](#10-spotify-using-spicetify)
+  - [🎨 Using Theme Colors in Scripts](#-using-theme-colors-in-scripts)
+  - [🆕 Creating Custom Themes](#-creating-custom-themes)
+  - [🔄 Theme Structure](#-theme-structure)
+    - [Base Colors](#base-colors)
+    - [Text and UI Elements](#text-and-ui-elements)
+    - [Background Elements](#background-elements)
+  - [🌈 Example: Manual Theme Switching](#-example-manual-theme-switching)
+
+
 This document explains how the theme system works and how to change themes across the system.
 
 ## 🔄 How the Theme System Works
@@ -185,10 +211,7 @@ Or update the paths in `~/.config/nitrogen/bg-saved.cfg` manually.
 
 You can theme the Dark Reader extension for Firefox following these instructions from the [official Catppuccin Dark Reader repository](https://github.com/catppuccin/dark-reader).
 
-##### Preview
-
 ![Dark Reader Preview](https://imgur.com/aVsCILC.png)
-##### Usage
 
 > [!IMPORTANT]
 > If you only want to use _Mocha_, Dark Reader includes **Catppuccin** by
@@ -291,6 +314,14 @@ You can theme the Dark Reader extension for Firefox following these instructions
 
 
 5. Done! There is no apply or save button.
+
+#### 10. Spotify (using Spicetify)
+
+You can customize the Spotify client using [Spicetify](https://spicetify.app/), a powerful CLI tool that allows you to apply themes, extensions, and custom apps to Spotify.
+
+Follow instructions [here](https://github.com/catppuccin/spicetify) to install Spicetify and apply the Catppuccin theme.
+
+![Spicetify](https://imgur.com/h0lu4H0.png)
 
 ## 🎨 Using Theme Colors in Scripts
 
