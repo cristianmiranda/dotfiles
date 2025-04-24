@@ -1,0 +1,11 @@
+#!/bin/sh
+
+COLOR=`$HOME/bin/theme -k yellow`
+
+RUNNING=$(ps aux | grep "bin/coffee" | grep -v "polybar" | grep -v "grep" | wc -l)
+
+if [[ "$RUNNING" == "0" ]]; then
+	echo ""
+else
+	echo "%{T3}%{F$COLOR}%{T-}%{F-}"
+fi

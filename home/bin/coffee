@@ -5,6 +5,6 @@ set -e
 echo "☕ Coffee!"
 
 while true; do
-    date
+    xdotool key --clearmodifiers F24
     sleep 10
 done
