@@ -101,6 +101,7 @@ PACKAGES=(
     lazygit
     libinput-gestures
     libreoffice-fresh
+    logrotate
     lxappearance
     man-db
     matcha-gtk-theme

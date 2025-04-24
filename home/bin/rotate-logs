@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+LOGROTATE="/usr/bin/logrotate"
+CFG="$HOME/.config/logrotate/logrotate.conf"
+STATE="$HOME/.config/logrotate/logrotate.state"
+
+exec nice -n 10 ionice -c3 "$LOGROTATE" -s "$STATE" "$CFG"

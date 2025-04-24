@@ -6,7 +6,10 @@ export LG_BASE_DIR="${BASE_WORK_DIR}/Workspace_LG"
 export GOOGLE_DRIVE_LG="${HOME}/Google Drive (LG)"
 
 # Log file
-LOG_FILE="/tmp/esh-db-backup.log"
+LOG_FILE="${HOME}/logs/esh-db-backup/esh-db-backup.log"
+
+# Create log directory if it doesn't exist
+mkdir -p $(dirname $LOG_FILE)
 
 # Log start time
 echo "Starting ESH DB backup at $(date)" > $LOG_FILE

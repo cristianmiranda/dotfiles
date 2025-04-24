@@ -68,6 +68,9 @@ home/.config/nvim/plugin
 # lazygit state file
 home/.config/lazygit/state.yml
 
+# logrotate
+home/.config/logrotate/logrotate.state
+
 # dotfiles' secrets
 home/.ssh/config
 home/.config/filezilla/sitemanager.xml

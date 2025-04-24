@@ -10,12 +10,22 @@
 # Backups
 #
 # Run daily backup at 00:00 AM
-0 0 * * * /home/cmiranda/Documents/Work/Workspace/dotfiles/home/bin/backup backup --quiet
+# 0 0 * * * /home/cmiranda/Documents/Work/Workspace/dotfiles/home/bin/backup backup --quiet
 #
-# Keep only the last 14 daily backups (run at 4:00 AM)
+# Run at 4:00 AM to keep only the last 14 daily backups
+#
 0 4 * * * /home/cmiranda/Documents/Work/Workspace/dotfiles/home/bin/backup prune --retention 14 --quiet
 
 #
 # Creates a dump of the local ESH Oracle database
 #
+# Runs at 1:00 AM on the first day of the month
+#
 @monthly $HOME/bin/esh-db-backup
+
+#
+# Rotate logs
+#
+# Runs at 2:17 AM
+#
+17 2 * * * $HOME/bin/rotate-logs >> $HOME/logs/logrotate.cron.log 2>&1

@@ -23,7 +23,7 @@ RCLONE_REMOTE="aws-s3"
 
 # Backup settings
 DEFAULT_RETENTION=10
-LOG_DIR="$HOME/logs"
+LOG_DIR="$HOME/logs/backup"
 LOG_PREFIX="rclone-backup"
 
 # Rclone performance settings
