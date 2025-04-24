@@ -43,6 +43,7 @@ PACKAGES=(
     cargo
     cawbird-git
     chili-sddm-theme
+    claude-code
     clipboard
     cmatrix
     copyq
@@ -72,6 +73,7 @@ PACKAGES=(
     freerdp
     fzf
     git-delta
+    github-cli
     github-copilot-cli
     gitkraken
     git-lfs
