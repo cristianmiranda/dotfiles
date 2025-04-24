@@ -85,8 +85,8 @@ bindsym $super+Shift+Right move right
 #
 # Move entire focused workspace to left/right output
 #
-bindsym Control+$alt+Left move workspace to output left
-bindsym Control+$alt+Right move workspace to output right
+bindsym Control+$alt+Left  exec --no-startup-id $HOME/.config/i3/scripts/move-ws.sh left
+bindsym Control+$alt+Right exec --no-startup-id $HOME/.config/i3/scripts/move-ws.sh right
 
 #
 # Change split layout of current container
