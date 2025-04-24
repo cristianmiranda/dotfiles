@@ -112,6 +112,8 @@ super + t
     ~/bin/wm --go-to-by-class telegram-desktop
 super + w
     ~/bin/wm --go-to-by-name WhatsApp
+super + z
+    ~/bin/wm --go-to-by-class zoom
 
 ###########################################################################
 # KeyChords
