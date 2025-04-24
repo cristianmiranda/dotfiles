@@ -1,0 +1,391 @@
+#!/bin/bash
+
+# Configuration
+IDLE_LIMIT=600  # in seconds (10 min)
+CHECK_INTERVAL=10  # in seconds
+DEBUG=false  # Set to true to enable debug messages
+LOG_FILE="$HOME/logs/inactivity-watcher.log"
+
+# Ensure log directory exists
+if [ ! -d "$(dirname "$LOG_FILE")" ]; then
+    mkdir -p "$(dirname "$LOG_FILE")"
+fi
+
+# Help and usage information
+show_help() {
+    cat << EOF
+Usage: $(basename "$0") [OPTIONS]
+
+A monitor for system inactivity that manages screen locking and DPMS.
+
+Options:
+  -h, --help             Show this help message and exit
+  -d, --debug            Enable debug messages (writes to ${LOG_FILE})
+  -s, --status           Show current status (idle time, audio, fullscreen)
+  -a, --active           Check if user is currently active (returns 0 if active, 1 if inactive)
+  -c, --check-interval N Set the check interval in seconds (default: $CHECK_INTERVAL)
+  -l, --limit N          Set the idle limit in seconds (default: $IDLE_LIMIT)
+
+When run without options, the script runs in daemon mode monitoring inactivity.
+EOF
+    exit 0
+}
+
+# Logging function
+log_debug() {
+    if [[ "$DEBUG" == "true" ]]; then
+        local timestamp=$(date +'%Y-%m-%d %H:%M:%S')
+        echo "${timestamp} [DEBUG] $1" | tee -a "$LOG_FILE" >&2
+    fi
+}
+
+log_info() {
+    local timestamp=$(date +'%Y-%m-%d %H:%M:%S')
+    echo "${timestamp} [INFO] $1" | tee -a "$LOG_FILE"
+}
+
+# Add separator line to logs
+log_separator() {
+    if [[ "$DEBUG" == "true" ]]; then
+        echo -e "\033[36m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m" | tee -a "$LOG_FILE" >&2
+    fi
+}
+
+# Check system idle time
+get_idle_time() {
+    local idle_ms=$(xprintidle)
+    echo $((idle_ms / 1000))
+}
+
+# Check if audio input is active (applications recording audio)
+check_audio_input() {
+    local is_active=0
+    local recording_apps=0
+    local active_recordings=0
+    local uncorked_recordings=0
+    local app_names=""
+
+    # Check for applications recording audio (source outputs)
+    recording_apps=$(pactl list source-outputs 2>/dev/null | wc -l)
+    if [ "$recording_apps" -gt 0 ]; then
+        app_names=$(pactl list source-outputs 2>/dev/null | grep -E 'application.name|application.process.binary' | tr -d '\t')
+        active_recordings=$(pactl list source-outputs 2>/dev/null | grep -c "state: RUNNING")
+        uncorked_recordings=$(pactl list source-outputs 2>/dev/null | grep -c "Corked: no")
+
+        if [ "$active_recordings" -gt 0 ] || [ "$uncorked_recordings" -gt 0 ]; then
+            is_active=1
+        fi
+    fi
+
+    if [ "$SHOW_STATUS" = "true" ]; then
+        echo "Audio Input:"
+        echo "  Recording applications: $recording_apps"
+        echo "  Active recordings: $active_recordings"
+        echo "  Uncorked recordings: $uncorked_recordings"
+        [ -n "$app_names" ] && echo "  Applications: $app_names"
+        echo "  Status: $([ "$is_active" -eq 1 ] && echo "ACTIVE" || echo "INACTIVE")"
+    else
+        echo $is_active
+    fi
+}
+
+# Check if any fullscreen window is active
+check_fullscreen() {
+    local fullscreen=0
+    local fullscreen_info=""
+
+    # Use wmctrl to find fullscreen windows and log their names
+    while read -r line; do
+        if [ -n "$line" ]; then
+            fullscreen=1
+            fullscreen_info="${fullscreen_info}${line}\n"
+        fi
+    done < <(wmctrl -l | while read -r win _; do
+        xprop -id "$win" _NET_WM_STATE 2>/dev/null | grep -q _NET_WM_STATE_FULLSCREEN &&
+        xprop -id "$win" WM_CLASS WM_NAME 2>/dev/null | sed "s/^/$win /"
+    done)
+
+    # Log fullscreen window information if any found
+    if [ "$SHOW_STATUS" = "true" ]; then
+        echo "Fullscreen:"
+        if [ "$fullscreen" -eq 1 ] && [ -n "$fullscreen_info" ]; then
+            echo "  Detected windows:"
+            echo -e "$fullscreen_info" | while read -r line; do
+                [ -n "$line" ] && echo "    $line"
+            done
+        else
+            echo "  No fullscreen windows detected"
+        fi
+        echo "  Status: $([ "$fullscreen" -eq 1 ] && echo "ACTIVE" || echo "INACTIVE")"
+    else
+        if [ "$fullscreen" -eq 1 ] && [ -n "$fullscreen_info" ] && [ "$DEBUG" = "true" ]; then
+            log_debug "Fullscreen windows detected:"
+            echo -e "$fullscreen_info" | while read -r line; do
+                [ -n "$line" ] && log_debug "  $line"
+            done
+        fi
+        echo $fullscreen
+    fi
+}
+
+# Reset DPMS timer to prevent monitors from turning off
+reset_dpms() {
+    # Force X to reset DPMS timer by simulating activity
+    xset dpms force on
+    log_debug "Reset DPMS timer to prevent monitors from turning off"
+}
+
+# Turn off the monitor
+turn_off_monitor() {
+    log_debug "Turning off monitor"
+    xset dpms force off
+}
+
+# Check if i3lock is running
+is_i3lock_running() {
+    if pgrep -x "i3lock" > /dev/null; then
+        return 0  # True, i3lock is running
+    else
+        return 1  # False, i3lock is not running
+    fi
+}
+
+# Check if user is active based on audio, fullscreen or recent activity
+is_user_active() {
+    local idle_seconds=$1
+    local audio_input=$2
+    local fullscreen=$3
+
+    # Consider user active if any of the following are true:
+    # 1. User interaction within the idle limit
+    # 2. Audio being played/recorded
+    # 3. Fullscreen application is running
+    if [[ $idle_seconds -lt $IDLE_LIMIT || $audio_input -gt 0 || $fullscreen -gt 0 ]]; then
+        return 0  # True, user is active
+    else
+        return 1  # False, user is inactive
+    fi
+}
+
+# Handle inactivity - either lock screen or turn off monitor
+handle_inactivity() {
+    if is_i3lock_running; then
+        log_debug "i3lock already running, turning off monitor instead of locking"
+        turn_off_monitor
+    else
+        log_debug "Executing lock-screen command"
+        $HOME/bin/lock-screen
+        log_debug "Lock-screen command executed, sleeping for 5s"
+        sleep 5  # avoid double lock if the mouse moves very little
+    fi
+}
+
+# Show detailed status of the system
+show_status() {
+    local idle_seconds=$(get_idle_time)
+    local lockscreen_status=$(is_i3lock_running && echo "LOCKED" || echo "UNLOCKED")
+    local audio_input=$(SHOW_STATUS=false check_audio_input)
+    local fullscreen=$(SHOW_STATUS=false check_fullscreen)
+    local status_reason=""
+
+    echo "System Status:"
+    echo "  Current idle time: ${idle_seconds}s / ${IDLE_LIMIT}s"
+    echo "  Screen lock: $lockscreen_status"
+    echo "  Audio input active: $([ "$audio_input" -eq 1 ] && echo "YES" || echo "NO")"
+    echo "  Fullscreen active: $([ "$fullscreen" -eq 1 ] && echo "YES" || echo "NO")"
+
+    # These functions will output their own status when SHOW_STATUS=true
+    SHOW_STATUS=true
+    check_audio_input > /dev/null
+    check_fullscreen > /dev/null
+
+    # Determine overall status
+    echo
+    echo "Overall Status:"
+    if is_i3lock_running; then
+        echo "  LOCKED (i3lock is running)"
+        status_reason="Screen locked by i3lock"
+    else
+        if is_user_active "$idle_seconds" "$audio_input" "$fullscreen"; then
+            echo "  ACTIVE (user is considered active)"
+            # Determine reason for active status
+            if [[ $idle_seconds -lt $IDLE_LIMIT ]]; then
+                status_reason="Recent user activity (${idle_seconds}s ago)"
+            elif [[ $audio_input -gt 0 ]]; then
+                status_reason="Active audio input"
+            elif [[ $fullscreen -gt 0 ]]; then
+                status_reason="Fullscreen application"
+            else
+                status_reason="Unknown (possible race condition)"
+            fi
+        else
+            echo "  INACTIVE (user is considered inactive)"
+            status_reason="Idle timeout"
+            if [[ $idle_seconds -ge $IDLE_LIMIT ]]; then
+                echo "  PENDING LOCK (idle threshold exceeded)"
+            fi
+        fi
+    fi
+
+    echo "  Reason: $status_reason"
+}
+
+# Check active status and return exit code
+check_active_status() {
+    local idle_seconds=$(get_idle_time)
+    local audio_input=$(SHOW_STATUS=false check_audio_input)
+    local fullscreen=$(SHOW_STATUS=false check_fullscreen)
+
+    if is_user_active "$idle_seconds" "$audio_input" "$fullscreen"; then
+        echo "ACTIVE"
+        return 0
+    else
+        echo "INACTIVE"
+        return 1
+    fi
+}
+
+# Main function - monitor inactivity and handle screen locking
+monitor_inactivity() {
+    log_info "Inactivity watcher started (idle limit: ${IDLE_LIMIT}s, check interval: ${CHECK_INTERVAL}s)"
+    if [[ "$DEBUG" == "true" ]]; then
+        log_info "Debug logging enabled (writing to $LOG_FILE)"
+    fi
+
+    local last_dpms_reset=0  # Track when we last reset DPMS
+
+    while true; do
+        log_separator
+
+        # Get current idle time - don't print function output
+        IDLE_SECONDS=$(get_idle_time)
+        log_debug "Current idle time: ${IDLE_SECONDS}s / ${IDLE_LIMIT}s"
+
+        # Calculate time until inactivity
+        local time_until_inactivity=$((IDLE_LIMIT - IDLE_SECONDS))
+        local time_until_inactivity_display=$([ $time_until_inactivity -gt 0 ] && echo "${time_until_inactivity}s" || echo "0s (exceeded)")
+
+        # Check microphone status - don't print function output
+        AUDIO_INPUT_ACTIVE=$(SHOW_STATUS=false check_audio_input)
+        log_debug "Audio input active: $AUDIO_INPUT_ACTIVE"
+
+        # Check fullscreen status - don't print function output
+        FULLSCREEN_ACTIVE=$(SHOW_STATUS=false check_fullscreen)
+        # Log this AFTER the check_fullscreen has finished its own debug messages
+        log_debug "Fullscreen active: ${FULLSCREEN_ACTIVE}"
+
+        # Log current activity status
+        local activity_status="INACTIVE"
+        local next_action="None"
+        local status_reason="Idle timeout"
+
+        # Check if screen is already locked
+        if is_i3lock_running; then
+            log_debug "i3lock is already running"
+            activity_status="LOCKED"
+            status_reason="Screen locked by i3lock"
+
+            # If user has been idle for a longer period and i3lock is running, turn off monitor
+            if [[ $IDLE_SECONDS -ge $((IDLE_LIMIT + 60)) ]]; then
+                log_debug "Extended idle period detected with screen locked, turning off monitor"
+                next_action="Turn off monitor"
+                turn_off_monitor
+            else
+                next_action="Monitor will turn off in $((IDLE_LIMIT + 60 - IDLE_SECONDS))s"
+            fi
+        else
+            # Check if user is active
+            if is_user_active "$IDLE_SECONDS" "$AUDIO_INPUT_ACTIVE" "$FULLSCREEN_ACTIVE"; then
+                activity_status="ACTIVE"
+
+                # Determine reason for active status
+                if [[ $IDLE_SECONDS -lt $IDLE_LIMIT ]]; then
+                    status_reason="Recent user activity (${IDLE_SECONDS}s ago)"
+                elif [[ $AUDIO_INPUT_ACTIVE -gt 0 ]]; then
+                    status_reason="Active audio input"
+                elif [[ $FULLSCREEN_ACTIVE -gt 0 ]]; then
+                    status_reason="Fullscreen application"
+                else
+                    status_reason="Unknown (possible race condition)"
+                fi
+
+                # If user is active and it's been a while since we last reset DPMS
+                current_time=$(date +%s)
+                time_since_reset=$((current_time - last_dpms_reset))
+
+                # Reset DPMS every 60 seconds while active to prevent monitor shutdown
+                if [[ $time_since_reset -ge 60 ]]; then
+                    next_action="Reset DPMS timer"
+                    reset_dpms
+                    last_dpms_reset=$current_time
+                else
+                    next_action="Reset DPMS in $((60 - time_since_reset))s"
+                fi
+            else
+                # Determine if screen should be locked
+                if [[ $IDLE_SECONDS -ge $IDLE_LIMIT && $AUDIO_INPUT_ACTIVE -eq 0 && $FULLSCREEN_ACTIVE -eq 0 ]]; then
+                    log_info "Locking screen after ${IDLE_SECONDS}s idle"
+                    next_action="Lock screen now"
+                    handle_inactivity
+                else
+                    next_action="Lock screen in ${time_until_inactivity_display}"
+                fi
+            fi
+        fi
+
+        # Log summary of status and next action
+        local status_color=""
+        case "$activity_status" in
+            "ACTIVE")  status_color="\033[32m" ;; # Green
+            "INACTIVE") status_color="\033[33m" ;; # Yellow
+            "LOCKED") status_color="\033[31m" ;; # Red
+            *) status_color="\033[0m" ;; # Default
+        esac
+
+        if [[ "$DEBUG" == "true" ]]; then
+            local timestamp=$(date +'%Y-%m-%d %H:%M:%S')
+            echo -e "${timestamp} [DEBUG] \033[1m[${status_color}${activity_status}\033[0m\033[1m] |\033[0m REASON: \033[35m${status_reason}\033[0m | NEXT ACTION: \033[36m${next_action}\033[0m" | tee -a "$LOG_FILE" >&2
+        fi
+
+        sleep $CHECK_INTERVAL
+    done
+}
+
+# Parse command-line arguments
+SHOW_STATUS=false
+
+# Process options
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        -h|--help)
+            show_help
+            ;;
+        -d|--debug)
+            DEBUG=true
+            shift
+            ;;
+        -s|--status)
+            show_status
+            exit $?
+            ;;
+        -a|--active)
+            check_active_status
+            exit $?
+            ;;
+        -c|--check-interval)
+            CHECK_INTERVAL="$2"
+            shift 2
+            ;;
+        -l|--limit)
+            IDLE_LIMIT="$2"
+            shift 2
+            ;;
+        *)
+            echo "Unknown option: $1"
+            show_help
+            ;;
+    esac
+done
+
+# If no specific action was requested, run in daemon mode
+monitor_inactivity

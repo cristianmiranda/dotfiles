@@ -258,7 +258,7 @@ mode "i3-command" {
         bindsym q exec --no-startup-id "i3-nagbar -t warning -m 'Really, exit?' -b 'Yes' 'i3-msg exit'"; mode "default"
         bindsym d exec --no-startup-id bash ~/dotfiles/scripts/sync.sh && i3-msg restart; mode "default"
         bindsym r restart
-        bindsym l exec --no-startup-id $HOME/bin/lock-screen --force; mode "default"
+        bindsym l exec --no-startup-id $HOME/bin/lock-screen; mode "default"
 
         bindsym Escape mode "default"
         bindsym Return mode "default"

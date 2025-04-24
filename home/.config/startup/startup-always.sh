@@ -17,7 +17,7 @@ killall dunst; dunst -print | tee $HOME/logs/dunst.log &
 #
 # Lock Screen
 #
-killall xidlehook; xidlehook --socket /tmp/xidlehook.sock --not-when-fullscreen --timer 30 "$HOME/bin/lock-screen --recheck-inactivity" "" --timer 600 "$HOME/bin/lock-screen" "" &
+killall inactivity-watcher; $HOME/bin/inactivity-watcher --debug --check-interval 10 --limit 600 &
 killall hot-corner; $HOME/bin/hot-corner &
 
 #

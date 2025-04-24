@@ -12,7 +12,7 @@ while true; do
     if [[ $X -le 10 && $Y -ge $((SCREEN_HEIGHT - 10)) ]]; then
         TIME_IN_CORNER=$((TIME_IN_CORNER + 1))
         if [[ $TIME_IN_CORNER -ge 2 ]]; then
-            $HOME/bin/lock-screen --force
+            $HOME/bin/lock-screen
             TIME_IN_CORNER=0
             sleep 5
         fi

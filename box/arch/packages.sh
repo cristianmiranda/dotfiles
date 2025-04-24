@@ -209,18 +209,19 @@ PACKAGES=(
     vlc
     wasistlos
     wireplumber
+    wmctrl
     xarchiver
     xcalib
     xclip
     xdotool
     xf86-input-libinput
     xf86-video-amdgpu
-    xidlehook
     xmlstarlet
     xorg-apps
     xorg-server
     xorg-server-xephyr
     xorg-xinit
+    xprintidle
     xsettingsd
     yarn
     yq
