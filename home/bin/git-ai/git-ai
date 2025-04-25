@@ -8,6 +8,9 @@ case "$cmd" in
   commit)
     ~/bin/git-ai/generate-commit-message "$@"
     ;;
+  gitmoji)
+    ~/bin/git-ai/commit-gitmoji "$@"
+    ;;
   *)
     echo "Unknown git-ai command: $cmd"
     exit 1

@@ -1,0 +1,112 @@
+#!/bin/bash
+
+# Get the staged changes
+staged_changes=$(git diff --staged)
+
+# Check if there are any staged changes
+if [ -z "$staged_changes" ]; then
+  echo "No staged changes found. Please stage your changes using 'git add' first."
+  exit 1
+fi
+
+generate_commit_content() {
+  # Use aichat to generate both commit message and body in one request
+  commit_content=$(aichat << ENDCONTENT
+Generate a git commit message and body.
+
+COMMIT MESSAGE:
+- Format: <emoji> <prefix>: <title>
+- Max 72 characters total
+- Use correct gitmoji:
+    ✨ - New feature
+    🐛 - Bug fix
+    🔧 - Configuration or tooling
+    💄 - UI or styling changes
+    ♻️ - Refactor code
+    🔥 - Remove code or files
+    🚀 - Deploy stuff
+    📦 - Add or update packages
+    🔒 - Security improvement
+    ⚡ - Performance improvement
+    📝 - Documentation
+    🗑️ - Deprecation or removal
+- Prefix = affected component (e.g. polybar, aichat, arch)
+- Use colon + space after prefix
+- Title uses sentence-style capitalization (only first word capitalized)
+
+COMMIT BODY:
+- Explain why the change was made
+- What problem it solves
+- Any implementation details worth mentioning
+- Keep it concise but informative (3 lines max)
+- Use proper line breaks (max 72 chars per line)
+
+Examples for commit messages:
+✨ backup: add rclone config and backup script
+🐛 picom: add Zoom to blur exclusions
+🔧 sxhkdrc: update jetbrains idea shortcut
+
+Format your response exactly like this, with three hyphens separating message and body:
+<emoji> <prefix>: <title>
+---
+<body text>
+
+Staged changes:
+${staged_changes}
+ENDCONTENT
+)
+
+  echo "$commit_content"
+}
+
+# Main process
+while true; do
+  echo -e "\033[36m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+  echo -e "\n🤓 Generating commit message and body...\n"
+
+  # Get both commit message and body in one request
+  commit_content=$(generate_commit_content)
+
+  # Split the content into message and body
+  commit_message=$(echo "$commit_content" | sed -n '1p')
+  commit_body=$(echo "$commit_content" | sed '1,/---/d')
+
+  # Add pretty formatting around the commit message
+  echo -e "\033[36m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+  echo -e "\n$commit_message\n"
+  echo -e "\n$commit_body\n"
+  echo -e "\033[36m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+
+  # Ask for confirmation
+  read -p "Commit options: [c]ommit/commit with [b]ody/[a]bort/[r]efine: " response
+
+  case $response in
+    c|C)
+      # Commit with just the message
+      git commit -m "$commit_message"
+      echo "Changes committed successfully (without body)."
+      exit 0
+      ;;
+    b|B)
+      # Commit with message and body
+      git commit -m "$commit_message" -m "$commit_body"
+      echo "Changes committed successfully (with body)."
+      exit 0
+      ;;
+    a|A)
+      # Abort
+      echo "Commit aborted."
+      exit 0
+      ;;
+    r|R)
+      # Show the commit command for user to refine
+      echo -e "\nCommit command to refine:"
+      echo -e "\033[32mgit commit -m \"$commit_message\"\033[0m"
+      echo -e "Copy, modify if needed, and run manually.\n"
+      exit 0
+      ;;
+    *)
+      echo "Invalid option. Please choose [c]ommit, commit with [b]ody, [a]bort, or [r]efine."
+      ;;
+  esac
+done
