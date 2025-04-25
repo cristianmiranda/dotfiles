@@ -1,9 +1,10 @@
 #!/bin/bash
 
-# Configuration
-IDLE_LIMIT=600  # in seconds (10 min)
+# Defaults
+IDLE_LIMIT=600     # in seconds (10 min)
 CHECK_INTERVAL=10  # in seconds
-DEBUG=false  # Set to true to enable debug messages
+DEBUG=false        # Set to true to enable debug messages
+
 LOG_FILE="$HOME/logs/inactivity-watcher.log"
 
 # Ensure log directory exists
@@ -128,6 +129,20 @@ check_fullscreen() {
     fi
 }
 
+# Disable DPMS
+disable_dpms() {
+    xset -dpms
+    xset s off
+    log_debug "Disabled DPMS and screensaver"
+}
+
+# Enable DPMS
+enable_dpms() {
+    xset +dpms
+    xset s on
+    log_debug "Enabled DPMS and screensaver"
+}
+
 # Reset DPMS timer to prevent monitors from turning off
 reset_dpms() {
     # Force X to reset DPMS timer by simulating activity
@@ -187,12 +202,14 @@ show_status() {
     local audio_input=$(SHOW_STATUS=false check_audio_input)
     local fullscreen=$(SHOW_STATUS=false check_fullscreen)
     local status_reason=""
+    local dpms_status=$(xset q | grep -A 1 "DPMS is" | head -1 | awk '{print $3}')
 
     echo "System Status:"
     echo "  Current idle time: ${idle_seconds}s / ${IDLE_LIMIT}s"
     echo "  Screen lock: $lockscreen_status"
     echo "  Audio input active: $([ "$audio_input" -eq 1 ] && echo "YES" || echo "NO")"
     echo "  Fullscreen active: $([ "$fullscreen" -eq 1 ] && echo "YES" || echo "NO")"
+    echo "  DPMS status: $dpms_status"
 
     # These functions will output their own status when SHOW_STATUS=true
     SHOW_STATUS=true
@@ -252,7 +269,8 @@ monitor_inactivity() {
         log_info "Debug logging enabled (writing to $LOG_FILE)"
     fi
 
-    local last_dpms_reset=0  # Track when we last reset DPMS
+    # Track DPMS state
+    local dpms_enabled=true
 
     while true; do
         log_separator
@@ -309,19 +327,35 @@ monitor_inactivity() {
                     status_reason="Unknown (possible race condition)"
                 fi
 
-                # If user is active and it's been a while since we last reset DPMS
-                current_time=$(date +%s)
-                time_since_reset=$((current_time - last_dpms_reset))
-
-                # Reset DPMS every 60 seconds while active to prevent monitor shutdown
-                if [[ $time_since_reset -ge 60 ]]; then
-                    next_action="Reset DPMS timer"
-                    reset_dpms
-                    last_dpms_reset=$current_time
+                # Manage DPMS based on audio or fullscreen activity
+                if [[ $AUDIO_INPUT_ACTIVE -gt 0 || $FULLSCREEN_ACTIVE -gt 0 ]]; then
+                    # Disable DPMS if audio input or fullscreen is active and it's currently enabled
+                    if [[ "$dpms_enabled" == true ]]; then
+                        next_action="Disable DPMS (audio/fullscreen active)"
+                        disable_dpms
+                        dpms_enabled=false
+                    else
+                        next_action="DPMS already disabled (audio/fullscreen active)"
+                    fi
                 else
-                    next_action="Reset DPMS in $((60 - time_since_reset))s"
+                    # Enable DPMS if it's currently disabled and there's no audio or fullscreen activity
+                    if [[ "$dpms_enabled" == false ]]; then
+                        next_action="Enable DPMS (no audio/fullscreen)"
+                        enable_dpms
+                        dpms_enabled=true
+                    else
+                        next_action="DPMS already enabled (no audio/fullscreen)"
+                    fi
                 fi
             else
+                # User is inactive
+                # Ensure DPMS is enabled if it was disabled previously
+                if [[ "$dpms_enabled" == false ]]; then
+                    next_action="Enable DPMS (user inactive)"
+                    enable_dpms
+                    dpms_enabled=true
+                fi
+
                 # Determine if screen should be locked
                 if [[ $IDLE_SECONDS -ge $IDLE_LIMIT && $AUDIO_INPUT_ACTIVE -eq 0 && $FULLSCREEN_ACTIVE -eq 0 ]]; then
                     log_info "Locking screen after ${IDLE_SECONDS}s idle"
@@ -344,7 +378,7 @@ monitor_inactivity() {
 
         if [[ "$DEBUG" == "true" ]]; then
             local timestamp=$(date +'%Y-%m-%d %H:%M:%S')
-            echo -e "${timestamp} [DEBUG] \033[1m[${status_color}${activity_status}\033[0m\033[1m] |\033[0m REASON: \033[35m${status_reason}\033[0m | NEXT ACTION: \033[36m${next_action}\033[0m" | tee -a "$LOG_FILE" >&2
+            echo -e "${timestamp} [DEBUG] \033[1m[${status_color}${activity_status}\033[0m\033[1m] |\033[0m REASON: \033[35m${status_reason}\033[0m | NEXT ACTION: \033[36m${next_action}\033[0m | DPMS: \033[34m$([ "$dpms_enabled" == true ] && echo "Enabled" || echo "Disabled")\033[0m" | tee -a "$LOG_FILE" >&2
         fi
 
         sleep $CHECK_INTERVAL
