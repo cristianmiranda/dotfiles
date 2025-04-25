@@ -31,7 +31,7 @@ else
 		killall vlc
 		killall mpv
 		if [[ $station =~ "twitch" || $station =~ "youtube" ]]; then
-			streamlink -Q --player='mpv --cache 4096' $station best
+			streamlink -Q --player='mpv' $station best
 		else
 			cvlc $station 2>/dev/null
 		fi
