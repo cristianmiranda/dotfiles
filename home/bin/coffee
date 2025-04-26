@@ -6,5 +6,5 @@ echo "☕ Coffee!"
 
 while true; do
     xdotool key --clearmodifiers F24
-    sleep 10
+    sleep 300
 done
