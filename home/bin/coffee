@@ -2,9 +2,90 @@
 
 set -e
 
-echo "☕ Coffee!"
+# Default configuration
+TURN_OFF_MONITORS=false
+SLEEP_TIME=300
 
+# Logging function with timestamp
+log_message() {
+    local timestamp=$(date '+%Y-%m-%d %H:%M:%S')
+    echo "[${timestamp}] $1"
+}
+
+# Help function
+function show_help {
+    log_message "Usage: coffee [OPTIONS]"
+    log_message "Keeps apps active by simulating F24 key presses."
+    echo
+    log_message "Options:"
+    log_message "  -h, --help                Show this help message and exit"
+    log_message "  -m, --monitor-save        Turn off monitors, restore on mouse movement"
+    echo
+    log_message "Without options, the script will only simulate activity without affecting monitors."
+    exit 0
+}
+
+# Parse command line arguments
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        -h|--help)
+            show_help
+            ;;
+        -m|--monitor-save)
+            TURN_OFF_MONITORS=true
+            shift
+            ;;
+        *)
+            log_message "Unknown option: $1"
+            show_help
+            ;;
+    esac
+done
+
+log_message "☕ Coffee!"
+
+if [ "$TURN_OFF_MONITORS" = true ]; then
+    # Turn off monitors using autorandr
+    log_message "Turning off monitors..."
+    ~/bin/set-display --off
+
+    log_message "Monitors turned off. Move mouse to restore..."
+
+    # Set up mouse movement detection
+    (
+        # Get initial mouse position
+        INITIAL_POS=$(xdotool getmouselocation)
+        log_message "Initial mouse position: $INITIAL_POS"
+
+        # Loop until mouse position changes
+        while true; do
+            # Sleep briefly to reduce CPU usage
+            sleep 0.5
+
+            # Get current position
+            CURRENT_POS=$(xdotool getmouselocation)
+
+            # Compare positions
+            if [ "$INITIAL_POS" != "$CURRENT_POS" ]; then
+                log_message "Mouse moved from $INITIAL_POS to $CURRENT_POS"
+                break
+            fi
+        done
+
+        # Restore monitor layout using custom script
+        log_message "Mouse movement detected. Restoring monitor layout..."
+        ~/bin/set-display --layout previous
+
+        log_message "Monitors restored. Coffee break ended!"
+
+        # Kill the main process
+        kill $$
+        exit 0
+    ) &
+fi
+
+# Keep all applications active
 while true; do
     xdotool key --clearmodifiers F24
-    sleep 300
+    sleep $SLEEP_TIME
 done

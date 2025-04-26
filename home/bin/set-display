@@ -16,11 +16,13 @@
 #   asus_double             Dual monitor setup
 #   asus_triple             Triple monitor setup
 #   asus_quadruple          Quadruple monitor setup
+#   previous                Restore the previous layout
 #
 # Examples:
 #   set-display --layout laptop       # Switch to laptop display
 #   set-display -l asus_double        # Switch to dual monitor setup
 #   set-display --off                 # Turn off all displays
+#   set-display -l previous           # Restore the previously used layout
 # ---End of Help---
 
 # Define display profiles
@@ -32,6 +34,12 @@ PROFILE_ONE_MONITOR="asus_single"
 PROFILE_TWO_MONITORS="asus_double"
 PROFILE_THREE_MONITORS="asus_triple"
 PROFILE_FOUR_MONITORS="asus_quadruple"
+
+# Special profile for restoring previous layout
+PROFILE_PREVIOUS="previous"
+
+# File to store previous layout
+PREVIOUS_LAYOUT_FILE="/tmp/set-display-previous.tmp"
 
 # Show help
 show_help() {
@@ -61,6 +69,25 @@ turn_off_displays() {
         log "INFO" "Turning off display: $name"
         xrandr --output "$name" --off
     done
+}
+
+# Save current layout to temporary file
+save_current_layout() {
+    local layout="$1"
+    log "INFO" "Saving layout '$layout' to $PREVIOUS_LAYOUT_FILE"
+    echo "$layout" > "$PREVIOUS_LAYOUT_FILE"
+}
+
+# Get previous layout from temporary file
+get_previous_layout() {
+    if [[ -f "$PREVIOUS_LAYOUT_FILE" ]]; then
+        local previous_layout=$(cat "$PREVIOUS_LAYOUT_FILE")
+        log "INFO" "Retrieved previous layout: $previous_layout"
+        echo "$previous_layout"
+    else
+        log "WARN" "No previous layout found, using default"
+        echo "$PROFILE_THREE_MONITORS"
+    fi
 }
 
 # Parse arguments
@@ -96,6 +123,18 @@ done
 if [[ -z "$XRANDR_DISPLAY_PROFILE" ]]; then
     log "ERROR" "No layout specified"
     show_help
+fi
+
+# Check if we should restore previous layout
+if [[ "$XRANDR_DISPLAY_PROFILE" == "$PROFILE_PREVIOUS" ]]; then
+    log "INFO" "Restoring previous layout"
+    XRANDR_DISPLAY_PROFILE=$(get_previous_layout)
+    # Make sure we don't capture log output in the variable
+    XRANDR_DISPLAY_PROFILE=$(echo "$XRANDR_DISPLAY_PROFILE" | tail -1)
+    log "INFO" "Using previous layout: $XRANDR_DISPLAY_PROFILE"
+else
+    # Always save the current layout if it's not the "previous" option
+    save_current_layout "$XRANDR_DISPLAY_PROFILE"
 fi
 
 # Kill polybar
