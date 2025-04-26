@@ -32,7 +32,7 @@ EOF
     exit 0
 }
 
-# Logging function
+# Logging functions
 log_debug() {
     if [[ "$DEBUG" == "true" ]]; then
         local timestamp=$(date +'%Y-%m-%d %H:%M:%S')
@@ -45,20 +45,27 @@ log_info() {
     echo "${timestamp} [INFO] $1" | tee -a "$LOG_FILE"
 }
 
-# Add separator line to logs
 log_separator() {
     if [[ "$DEBUG" == "true" ]]; then
         echo -e "\033[36m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m" | tee -a "$LOG_FILE" >&2
     fi
 }
 
-# Check system idle time
+# Status formatting function
+format_status_output() {
+    local status=$1
+    local description=$2
+
+    echo "  Status: $([ "$status" -eq 1 ] && echo "ACTIVE" || echo "INACTIVE")"
+    [ -n "$description" ] && echo "  $description"
+}
+
+# Activity check functions
 get_idle_time() {
     local idle_ms=$(xprintidle)
     echo $((idle_ms / 1000))
 }
 
-# Check if audio input is active (applications recording audio)
 check_audio_input() {
     local is_active=0
     local recording_apps=0
@@ -84,13 +91,12 @@ check_audio_input() {
         echo "  Active recordings: $active_recordings"
         echo "  Uncorked recordings: $uncorked_recordings"
         [ -n "$app_names" ] && echo "  Applications: $app_names"
-        echo "  Status: $([ "$is_active" -eq 1 ] && echo "ACTIVE" || echo "INACTIVE")"
+        format_status_output "$is_active"
     else
         echo $is_active
     fi
 }
 
-# Check if the coffee process is running
 check_coffee() {
     local is_active=0
     local coffee_pid=$(pgrep -f "coffee" 2>/dev/null)
@@ -101,14 +107,12 @@ check_coffee() {
 
     if [ "$SHOW_STATUS" = "true" ]; then
         echo "Coffee Process:"
-        echo "  Status: $([ "$is_active" -eq 1 ] && echo "ACTIVE" || echo "INACTIVE")"
-        [ -n "$coffee_pid" ] && echo "  PID: $coffee_pid"
+        format_status_output "$is_active" "$([ -n "$coffee_pid" ] && echo "PID: $coffee_pid")"
     else
         echo $is_active
     fi
 }
 
-# Check if any fullscreen window is active
 check_fullscreen() {
     local fullscreen=0
     local fullscreen_info=""
@@ -135,7 +139,7 @@ check_fullscreen() {
         else
             echo "  No fullscreen windows detected"
         fi
-        echo "  Status: $([ "$fullscreen" -eq 1 ] && echo "ACTIVE" || echo "INACTIVE")"
+        format_status_output "$fullscreen"
     else
         if [ "$fullscreen" -eq 1 ] && [ -n "$fullscreen_info" ] && [ "$DEBUG" = "true" ]; then
             log_debug "Fullscreen windows detected:"
@@ -147,34 +151,42 @@ check_fullscreen() {
     fi
 }
 
-# Disable DPMS
-disable_dpms() {
-    xset -dpms
-    xset s off
-    log_debug "Disabled DPMS and screensaver"
+# DPMS control functions
+manage_dpms() {
+    local action=$1
+    local reason=$2
+
+    case "$action" in
+        enable)
+            xset +dpms
+            xset s on
+            log_debug "Enabled DPMS and screensaver ($reason)"
+            return 0
+            ;;
+        disable)
+            xset -dpms
+            xset s off
+            log_debug "Disabled DPMS and screensaver ($reason)"
+            return 0
+            ;;
+        reset)
+            xset dpms force on
+            log_debug "Reset DPMS timer ($reason)"
+            return 0
+            ;;
+        off)
+            xset dpms force off
+            log_debug "Turned off monitor ($reason)"
+            return 0
+            ;;
+        *)
+            log_debug "Unknown DPMS action: $action"
+            return 1
+            ;;
+    esac
 }
 
-# Enable DPMS
-enable_dpms() {
-    xset +dpms
-    xset s on
-    log_debug "Enabled DPMS and screensaver"
-}
-
-# Reset DPMS timer to prevent monitors from turning off
-reset_dpms() {
-    # Force X to reset DPMS timer by simulating activity
-    xset dpms force on
-    log_debug "Reset DPMS timer to prevent monitors from turning off"
-}
-
-# Turn off the monitor
-turn_off_monitor() {
-    log_debug "Turning off monitor"
-    xset dpms force off
-}
-
-# Check if i3lock is running
+# Screen lock functions
 is_i3lock_running() {
     if pgrep -x "i3lock" > /dev/null; then
         return 0  # True, i3lock is running
@@ -183,7 +195,19 @@ is_i3lock_running() {
     fi
 }
 
-# Check if user is active based on audio, fullscreen, coffee process or recent activity
+handle_inactivity() {
+    if is_i3lock_running; then
+        log_debug "i3lock already running, turning off monitor instead of locking"
+        manage_dpms "off" "extended idle time"
+    else
+        log_debug "Executing lock-screen command"
+        $HOME/bin/lock-screen
+        log_debug "Lock-screen command executed, sleeping for 5s"
+        sleep 5  # avoid double lock if the mouse moves very little
+    fi
+}
+
+# Check if any activity indicators suggest the user is active
 is_user_active() {
     local idle_seconds=$1
     local audio_input=$2
@@ -202,27 +226,115 @@ is_user_active() {
     fi
 }
 
-# Handle inactivity - either lock screen or turn off monitor
-handle_inactivity() {
-    if is_i3lock_running; then
-        log_debug "i3lock already running, turning off monitor instead of locking"
-        turn_off_monitor
+# Get reason for current activity status
+get_activity_reason() {
+    local idle_seconds=$1
+    local audio_input=$2
+    local fullscreen=$3
+    local coffee_active=$4
+
+    if [[ $idle_seconds -lt $IDLE_LIMIT ]]; then
+        echo "Recent user activity (${idle_seconds}s ago)"
+    elif [[ $audio_input -gt 0 ]]; then
+        echo "Active audio input"
+    elif [[ $fullscreen -gt 0 ]]; then
+        echo "Fullscreen application"
+    elif [[ $coffee_active -gt 0 ]]; then
+        echo "Coffee process active"
     else
-        log_debug "Executing lock-screen command"
-        $HOME/bin/lock-screen
-        log_debug "Lock-screen command executed, sleeping for 5s"
-        sleep 5  # avoid double lock if the mouse moves very little
+        echo "Unknown (possible race condition)"
     fi
+}
+
+# Get appropriate next action based on current state
+get_next_action() {
+    local is_active=$1
+    local is_locked=$2
+    local dpms_enabled=$3
+    local has_special_activity=$4  # Audio/fullscreen/coffee activity
+    local idle_seconds=$5
+    local time_until_inactivity=$6
+
+    if [[ "$is_locked" == "true" ]]; then
+        if [[ $idle_seconds -ge $((IDLE_LIMIT + 60)) ]]; then
+            echo "Turn off monitor"
+        else
+            echo "Monitor will turn off in $((IDLE_LIMIT + 60 - idle_seconds))s"
+        fi
+    elif [[ "$is_active" == "true" ]]; then
+        if [[ "$has_special_activity" == "true" ]]; then
+            if [[ "$dpms_enabled" == "true" ]]; then
+                echo "Disable DPMS (special activity detected)"
+            else
+                echo "DPMS already disabled (special activity detected)"
+            fi
+        else
+            if [[ "$dpms_enabled" == "false" ]]; then
+                echo "Enable DPMS (no special activity)"
+            else
+                echo "DPMS already enabled (no special activity)"
+            fi
+        fi
+    else # Inactive, not locked
+        if [[ "$dpms_enabled" == "false" ]]; then
+            echo "Enable DPMS (user inactive)"
+        elif [[ $idle_seconds -ge $IDLE_LIMIT ]]; then
+            echo "Lock screen now"
+        else
+            echo "Lock screen in ${time_until_inactivity}s"
+        fi
+    fi
+}
+
+# Perform the next action
+perform_next_action() {
+    local action=$1
+    local dpms_enabled_ref=$2
+
+    case "$action" in
+        "Turn off monitor")
+            manage_dpms "off" "extended idle time"
+            ;;
+        "Disable DPMS"*)
+            manage_dpms "disable" "special activity detected"
+            eval $dpms_enabled_ref=false
+            ;;
+        "Enable DPMS"*)
+            manage_dpms "enable" "no special activity or user inactive"
+            eval $dpms_enabled_ref=true
+            ;;
+        "Lock screen now")
+            log_info "Locking screen after ${IDLE_SECONDS}s idle"
+            handle_inactivity
+            ;;
+        *)
+            # No action needed for "DPMS already..." or "Monitor will turn off..." or "Lock screen in..."
+            ;;
+    esac
+}
+
+# Get all activity indicators in one function
+check_all_activity() {
+    local show_status=${1:-false}
+
+    local SHOW_STATUS=$show_status
+    local idle_seconds=$(get_idle_time)
+    local audio_input=$(SHOW_STATUS=$show_status check_audio_input)
+    local fullscreen=$(SHOW_STATUS=$show_status check_fullscreen)
+    local coffee_active=$(SHOW_STATUS=$show_status check_coffee)
+
+    echo "$idle_seconds $audio_input $fullscreen $coffee_active"
 }
 
 # Show detailed status of the system
 show_status() {
-    local idle_seconds=$(get_idle_time)
+    local activity_data=($(check_all_activity false))
+    local idle_seconds=${activity_data[0]}
+    local audio_input=${activity_data[1]}
+    local fullscreen=${activity_data[2]}
+    local coffee_active=${activity_data[3]}
+
     local lockscreen_status=$(is_i3lock_running && echo "LOCKED" || echo "UNLOCKED")
-    local audio_input=$(SHOW_STATUS=false check_audio_input)
-    local fullscreen=$(SHOW_STATUS=false check_fullscreen)
-    local coffee_active=$(SHOW_STATUS=false check_coffee)
-    local status_reason=""
     local dpms_status=$(xset q | grep -A 1 "DPMS is" | head -1 | awk '{print $3}')
 
     echo "System Status:"
@@ -242,24 +354,15 @@ show_status() {
     # Determine overall status
     echo
     echo "Overall Status:"
+
+    local status_reason=""
     if is_i3lock_running; then
         echo "  LOCKED (i3lock is running)"
         status_reason="Screen locked by i3lock"
     else
         if is_user_active "$idle_seconds" "$audio_input" "$fullscreen" "$coffee_active"; then
             echo "  ACTIVE (user is considered active)"
-            # Determine reason for active status
-            if [[ $idle_seconds -lt $IDLE_LIMIT ]]; then
-                status_reason="Recent user activity (${idle_seconds}s ago)"
-            elif [[ $audio_input -gt 0 ]]; then
-                status_reason="Active audio input"
-            elif [[ $fullscreen -gt 0 ]]; then
-                status_reason="Fullscreen application"
-            elif [[ $coffee_active -gt 0 ]]; then
-                status_reason="Coffee process active"
-            else
-                status_reason="Unknown (possible race condition)"
-            fi
+            status_reason=$(get_activity_reason "$idle_seconds" "$audio_input" "$fullscreen" "$coffee_active")
         else
             echo "  INACTIVE (user is considered inactive)"
             status_reason="Idle timeout"
@@ -274,10 +377,11 @@ show_status() {
 
 # Check active status and return exit code
 check_active_status() {
-    local idle_seconds=$(get_idle_time)
-    local audio_input=$(SHOW_STATUS=false check_audio_input)
-    local fullscreen=$(SHOW_STATUS=false check_fullscreen)
-    local coffee_active=$(SHOW_STATUS=false check_coffee)
+    local activity_data=($(check_all_activity false))
+    local idle_seconds=${activity_data[0]}
+    local audio_input=${activity_data[1]}
+    local fullscreen=${activity_data[2]}
+    local coffee_active=${activity_data[3]}
 
     if is_user_active "$idle_seconds" "$audio_input" "$fullscreen" "$coffee_active"; then
         echo "ACTIVE"
@@ -301,105 +405,60 @@ monitor_inactivity() {
     while true; do
         log_separator
 
-        # Get current idle time - don't print function output
-        IDLE_SECONDS=$(get_idle_time)
+        # Get all activity metrics at once
+        local activity_data=($(check_all_activity false))
+        local IDLE_SECONDS=${activity_data[0]}
+        local AUDIO_INPUT_ACTIVE=${activity_data[1]}
+        local FULLSCREEN_ACTIVE=${activity_data[2]}
+        local COFFEE_ACTIVE=${activity_data[3]}
+
+        # Log activity metrics
         log_debug "Current idle time: ${IDLE_SECONDS}s / ${IDLE_LIMIT}s"
+        log_debug "Audio input active: $AUDIO_INPUT_ACTIVE"
+        log_debug "Fullscreen active: ${FULLSCREEN_ACTIVE}"
+        log_debug "Coffee active: ${COFFEE_ACTIVE}"
 
         # Calculate time until inactivity
         local time_until_inactivity=$((IDLE_LIMIT - IDLE_SECONDS))
         local time_until_inactivity_display=$([ $time_until_inactivity -gt 0 ] && echo "${time_until_inactivity}s" || echo "0s (exceeded)")
 
-        # Check microphone status - don't print function output
-        AUDIO_INPUT_ACTIVE=$(SHOW_STATUS=false check_audio_input)
-        log_debug "Audio input active: $AUDIO_INPUT_ACTIVE"
-
-        # Check fullscreen status - don't print function output
-        FULLSCREEN_ACTIVE=$(SHOW_STATUS=false check_fullscreen)
-        # Log this AFTER the check_fullscreen has finished its own debug messages
-        log_debug "Fullscreen active: ${FULLSCREEN_ACTIVE}"
-
-        # Check coffee process status - don't print function output
-        COFFEE_ACTIVE=$(SHOW_STATUS=false check_coffee)
-        log_debug "Coffee active: ${COFFEE_ACTIVE}"
-
-        # Log current activity status
+        # Determine overall status
         local activity_status="INACTIVE"
-        local next_action="None"
         local status_reason="Idle timeout"
+        local is_locked=false
+        local has_special_activity=false
 
         # Check if screen is already locked
         if is_i3lock_running; then
-            log_debug "i3lock is already running"
             activity_status="LOCKED"
             status_reason="Screen locked by i3lock"
-
-            # If user has been idle for a longer period and i3lock is running, turn off monitor
-            if [[ $IDLE_SECONDS -ge $((IDLE_LIMIT + 60)) ]]; then
-                log_debug "Extended idle period detected with screen locked, turning off monitor"
-                next_action="Turn off monitor"
-                turn_off_monitor
-            else
-                next_action="Monitor will turn off in $((IDLE_LIMIT + 60 - IDLE_SECONDS))s"
-            fi
+            is_locked=true
         else
+            # Determine if any special activity is present (for DPMS management)
+            if [[ $AUDIO_INPUT_ACTIVE -gt 0 || $FULLSCREEN_ACTIVE -gt 0 || $COFFEE_ACTIVE -gt 0 ]]; then
+                has_special_activity=true
+            fi
+
             # Check if user is active
             if is_user_active "$IDLE_SECONDS" "$AUDIO_INPUT_ACTIVE" "$FULLSCREEN_ACTIVE" "$COFFEE_ACTIVE"; then
                 activity_status="ACTIVE"
-
-                # Determine reason for active status
-                if [[ $IDLE_SECONDS -lt $IDLE_LIMIT ]]; then
-                    status_reason="Recent user activity (${IDLE_SECONDS}s ago)"
-                elif [[ $AUDIO_INPUT_ACTIVE -gt 0 ]]; then
-                    status_reason="Active audio input"
-                elif [[ $FULLSCREEN_ACTIVE -gt 0 ]]; then
-                    status_reason="Fullscreen application"
-                elif [[ $COFFEE_ACTIVE -gt 0 ]]; then
-                    status_reason="Coffee process active"
-                else
-                    status_reason="Unknown (possible race condition)"
-                fi
-
-                # Manage DPMS based on audio, fullscreen or coffee activity
-                if [[ $AUDIO_INPUT_ACTIVE -gt 0 || $FULLSCREEN_ACTIVE -gt 0 || $COFFEE_ACTIVE -gt 0 ]]; then
-                    # Disable DPMS if audio input, fullscreen or coffee is active and it's currently enabled
-                    if [[ "$dpms_enabled" == true ]]; then
-                        next_action="Disable DPMS (audio/fullscreen/coffee active)"
-                        disable_dpms
-                        dpms_enabled=false
-                    else
-                        next_action="DPMS already disabled (audio/fullscreen/coffee active)"
-                    fi
-                else
-                    # Enable DPMS if it's currently disabled and there's no audio, fullscreen or coffee activity
-                    if [[ "$dpms_enabled" == false ]]; then
-                        next_action="Enable DPMS (no audio/fullscreen/coffee)"
-                        enable_dpms
-                        dpms_enabled=true
-                    else
-                        next_action="DPMS already enabled (no audio/fullscreen/coffee)"
-                    fi
-                fi
-            else
-                # User is inactive
-                # Ensure DPMS is enabled if it was disabled previously
-                if [[ "$dpms_enabled" == false ]]; then
-                    next_action="Enable DPMS (user inactive)"
-                    enable_dpms
-                    dpms_enabled=true
-                fi
-
-                # Determine if screen should be locked
-                if [[ $IDLE_SECONDS -ge $IDLE_LIMIT && $AUDIO_INPUT_ACTIVE -eq 0 && $FULLSCREEN_ACTIVE -eq 0 && $COFFEE_ACTIVE -eq 0 ]]; then
-                    log_info "Locking screen after ${IDLE_SECONDS}s idle"
-                    next_action="Lock screen now"
-                    handle_inactivity
-                else
-                    next_action="Lock screen in ${time_until_inactivity_display}"
-                fi
+                status_reason=$(get_activity_reason "$IDLE_SECONDS" "$AUDIO_INPUT_ACTIVE" "$FULLSCREEN_ACTIVE" "$COFFEE_ACTIVE")
             fi
         fi
 
-        # Log summary of status and next action
+        # Determine next action based on the current state
+        local next_action=$(get_next_action \
+            "$([[ $activity_status == "ACTIVE" ]] && echo true || echo false)" \
+            "$is_locked" \
+            "$dpms_enabled" \
+            "$has_special_activity" \
+            "$IDLE_SECONDS" \
+            "$time_until_inactivity_display")
+
+        # Perform the determined action
+        perform_next_action "$next_action" "dpms_enabled"
+
+        # Log summary with color-coded status
         local status_color=""
         case "$activity_status" in
             "ACTIVE")  status_color="\033[32m" ;; # Green
