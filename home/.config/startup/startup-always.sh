@@ -26,7 +26,7 @@ killall hot-corner; $HOME/bin/hot-corner &
 # ps aux | grep "variety" | grep -v "grep" || variety &
 # ~/bin/set-wallpaper --use-config &
 # ~/bin/set-random-wallpaper ~/wallpapers/single/artistic2 &
-nitrogen --restore &
+nitrogen --restore
 
 #
 # i3 custom stuff
