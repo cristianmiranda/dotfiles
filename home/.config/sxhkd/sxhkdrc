@@ -198,6 +198,8 @@ super + shift + w; c
 		~/bin/coffee
 super + shift + w; d
 		killall owl coffee
+super + shift + w; x
+		~/bin/coffee --monitor-save
 
 # Set URL handler
 super + shift + u; a
