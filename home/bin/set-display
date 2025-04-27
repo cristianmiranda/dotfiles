@@ -242,4 +242,7 @@ fi
 log "INFO" "Restarting window manager"
 $HOME/bin/wm -r
 
+log "INFO" "Setting lockscreen"
+betterlockscreen -u ~/wallpapers/single/CatppuccinMocha-ArchLinux.png --display 0 --fx
+
 log "INFO" "Display configuration complete"
