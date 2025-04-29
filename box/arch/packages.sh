@@ -58,6 +58,7 @@ PACKAGES=(
     easyeffects
     ebtables
     edk2-ovmf
+    elecwhat
     element-desktop
     emojify
     espeak
@@ -211,7 +212,6 @@ PACKAGES=(
     visual-studio-code-bin
     visual-studio-code-insiders-bin
     vlc
-    wasistlos
     wireplumber
     wmctrl
     xarchiver
