@@ -142,6 +142,31 @@ bindsym $super+$alt+9 workspace number 19
 bindsym $super+$alt+0 workspace number 20
 
 #
+# Screen aliases
+#
+set $ASUS_HORIZONTAL_RIGHT  DisplayPort-0
+set $ASUS_VERTICAL          DisplayPort-1
+set $ASUS_HORIZONTAL_MIDDLE DisplayPort-2
+set $ASUS_HORIZONTAL_LEFT   HDMI-A-0
+
+#
+# Workspace > Screen mapping (first active output in the list is used)
+#
+workspace 1  output $ASUS_HORIZONTAL_MIDDLE $ASUS_HORIZONTAL_RIGHT $ASUS_VERTICAL $ASUS_HORIZONTAL_LEFT
+workspace 2  output $ASUS_HORIZONTAL_MIDDLE $ASUS_HORIZONTAL_RIGHT $ASUS_VERTICAL $ASUS_HORIZONTAL_LEFT
+workspace 3  output $ASUS_HORIZONTAL_MIDDLE $ASUS_HORIZONTAL_RIGHT $ASUS_VERTICAL $ASUS_HORIZONTAL_LEFT
+workspace 4  output $ASUS_HORIZONTAL_MIDDLE $ASUS_HORIZONTAL_RIGHT $ASUS_VERTICAL $ASUS_HORIZONTAL_LEFT
+workspace 6  output $ASUS_HORIZONTAL_MIDDLE $ASUS_HORIZONTAL_RIGHT $ASUS_VERTICAL $ASUS_HORIZONTAL_LEFT
+
+workspace 5  output $ASUS_HORIZONTAL_RIGHT  $ASUS_HORIZONTAL_MIDDLE $ASUS_VERTICAL $ASUS_HORIZONTAL_LEFT
+workspace 8  output $ASUS_HORIZONTAL_RIGHT  $ASUS_HORIZONTAL_MIDDLE $ASUS_VERTICAL $ASUS_HORIZONTAL_LEFT
+
+workspace 7  output $ASUS_VERTICAL $ASUS_HORIZONTAL_RIGHT $ASUS_HORIZONTAL_MIDDLE $ASUS_HORIZONTAL_LEFT
+workspace 10 output $ASUS_VERTICAL $ASUS_HORIZONTAL_RIGHT $ASUS_HORIZONTAL_MIDDLE $ASUS_HORIZONTAL_LEFT
+
+workspace 9  output $ASUS_HORIZONTAL_LEFT   $ASUS_HORIZONTAL_RIGHT  $ASUS_HORIZONTAL_MIDDLE $ASUS_VERTICAL
+
+#
 # Go to first free workspace
 #
 bindsym $super+o exec --no-startup-id i3-msg workspace `echo {1..20} | tr ' ' '\n' | grep -vxFf <(i3-msg -t get_workspaces | jq '.[].num' | tr ' ' '\n') | head -n 1`

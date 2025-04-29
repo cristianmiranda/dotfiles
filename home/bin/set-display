@@ -208,36 +208,6 @@ log "INFO" "Setting colorspace and content type for HDMI-A-0"
 xrandr --output HDMI-A-0 --set "Colorspace" "Default"
 xrandr --output HDMI-A-0 --set "content type" "No Data"
 
-# Move workspaces for dual monitor setups
-if [[ "$XRANDR_DISPLAY_PROFILE" == "$PROFILE_TWO_MONITORS" ]]; then
-    log "INFO" "Moving workspaces for dual monitor setup"
-    for i in 1 2 3 4 6 10; do
-        log "DEBUG" "Moving workspace $i to DisplayPort-2"
-        i3-msg "workspace $i, move workspace to output DisplayPort-2"
-    done
-    for i in 5 7 8 9; do
-        log "DEBUG" "Moving workspace $i to DisplayPort-0"
-        i3-msg "workspace $i, move workspace to output DisplayPort-0"
-    done
-fi
-
-# Move workspaces for triple monitor setups
-if [[ "$XRANDR_DISPLAY_PROFILE" == "$PROFILE_THREE_MONITORS" ]]; then
-    log "INFO" "Moving workspaces for triple monitor setup"
-    for i in 1 2 3 4 6; do
-        log "DEBUG" "Moving workspace $i to DisplayPort-2"
-        i3-msg "workspace $i, move workspace to output DisplayPort-2"
-    done
-    for i in 3 5 8 9; do
-        log "DEBUG" "Moving workspace $i to DisplayPort-0"
-        i3-msg "workspace $i, move workspace to output DisplayPort-0"
-    done
-    for i in 7 10; do
-        log "DEBUG" "Moving workspace $i to DisplayPort-1"
-        i3-msg "workspace $i, move workspace to output DisplayPort-1"
-    done
-fi
-
 # Restart the window manager
 log "INFO" "Restarting window manager"
 $HOME/bin/wm -r
