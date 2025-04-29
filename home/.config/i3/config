@@ -69,10 +69,10 @@ bindsym Control+q kill
 #
 # Change focus
 #
-bindsym $super+Left focus left
-bindsym $super+Down focus down
-bindsym $super+Up focus up
-bindsym $super+Right focus right
+bindsym $super+Left focus left; exec --no-startup-id $HOME/.config/i3/scripts/warp-cursor.sh
+bindsym $super+Down focus down; exec --no-startup-id $HOME/.config/i3/scripts/warp-cursor.sh
+bindsym $super+Up focus up; exec --no-startup-id $HOME/.config/i3/scripts/warp-cursor.sh
+bindsym $super+Right focus right; exec --no-startup-id $HOME/.config/i3/scripts/warp-cursor.sh
 
 #
 # Move focused window
