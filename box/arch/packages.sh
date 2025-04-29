@@ -140,6 +140,7 @@ PACKAGES=(
     pamixer
     papirus-icon-theme
     pasystray
+    patchutils
     pavucontrol
     peek
     picom
