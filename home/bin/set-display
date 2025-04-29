@@ -1,30 +1,5 @@
 #!/bin/bash
 
-# set-display - Configure display layouts and monitor settings
-#
-# Usage: set-display [OPTIONS]
-#
-# Options:
-#   -h, --help              Show this help message
-#   -l, --layout LAYOUT     Set display layout (see available layouts below)
-#   --off                   Turn off all displays
-#
-# Available layouts:
-#   laptop                  Single laptop display
-#   virtual                 Virtual display setup
-#   asus_single             Single monitor setup
-#   asus_double             Dual monitor setup
-#   asus_triple             Triple monitor setup
-#   asus_quadruple          Quadruple monitor setup
-#   previous                Restore the previous layout
-#
-# Examples:
-#   set-display --layout laptop       # Switch to laptop display
-#   set-display -l asus_double        # Switch to dual monitor setup
-#   set-display --off                 # Turn off all displays
-#   set-display -l previous           # Restore the previously used layout
-# ---End of Help---
-
 # Define display profiles
 PROFILE_LAPTOP="laptop"
 PROFILE_VIRTUAL="virtual"
@@ -41,10 +16,47 @@ PROFILE_PREVIOUS="previous"
 # File to store previous layout
 PREVIOUS_LAYOUT_FILE="/tmp/set-display-previous.tmp"
 
+LOG_FILE="$HOME/logs/set-display.log"
+
+# Usage
+usage() {
+cat << EOF
+    ███████╗███████╗████████╗   ██████╗ ██╗███████╗██████╗ ██╗      █████╗ ██╗   ██╗
+    ██╔════╝██╔════╝╚══██╔══╝   ██╔══██╗██║██╔════╝██╔══██╗██║     ██╔══██╗╚██╗ ██╔╝
+    ███████╗█████╗     ██║█████╗██║  ██║██║███████╗██████╔╝██║     ███████║ ╚████╔╝
+    ╚════██║██╔══╝     ██║╚════╝██║  ██║██║╚════██║██╔═══╝ ██║     ██╔══██║  ╚██╔╝
+    ███████║███████╗   ██║      ██████╔╝██║███████║██║     ███████╗██║  ██║   ██║
+    ╚══════╝╚══════╝   ╚═╝      ╚═════╝ ╚═╝╚══════╝╚═╝     ╚══════╝╚═╝  ╚═╝   ╚═╝
+
+    Configure display layouts and monitor settings
+
+    Usage: set-display [OPTIONS]
+
+    Options:
+    -h, --help              Show this help message
+    -l, --layout LAYOUT     Set display layout (see available layouts below)
+    --off                   Turn off all displays
+
+    Available layouts:
+    laptop                  Single laptop display
+    virtual                 Virtual display setup
+    asus_single             Single monitor setup
+    asus_double             Dual monitor setup
+    asus_triple             Triple monitor setup
+    asus_quadruple          Quadruple monitor setup
+    previous                Restore the previous layout
+
+    Examples:
+    set-display --layout laptop       # Switch to laptop display
+    set-display -l asus_double        # Switch to dual monitor setup
+    set-display --off                 # Turn off all displays
+    set-display -l previous           # Restore the previously used layout
+EOF
+}
+
 # Show help
 show_help() {
-    # Display only the help section of the script
-    sed -n '2,/^# ---End of Help---$/s/^# \?//p' "$0"
+    usage
     exit 0
 }
 
@@ -53,8 +65,6 @@ if [[ "$1" == "-h" || "$1" == "--help" ]]; then
     show_help
 fi
 
-# Setup logging
-LOG_FILE="/tmp/set-display.log"
 log() {
     local level="$1"
     local message="$2"
