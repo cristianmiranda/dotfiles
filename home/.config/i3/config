@@ -44,6 +44,15 @@ for_window [class=URxvt|Firefox|Geany|Evince|Soffice|libreoffice*|mpv|Ghb|Xfburn
 for_window [class=Xfburn|GParted|System-config-printer.py|Lxtask|Pavucontrol|Exo-helper*|Lxrandr|Arandr] focus
 for_window [title=zoom_clips_panel] floating enable
 
+#
+# Custom Size (only applies when reloading i3 config)
+#
+for_window [class=ticktick] resize set width 630px
+for_window [class=Slack] resize set width 850px
+
+#
+# Border
+#
 for_window [class="^.*"] border pixel 2
 
 focus_on_window_activation focus
