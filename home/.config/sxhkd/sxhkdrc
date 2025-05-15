@@ -131,13 +131,13 @@ super + shift + a; e
 super + shift + a; k
 		killall easyeffects
 super + shift + a; c
-		~/bin/airpods connect '44:1B:88:07:A8:C8'
+		~/bin/earbuds connect '00:BB:43:90:32:74'
 super + shift + a; d
-		~/bin/airpods disconnect '44:1B:88:07:A8:C8'
+		~/bin/earbuds disconnect '00:BB:43:90:32:74'
 super + shift + a; s
-		~/bin/airpods speaker '44:1B:88:07:A8:C8'
+		~/bin/earbuds speaker '00:BB:43:90:32:74'
 super + shift + a; h
-		~/bin/airpods headset '44:1B:88:07:A8:C8'
+		~/bin/earbuds headset '00:BB:43:90:32:74'
 super + shift + a; a
 		pactl set-default-sink $(pactl list sinks short | grep -i "hdmi" | awk '{print $2}')
 super + shift + a; l
