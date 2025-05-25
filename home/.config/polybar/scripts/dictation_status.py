@@ -4,8 +4,7 @@ import subprocess
 import sys
 import os
 
-# Font Awesome microphone icon
-MICROPHONE_ICON = ""
+MICROPHONE_ICON = ""
 
 def get_dictation_status():
     """Get the status of nerd-dictation from the control script."""

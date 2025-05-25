@@ -28,6 +28,8 @@ display_audio_info() {
         DEVICE_ICON=""
     elif [[ $RUNNING_DEVICE =~ "USB_Audio" ]]; then
         DEVICE_ICON="󰓃"
+    else
+        DEVICE_ICON="󰕾"
     fi
 
     if [[ $MUTE == "yes" ]]; then
