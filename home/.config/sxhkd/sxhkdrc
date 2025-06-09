@@ -109,7 +109,7 @@ super + r
 super + s
     ~/bin/wm --go-to-by-class spotify
 super + t
-    ~/bin/wm --go-to-by-class telegram-desktop
+    ~/bin/wm --go-to-by-class Telegram
 super + w
     ~/bin/wm --go-to-by-class elecwhat
 super + z
@@ -169,7 +169,7 @@ super + shift + l; p
 super + shift + l; s
 		spotify
 super + shift + l; t
-		telegram-desktop
+		Telegram
 super + shift + l; w
 		elecwhat
 super + shift + l; x
