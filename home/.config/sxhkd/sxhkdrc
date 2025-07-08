@@ -123,6 +123,7 @@ super + z
 # - 7C:9A:1D:BA:BD:D6   # Cris'  AirPods 2 #
 # - C4:14:11:1B:0D:07   # Anto's AirPods 1 #
 # - 44:1B:88:07:A8:C8   # Cris'  AirPods   #
+# - 00:BB:43:90:32:74   # Cris'  Redmi 6   #
 ############################################
 #
 # Audio
@@ -131,13 +132,13 @@ super + shift + a; e
 super + shift + a; k
 		killall easyeffects
 super + shift + a; c
-		~/bin/earbuds connect '00:BB:43:90:32:74'
+		~/bin/earbuds connect '44:1B:88:07:A8:C8'
 super + shift + a; d
-		~/bin/earbuds disconnect '00:BB:43:90:32:74'
+		~/bin/earbuds disconnect '44:1B:88:07:A8:C8'
 super + shift + a; s
-		~/bin/earbuds speaker '00:BB:43:90:32:74'
+		~/bin/earbuds speaker '44:1B:88:07:A8:C8'
 super + shift + a; h
-		~/bin/earbuds headset '00:BB:43:90:32:74'
+		~/bin/earbuds headset '44:1B:88:07:A8:C8'
 super + shift + a; a
 		pactl set-default-sink $(pactl list sinks short | grep -i "hdmi" | awk '{print $2}')
 super + shift + a; l
