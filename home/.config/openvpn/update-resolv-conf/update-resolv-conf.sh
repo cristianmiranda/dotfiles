@@ -17,16 +17,17 @@
 # foreign_option_3='dhcp-option DOMAIN be.bnc.ch'
 # foreign_option_4='dhcp-option DOMAIN-SEARCH bnc.local'
 
-## The 'type' builtins will look for file in $PATH variable, so we set the
-## PATH below. You might need to directly set the path to 'resolvconf'
-## manually if it still doesn't work, i.e.
-## RESOLVCONF=/usr/sbin/resolvconf
-export PATH=$PATH:/sbin:/usr/sbin:/bin:/usr/bin
-RESOLVCONF=$(type -p resolvconf)
+# Backup file path
+BACKUP_FILE="/tmp/resolv.conf.backup.${dev}"
 
 case $script_type in
 
 up)
+  # Backup original resolv.conf
+  if [ -f /etc/resolv.conf ]; then
+    cp /etc/resolv.conf "$BACKUP_FILE"
+  fi
+
   for optionname in ${!foreign_option_*} ; do
     option="${!optionname}"
     echo $option
@@ -56,15 +57,19 @@ up)
     R="${R}nameserver $NS
 "
   done
-  #echo -n "$R" | $RESOLVCONF -x -p -a "${dev}"
-  echo -n "$R" | $RESOLVCONF -x -a "${dev}.inet"
+  # Write new resolv.conf with VPN DNS settings
+  echo -n "$R" > /etc/resolv.conf
   ;;
 down)
-  $RESOLVCONF -d "${dev}.inet"
+  # Restore original resolv.conf from backup
+  if [ -f "$BACKUP_FILE" ]; then
+    cp "$BACKUP_FILE" /etc/resolv.conf
+    rm "$BACKUP_FILE"
+  fi
   ;;
 esac
 
-# Workaround / jm@epiclabs.io 
+# Workaround / jm@epiclabs.io
 # force exit with no errors. Due to an apparent conflict with the Network Manager
 # $RESOLVCONF sometimes exits with error code 6 even though it has performed the
 # action correctly and OpenVPN shuts down.
