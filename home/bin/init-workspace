@@ -23,7 +23,7 @@ if [[ $WORKSPACE -eq 1 ]]; then
 fi
 
 if [[ $WORKSPACE -eq 2 ]]; then
-    telegram-desktop &
+    Telegram &
     sleep 0.5
     elecwhat &
 fi
