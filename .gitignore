@@ -87,5 +87,7 @@ home/.config/openvpn/profiles/daten.ovpn
 home/dots/work/.bc-functions
 home/.ssh/pems/cheyenne.pem
 home/.ssh/pems/laramie.pem
+home/.ssh/pems/laplata.pem
+home/.ssh/pems/campana.pem
 home/.config/aichat/config.yaml
 home/.config/rclone/rclone.conf
