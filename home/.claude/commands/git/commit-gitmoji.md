@@ -1,4 +1,4 @@
-Check the staged changes and generate a gitmoji-style commit message. If no changes are staged, remind me to stage them first. 
+Check the staged changes and generate a gitmoji-style commit message. If no changes are staged, remind me to stage them first.
 
 First, run `git diff --staged` to see what changes are staged.
 
@@ -7,7 +7,7 @@ Then generate a commit message following this format:
 - Max 72 characters total
 - Use the appropriate gitmoji:
   - ✨ - New feature
-  - 🐛 - Bug fix  
+  - 🐛 - Bug fix
   - 🔧 - Configuration or tooling
   - 💄 - UI or styling changes
   - ♻️ - Refactor code
