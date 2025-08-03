@@ -79,3 +79,4 @@ alias ta='tmux a'
 # [[ -f /usr/bin/github-copilot-cli ]] && eval "$(github-copilot-cli alias -- "$0")"
 
 alias ai="aichat"
+alias c="claude --dangerously-skip-permissions"
