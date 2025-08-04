@@ -81,6 +81,7 @@ PACKAGES=(
 	terraform
     thefuck
 	tmux
+	topgrade
 	yarn
 	w3m
 )
