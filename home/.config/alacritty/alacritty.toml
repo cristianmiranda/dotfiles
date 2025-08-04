@@ -52,6 +52,11 @@ action = "ToggleFullscreen"
 key = "Return"
 mods = "Alt"
 
+[[keyboard.bindings]]
+key = "Return"
+mods = "Shift"
+chars = "\n"
+
 [scrolling]
 history = 10000
 multiplier = 3
