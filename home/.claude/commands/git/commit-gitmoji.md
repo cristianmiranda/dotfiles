@@ -1,3 +1,7 @@
+---
+description: "😸 - Commit with a gitmoji"
+---
+
 Check the staged changes and generate a gitmoji-style commit message. If no changes are staged, remind me to stage them first.
 
 First, run `git diff --staged` to see what changes are staged.

@@ -1,3 +1,7 @@
+---
+description: "😸 - Commit with a conventional commit message"
+---
+
 Check the staged changes and generate a conventional commit message based on the current branch prefix. If no changes are staged, remind me to stage them first.
 
 First, run `git diff --staged` to see what changes are staged.
