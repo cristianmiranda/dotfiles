@@ -32,7 +32,7 @@ ESSENTIALS=(
 	bash
 	coreutils
 	findutils
-    git
+	git
 	gnu-indent
 	gnu-sed
 	gnutls
@@ -69,17 +69,17 @@ PACKAGES=(
 	InstantClientTap/instantclient/instantclient-sqlplus
 	jq
 	lazydocker
-    lazygit
+	lazygit
 	maven
 	navi
 	neofetch
-    neovim
+	neovim
 	node
 	ranger
 	sops
 	svn
 	terraform
-    thefuck
+	thefuck
 	tmux
 	topgrade
 	yarn
