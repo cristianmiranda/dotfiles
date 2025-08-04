@@ -18,6 +18,9 @@
       glob: true
       path: .config/*
       force: true
+    ~/.claude/CLAUDE.md: .claude/CLAUDE.md
+    ~/.claude/settings.json: .claude/settings.json
+    ~/.claude/commands: .claude/commands
     ~/.gnupg/gpg-agent.conf:
       path: .gnupg/gpg-agent.conf
       force: true
