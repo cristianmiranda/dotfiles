@@ -4,10 +4,10 @@ description: "😸 - Commit with a gitmoji"
 
 Check the staged changes and generate a gitmoji-style commit message. If no changes are staged, remind me to stage them first.
 
-First, run `git diff --staged` to see what changes are staged.
+First, run !`git diff --staged` to see what changes are staged.
 
 Then generate a commit message following this format:
-- Format: `<emoji> <prefix>: <title>`
+- Format: `<emoji> <prefix>: lowercase(<title>)`
 - Max 72 characters total
 - Use the appropriate gitmoji:
   - ✨ - New feature
@@ -24,7 +24,6 @@ Then generate a commit message following this format:
   - 🗑️ - Deprecation or removal
 - Prefix = affected component (e.g. polybar, aichat, arch)
 - Use colon + space after prefix
-- Title uses sentence-style capitalization
 
 Also generate a brief commit body (3 lines max) that explains:
 - Why the change was made
