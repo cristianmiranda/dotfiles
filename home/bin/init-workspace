@@ -37,9 +37,15 @@ if [[ $WORKSPACE -eq 4 ]]; then
 fi
 
 if [[ $WORKSPACE -eq 6 ]]; then
-    slack &
-    sleep 0.5
     firefox-nightly &
+fi
+
+if [[ $WORKSPACE -eq 7 ]]; then
+    alacritty -e zsh -c "source ~/.zshrc && lazydockerOnBC"
+fi
+
+if [[ $WORKSPACE -eq 8 ]]; then
+    /opt/google/chrome/google-chrome &
 fi
 
 if [[ $WORKSPACE -eq 10 ]]; then
