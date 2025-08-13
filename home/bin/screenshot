@@ -1,0 +1,95 @@
+#!/usr/bin/env bash
+
+show_help() {
+    cat << EOF
+Usage: screenshot [OPTIONS] [-o OUTPUT]
+
+Take screenshots with optional cursor position preservation.
+
+OPTIONS:
+    -r, --region       Interactive region selection with cursor position preservation
+    -m, --current      Capture current monitor
+    -a, --activewindow Capture active window
+    -o, --output FILE  Save screenshot to specified file
+    -h, --help         Show this help message
+
+EXAMPLES:
+    screenshot                     Take full screenshot
+    screenshot -r                  Take region screenshot with cursor restoration
+    screenshot -m                  Capture current monitor
+    screenshot -a                  Capture active window
+    screenshot -o ~/screenshot.png Save full screenshot to specified path
+    screenshot -r -o ~/region.png  Take region screenshot and save to path
+
+EOF
+}
+
+# Parse arguments
+mode=""
+output_file=""
+
+while [[ $# -gt 0 ]]; do
+    case $1 in
+        -h|--help)
+            show_help
+            exit 0
+            ;;
+        -r|--region)
+            mode="region"
+            shift
+            ;;
+        -m|--current)
+            mode="current"
+            shift
+            ;;
+        -a|--activewindow)
+            mode="activewindow"
+            shift
+            ;;
+        -o|--output)
+            output_file="$2"
+            shift 2
+            ;;
+        *)
+            echo "Unknown option: $1" >&2
+            show_help
+            exit 1
+            ;;
+    esac
+done
+
+# Build spectacle command
+spectacle_args=()
+if [[ -n "$output_file" ]]; then
+    spectacle_args+=("-b" "-o" "$output_file")
+fi
+
+case "$mode" in
+    region)
+        # Save current cursor position
+        eval $(xdotool getmouselocation --shell)
+        saved_x=$X
+        saved_y=$Y
+
+        # Start spectacle in background for interactive region selection
+        spectacle -r "${spectacle_args[@]}" &
+        spectacle_pid=$!
+
+        # Wait 1s then restore cursor position
+        sleep 1
+        xdotool mousemove $saved_x $saved_y
+
+        # Wait for spectacle to finish
+        wait $spectacle_pid
+        ;;
+    current)
+        spectacle -m "${spectacle_args[@]}"
+        ;;
+    activewindow)
+        spectacle -a "${spectacle_args[@]}"
+        ;;
+    *)
+        # Default behavior - full screenshot
+        spectacle "${spectacle_args[@]}"
+        ;;
+esac

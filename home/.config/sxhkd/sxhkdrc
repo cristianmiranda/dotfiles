@@ -72,12 +72,14 @@ super + b
 ###########################################################################
 # Screenshots & Screen Recording
 ###########################################################################
+super + shift + 1
+	~/bin/screenshot --region -o /tmp/clipboard.png && dunstify 'Uploading to imgur...' && ~/bin/imgur /tmp/clipboard.png && dunstify 'Screenshot uploaded to imgur'
 super + shift + 2
-    flameshot gui -r > /tmp/clipboard.png && ~/bin/imgur /tmp/clipboard.png && dunstify 'Screenshot uploaded to imgur'
+	~/bin/screenshot --activewindow
 super + shift + 3
-    flameshot full
+    ~/bin/screenshot --current
 super + shift + 4
-    flameshot gui
+    ~/bin/screenshot --region
 super + shift + 5
     peek
 
