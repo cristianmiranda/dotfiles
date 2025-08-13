@@ -176,6 +176,7 @@ PACKAGES=(
     simplescreenrecorder
     slack-desktop
     sof-firmware
+    spectacle
     solaar
     sops
     sox
