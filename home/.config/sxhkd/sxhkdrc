@@ -79,7 +79,7 @@ super + shift + 2
 super + shift + 3
     ~/bin/screenshot --current
 super + shift + 4
-    ~/bin/screenshot --region
+    flameshot gui # ~/bin/screenshot --region
 super + shift + 5
     peek
 
