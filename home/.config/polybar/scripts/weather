@@ -1,10 +1,29 @@
 #!/bin/bash
 
-RANDOM_NUMBER=$(shuf -i 1-999999 -n 1);
-WEATHER=$(curl -s "wttr.in/?format=1&random=$RANDOM_NUMBER");
+LAT="-34.3824546"
+LON="-58.881424"
+FORMAT="%c%t%20|+%f%20💧%p%20💨%20%w"
 
-if [[ "$WEATHER" =~ "Unknown" || "$WEATHER" =~ "Sorry" ]]; then
+# Random number to bypass wttr.in cache
+RANDOM_NUMBER=$(shuf -i 1-999999 -n 1)
+
+# Fetch weather
+WEATHER_RAW=$(curl -s "https://wttr.in/${LAT},${LON}?m&lang=es&format=${FORMAT}&random=${RANDOM_NUMBER}")
+
+# Handle errors
+if [[ "$WEATHER_RAW" =~ "Unknown" || "$WEATHER_RAW" =~ "Sorry" ]]; then
     echo "🌪️"
+    exit 0
+fi
+
+# Extract parts based on emojis
+ICON_TEMP=$(echo "$WEATHER_RAW" | sed -E 's/(💧.*)//')
+PRECIP=$(echo "$WEATHER_RAW" | grep -oE '💧[^💨]+')
+WIND=$(echo "$WEATHER_RAW" | grep -oE '💨.*')
+
+# If precipitation is 0mm or 0.0mm, omit it
+if [[ "$PRECIP" =~ 💧0(\.0)?mm ]]; then
+    echo "${ICON_TEMP}${WIND}"
 else
-    echo $WEATHER;
+    echo "$WEATHER_RAW"
 fi
