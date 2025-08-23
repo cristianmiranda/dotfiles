@@ -21,9 +21,14 @@ ICON_TEMP=$(echo "$WEATHER_RAW" | sed -E 's/(💧.*)//')
 PRECIP=$(echo "$WEATHER_RAW" | grep -oE '💧[^💨]+')
 WIND=$(echo "$WEATHER_RAW" | grep -oE '💨.*')
 
+# Remove Celsius symbol from temperature but keep degree sign, and shorten wind units
+ICON_TEMP=$(echo "$ICON_TEMP" | sed 's/°C/°/g')
+WIND=$(echo "$WIND" | sed -e 's/°C/°/g' -e 's/km\/h/kph/g')
+
 # If precipitation is 0mm or 0.0mm, omit it
 if [[ "$PRECIP" =~ 💧0(\.0)?mm ]]; then
     echo "${ICON_TEMP}${WIND}"
 else
-    echo "$WEATHER_RAW"
+    # Remove Celsius from full output as well but keep degree sign, and shorten wind units
+    echo "$WEATHER_RAW" | sed -e 's/°C/°/g' -e 's/km\/h/kph/g'
 fi
