@@ -16,8 +16,8 @@ if [ ! -f "$CURRENT_URL_HANDLER_FILENAME" ]; then
         wm_class="firefoxdeveloperedition$"
         ;;
     bc)
-        url_handler="firefox-nightly"
-        wm_class="firefox-nightly$"
+        url_handler="brave"
+        wm_class="brave-browser$"
         ;;
     *)
         echo "Unkown context"

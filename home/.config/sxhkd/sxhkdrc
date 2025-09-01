@@ -103,7 +103,7 @@ super + k
 super + m
     ~/bin/wm --go-to-by-class thunderbird
 super + n
-    ~/bin/wm --go-to-by-class firefox-nightly
+    ~/bin/wm --go-to-by-class brave-browser
 super + p
     ~/bin/wm --go-to-by-class jetbrains-pycharm
 super + r
@@ -166,7 +166,7 @@ super + shift + l; j
 super + shift + l; m
 		thunderbird
 super + shift + l; n
-		notion-app
+		brave
 super + shift + l; p
 		~/bin/dpi-open thunar
 super + shift + l; s
@@ -212,7 +212,7 @@ super + shift + u; f
 super + shift + u; d
 		~/bin/set-url-handler firefox-developer-edition
 super + shift + u; n
-		~/bin/set-url-handler firefox-nightly
+		~/bin/set-url-handler brave
 
 # VPN
 super + shift + v; c

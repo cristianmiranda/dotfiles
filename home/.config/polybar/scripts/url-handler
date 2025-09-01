@@ -9,7 +9,7 @@ else
         echo "%{F#FFA537}%{F-}"
     elif [[ "${current_url_handler}" = "firefox-developer-edition" ]]; then
         echo "%{F#00B3F5}%{F-}"
-    elif [[ "${current_url_handler}" = "firefox-nightly" ]]; then
+    elif [[ "${current_url_handler}" = "brave" ]]; then
         echo "%{F#F564FF}%{F-}"
     fi
 fi

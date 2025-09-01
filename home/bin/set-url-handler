@@ -3,7 +3,7 @@
 CURRENT_URL_HANDLER_FILENAME="/tmp/current-url-handler"
 
 case "$1" in
-    firefox|firefox-developer-edition|firefox-nightly)
+    firefox|firefox-developer-edition|brave)
         echo $1 > $CURRENT_URL_HANDLER_FILENAME
         ;;
     adaptative)

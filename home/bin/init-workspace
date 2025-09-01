@@ -37,7 +37,7 @@ if [[ $WORKSPACE -eq 4 ]]; then
 fi
 
 if [[ $WORKSPACE -eq 6 ]]; then
-    firefox-nightly &
+    brave &
 fi
 
 if [[ $WORKSPACE -eq 7 ]]; then
