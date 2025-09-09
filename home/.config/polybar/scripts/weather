@@ -2,13 +2,14 @@
 
 LAT="-34.3824546"
 LON="-58.881424"
+LOCATION="zelaya"
 FORMAT="%c%t%20|+%f%20💧%p%20💨%20%w"
 
 # Random number to bypass wttr.in cache
 RANDOM_NUMBER=$(shuf -i 1-999999 -n 1)
 
 # Fetch weather
-WEATHER_RAW=$(curl -s "https://wttr.in/${LAT},${LON}?m&lang=es&format=${FORMAT}&random=${RANDOM_NUMBER}")
+WEATHER_RAW=$(curl -s "https://wttr.in/${LOCATION}?m&lang=es&format=${FORMAT}&random=${RANDOM_NUMBER}")
 
 # Handle errors
 if [[ "$WEATHER_RAW" =~ "Unknown" || "$WEATHER_RAW" =~ "Sorry" ]]; then
