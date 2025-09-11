@@ -6,16 +6,24 @@ COLOR="%{F$THEME_COLOR}"
 RESET="%{F-}"
 
 # Get the JSON output from dolar program
-json_output=$($HOME/bin/dolar -b -j)
+json_output=$($HOME/bin/dolar -b -j 2>/dev/null)
 
-# Extract buy_price and sell_price using jq
-buy_price=$(echo "$json_output" | jq -r '.buy_price')
-sell_price=$(echo "$json_output" | jq -r '.sell_price')
-
-# Calculate the difference
-difference=$((sell_price - buy_price))
-
-# Output the buy price and the difference
-OUTPUT="$buy_price +$difference"
+# Check if the command succeeded and we have valid JSON
+if [ $? -ne 0 ] || [ -z "$json_output" ] || [ "$json_output" = "null" ]; then
+    OUTPUT="---"
+else
+    # Extract buy_price and sell_price using jq
+    buy_price=$(echo "$json_output" | jq -r '.buy_price' 2>/dev/null)
+    sell_price=$(echo "$json_output" | jq -r '.sell_price' 2>/dev/null)
+    
+    # Check if jq parsing was successful
+    if [ "$buy_price" = "null" ] || [ "$sell_price" = "null" ] || [ -z "$buy_price" ] || [ -z "$sell_price" ]; then
+        OUTPUT="---"
+    else
+        # Calculate the difference
+        difference=$((sell_price - buy_price))
+        OUTPUT="$buy_price +$difference"
+    fi
+fi
 
 echo "$COLOR$ICON$RESET $OUTPUT"
