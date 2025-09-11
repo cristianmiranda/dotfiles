@@ -23,6 +23,9 @@
     - [💿 Mounting disks](#-mounting-disks)
     - [⏰ Disable USB wake up](#-disable-usb-wake-up)
     - [⚡ UPS](#-ups)
+    - [🧯 GPU Soft Lockups Fix](#-gpu-soft-lockups-fix)
+      - [Disable THP in GRUB](#disable-thp-in-grub)
+      - [Sysctl tuning](#sysctl-tuning)
   - [💻 Laptop](#-laptop)
     - [💻 Lid Close event](#-lid-close-event)
     - [🔌 USB autosuspend](#-usb-autosuspend)
@@ -331,6 +334,43 @@ MINUTES 10
 #  If you have an older dumb UPS, you will want to set this to less than
 #    the time you know you can run on batteries.
 TIMEOUT 60
+```
+
+### 🧯 GPU Soft Lockups Fix
+
+Some AMDGPU setups can freeze due to Transparent Huge Pages (THP) and memory compaction. We disable THP and lower compaction aggressiveness.
+
+#### Disable THP in GRUB
+
+Edit `/etc/default/grub` and add at the end of `GRUB_CMDLINE_LINUX_DEFAULT`:
+
+```bash
+sudo vim /etc/default/grub
+```
+
+```conf
+GRUB_CMDLINE_LINUX_DEFAULT="quiet transparent_hugepage=never"
+```
+
+Then run `update-grub`:
+
+```bash
+sudo grub-mkconfig -o /boot/grub/grub.cfg
+```
+
+#### Sysctl tuning
+
+Here we reduce how aggressively the kernel compacts memory and lower swap usage.
+
+Create a new file `/etc/sysctl.d/99-sysctl.conf` and add the following content:
+
+```bash
+sudo vim /etc/sysctl.d/99-sysctl.conf
+```
+
+```conf
+vm.compaction_proactiveness = 0
+vm.swappiness = 10
 ```
 
 ## 💻 Laptop
