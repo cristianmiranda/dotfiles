@@ -4,6 +4,7 @@ require 'optparse'
 require 'json'
 require 'net/http'
 require 'uri'
+require 'openssl'
 
 def usage
   puts <<~USAGE
@@ -20,8 +21,15 @@ end
 
 def fetch_usd_value(type, format_json = false)
   begin
-    response = Net::HTTP.get(URI("https://mercados.ambito.com/dolar/#{type}/variacion"))
-    output = JSON.parse(response)
+    uri = URI("https://mercados.ambito.com/dolar/#{type}/variacion")
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = true
+    # Skip certificate verification to avoid CRL issues in Ruby 3.4+
+    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+
+    request = Net::HTTP::Get.new(uri.request_uri)
+    response = http.request(request)
+    output = JSON.parse(response.body)
 
     buy_price = output['compra'].to_f.to_i
     sell_price = output['venta'].to_f.to_i
