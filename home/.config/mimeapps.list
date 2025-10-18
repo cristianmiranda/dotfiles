@@ -11,6 +11,7 @@ application/pdf=okularApplication_pdf.desktop
 x-scheme-handler/notion=notion-app.desktop
 x-scheme-handler/jetbrains=jetbrains-toolbox.desktop
 x-scheme-handler/postman=Postman.desktop
+x-scheme-handler/jetbrains-gateway=jetbrains-gateway.desktop
 
 [Added Associations]
 text/plain=visual-studio-code.desktop;org.xfce.mousepad.desktop;
