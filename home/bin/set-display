@@ -218,6 +218,12 @@ log "INFO" "Setting colorspace and content type for HDMI-A-0"
 xrandr --output HDMI-A-0 --set "Colorspace" "Default"
 xrandr --output HDMI-A-0 --set "content type" "No Data"
 
+# Set max bpc and refresh rate for all outputs
+xrandr --output DisplayPort-0 --set "max bpc" 8 --rate 60
+xrandr --output DisplayPort-1 --set "max bpc" 8 --rate 60
+xrandr --output DisplayPort-2 --set "max bpc" 8 --rate 60
+xrandr --output HDMI-A-0      --set "max bpc" 8 --rate 60
+
 # Restart the window manager
 log "INFO" "Restarting window manager"
 $HOME/bin/wm -r
