@@ -16,14 +16,14 @@ PACKAGES=(
     acpi
     acpi_call
     aichat
-    amdgpu_top-bin
-    apcupsd
     alacarte
     alacritty
     alsa-firmware
     alsa-ucm-conf
     alsa-utils
     alttab-git
+    amdgpu_top-bin
+    apcupsd
     arandr
     asciinema
     atool
@@ -75,10 +75,10 @@ PACKAGES=(
     freerdp
     fzf
     git-delta
+    git-lfs
     github-cli
     github-copilot-cli
     gitkraken
-    git-lfs
     glances
     gnome-keyring
     go
@@ -90,6 +90,7 @@ PACKAGES=(
     hplip
     httpie
     hsetroot
+    i2c-tools               # openrgb dependency
     i3lock-color
     i3-wm
     imagemagick
@@ -101,7 +102,6 @@ PACKAGES=(
     kde-cli-tools
     kubectl
     kubectx
-    i2c-tools                       # openrgb dependency
     lazydocker
     lazygit
     libinput-gestures
@@ -120,8 +120,8 @@ PACKAGES=(
     neofetch
     neovim
     net-tools
-    networkmanager
     network-manager-applet
+    networkmanager
     networkmanager-openvpn
     ngrok
     nitrogen
@@ -164,8 +164,8 @@ PACKAGES=(
     ranger
     rebuild-detector
     ripgrep
-    rocm-hip-runtime    # AMD GPU ROCm
-    rocm-opencl-runtime # AMD GPU ROCm
+    rocm-hip-runtime        # AMD GPU ROCm
+    rocm-opencl-runtime     # AMD GPU ROCm
     rofi
     rofi-calc
     rofi-emoji
@@ -178,10 +178,10 @@ PACKAGES=(
     simplescreenrecorder
     slack-desktop
     sof-firmware
-    spectacle
     solaar
     sops
     sox
+    spectacle
     speedtest-cli
     spotify
     starship
@@ -208,7 +208,7 @@ PACKAGES=(
     ueberzug
     unrar
     unzip
-    uswsusp-git            # s2ram (suspend)
+    uswsusp-git             # s2ram (suspend)
     variety
     viewnior
     virt-manager
@@ -245,8 +245,8 @@ PYTHON_PACKAGES=(
     bleak
     i3ipc
     pypdf2
-    tinytuya
     spotdl
+    tinytuya
 )
 
 # Reinstall pambase
