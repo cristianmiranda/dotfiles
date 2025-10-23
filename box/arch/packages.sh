@@ -30,6 +30,7 @@ PACKAGES=(
     authy
     autoconf
     autotiling
+    aws-cli-v2
     base-devel
     bashtop
     bat
@@ -81,6 +82,7 @@ PACKAGES=(
     glances
     gnome-keyring
     go
+    go-task
     google-chrome
     gqlplus
     gtkpod
