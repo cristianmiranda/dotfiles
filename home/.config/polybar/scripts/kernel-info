@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# Get full kernel version
+kernel=$(uname -r)
+
+# Strip -ARCH suffix from standard kernels, keep everything else
+echo "${kernel%-ARCH}"
