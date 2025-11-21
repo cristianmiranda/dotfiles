@@ -38,7 +38,15 @@ fi
 
 cd "${BASEDIR}"
 echo -e "\n>> 🔧 Using ${MACHINE_TYPE}'s config file => $CONFIG_FILE \n"
+
+# Use venv Python if available, otherwise use system Python
+PYTHON_BIN="python3"
+if [ -f "$HOME/venv/bin/python3" ]; then
+    PYTHON_BIN="$HOME/venv/bin/python3"
+    echo -e ">> 🐍 Using venv Python: $PYTHON_BIN\n"
+fi
+
 cd "${CONFIG_HOME}"
-"${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -q -c "${CONFIG_FILE}" "${@}"
+"$PYTHON_BIN" "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -q -c "${CONFIG_FILE}" "${@}"
 
 exit 0

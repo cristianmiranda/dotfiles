@@ -35,3 +35,15 @@ elif [[ $DISTRO == "ARCH" ]]; then
 
 fi
 
+# Setup Python virtual environment for dotbot (common for all distros)
+VENV_PATH="$HOME/venv"
+if [ ! -d "$VENV_PATH" ]; then
+    echo "Creating Python virtual environment at $VENV_PATH..."
+    python3 -m venv "$VENV_PATH"
+fi
+
+# Install Python dependencies
+echo "Installing Python dependencies..."
+"$VENV_PATH/bin/pip" install --upgrade pip
+"$VENV_PATH/bin/pip" install -r "${DOTFILES_PATH}/requirements.txt"
+
