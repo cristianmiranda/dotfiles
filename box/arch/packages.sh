@@ -151,7 +151,6 @@ PACKAGES=(
     pipewire-audio
     pipewire-pulse
     playerctl
-    plex-media-player
     polkit-gnome
     polybar
     postman-bin
