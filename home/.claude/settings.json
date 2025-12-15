@@ -4,7 +4,10 @@
   "enableAllProjectMcpServers": false,
   "statusLine": {
     "type": "command",
-    "command": "input=$(cat); model=$(echo \"$input\" | jq -r '.model.display_name'); style=$(echo \"$input\" | jq -r '.output_style.name'); cwd=$(echo \"$input\" | jq -r '.workspace.current_dir'); branch=$(cd \"$cwd\" 2>/dev/null && git branch --show-current 2>/dev/null || echo ''); time=$(date '+%H:%M:%S'); dir=$(basename \"$cwd\"); printf \"\\033[2m%s\\033[0m \\033[36m%s\\033[0m\" \"$model\" \"$dir\"; [ -n \"$branch\" ] && printf \" \\033[33m%s\\033[0m\" \"$branch\"; printf \" \\033[90m%s\\033[0m %s\" \"$time\" \"$style\""
+    "command": "input=$(cat); model=$(echo \"$input\" | jq -r '.model.display_name'); style=$(echo \"$input\" | jq -r '.output_style.name'); cwd=$(echo \"$input\" | jq -r '.workspace.current_dir'); total_in=$(echo \"$input\" | jq -r '.context_window.total_input_tokens'); total_out=$(echo \"$input\" | jq -r '.context_window.total_output_tokens'); ctx_size=$(echo \"$input\" | jq -r '.context_window.context_window_size'); branch=$(cd \"$cwd\" 2>/dev/null && git branch --show-current 2>/dev/null || echo ''); time=$(date '+%H:%M:%S'); dir=$(basename \"$cwd\"); total=$((total_in + total_out)); pct=$((total * 100 / ctx_size)); filled=$((pct * 20 / 100)); [ $filled -gt 20 ] && filled=20; bar=''; i=0; while [ $i -lt 20 ]; do if [ $i -lt $filled ]; then bar=\"${bar}█\"; else bar=\"${bar}░\"; fi; i=$((i+1)); done; if [ $pct -ge 90 ]; then bc='\\033[31m'; elif [ $pct -ge 70 ]; then bc='\\033[33m'; else bc='\\033[32m'; fi; printf \"\\033[2m%s\\033[0m \\033[36m%s\\033[0m\" \"$model\" \"$dir\"; [ -n \"$branch\" ] && printf \" \\033[33m%s\\033[0m\" \"$branch\"; printf \" \\033[90m%s\\033[0m %s ${bc}%s\\033[0m \\033[2m%d%%\\033[0m\" \"$time\" \"$style\" \"$bar\" \"$pct\""
+  },
+  "enabledPlugins": {
+    "code-review@claude-code-plugins": true
   },
   "alwaysThinkingEnabled": true
 }
