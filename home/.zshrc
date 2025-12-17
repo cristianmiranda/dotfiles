@@ -20,7 +20,7 @@ source ${HOME}/profiles/common.sh
 #
 # Zoxide
 #
-eval "$(zoxide init --cmd cd zsh)"
+(( $+commands[zoxide] )) && eval "$(zoxide init --cmd cd zsh)"
 
 #
 # Starship prompt
