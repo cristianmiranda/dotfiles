@@ -1,5 +1,8 @@
 #!/bin/bash
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+DOTFILES_PATH="${DOTFILES_PATH:-$(dirname "$SCRIPT_DIR")}"
+
 unameOut="$(uname -a)"
 if [[ "$unameOut" =~ "MANJARO" || "$unameOut" =~ "arch" ]]; then
     DISTRO="ARCH"
