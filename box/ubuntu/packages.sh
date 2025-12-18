@@ -31,6 +31,7 @@ CORE_PACKAGES=(
     gzip
     git
     git-lfs
+    git-delta
     ripgrep
     fzf
     fd-find
@@ -61,6 +62,8 @@ DEV_PACKAGES=(
     ca-certificates
     gnupg
     lsb-release
+    nodejs
+    npm
 )
 
 #
@@ -128,12 +131,3 @@ else
     warning ">>> Already installed: yq"
 fi
 
-#
-# Install starship prompt
-#
-info ">>> Installing starship..."
-if ! command -v starship &> /dev/null; then
-    curl -sS https://starship.rs/install.sh | sh -s -- -y >> $LOG_FILE 2>&1
-else
-    warning ">>> Already installed: starship"
-fi
