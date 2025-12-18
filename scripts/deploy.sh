@@ -35,13 +35,19 @@ else
     sudo chmod -R 0700 ~/.ssh
     sudo chmod -R 0700 ~/.gnupg
 
-    # Clones repo
+    # Clone or update repo
     WORKSPACE=$HOME/Documents/Work/Workspace
     mkdir -p $WORKSPACE
     cd $WORKSPACE
-    git clone --recursive git@github.com:cristianmiranda/dotfiles.git
+    if [ -d "dotfiles" ]; then
+        echo ">> Repo exists, pulling latest changes..."
+        cd dotfiles
+        git pull
+    else
+        git clone --recursive git@github.com:cristianmiranda/dotfiles.git
+        cd dotfiles
+    fi
 
     # Kicks off the installation script
-    cd dotfiles
     bash scripts/install.sh
 fi
