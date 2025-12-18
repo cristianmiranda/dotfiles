@@ -40,8 +40,9 @@ fi
 
 # Setup Python virtual environment for dotbot (common for all distros)
 VENV_PATH="$HOME/venv"
-if [ ! -d "$VENV_PATH" ]; then
+if [ ! -x "$VENV_PATH/bin/pip" ]; then
     echo "Creating Python virtual environment at $VENV_PATH..."
+    rm -rf "$VENV_PATH"
     python3 -m venv "$VENV_PATH"
 fi
 
