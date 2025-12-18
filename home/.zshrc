@@ -19,8 +19,11 @@ source ${HOME}/profiles/common.sh
 
 #
 # Zoxide
+# Only init in interactive shells with zoxide in PATH
+# Fallback: unset cd if zoxide functions weren't properly defined
 #
-(( $+commands[zoxide] )) && eval "$(zoxide init --cmd cd zsh)"
+[[ -o interactive ]] && (( $+commands[zoxide] )) && eval "$(zoxide init --cmd cd zsh)"
+(( $+functions[cd] )) && ! (( $+functions[__zoxide_z] )) && unset -f cd
 
 #
 # Starship prompt
