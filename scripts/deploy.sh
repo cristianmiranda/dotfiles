@@ -17,7 +17,13 @@ else
     cd $HOME
     BACKUP_DIR=/data/ssd/backups/manual/secrets
 
-    sudo pacman -S git unzip
+    # Install git and unzip based on distro
+    unameOut="$(uname -a)"
+    if [[ "$unameOut" =~ "Ubuntu" ]]; then
+        sudo apt-get update && sudo apt-get install -y git unzip
+    else
+        sudo pacman -S --noconfirm git unzip
+    fi
 
     printf "%s " "Please import ~/.ssh and ~/.gnupg manually. Once finished press enter to continue."
     read ans
