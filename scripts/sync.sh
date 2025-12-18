@@ -22,7 +22,7 @@ fi
 #
 unameOut="$(uname -a)"
 MACHINE_TYPE="anonymous"
-if [[ "$unameOut" =~ "mini-linux" ]]; then
+if [[ "$unameOut" =~ "mini-linux" ]] || [[ "$unameOut" =~ "devbox" ]]; then
     MACHINE_TYPE="server"
 elif [[ "$unameOut" =~ "Linux" ]]; then
     MACHINE_TYPE="linux"
