@@ -91,3 +91,4 @@ home/.ssh/pems/campana.pem
 home/.config/aichat/config.yaml
 home/.config/rclone/rclone.conf
 home/.ssh/pems/campana-new.pem
+home/.ssh/pems/devbox.pem
