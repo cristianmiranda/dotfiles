@@ -1,0 +1,53 @@
+#!/bin/bash
+
+PROFILES_DIR="$HOME/.config/openvpn/profiles"
+
+declare -A VPNS
+VPNS=(
+    ["LG"]="lg.ovpn:ehr-01.stage.int.aws.lillegroup.com"
+    ["CCA"]="cca.ovpn:172.22.20.150"
+    ["Home"]="home.ovpn:192.168.50.244"
+    ["Daten"]="daten.ovpn:10.196.33.178"
+)
+
+case "$1" in
+--connect)
+    VPN="$2"
+    if [[ -z "$VPN" ]]; then
+        VPN=$(printf "%s\n" "${!VPNS[@]}" | sort | fzf --prompt="Select VPN: ")
+    fi
+    [[ -z "$VPN" ]] && exit 1
+
+    if [[ -z "${VPNS[$VPN]}" ]]; then
+        echo "❌ Unknown VPN: $VPN"
+        echo "Available: ${!VPNS[@]}"
+        exit 1
+    fi
+
+    IFS=':' read -ra DATA <<< "${VPNS[$VPN]}"
+    CONF="${DATA[0]}"
+
+    echo "🔌 Connecting to $VPN..."
+    sudo openvpn --config "$PROFILES_DIR/$CONF" --daemon --log /tmp/openvpn.log
+    echo "📄 Logs: tail -f /tmp/openvpn.log"
+    ;;
+--disconnect)
+    echo "🔥 Disconnecting VPNs..."
+    sudo killall openvpn 2>/dev/null
+    ;;
+--active)
+    for KEY in "${!VPNS[@]}"; do
+        IFS=':' read -ra DATA <<< "${VPNS[$KEY]}"
+        CONF="${DATA[0]}"
+        PING="${DATA[1]}"
+        if pgrep -f "$CONF" >/dev/null && ping -c1 -W2 "$PING" >/dev/null 2>&1; then
+            echo "$KEY"
+        fi
+    done
+    ;;
+*)
+    echo "Usage: ovpn --connect [VPN] | --disconnect | --active"
+    echo ""
+    echo "Available VPNs: ${!VPNS[@]}"
+    ;;
+esac

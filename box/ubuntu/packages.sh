@@ -42,6 +42,7 @@ CORE_PACKAGES=(
     neofetch
     man-db
     openssh-server
+    openvpn
 )
 
 #
