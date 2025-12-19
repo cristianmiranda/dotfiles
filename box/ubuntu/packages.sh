@@ -40,6 +40,7 @@ CORE_PACKAGES=(
     ncdu
     screen
     neofetch
+    zoxide
     man-db
     openssh-server
     openvpn
