@@ -24,6 +24,7 @@ CORE_PACKAGES=(
     jq
     tmux
     neovim
+    vim
     zsh
     unzip
     zip
