@@ -83,6 +83,7 @@ home/.config/openvpn/profiles/lg.ovpn
 home/.config/openvpn/profiles/cca.ovpn
 home/.config/openvpn/profiles/home.ovpn
 home/.config/openvpn/profiles/daten.ovpn
+home/.config/openvpn/credentials/
 home/dots/work/.bc-functions
 home/.ssh/pems/cheyenne.pem
 home/.ssh/pems/laramie.pem

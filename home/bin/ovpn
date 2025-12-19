@@ -1,13 +1,15 @@
 #!/bin/bash
 
 PROFILES_DIR="$HOME/.config/openvpn/profiles"
+CREDS_DIR="$HOME/.config/openvpn/credentials"
 
 declare -A VPNS
+# format: "config:ping_host:creds_file:key_file"
 VPNS=(
-    ["LG"]="lg.ovpn:ehr-01.stage.int.aws.lillegroup.com"
-    ["CCA"]="cca.ovpn:172.22.20.150"
-    ["Home"]="home.ovpn:192.168.50.244"
-    ["Daten"]="daten.ovpn:10.196.33.178"
+    ["LG"]="lg.ovpn:ehr-01.stage.int.aws.lillegroup.com:lg.txt:"
+    ["CCA"]="cca.ovpn:172.22.20.150:cca.txt:"
+    ["Home"]="home.ovpn:192.168.50.244::"
+    ["Daten"]="daten.ovpn:10.196.33.178:daten.txt:daten-key.txt"
 )
 
 case "$1" in
@@ -16,38 +18,45 @@ case "$1" in
     if [[ -z "$VPN" ]]; then
         VPN=$(printf "%s\n" "${!VPNS[@]}" | sort | fzf --prompt="Select VPN: ")
     fi
-    [[ -z "$VPN" ]] && exit 1
-
-    if [[ -z "${VPNS[$VPN]}" ]]; then
-        echo "❌ Unknown VPN: $VPN"
-        echo "Available: ${!VPNS[@]}"
-        exit 1
-    fi
+    [[ -z "$VPN" || -z "${VPNS[$VPN]}" ]] && echo "❌ Invalid VPN" && exit 1
 
     IFS=':' read -ra DATA <<< "${VPNS[$VPN]}"
     CONF="${DATA[0]}"
+    CREDS="${DATA[2]}"
+    KEY="${DATA[3]}"
+
+    CMD="sudo openvpn --config $PROFILES_DIR/$CONF --daemon --log /tmp/openvpn-$VPN.log"
+    [[ -n "$CREDS" && -f "$CREDS_DIR/$CREDS" ]] && CMD="$CMD --auth-user-pass $CREDS_DIR/$CREDS"
+    [[ -n "$KEY" && -f "$CREDS_DIR/$KEY" ]] && CMD="$CMD --askpass $CREDS_DIR/$KEY"
 
     echo "🔌 Connecting to $VPN..."
-    sudo openvpn --config "$PROFILES_DIR/$CONF" --daemon --log /tmp/openvpn.log
-    echo "📄 Logs: tail -f /tmp/openvpn.log"
+    eval $CMD
+    echo "📄 Logs: tail -f /tmp/openvpn-$VPN.log"
     ;;
 --disconnect)
-    echo "🔥 Disconnecting VPNs..."
+    echo "🔥 Disconnecting..."
     sudo killall openvpn 2>/dev/null
     ;;
 --active)
     for KEY in "${!VPNS[@]}"; do
         IFS=':' read -ra DATA <<< "${VPNS[$KEY]}"
-        CONF="${DATA[0]}"
-        PING="${DATA[1]}"
-        if pgrep -f "$CONF" >/dev/null && ping -c1 -W2 "$PING" >/dev/null 2>&1; then
+        if pgrep -f "${DATA[0]}" >/dev/null && ping -c1 -W2 "${DATA[1]}" >/dev/null 2>&1; then
             echo "$KEY"
         fi
     done
     ;;
+--logs)
+    VPN="$2"
+    tail -f /tmp/openvpn-${VPN:-*}.log
+    ;;
+--setup)
+    mkdir -p "$CREDS_DIR"
+    chmod 700 "$CREDS_DIR"
+    echo "Create credential files in: $CREDS_DIR"
+    echo "Format: username on line 1, password on line 2"
+    ;;
 *)
-    echo "Usage: ovpn --connect [VPN] | --disconnect | --active"
-    echo ""
-    echo "Available VPNs: ${!VPNS[@]}"
+    echo "Usage: ovpn --connect [VPN] | --disconnect | --active | --logs [VPN] | --setup"
+    echo "VPNs: ${!VPNS[@]}"
     ;;
 esac
