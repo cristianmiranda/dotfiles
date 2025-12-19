@@ -4,12 +4,13 @@ PROFILES_DIR="$HOME/.config/openvpn/profiles"
 CREDS_DIR="$HOME/.config/openvpn/credentials"
 
 declare -A VPNS
-# format: "config:ping_host:creds_file:key_file"
+# format: "config:ping_host:creds_file:key_file:otp_type"
+# otp_type: yubikey (append to password), challenge (manual entry), empty (none)
 VPNS=(
-    ["LG"]="lg.ovpn:ehr-01.stage.int.aws.lillegroup.com:lg.txt:"
-    ["CCA"]="cca.ovpn:172.22.20.150:cca.txt:"
+    ["LG"]="lg.ovpn:ehr-01.stage.int.aws.lillegroup.com:lg.txt::yubikey"
+    ["CCA"]="cca.ovpn:172.22.20.150:cca.txt::challenge"
     ["Home"]="home.ovpn:192.168.50.244::"
-    ["Daten"]="daten.ovpn:10.196.33.178:daten.txt:daten-key.txt"
+    ["Daten"]="daten.ovpn:10.196.33.178:daten.txt:daten-key.txt:"
 )
 
 case "$1" in
@@ -24,13 +25,36 @@ case "$1" in
     CONF="${DATA[0]}"
     CREDS="${DATA[2]}"
     KEY="${DATA[3]}"
+    OTP_TYPE="${DATA[4]}"
+
+    CREDS_FILE="$CREDS_DIR/$CREDS"
+    CLEANUP_CREDS=false
+
+    # Handle YubiKey OTP - prompt and append to password in temp file
+    if [[ "$OTP_TYPE" == "yubikey" && -n "$CREDS" && -f "$CREDS_DIR/$CREDS" ]]; then
+        read -rsp "🔑 YubiKey OTP: " OTP
+        echo
+        USERNAME=$(head -1 "$CREDS_DIR/$CREDS")
+        PASSWORD=$(tail -1 "$CREDS_DIR/$CREDS")
+        CREDS_FILE="/tmp/ovpn_creds_$$.txt"
+        printf "%s\n%s%s\n" "$USERNAME" "$PASSWORD" "$OTP" > "$CREDS_FILE"
+        chmod 600 "$CREDS_FILE"
+        CLEANUP_CREDS=true
+    fi
 
     CMD="sudo openvpn --config $PROFILES_DIR/$CONF --daemon --log /tmp/openvpn-$VPN.log"
-    [[ -n "$CREDS" && -f "$CREDS_DIR/$CREDS" ]] && CMD="$CMD --auth-user-pass $CREDS_DIR/$CREDS"
+    [[ -n "$CREDS" && -f "$CREDS_FILE" ]] && CMD="$CMD --auth-user-pass $CREDS_FILE"
     [[ -n "$KEY" && -f "$CREDS_DIR/$KEY" ]] && CMD="$CMD --askpass $CREDS_DIR/$KEY"
 
     echo "🔌 Connecting to $VPN..."
     eval $CMD
+
+    # Cleanup temp credentials after connection starts
+    if $CLEANUP_CREDS; then
+        sleep 2
+        rm -f "$CREDS_FILE"
+    fi
+
     echo "📄 Logs: tail -f /tmp/openvpn-$VPN.log"
     ;;
 --disconnect)
