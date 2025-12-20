@@ -9,5 +9,6 @@
   "enabledPlugins": {
     "code-review@claude-code-plugins": true
   },
-  "alwaysThinkingEnabled": true
+  "alwaysThinkingEnabled": true,
+  "promptSuggestionEnabled": false
 }
