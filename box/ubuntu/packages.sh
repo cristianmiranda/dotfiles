@@ -16,65 +16,66 @@ aptUpdate
 # Core CLI tools
 #
 CORE_PACKAGES=(
-    curl
-    wget
-    htop
-    btop
-    tree
-    jq
-    tmux
-    neovim
-    vim
-    zsh
-    unzip
-    zip
-    tar
-    gzip
-    git
-    git-lfs
-    git-delta
-    ripgrep
-    fzf
-    fd-find
     bat
+    btop
+    curl
     eza
-    ncdu
-    screen
-    neofetch
-    zoxide
+    fd-find
+    fzf
+    git
+    git-delta
+    git-lfs
+    gzip
+    htop
+    jq
     man-db
+    ncdu
+    neofetch
+    neovim
     openssh-server
     openvpn
+    ripgrep
+    screen
+    tar
+    tmux
+    tree
+    unzip
+    vim
+    wget
+    zip
+    zoxide
+    zsh
 )
 
 #
 # Development tools
 #
 DEV_PACKAGES=(
+    apt-transport-https
+    autoconf
+    awscli
     build-essential
+    ca-certificates
     cmake
+    gcc
+    gnupg
+    golang-go
+    lsb-release
+    nodejs
+    npm
     pkg-config
     python3
     python3-pip
     python3-venv
-    golang-go
-    gcc
-    autoconf
     software-properties-common
-    apt-transport-https
-    ca-certificates
-    gnupg
-    lsb-release
-    nodejs
-    npm
 )
 
 #
 # Container tools
 #
 CONTAINER_PACKAGES=(
-    docker.io
     docker-compose
+    docker.io
 )
 
 #
@@ -82,8 +83,8 @@ CONTAINER_PACKAGES=(
 #
 PYTHON_PACKAGES=(
     black
-    ipython
     httpie
+    ipython
 )
 
 # Install core packages
