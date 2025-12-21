@@ -46,6 +46,13 @@ case "$1" in
     [[ -n "$CREDS" && -f "$CREDS_FILE" ]] && CMD="$CMD --auth-user-pass $CREDS_FILE"
     [[ -n "$KEY" && -f "$CREDS_DIR/$KEY" ]] && CMD="$CMD --askpass $CREDS_DIR/$KEY"
 
+    # Clean stale VPN routes before connecting
+    sudo ip route del 10.129.0.128/27 2>/dev/null
+    sudo ip route del 172.18.10.0/24 2>/dev/null
+    sudo ip route del 172.18.128.0/24 2>/dev/null
+    sudo ip route del 10.128.0.0/16 2>/dev/null
+    sudo ip route del 10.130.0.0/15 2>/dev/null
+
     echo "🔌 Connecting to $VPN..."
     eval $CMD
 
