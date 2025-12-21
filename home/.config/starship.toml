@@ -1,0 +1,13 @@
+# Starship configuration
+# https://starship.rs/config/
+
+# Format: show hostname prominently when in SSH
+format = """$hostname$all"""
+
+# Hostname module - only shown during SSH sessions
+[hostname]
+ssh_only = true
+ssh_symbol = "🛰️  "
+format = "[$ssh_symbol$hostname]($style) "
+style = "bold bright-cyan"
+disabled = false
