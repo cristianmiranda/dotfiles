@@ -19,9 +19,9 @@
 #
 # Creates a dump of the local ESH Oracle database
 #
-# Runs at 1:00 AM on the first day of the month
+# Runs weekly on Sunday at noon
 #
-@monthly $HOME/bin/esh-db-backup
+0 12 * * 0 $HOME/bin/esh-db-backup
 
 #
 # Rotate logs
