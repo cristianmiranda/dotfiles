@@ -96,3 +96,5 @@ home/.ssh/pems/devbox.pem
 
 # Claude Code
 .claude
+CLAUDE.md
+

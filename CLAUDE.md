@@ -1,1 +1,0 @@
-/home/cmiranda/Documents/Work/Workspace/ai-agent-rules/projects/dotfiles/CLAUDE.md
