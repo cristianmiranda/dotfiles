@@ -8,6 +8,16 @@ CONFIG_FILE="$HOME/.config/nitrogen/bg-saved.cfg"
 # Get number of active monitors (have a resolution displayed)
 NUM_MONITORS=$(xrandr --query | grep -E "^\S+ connected" | grep -cE "[0-9]+x[0-9]+\+[0-9]+\+[0-9]+")
 
+# If config file doesn't exist, create it by setting wallpapers directly
+if [[ ! -f "$CONFIG_FILE" ]]; then
+    mkdir -p "$(dirname "$CONFIG_FILE")"
+    for ((idx=0; idx<NUM_MONITORS; idx++)); do
+        WP=$(find "$WALLPAPERS_PATH" -type f \( -iname "*.png" -o -iname "*.jpg" -o -iname "*.jpeg" \) | shuf -n 1)
+        nitrogen --set-scaled --head="$idx" "$WP"
+    done
+    exit 0
+fi
+
 # Update each monitor's wallpaper
 for ((idx=0; idx<NUM_MONITORS; idx++)); do
     # Pick a random wallpaper
