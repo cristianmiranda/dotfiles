@@ -37,6 +37,7 @@
       force: true
     ~/.switch: .switch
     ~/.tmux.conf: .tmux.conf
+    ~/.screenrc: .screenrc
 
     # Regular directories
     ~/bin: bin

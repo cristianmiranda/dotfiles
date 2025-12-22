@@ -52,6 +52,7 @@
     ~/.spaceshiprc.zsh: .spaceshiprc.zsh
     ~/.ssh/authorized_keys: .ssh/authorized_keys
     ~/.tmux.conf: .tmux.conf
+    ~/.screenrc: .screenrc
     ~/.zsh_plugins.txt: .zsh_plugins.txt
     ~/.zshrc:
       path: .zshrc
