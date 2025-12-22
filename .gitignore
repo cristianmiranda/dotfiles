@@ -67,6 +67,9 @@ home/.config/nvim/plugin
 # lazygit state file
 home/.config/lazygit/state.yml
 
+# Nitrogen (wallpaper changes frequently)
+home/.config/nitrogen/bg-saved.cfg
+
 # logrotate
 home/.config/logrotate/logrotate.state
 

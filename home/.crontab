@@ -29,3 +29,8 @@
 # Runs at 2:17 AM
 #
 17 2 * * * $HOME/bin/rotate-logs >> $HOME/logs/logrotate.cron.log 2>&1
+
+#
+# Rotate wallpaper every 5 minutes (horizontal monitors only)
+#
+*/5 * * * * $HOME/bin/nitrogen-random-wallpaper
