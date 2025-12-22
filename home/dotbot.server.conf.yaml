@@ -25,6 +25,7 @@
       path: .ssh/config
       force: true
     ~/.tmux.conf: .tmux.conf
+    ~/.screenrc: .screenrc
 
     # Regular directories
     ~/bin: bin
