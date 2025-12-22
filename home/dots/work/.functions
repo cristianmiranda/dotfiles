@@ -15,3 +15,121 @@ function use-esh-db() {
 function devs() {
   echo "bart" "bogdan" "dawid" "ewolk" "jan"
 }
+
+function esh-sdm() {
+  local PROJECT_DIR="$LG_BASE_DIR/escribehost"
+
+  if [[ ! -d "$PROJECT_DIR" ]]; then
+    echo -e "${RED}Error: Project directory not found: $PROJECT_DIR${NC}"
+    return 1
+  fi
+
+  (
+    cd "$PROJECT_DIR"
+    
+    # Use same Java as IntelliJ (current = Java 21 GraalVM)
+    export JAVA_HOME="$HOME/.sdkman/candidates/java/current"
+    export PATH="$JAVA_HOME/bin:$PATH"
+
+    # LauncherDir: where Jetty serves the GWT app from
+    local WAR_DIR="$PROJECT_DIR/app/target/app-develop-SNAPSHOT"
+
+    # Build dependencies first
+    echo "Building dependencies..."
+    mvn install -pl modules/esh-shared -am -DskipTests -Dcheckstyle.skip=true -q
+
+    # Generate classpath from Maven
+    echo "Generating classpath..."
+    local MAVEN_CP_FILE=$(mktemp)
+    mvn -pl modules/esh-client dependency:build-classpath -Dmdep.outputFile="$MAVEN_CP_FILE" -q
+    local MAVEN_CP=$(cat "$MAVEN_CP_FILE")
+    rm -f "$MAVEN_CP_FILE"
+
+    if [[ -z "$MAVEN_CP" ]]; then
+      echo -e "${RED}Error: Failed to generate classpath from Maven${NC}"
+      return 1
+    fi
+
+    # GWT jars needed for DevMode (must be first in classpath, like IntelliJ)
+    local GWT_VERSION="2.12.2"
+    local GWT_JARS="$HOME/.m2/repository/org/gwtproject/gwt-codeserver/$GWT_VERSION/gwt-codeserver-$GWT_VERSION.jar"
+    GWT_JARS="$GWT_JARS:$HOME/.m2/repository/org/gwtproject/gwt-dev/$GWT_VERSION/gwt-dev-$GWT_VERSION.jar"
+    GWT_JARS="$GWT_JARS:$HOME/.m2/repository/org/gwtproject/gwt-user/$GWT_VERSION/gwt-user-$GWT_VERSION.jar"
+
+    # Build classpath: GWT jars first (like IntelliJ), then source dirs, then Maven deps
+    local CLASSPATH="$GWT_JARS"
+    CLASSPATH="$CLASSPATH:$PROJECT_DIR/modules/esh-client/src/main/java"
+    CLASSPATH="$CLASSPATH:$PROJECT_DIR/modules/esh-client/src/main/resources"
+    CLASSPATH="$CLASSPATH:$PROJECT_DIR/modules/esh-client/target/generated-sources/annotations"
+    CLASSPATH="$CLASSPATH:$PROJECT_DIR/modules/esh-client/src"
+    CLASSPATH="$CLASSPATH:$PROJECT_DIR/modules/esh-shared/src/main/java"
+    CLASSPATH="$CLASSPATH:$PROJECT_DIR/modules/esh-shared/src/main/resources"
+    CLASSPATH="$CLASSPATH:$PROJECT_DIR/modules/esh-shared/target/generated-sources/annotations"
+    CLASSPATH="$CLASSPATH:$PROJECT_DIR/modules/esh-client/target/test-classes"
+    CLASSPATH="$CLASSPATH:$PROJECT_DIR/modules/esh-client/target/classes"
+    CLASSPATH="$CLASSPATH:$PROJECT_DIR/modules/esh-shared/target/classes"
+    CLASSPATH="$CLASSPATH:$PROJECT_DIR/modules/esh-shared/target/test-classes"
+    CLASSPATH="$CLASSPATH:$MAVEN_CP"
+
+    # JVM args (matching IntelliJ)
+    local JVM_ARGS=(
+      -Xms2G -Xmx8G
+      -Dgwt.style=PRETTY
+      -Dgwt.codeServer.precompile=false
+      -Dgwt.draftCompile
+      "-Dgwt.compiler.localWorkers=$(nproc)"
+      --add-opens=java.base/java.lang=ALL-UNNAMED
+      --add-opens=java.base/java.io=ALL-UNNAMED
+      --add-opens=java.base/java.util=ALL-UNNAMED
+      --add-opens=java.base/java.util.concurrent=ALL-UNNAMED
+      --add-opens=java.base/java.security=ALL-UNNAMED
+      --add-opens=java.desktop/sun.java2d.opengl=ALL-UNNAMED
+      --add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED
+    )
+
+    # Bind address: 0.0.0.0 for network access, localhost for local only
+    local BIND_ADDRESS="${GWT_BIND_ADDRESS:-0.0.0.0}"
+
+    echo "Using Java: $(java -version 2>&1 | head -1)"
+    echo ""
+    echo -e "${GREEN}Starting GWT Super Dev Mode (CodeServer)...${NC}"
+    echo "  CodeServer: http://$(hostname):9876/"
+    echo "  Launcher:   $WAR_DIR"
+    echo ""
+
+    # Run CodeServer directly for Super Dev Mode (same params as IntelliJ)
+    java "${JVM_ARGS[@]}" \
+      -classpath "$CLASSPATH" \
+      com.google.gwt.dev.codeserver.CodeServer \
+      -noprecompile \
+      -bindAddress "$BIND_ADDRESS" \
+      -port 9876 \
+      -launcherDir "$WAR_DIR" \
+      -sourceLevel 11 \
+      -logLevel INFO \
+      com.escribehost.App
+  )
+}
+
+function esh-jetty() {
+  local PROJECT_DIR="$LG_BASE_DIR/escribehost"
+
+  if [[ ! -d "$PROJECT_DIR" ]]; then
+    echo -e "${RED}Error: Project directory not found: $PROJECT_DIR${NC}"
+    return 1
+  fi
+
+  (
+    cd "$PROJECT_DIR/app"
+
+    # Clean old GWT caches to prevent disk quota issues
+    rm -rf /tmp/gwt-codeserver-*.tmp /tmp/gwt*byte-cache /tmp/gwt-cache-* 2>/dev/null
+
+    echo -e "${GREEN}Starting Jetty on port 8090...${NC}"
+    mvn jetty:run \
+      -Djetty.port=8090 \
+      -DskipTests \
+      -Dcheckstyle.skip=true \
+      -Pjetty
+  )
+}
