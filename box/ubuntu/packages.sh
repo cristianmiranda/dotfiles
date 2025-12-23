@@ -21,7 +21,6 @@ CORE_PACKAGES=(
     curl
     eza
     fd-find
-    fzf
     git
     git-delta
     git-lfs
