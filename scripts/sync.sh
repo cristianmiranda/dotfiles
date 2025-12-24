@@ -8,18 +8,22 @@ CONFIG_HOME="../home"
 DOTBOT_DIR="../dotbot"
 DOTBOT_BIN="bin/dotbot"
 
-# Clone dotbot if $DOBTOB_DIR does not exist
+# Source UI functions
+. "${BASEDIR}/utils/ui.sh" 2>/dev/null || true
+
+# Clone or update dotbot (silently)
 if ! [ -d "${BASEDIR}/${DOTBOT_DIR}" ]; then
-  echo -e "\n>> 📦 Cloning dotbot...\n"
-  git clone git@github.com:anishathalye/dotbot.git || wget -O dotbot.zip https://github.com/anishathalye/dotbot/archive/refs/heads/master.zip && unzip dotbot.zip && mv dotbot-master dotbot && rm dotbot.zip
+    git clone git@github.com:anishathalye/dotbot.git "${BASEDIR}/${DOTBOT_DIR}" 2>/dev/null || {
+        wget -qO dotbot.zip https://github.com/anishathalye/dotbot/archive/refs/heads/master.zip
+        unzip -q dotbot.zip
+        mv dotbot-master "${BASEDIR}/${DOTBOT_DIR}"
+        rm dotbot.zip
+    }
 else
-  echo -e "\n>> 📦 Updating dotbot...\n"
-  git -C "${BASEDIR}/${DOTBOT_DIR}" pull || echo "Couldn't update dotbot repo"
+    git -C "${BASEDIR}/${DOTBOT_DIR}" pull --quiet 2>/dev/null || true
 fi
 
-#
-# Getting config file for host
-#
+# Detect machine type
 unameOut="$(uname -a)"
 MACHINE_TYPE="anonymous"
 if [[ "$unameOut" =~ "mini-linux" ]] || [[ "$unameOut" =~ "devbox" ]]; then
@@ -32,21 +36,89 @@ fi
 
 CONFIG_FILE="dotbot.${MACHINE_TYPE}.conf.yaml"
 if ! [ -f "${BASEDIR}/$CONFIG_HOME/$CONFIG_FILE" ]; then
-    echo "ERROR: $CONFIG_FILE does not exist. Aborting sync."
+    error "ERROR: $CONFIG_FILE does not exist. Aborting sync."
     exit 1
 fi
 
 cd "${BASEDIR}"
-echo -e "\n>> 🔧 Using ${MACHINE_TYPE}'s config file => $CONFIG_FILE \n"
 
-# Use venv Python if available, otherwise use system Python
+# Use venv Python if available
 PYTHON_BIN="python3"
 if [ -f "$HOME/venv/bin/python3" ]; then
     PYTHON_BIN="$HOME/venv/bin/python3"
-    echo -e ">> 🐍 Using venv Python: $PYTHON_BIN\n"
 fi
 
+# Run dotbot
 cd "${CONFIG_HOME}"
-"$PYTHON_BIN" "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -q -c "${CONFIG_FILE}" "${@}"
+
+# Counters
+LINKED=0
+CREATED=0
+REMOVED=0
+SKIPPED=0
+
+if [[ "$GUM_AVAILABLE" == "true" ]]; then
+    br
+    gum style \
+        --border double \
+        --border-foreground "$BLUE" \
+        --padding "0 2" \
+        --width 50 \
+        --align center \
+        --foreground "$BLUE" \
+        --bold \
+        "DOTFILES SYNC"
+    br
+    gum style --foreground "$CYAN" --faint "  Machine: $MACHINE_TYPE | Config: $CONFIG_FILE"
+    br
+
+    "$PYTHON_BIN" "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -c "${CONFIG_FILE}" "${@}" 2>&1 | while IFS= read -r line; do
+        # Skip noisy lines
+        [[ "$line" =~ "antidote:" ]] && continue
+        [[ "$line" =~ "Updating bundles" ]] && continue
+        [[ "$line" =~ "Waiting for bundle" ]] && continue
+        [[ "$line" =~ "Bundle" ]] && continue
+        [[ "$line" =~ "fatal:" ]] && continue
+        [[ "$line" =~ "Updating antidote" ]] && continue
+        [[ "$line" =~ "self-update" ]] && continue
+        [[ "$line" =~ "antidote version" ]] && continue
+        [[ -z "$line" ]] && continue
+
+        # Style dotbot output
+        if [[ "$line" =~ "Creating symlink" ]]; then
+            # Extract just the target path
+            path=$(echo "$line" | sed 's/.*Creating symlink //' | cut -d' ' -f1)
+            gum style --foreground "$GREEN" "  ✓ $path"
+        elif [[ "$line" =~ ^Linking ]]; then
+            gum style --foreground "$GREEN" "  ✓ $line"
+        elif [[ "$line" =~ ^Removing ]]; then
+            path=$(echo "$line" | sed 's/Removing //')
+            gum style --foreground "$YELLOW" "  ○ $path"
+        elif [[ "$line" =~ ^Creating ]] && [[ ! "$line" =~ "symlink" ]]; then
+            gum style --foreground "$BLUE" "  + $line"
+        elif [[ "$line" =~ ^Cleaning ]]; then
+            gum style --foreground "$YELLOW" "  ~ $line"
+        elif [[ "$line" =~ "Already linked" ]] || [[ "$line" =~ "exists" ]]; then
+            gum style --foreground "$CYAN" --faint "  · $line"
+        elif [[ "$line" =~ ^All ]]; then
+            br
+            gum style \
+                --border rounded \
+                --border-foreground "$GREEN" \
+                --foreground "$GREEN" \
+                --padding "0 2" \
+                --width 50 \
+                "✓ $line"
+        elif [[ "$line" =~ "Not linking" ]] || [[ "$line" =~ "Skipping" ]]; then
+            gum style --foreground "$YELLOW" --faint "  ⊘ $line"
+        else
+            gum style --faint "  $line"
+        fi
+    done
+
+    br
+else
+    "$PYTHON_BIN" "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -c "${CONFIG_FILE}" "${@}"
+fi
 
 exit 0
