@@ -8,6 +8,10 @@ if [[ $APPLY_CONFIG =~ n|N ]]; then
     exit 0
 fi
 
+# Cleanup macOS-specific stuff that doesn't belong on Linux
+info ">>> Cleaning up macOS-specific files..."
+sudo rm -f /usr/share/zsh/site-functions/_brew_cask 2>/dev/null || true
+
 # Sets computer's bell off
 xset -b
 

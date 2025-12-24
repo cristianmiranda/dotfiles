@@ -18,6 +18,14 @@ if [[ "$DISTRO" == "UBUNTU" ]]; then
     sudo DEBIAN_FRONTEND=noninteractive apt-get -y install golang-go gcc git
     sudo DEBIAN_FRONTEND=noninteractive apt-get -y install python3-pip python3-venv git-secret figlet lolcat
 
+    # Install gum (Charm CLI tool for beautiful TUI)
+    if ! command -v gum &> /dev/null; then
+        sudo mkdir -p /etc/apt/keyrings
+        curl -fsSL https://repo.charm.sh/apt/gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/charm.gpg
+        echo "deb [signed-by=/etc/apt/keyrings/charm.gpg] https://repo.charm.sh/apt/ * *" | sudo tee /etc/apt/sources.list.d/charm.list
+        sudo apt-get update && sudo DEBIAN_FRONTEND=noninteractive apt-get -y install gum
+    fi
+
 elif [[ $DISTRO == "ARCH" ]]; then
 
     sudo pacman --noconfirm -Syu
@@ -28,13 +36,24 @@ elif [[ $DISTRO == "ARCH" ]]; then
     # Create default directories
     xdg-user-dirs-update
 
-    git clone https://aur.archlinux.org/yay.git ~/yay
-    cd ~/yay
-    makepkg --noconfirm -i
-    cd -
+    # Install or rebuild yay-bin if broken (libalpm version mismatch)
+    if ! yay --version &> /dev/null; then
+        echo "Installing/rebuilding yay-bin..."
+        rm -rf ~/yay-bin
+        git clone https://aur.archlinux.org/yay-bin.git ~/yay-bin
+        cd ~/yay-bin
+        makepkg --noconfirm -si
+        cd -
+    fi
 
     yay --noconfirm -Syyu
     yay --noconfirm -S python-pip git-secret figlet lolcat
+
+    # Install gum (Charm CLI tool for beautiful TUI)
+    # gum is in the official extra repo, use pacman directly
+    if ! command -v gum &> /dev/null; then
+        sudo pacman --noconfirm -S gum
+    fi
 
 fi
 

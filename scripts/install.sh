@@ -2,14 +2,23 @@
 
 CURRENT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-. ${CURRENT_DIR}/utils/path.sh
-. ${CURRENT_DIR}/utils/ui.sh
+. "${CURRENT_DIR}/utils/path.sh"
+. "${CURRENT_DIR}/utils/ui.sh"
 
-echo `date` > $LOG_FILE
+echo "$(date)" > "$LOG_FILE"
+echo "======================================" >> "$LOG_FILE"
+echo "Dotfiles Installation Log" >> "$LOG_FILE"
+echo "======================================" >> "$LOG_FILE"
+echo "" >> "$LOG_FILE"
+
 sudo -v
 
 br
-separator 57
+if [[ "$GUM_AVAILABLE" == "true" ]]; then
+    gum style --foreground "$CYAN" --faint "📝 Logs → $LOG_FILE"
+else
+    info "Logs: $LOG_FILE"
+fi
 br
 
 unameOut="$(uname -s)"
@@ -21,98 +30,129 @@ esac
 
 if [[ $machine == "Mac" ]]; then
     info ">> Installing dependencies for current user ..."
-    bash ${DOTFILES_PATH}/box/macos/dependencies.sh >> $LOG_FILE 2>&1
+    bash "${DOTFILES_PATH}/box/macos/dependencies.sh" >> "$LOG_FILE" 2>&1
 elif [[ $machine == "Linux" ]]; then
     info ">> Installing dependencies for current user ..."
-    bash ${CURRENT_DIR}/dependencies.sh >> $LOG_FILE 2>&1
+    bash "${CURRENT_DIR}/dependencies.sh" >> "$LOG_FILE" 2>&1
 fi
 
-br
-info ">> Revealing secrets ..."
-bash ${CURRENT_DIR}/reveal-secrets.sh -f
+# Re-source ui.sh to pick up gum if it was just installed
+. "${CURRENT_DIR}/utils/ui.sh"
 
+bash "${CURRENT_DIR}/reveal-secrets.sh" -f
 br
+
 banner ">>> Welcome to cmiranda's dotfiles <<<"
 br
 info_1 " Author       :" " Cristian Miranda | @crist_miranda"
-info_1 " Version      :" " $(cd ${DOTFILES_PATH}; git describe --abbrev=7 --always --long master)"
-br
-separator 57
+info_1 " Version      :" " $(cd "${DOTFILES_PATH}"; git describe --abbrev=7 --always --long master)"
 br
 
-#
-# Sync box
-#
-br
+# Sync dotfiles
 ask_caution "Sync dotfiles now?" SYNC_BOX
-br
 if [[ $SYNC_BOX =~ y|Y ]]; then
-    bash ${CURRENT_DIR}/sync.sh
+    info ">> Syncing dotfiles..."
+    bash "${CURRENT_DIR}/sync.sh"
+    success ">> Dotfiles synced!"
 fi
-br
 
+# Box selection (stop after first selection - typically only one platform)
+available_boxes=($(ls "${DOTFILES_PATH}/box"))
 install_box=()
-for box in $(ls "${DOTFILES_PATH}/box"); do
-	ask "Setup ${box}?" response
-	if [[ $response =~ y|Y ]]; then
-		install_box+=("$box")
-	fi
+for box in "${available_boxes[@]}"; do
+    ask "Setup ${box}?" response
+    if [[ $response =~ y|Y ]]; then
+        install_box+=("$box")
+        break
+    fi
 done
 export install_box
 
+# Installation options (only ask if a box was selected)
+if [[ ${#install_box[@]} -gt 0 ]]; then
+    ask "Install packages?" INSTALL_PACKAGES && export INSTALL_PACKAGES
+    ask "Install extra programs?" INSTALL_PROGRAMS && export INSTALL_PROGRAMS
+    ask "Install work stuff?" INSTALL_WORK && export INSTALL_WORK
+    ask "Apply config?" APPLY_CONFIG && export APPLY_CONFIG
+fi
+
+# Summary
 br
-ask "Install packages?" INSTALL_PACKAGES && export INSTALL_PACKAGES
-ask "Install extra programs?" INSTALL_PROGRAMS && export INSTALL_PROGRAMS
-ask "Install work stuff?" INSTALL_WORK && export INSTALL_WORK
-ask "Apply config?" APPLY_CONFIG && export APPLY_CONFIG
+if [[ "$GUM_AVAILABLE" == "true" ]]; then
+    boxes_list="${install_box[*]:-none}"
+    gum style \
+        --border double \
+        --border-foreground "$BLUE" \
+        --padding "1 2" \
+        --width 50 \
+        "$(gum style --foreground "$BLUE" --bold "Installation Summary")" \
+        "" \
+        "  Boxes     : ${boxes_list}" \
+        "  Packages  : ${INSTALL_PACKAGES:-n}" \
+        "  Programs  : ${INSTALL_PROGRAMS:-n}" \
+        "  Work      : ${INSTALL_WORK:-n}" \
+        "  Config    : ${APPLY_CONFIG:-n}"
+else
+    info_1 "  Boxes     :" " ${install_box[*]:-none}"
+    info_1 "  Packages  :" " ${INSTALL_PACKAGES:-n}"
+    info_1 "  Programs  :" " ${INSTALL_PROGRAMS:-n}"
+    info_1 "  Work      :" " ${INSTALL_WORK:-n}"
+    info_1 "  Config    :" " ${APPLY_CONFIG:-n}"
+fi
 br
+
 ask_caution "Shall we proceed?" CONTINUE
-br
 
 if [[ $CONTINUE =~ y|Y ]]; then
-
-    banner "           >>> Continue <<<           "
     br
+    banner ">>> Installing <<<"
 
     for box in "${install_box[@]}"; do
-        separator 57
         br
-        figlet "> ${box} <" | lolcat
+        box_header "$box"
         br
-        bash ${DOTFILES_PATH}/box/$box/setup.sh
-        separator 57
-    done;
+        bash "${DOTFILES_PATH}/box/$box/setup.sh" 2>&1 | while IFS= read -r line; do
+            if [[ "$GUM_AVAILABLE" == "true" ]]; then
+                gum log --level info "$line"
+            else
+                echo "$line"
+            fi
+        done
+    done
 
-    # This is now handled by Duplicati
-
-    # separator 57
-    # br
-    # ask "Do you want to restore some data for this box?" RESTORE_DATA_FOR_BOX
-    # if [[ $RESTORE_DATA_FOR_BOX =~ y|Y ]];
-    # then
-    #     ask_2 "Type the box to be restored: [linux/server/rpi]" RESTORE_BOX && export RESTORE_BOX
-    #     sudo $HOME/bin/backuper --restore $RESTORE_BOX
-    # fi
-    # br
-
-    separator 57
     br
-    figlet "> Done!" | lolcat
-    br
-    separator 57
+    if [[ "$GUM_AVAILABLE" == "true" ]]; then
+        success "Installation complete!"
+        gum style --foreground "$CYAN" --faint "Check $LOG_FILE for detailed output"
+    else
+        figlet "> Done!" | lolcat 2>/dev/null || info ">>> Done! <<<"
+    fi
     br
 
     ask "Do you want to change the default shell to zsh?" CHANGE_SHELL_TO_ZSH
-    if [[ $CHANGE_SHELL_TO_ZSH =~ y|Y ]];
-    then
-        info "Changing default shell to /usr/bin/zsh ..."
-        chsh -s $(which zsh)
-        zsh
+    if [[ $CHANGE_SHELL_TO_ZSH =~ y|Y ]]; then
+        info "Changing default shell to zsh..."
+        if chsh -s "$(which zsh)"; then
+            success "Shell changed to zsh! Restart your terminal to use it."
+        else
+            warning "Shell change failed or was cancelled."
+        fi
     fi
-
 else
-
-    banner "            >>> Aborted <<<           "
+    br
+    if [[ "$GUM_AVAILABLE" == "true" ]]; then
+        gum style \
+            --border double \
+            --border-foreground "$RED" \
+            --foreground "$RED" \
+            --bold \
+            --padding "1 4" \
+            --width 50 \
+            --align center \
+            "INSTALLATION ABORTED"
+    else
+        banner ">>> Aborted <<<"
+    fi
+    br
     exit 0
-
 fi

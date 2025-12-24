@@ -15,6 +15,7 @@ brew install figlet
 brew install lolcat
 brew install yq
 brew install go
+brew install gum
 
 # Setup Python virtual environment for dotbot
 VENV_PATH="$HOME/venv"
